@@ -2,21 +2,35 @@
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
+  modules: [
+    '@nuxt/eslint',
+    '@nuxt/image',
+  ],
 
   devtools: { enabled: true },
 
   css: ['~/assets/css/main.css'],
 
+  compatibilityDate: '2024-11-01',
+
   vite: {
     plugins: [
       tailwindcss(),
     ],
+
+    vue: {
+      script: {
+        defineModel: true,
+        propsDestructure: true,
+      },
+    },
   },
 
-  image: {
-    // dir: 'assets/images'
+  eslint: {
+    config: {
+      standalone: false,
+      stylistic: true,
+      autoInit: false,
+    },
   },
-
-  modules: ['@nuxt/eslint', '@nuxt/image'],
 })
