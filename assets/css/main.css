@@ -1,0 +1,11 @@
+@import url("./fonts.css");
+@import url("./resets.css");
+@import url("./page.css");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Season Sans", sans-serif, system-ui;
+  --font-display: "Season Mix", serif, system-ui;
+
+  --color-primary: #D97F30;
+}
