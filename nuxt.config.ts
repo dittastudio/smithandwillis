@@ -24,13 +24,14 @@ export default defineNuxtConfig({
         { name: 'msapplication-TileColor', content: '#e87a07' },
         { name: 'theme-color', content: '#e87a07' },
         { name: 'google', content: 'notranslate' },
+        { name: 'apple-mobile-web-app-title', content: 'Smith & Willis' },
         { 'http-equiv': 'content-language', 'content': 'en-GB' },
       ],
       link: [
-        // https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs#the-ultimate-favicon-setup
-        { rel: 'icon', href: '/favicon.ico', sizes: '32x32' },
+        { rel: 'shortcut icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/png', href: '/favicon-96x96.png', sizes: '96x96' },
         { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
-        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
         { rel: 'manifest', href: '/site.webmanifest' },
         { rel: 'preload', type: 'font/woff2', href: '/fonts/SeasonSans-Regular.woff2', as: 'font', crossorigin: '' },
       ],
