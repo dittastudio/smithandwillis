@@ -7,6 +7,8 @@ export default defineNuxtConfig({
     '@nuxt/image',
   ],
 
+  ssr: true,
+
   devtools: { enabled: true },
 
   css: ['~/assets/css/main.css'],
