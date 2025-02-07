@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-screen py-[16.25vh] md:py-[11vh]">
+  <div class="relative h-full py-[16.25vh] md:py-[11vh]">
     <NuxtImg
       class="absolute inset-0 -z-10 w-full h-full object-cover opacity-50"
       src="/images/banner.png"
@@ -7,7 +7,7 @@
       format="webp"
     />
 
-    <div class="relative flex flex-col items-center justify-center text-center h-full">
+    <div class="relative flex flex-col items-center justify-center text-center h-[inherit]">
       <svg
         class="w-[60vw] aspect-[503/37] max-w-[320px] text-primary"
         width="503"
