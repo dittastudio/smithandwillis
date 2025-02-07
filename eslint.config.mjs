@@ -12,20 +12,28 @@ export default withNuxt(
       'vue/define-macros-order': 'off',
       'vue/no-v-html': 'off',
       'vue/multi-word-component-names': 'off',
-      'vue/padding-line-between-tags': ['error', [
-        { blankLine: 'always', prev: '*', next: '*' },
-      ]],
-      'vue/custom-event-name-casing': ['error', 'kebab-case', {
-        ignores: [],
-      }],
-      'vue/max-attributes-per-line': ['error', {
-        singleline: {
-          max: 1,
+      'vue/padding-line-between-tags': [
+        'error',
+        [{ blankLine: 'always', prev: '*', next: '*' }],
+      ],
+      'vue/custom-event-name-casing': [
+        'error',
+        'kebab-case',
+        {
+          ignores: [],
         },
-        multiline: {
-          max: 1,
+      ],
+      'vue/max-attributes-per-line': [
+        'error',
+        {
+          singleline: {
+            max: 1,
+          },
+          multiline: {
+            max: 1,
+          },
         },
-      }],
+      ],
     },
   }),
 )
