@@ -17,6 +17,7 @@ useServerSeoMeta({
       src="/images/banner.png"
       densities="x1 x2"
       format="webp"
+      alt="Smith & Willis"
     />
 
     <div
