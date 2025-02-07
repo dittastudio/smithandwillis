@@ -18,6 +18,7 @@ useServerSeoMeta({
       preload
       densities="x1 x2"
       format="webp"
+      alt="Smith & Willis"
     />
 
     <div
