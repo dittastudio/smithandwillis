@@ -2,9 +2,9 @@
 useServerSeoMeta({
   robots: 'index, follow',
   title: 'Smith & Willis',
-  description: '',
+  description: 'Smith & Willis is a London-based hospitality group creating places people love.',
   ogTitle: 'Smith & Willis',
-  ogDescription: '',
+  ogDescription: 'Smith & Willis is a London-based hospitality group creating places people love.',
   ogImage: 'https://smithandwillis.london/images/smithandwillis.png',
   twitterCard: 'summary_large_image',
 })
