@@ -10,6 +10,7 @@ export default defineNuxtConfig({
   ssr: true,
 
   devtools: { enabled: true },
+
   app: {
     head: {
       htmlAttrs: {
@@ -38,6 +39,10 @@ export default defineNuxtConfig({
   },
 
   css: ['~/assets/css/main.css'],
+
+  features: {
+    noScripts: true,
+  },
 
   compatibilityDate: '2024-11-01',
 
