@@ -15,6 +15,7 @@ useServerSeoMeta({
     <NuxtImg
       class="absolute inset-0 -z-10 h-full w-full object-cover opacity-50"
       src="/images/banner.png"
+      preload
       densities="x1 x2"
       format="webp"
     />
