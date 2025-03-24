@@ -4,7 +4,7 @@
       :class="[
         'peer fixed z-50 size-12 rounded-full bottom-5 right-5',
         'font-[monospace] shadow-lg backdrop-blur-md',
-        'bg-primary/50 hover:bg-primary/80 checked:bg-primary/20',
+        'bg-white/50 hover:bg-white/80 checked:bg-white/20',
         'transition-all duration-200 ease-smooth appearance-none cursor-pointer',
       ]"
       type="checkbox"

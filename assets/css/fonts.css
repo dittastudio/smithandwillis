@@ -6,4 +6,12 @@
     font-display: swap;
     src: url('/fonts/SeasonSans-Regular.woff2') format('woff2');
   }
+
+  @font-face {
+    font-family: 'Season Mix';
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    src: url('/fonts/SeasonMix-Regular.woff2') format('woff2');
+  }
 }

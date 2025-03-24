@@ -2,10 +2,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
 
-  modules: [
-    '@nuxt/eslint',
-    '@nuxt/image',
-  ],
+  modules: ['@nuxt/eslint', '@nuxt/image', '@nuxtjs/svg-sprite'],
 
   ssr: true,
 
@@ -34,6 +31,7 @@ export default defineNuxtConfig({
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
         { rel: 'manifest', href: '/site.webmanifest' },
         { rel: 'preload', type: 'font/woff2', href: '/fonts/SeasonSans-Regular.woff2', as: 'font', crossorigin: '' },
+        { rel: 'preload', type: 'font/woff2', href: '/fonts/SeasonMix-Regular.woff2', as: 'font', crossorigin: '' },
       ],
     },
   },

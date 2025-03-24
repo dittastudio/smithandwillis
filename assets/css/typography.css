@@ -1,0 +1,45 @@
+.t-large {
+  font-size: var(--text-16);
+  line-height: calc( 24 / 16);
+  letter-spacing: var(--tracking-sm);
+
+  @variant md {
+    font-size: var(--text-18);
+    line-height: calc( 26 / 18);
+  }
+}
+
+.t-regular,
+.t-regular-mix,
+.t-regular-mix-caps {
+  font-size: var(--text-15);
+  line-height: calc( 24 / 15);
+  letter-spacing: var(--tracking-sm);
+
+  @variant md {
+    font-size: var(--text-16);
+    line-height: calc( 24 / 16);
+  }
+}
+
+.t-regular-mix,
+.t-regular-mix-caps,
+.t-small-mix-caps {
+  font-family: var(--font-mix);
+}
+
+.t-regular-mix-caps,
+.t-small-mix-caps {
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-lg);
+}
+
+.t-small-mix-caps {
+  font-size: var(--text-13);
+  line-height: calc(22 / 13);
+
+  @variant md {
+    font-size: var(--text-14);
+    line-height: calc(22 / 14);
+  }
+}
