@@ -1,13 +1,14 @@
 @layer base {
-  html,
-  body,
-  #__nuxt {
+  html:has(.home-page),
+  body:has(.home-page),
+  #__nuxt:has(.home-page),
+  .site:has(.home-page) {
     height: 100%;
   }
 
   html {
-    color: var(--color-white);
-    background-color: var(--color-black);
+    color: var(--color-offblack);
+    background-color: var(--color-offwhite);
   }
 
   body {
@@ -15,5 +16,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: transparent;
+  }
+
+  .wrapper {
+    width: 100%;
+    max-width: var(--breakpoint-xl);
+    margin-inline: auto;
+    padding-inline: var(--app-inner-gutter);
   }
 }

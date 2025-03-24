@@ -34,6 +34,7 @@ export default withNuxt(
           },
         },
       ],
+      'vue/prefer-separate-static-class': 'off',
     },
   }),
 )
