@@ -13,7 +13,7 @@
     <div
       class="wrapper ease-smooth fixed inset-0 z-40 w-full h-full transition-opacity duration-200 pointer-events-none opacity-0 peer-checked:opacity-100"
     >
-      <div class="grid gap-x-5 md:gap-x-6 grid-cols-2 md:grid-cols-12 h-screen">
+      <div class="grid gap-x-[var(--app-inner-gutter)] grid-cols-2 md:grid-cols-12 h-screen">
         <div
           v-for="i in 12"
           :key="i"

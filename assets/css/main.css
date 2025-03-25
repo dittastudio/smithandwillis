@@ -25,6 +25,7 @@
   --font-sans: "Season Sans", sans-serif, system-ui;
   --font-mix: "Season Mix", serif, system-ui;
 
+  --text-12: 0.75rem; /* 12px */
   --text-13: 0.8125rem; /* 13px */
   --text-14: 0.875rem; /* 14px */
   --text-15: 0.9375rem; /* 15px */
@@ -37,8 +38,10 @@
 
 :root {
   --app-inner-gutter: --spacing(5);
+  --app-outer-gutter: --spacing(5);
 
   @variant md {
-    --app-inner-gutter: --spacing(16);
+    --app-inner-gutter: --spacing(6);
+    --app-outer-gutter: --spacing(16);
   }
 }

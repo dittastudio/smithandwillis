@@ -1,4 +1,4 @@
-.t-large {
+.t-lg {
   font-size: var(--text-16);
   line-height: calc( 24 / 16);
   letter-spacing: var(--tracking-sm);
@@ -9,9 +9,9 @@
   }
 }
 
-.t-regular,
-.t-regular-mix,
-.t-regular-mix-caps {
+.t-md,
+.t-md-mix,
+.t-md-mix-caps {
   font-size: var(--text-15);
   line-height: calc( 24 / 15);
   letter-spacing: var(--tracking-sm);
@@ -22,24 +22,36 @@
   }
 }
 
-.t-regular-mix,
-.t-regular-mix-caps,
-.t-small-mix-caps {
+.t-md-mix,
+.t-md-mix-caps,
+.t-sm-mix-caps,
+.t-xs-mix-caps {
   font-family: var(--font-mix);
 }
 
-.t-regular-mix-caps,
-.t-small-mix-caps {
+.t-md-mix-caps,
+.t-sm-mix-caps,
+.t-xs-mix-caps {
   text-transform: uppercase;
   letter-spacing: var(--tracking-lg);
 }
 
-.t-small-mix-caps {
+.t-sm-mix-caps {
   font-size: var(--text-13);
   line-height: calc(22 / 13);
 
   @variant md {
     font-size: var(--text-14);
     line-height: calc(22 / 14);
+  }
+}
+
+.t-xs-mix-caps {
+  font-size: var(--text-12);
+  line-height: calc(22 / 12);
+
+  @variant md {
+    font-size: var(--text-13);
+    line-height: calc(22 / 13);
   }
 }
