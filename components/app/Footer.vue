@@ -70,9 +70,9 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
       </div>
 
       <div class="footer__meta-container mt-16">
-        <ul class="footer__meta-list t-xs-mix-caps flex flex-col items-center md:flex-row md:flex-wrap md:justify-start md:items-start md:text-left gap-x-4">
+        <ul class="footer__meta-list t-xs-mix-caps flex flex-col items-center md:flex-row md:flex-wrap md:justify-start md:items-start md:text-left gap-y-3">
           <li class="footer__meta-item">
-            <p class="opacity-70">
+            <p class="footer-meta-link opacity-70">
               &copy;{{ currentYear }} All rights reserved
             </p>
           </li>
@@ -80,7 +80,7 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
           <li class="footer__meta-item">
             <a
               href="/"
-              class="footer-meta-links"
+              class="footer-meta-link"
               :class="classesMetaLink"
             >
               Privacy Policy
@@ -90,6 +90,7 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
           <li class="footer__meta-item">
             <a
               href="/"
+              class="footer-meta-link"
               :class="classesMetaLink"
             >
               Made by ditta
@@ -111,18 +112,30 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
 }
 
 .footer__meta-list {
-  margin-left: -3ch;
+  @variant md {
+    margin-inline: -1.25em;
+  }
 }
 
 .footer__meta-item {
-  position: relative;
-  padding-left: 3ch;
+  @variant md {
+    position: relative;
 
-  &:before {
-    content: '/';
-    position: absolute;
-    left: 0;
-    top: 0;
+    &:before {
+      content: '/';
+      position: absolute;
+      left: -0.3em;
+      top: 0;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+  }
+}
+
+.footer-meta-link {
+  @variant md {
+    display: block;
+    padding-inline: 1.25em;
   }
 }
 </style>
