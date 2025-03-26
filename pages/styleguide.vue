@@ -1,5 +1,5 @@
 <template>
-  <div class="relative my-30">
+  <div class="relative mt-8 mb-30">
     <div class="wrapper">
       <h1 class="t-md-mix-caps">
         Styleguide
@@ -13,7 +13,7 @@
         <div class="flex flex-col gap-10">
           <SvgIcon
             name="logo"
-            class="w-100 h-7"
+            class="w-100 h-8"
           />
 
           <SvgIcon

@@ -1,0 +1,91 @@
+<script lang="ts" setup>
+interface Props {
+  isOpen?: boolean
+}
+
+const { isOpen = false } = defineProps<Props>()
+</script>
+
+<template>
+  <span
+    class="ui-burger"
+    :class="{ 'ui-burger--is-open': isOpen }"
+  >
+    <span class="ui-burger__inner" />
+
+    <span class="sr-only">Toggle menu</span>
+  </span>
+</template>
+
+<style>
+@reference "../../assets/css/main.css";
+
+.ui-burger {
+  --size: --spacing(4.125); /* 16.5px */
+
+  display: flex;
+  align-items: center;
+  width: var(--size);
+  height: var(--size);
+}
+
+.ui-burger__inner {
+  --burger-height: 1px;
+  --burger-offset: 4px;
+
+  position: relative;
+  display: block;
+  width: 100%;
+  height: var(--burger-height);
+
+  &::before,
+  &::after {
+    --trans-out-open: 0.25s var(--ease-outQuart) 0.35s;
+    --trans-in-open: 0.25s var(--ease-inQuart);
+    --trans-out-close: 0.25s var(--ease-outQuart) 0.35s;
+    --trans-in-close: 0.25s var(--ease-inQuart);
+
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: currentcolor;
+
+    transition:
+      translate var(--trans-out-close),
+      rotate var(--trans-in-close);
+  }
+
+  &::before {
+    translate: 0 calc(-1 * var(--burger-offset)) 0;
+  }
+
+  &::after {
+    translate: 0 var(--burger-offset) 0;
+  }
+
+  .ui-burger--is-open & {
+    &::before,
+    &::after {
+      transition:
+        translate var(--trans-in-open),
+        rotate var(--trans-out-open);
+    }
+
+    &::before {
+      translate: 0 0 0;
+      rotate: 45deg;
+    }
+
+    &::after {
+      translate: 0 0 0;
+      rotate: -45deg;
+    }
+  }
+}
+</style>

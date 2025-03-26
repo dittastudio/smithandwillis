@@ -4,6 +4,7 @@
     letter-spacing: inherit;
     touch-action: manipulation;
     user-select: none;
+    cursor: pointer;
 
     &:disabled {
       cursor: not-allowed;
@@ -11,7 +12,7 @@
   }
 
   svg {
-    display: inline-block;
+    display: block;
     fill: currentcolor;
   }
 }

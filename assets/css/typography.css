@@ -1,11 +1,11 @@
 .t-lg {
   font-size: var(--text-16);
-  line-height: calc( 24 / 16);
+  line-height: calc(24 / 16);
   letter-spacing: var(--tracking-sm);
 
   @variant md {
     font-size: var(--text-18);
-    line-height: calc( 26 / 18);
+    line-height: calc(26 / 18);
   }
 }
 
@@ -13,12 +13,12 @@
 .t-md-mix,
 .t-md-mix-caps {
   font-size: var(--text-15);
-  line-height: calc( 24 / 15);
+  line-height: calc(24 / 15);
   letter-spacing: var(--tracking-sm);
 
   @variant md {
     font-size: var(--text-16);
-    line-height: calc( 24 / 16);
+    line-height: calc(24 / 16);
   }
 }
 

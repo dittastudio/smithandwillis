@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const currentYear = computed(() => new Date().getFullYear())
 
+const classesFooterLink = 'block opacity-100 hover:opacity-70 transition-opacity duration-300 ease-out'
 const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity duration-300 ease-out'
 </script>
 
@@ -13,13 +14,18 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
             Studio
           </h4>
 
-          <address class="t-md not-italic">
-            1 Hat & Mitre Court
-            <br>
-            London
-            <br>
-            EC1M 4EH
-          </address>
+          <a
+            href="/"
+            :class="classesFooterLink"
+          >
+            <address class="t-md not-italic">
+              1 Hat & Mitre Court
+              <br>
+              London
+              <br>
+              EC1M 4EH
+            </address>
+          </a>
         </div>
 
         <div class="col-span-full md:col-span-3 lg:col-span-2 flex flex-col gap-4">
@@ -29,15 +35,30 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
 
           <ul class="t-md not-italic">
             <li>
-              Luca
+              <a
+                href="/"
+                :class="classesFooterLink"
+              >
+                Luca
+              </a>
             </li>
 
             <li>
-              Osip
+              <a
+                href="/"
+                :class="classesFooterLink"
+              >
+                Osip
+              </a>
             </li>
 
             <li>
-              The Loft
+              <a
+                href="/"
+                :class="classesFooterLink"
+              >
+                The Loft
+              </a>
             </li>
           </ul>
         </div>
@@ -49,27 +70,43 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
 
           <ul class="t-md not-italic">
             <li>
-              <a href="mailto:hello@smithandwillis.london">
+              <a
+                href="mailto:hello@smithandwillis.london"
+                :class="classesFooterLink"
+              >
                 hello@smithandwillis.london
               </a>
             </li>
 
             <li>
-              <a href="mailto:careers@smithandwillis.london">
+              <a
+                href="mailto:careers@smithandwillis.london"
+                :class="classesFooterLink"
+              >
                 careers@smithandwillis.london
               </a>
             </li>
 
             <li>
-              <a href="tel:+442038965454">
+              <a
+                href="tel:+442038965454"
+                :class="classesFooterLink"
+              >
                 +44 203 896 5454
               </a>
             </li>
           </ul>
         </div>
+
+        <div class="col-span-full md:col-span-3 lg:col-span-5 max-md:mx-auto max-md:mt-2 md:ml-auto">
+          <SvgIcon
+            name="logo-mark"
+            class="size-22 md:size-18 lg:size-25 opacity-10"
+          />
+        </div>
       </div>
 
-      <div class="footer__meta-container mt-16">
+      <div class="footer__meta-container mt-10 md:mt-16">
         <ul class="footer__meta-list t-xs-mix-caps flex flex-col items-center md:flex-row md:flex-wrap md:justify-start md:items-start md:text-left gap-y-3">
           <li class="footer__meta-item">
             <p class="footer-meta-link opacity-70">
