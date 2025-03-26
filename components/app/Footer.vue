@@ -9,7 +9,7 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
   <footer class="bg-rich-brown text-white pt-20 pb-16">
     <div class="wrapper">
       <div class="grid gap-x-[var(--app-inner-gutter)] gap-y-8 grid-cols-2 md:grid-cols-12">
-        <div class="col-span-full md:col-span-3 lg:col-span-2 flex flex-col gap-4">
+        <div class="col-span-full sm:col-span-1 md:col-span-3 lg:col-span-2 flex flex-col gap-4">
           <h4 class="t-md-mix-caps">
             Studio
           </h4>
@@ -28,7 +28,7 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
           </a>
         </div>
 
-        <div class="col-span-full md:col-span-3 lg:col-span-2 flex flex-col gap-4">
+        <div class="col-span-full sm:col-span-1 md:col-span-3 lg:col-span-2 flex flex-col gap-4">
           <h4 class="t-md-mix-caps">
             Places
           </h4>
@@ -106,28 +106,28 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
         </div>
       </div>
 
-      <div class="footer__meta-container mt-10 md:mt-16">
-        <ul class="footer__meta-list t-xs-mix-caps flex flex-col items-center md:flex-row md:flex-wrap md:justify-start md:items-start md:text-left gap-y-3">
-          <li class="footer__meta-item">
-            <p class="footer-meta-link opacity-70">
+      <div class="app-footer__meta-container mt-10 md:mt-16">
+        <ul class="app-footer__meta-list t-xs-mix-caps flex flex-col items-center md:flex-row md:flex-wrap md:justify-start md:items-start md:text-left gap-y-3">
+          <li class="app-footer__meta-item">
+            <p class="app-footer__meta-link opacity-70">
               &copy;{{ currentYear }} All rights reserved
             </p>
           </li>
 
-          <li class="footer__meta-item">
+          <li class="app-footer__meta-item">
             <a
               href="/"
-              class="footer-meta-link"
+              class="app-footer__meta-link"
               :class="classesMetaLink"
             >
               Privacy Policy
             </a>
           </li>
 
-          <li class="footer__meta-item">
+          <li class="app-footer__meta-item">
             <a
               href="/"
-              class="footer-meta-link"
+              class="app-footer__meta-link"
               :class="classesMetaLink"
             >
               Made by ditta
@@ -142,19 +142,19 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
 <style>
 @reference "../../assets/css/main.css";
 
-.footer__meta-container {
+.app-footer__meta-container {
   @variant md {
     overflow: hidden;
   }
 }
 
-.footer__meta-list {
+.app-footer__meta-list {
   @variant md {
     margin-inline: -1.25em;
   }
 }
 
-.footer__meta-item {
+.app-footer__meta-item {
   @variant md {
     position: relative;
 
@@ -169,7 +169,7 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
   }
 }
 
-.footer-meta-link {
+.app-footer__meta-link {
   @variant md {
     display: block;
     padding-inline: 1.25em;

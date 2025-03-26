@@ -1,11 +1,21 @@
 <template>
   <div class="site">
-    <AppHeader />
+    <AppLayout>
+      <template #header>
+        <AppHeader />
+      </template>
 
-    <NuxtPage />
+      <template #main>
+        <NuxtPage />
+      </template>
 
-    <AppFooter />
+      <template #footer>
+        <AppFooter />
+      </template>
 
-    <ToolGuide />
+      <template #dev>
+        <ToolGuide />
+      </template>
+    </AppLayout>
   </div>
 </template>

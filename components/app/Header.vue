@@ -50,26 +50,26 @@ onUnmounted(() => {
 })
 
 const classesNavList = 'flex items-center md:gap-8 lg:gap-12 font-mix text-15 leading-5.5 tracking-lg uppercase md:text-13 lg:text-14 md:leading-6'
-const classesNavLink = 'block md:p-4 md:-m-4 lg:p-6 lg:-m-6 transition-opacity duration-300 ease-out hover:opacity-70'
+const classesNavLink = 'block md:p-4 md:-m-4 lg:p-6 lg:-m-6 transition-opacity duration-300 ease-out hover:opacity-70 pointer-events-auto'
 
 const classesHeader = computed<Record<string, boolean>>(() => ({
-  'header--is-open': menuOpen.value,
-  'header--has-scrolled': hasScrolled.value,
-  'header--has-scrolled-up': hasScrolledUp.value,
-  'header--has-scrolled-down': hasScrolledDown.value,
+  'app-header--is-open': menuOpen.value,
+  'app-header--has-scrolled': hasScrolled.value,
+  'app-header--has-scrolled-up': hasScrolledUp.value,
+  'app-header--has-scrolled-down': hasScrolledDown.value,
 }))
 </script>
 
 <template>
   <header
     :class="classesHeader"
-    class="header sticky top-0 z-10 text-white"
+    class="app-header text-white"
   >
-    <div class="header__wrapper wrapper py-8 md:py-10">
+    <div class="app-header__wrapper wrapper py-8 md:py-10">
       <div class="md:grid md:grid-cols-[1fr_auto_1fr] md:items-center">
         <button
           type="button"
-          class="absolute top-0 left-0 p-8 md:hidden active:opacity-70 transition-opacity duration-300 ease-out"
+          class="absolute top-0 left-0 p-8 md:hidden active:opacity-70 transition-opacity duration-300 ease-out pointer-events-auto"
           @click="toggleMenu"
         >
           <UiBurger :is-open="menuOpen" />
@@ -114,7 +114,7 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
 
         <div>
           <a
-            class="block p-6 -my-6"
+            class="block p-6 -my-6 pointer-events-auto"
             href="/"
           >
             <SvgIcon
@@ -147,7 +147,7 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
 <style>
 @reference "../../assets/css/main.css";
 
-.header {
+.app-header {
   &::before {
     content: '';
     position: absolute;
@@ -157,15 +157,14 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
     height: 100%;
     background-image: linear-gradient(
       to top,
-      --alpha(var(--color-warm-grey) / 0%),
-      --alpha(var(--color-warm-grey) / 100%)
+      --alpha(var(--color-warm-grey) / 0%) 0%,
+      --alpha(var(--color-warm-grey) / 100%) 100%
     );
     z-index: -1;
   }
 }
 
-.header__wrapper {
-  pointer-events: auto;
+.app-header__wrapper {
   opacity: 1;
   translate: 0 0 0;
 
@@ -173,7 +172,7 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
     translate 0s 0s,
     opacity 1s var(--ease-out);
 
-  .header--has-scrolled-down & {
+  .app-header--has-scrolled-down & {
     pointer-events: none;
     opacity: 0;
     translate: 0 --spacing(-5) 0;
