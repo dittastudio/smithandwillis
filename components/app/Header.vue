@@ -51,9 +51,6 @@ onUnmounted(() => {
   window.removeEventListener('scroll', rAFHeaderScroll)
 })
 
-const classesNavList = 'flex items-center md:gap-8 lg:gap-12 font-mix text-15 leading-5.5 tracking-lg uppercase md:text-13 lg:text-14 md:leading-6'
-const classesNavLink = 'block md:p-4 md:-m-4 lg:p-6 lg:-m-6 transition-opacity duration-300 ease-out hover:opacity-70 pointer-events-auto'
-
 const classesHeader = computed<Record<string, boolean>>(() => ({
   'app-header--is-open': menuOpen.value,
   'app-header--has-scrolled': hasScrolled.value,
@@ -77,69 +74,30 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
           <UiBurger :is-open="menuOpen" />
         </button>
 
-        <nav
-          :class="[
-            'max-md:absolute max-md:top-0 max-md:left-0 max-md:right-0 max-md:min-h-screen max-md:-z-1',
-            'max-md:bg-rich-brown max-md:text-white',
-            'max-md:hidden',
-          ]"
+        <div
+          v-if="$slots['navigation-primary']"
+          class="mr-auto"
         >
-          <ul :class="classesNavList">
-            <li>
-              <a
-                :class="classesNavLink"
-                href="/"
-              >
-                Places
-              </a>
-            </li>
-
-            <li>
-              <a
-                :class="classesNavLink"
-                href="/"
-              >
-                People
-              </a>
-            </li>
-
-            <li>
-              <a
-                :class="classesNavLink"
-                href="/"
-              >
-                Studio
-              </a>
-            </li>
-          </ul>
-        </nav>
-
-        <div>
-          <a
-            class="block p-6 -my-6 pointer-events-auto"
-            href="/"
-          >
-            <IconLogo
-              class="text-orange w-[174px] h-[13px] mx-auto lg:w-[232px] lg:h-[17px]"
-            />
-          </a>
+          <slot name="navigation-primary" />
         </div>
 
-        <nav class="max-md:hidden">
-          <ul
-            :class="classesNavList"
-            class="justify-end"
-          >
-            <li>
-              <a
-                :class="classesNavLink"
-                href="/"
-              >
-                Contact
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <NuxtLink
+          class="block p-6 -my-6 pointer-events-auto"
+          to="/"
+        >
+          <IconLogo
+            class="text-orange w-[174px] h-[13px] mx-auto lg:w-[232px] lg:h-[17px]"
+          />
+
+          <span class="sr-only">Smith & Willis</span>
+        </NuxtLink>
+
+        <div
+          v-if="$slots['navigation-secondary']"
+          class="ml-auto"
+        >
+          <slot name="navigation-secondary" />
+        </div>
       </div>
     </div>
   </header>
