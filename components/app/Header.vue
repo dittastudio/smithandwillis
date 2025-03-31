@@ -113,13 +113,38 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-image: linear-gradient(
-      to top,
-      --alpha(var(--color-warm-grey) / 0%) 0%,
-      --alpha(var(--color-warm-grey) / 100%) 100%
-    );
+    height: 150%;
+    opacity: 0.6;
+    background-image:
+      linear-gradient(
+        to bottom,
+        --alpha(var(--color-offblack) / 100%) 0%,
+        --alpha(var(--color-offblack) / 98.7%) 8.1%,
+        --alpha(var(--color-offblack) / 95.1%) 15.5%,
+        --alpha(var(--color-offblack) / 89.6%) 22.5%,
+        --alpha(var(--color-offblack) / 82.5%) 29%,
+        --alpha(var(--color-offblack) / 74.1%) 35.3%,
+        --alpha(var(--color-offblack) / 64.8%) 41.2%,
+        --alpha(var(--color-offblack) / 55%) 47.1%,
+        --alpha(var(--color-offblack) / 45%) 52.9%,
+        --alpha(var(--color-offblack) / 35.2%) 58.8%,
+        --alpha(var(--color-offblack) / 25.9%) 64.7%,
+        --alpha(var(--color-offblack) / 17.5%) 71%,
+        --alpha(var(--color-offblack) / 10.4%) 77.5%,
+        --alpha(var(--color-offblack) / 4.9%) 84.5%,
+        --alpha(var(--color-offblack) / 1.3%) 91.9%,
+        --alpha(var(--color-offblack) / 0%) 100%
+      )
+    ;
     z-index: -1;
+    transition: opacity 1s var(--ease-out);
+  }
+
+  &.app-header--has-scrolled-down {
+    &::before {
+      opacity: 0;
+      transition: opacity 0.5s var(--ease-inOutQuart);
+    }
   }
 }
 
@@ -134,11 +159,11 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
   .app-header--has-scrolled-down & {
     pointer-events: none;
     opacity: 0;
-    translate: 0 --spacing(-5) 0;
+    translate: 0 --spacing(-3) 0;
 
     transition:
-      translate 0.5s var(--ease-in-out),
-      opacity 0.5s var(--ease-in-out);
+      translate 0.5s var(--ease-inOutQuart),
+      opacity 0.5s var(--ease-inOutQuart);
   }
 }
 </style>

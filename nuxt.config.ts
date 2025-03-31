@@ -41,7 +41,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: ['~/assets/css/main.css', process.env.NUXT_STORYBLOK_VERSION === 'draft' ? '@michaelpumo/screen/app.css' : '',
+  css: ['~/assets/css/main.css', process.env.NUXT_STORYBLOK_VERSION === 'draft' ? '@michaelpumo/screen/app.css' : undefined,
   ],
   site: {
     url: 'https://smithandwillis.london',
