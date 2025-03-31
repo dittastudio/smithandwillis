@@ -1,12 +1,4 @@
 @layer base {
-  /* TODO: Remove this once new site launches */
-  html:has(.home-page),
-  body:has(.home-page),
-  #__nuxt:has(.home-page),
-  .site:has(.home-page) {
-    height: 100%;
-  }
-
   html {
     color: var(--color-offblack);
     background-color: var(--color-warm-grey);

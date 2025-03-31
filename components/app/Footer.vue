@@ -1,6 +1,7 @@
 <script setup lang="ts">
-const currentYear = computed(() => new Date().getFullYear())
+import IconLogoMark from '@/assets/icons/logo-mark.svg'
 
+const currentYear = computed(() => new Date().getFullYear())
 const classesFooterLink = 'block opacity-100 hover:opacity-70 transition-opacity duration-300 ease-out'
 const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity duration-300 ease-out'
 </script>
@@ -99,8 +100,7 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
         </div>
 
         <div class="col-span-full md:col-span-3 lg:col-span-5 max-md:mx-auto max-md:mt-2 md:ml-auto">
-          <SvgIcon
-            name="logo-mark"
+          <IconLogoMark
             class="size-22 md:size-18 lg:size-25 opacity-10"
           />
         </div>

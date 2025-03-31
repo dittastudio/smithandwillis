@@ -1,3 +1,8 @@
+<script lang="ts" setup>
+import IconLogoMark from '@/assets/icons/logo-mark.svg'
+import IconLogo from '@/assets/icons/logo.svg'
+</script>
+
 <template>
   <div class="relative mt-8 mb-30">
     <div class="wrapper">
@@ -11,15 +16,9 @@
         </h2>
 
         <div class="flex flex-col gap-10">
-          <SvgIcon
-            name="logo"
-            class="w-100 h-8"
-          />
+          <IconLogo class="w-100 h-8" />
 
-          <SvgIcon
-            name="logo-mark"
-            class="size-50 opacity-10"
-          />
+          <IconLogoMark class="size-50 opacity-10" />
         </div>
       </section>
 

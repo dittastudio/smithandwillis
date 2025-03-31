@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import IconLogo from '@/assets/icons/logo.svg'
+
 const menuOpen = useState<boolean>('menuOpen')
 
 const toggleMenu = () => {
@@ -117,8 +119,7 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
             class="block p-6 -my-6 pointer-events-auto"
             href="/"
           >
-            <SvgIcon
-              name="logo"
+            <IconLogo
               class="text-orange w-[174px] h-[13px] mx-auto lg:w-[232px] lg:h-[17px]"
             />
           </a>

@@ -1,14 +1,23 @@
 import tailwindcss from '@tailwindcss/vite'
+import svgLoader from 'vite-svg-loader'
 
 export default defineNuxtConfig({
-
-  modules: ['@nuxt/eslint', '@nuxt/image', '@nuxtjs/svg-sprite'],
-
+  modules: [
+    '@nuxt/eslint',
+    '@nuxt/image',
+    '@nuxtjs/sitemap',
+    [
+      '@storyblok/nuxt',
+      {
+        accessToken: process.env.NUXT_STORYBLOK_TOKEN,
+      },
+    ],
+  ],
   ssr: true,
-
   devtools: { enabled: true },
-
   app: {
+    pageTransition: { name: 'fade', mode: 'out-in' },
+    layoutTransition: false,
     head: {
       htmlAttrs: {
         lang: 'en-GB',
@@ -32,20 +41,29 @@ export default defineNuxtConfig({
       ],
     },
   },
-
-  css: ['~/assets/css/main.css'],
-
+  css: ['~/assets/css/main.css', process.env.NUXT_STORYBLOK_VERSION === 'draft' ? '@michaelpumo/screen/app.css' : '',
+  ],
+  site: {
+    url: 'https://smithandwillis.london',
+    name: 'Smith & Willis',
+  },
+  runtimeConfig: {
+    public: {
+      STORYBLOK_TOKEN: process.env.NUXT_STORYBLOK_TOKEN,
+      STORYBLOK_VERSION: process.env.NUXT_STORYBLOK_VERSION,
+    },
+  },
   features: {
     noScripts: true,
   },
-
   compatibilityDate: '2024-11-01',
-
   vite: {
     plugins: [
       tailwindcss(),
+      svgLoader({
+        svgo: false,
+      }),
     ],
-
     vue: {
       script: {
         defineModel: true,
@@ -53,12 +71,31 @@ export default defineNuxtConfig({
       },
     },
   },
-
   eslint: {
     config: {
       standalone: false,
       stylistic: true,
       autoInit: false,
     },
+  },
+  image: {
+    provider: 'storyblok',
+    storyblok: {
+      baseURL: 'https://a.storyblok.com',
+    },
+    domains: ['storyblok.com', 'smithandwillis.london'],
+    quality: 80,
+    screens: {
+      'xs': 375,
+      'sm': 640,
+      'md': 768,
+      'lg': 1024,
+      'xl': 1200,
+      '2xl': 1440,
+      '3xl': 1920,
+    },
+  },
+  sitemap: {
+    sources: ['/api/sitemap'],
   },
 })
