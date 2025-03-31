@@ -25,7 +25,7 @@ useServerSeoMeta({
       class="relative flex h-[inherit] flex-col items-center justify-center text-center"
     >
       <svg
-        class="aspect-[503/37] w-[60vw] max-w-[320px] text-primary"
+        class="app-logo aspect-[503/37] w-[60vw] max-w-[260px] text-white"
         width="503"
         height="37"
         viewBox="0 0 503 37"
@@ -44,11 +44,41 @@ useServerSeoMeta({
         />
       </svg>
 
+      <span class="sr-only">
+        Smith & Willis
+      </span>
+
       <p
-        class="absolute bottom-0 text-sm tracking-[0.2em] text-grey uppercase md:text-base"
+        class="app-tagline absolute bottom-0 text-sm tracking-[0.2em] text-grey uppercase md:text-base"
       >
         Coming Soon
       </p>
     </div>
   </div>
 </template>
+
+<style scoped>
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    translate: 0 10px;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.app-logo,
+.app-tagline {
+  opacity: 0;
+}
+
+.app-logo {
+  animation: fadeIn 3s 0.7s var(--ease-out) forwards;
+}
+
+.app-tagline {
+  animation: fadeIn 3s 1.2s var(--ease-out) forwards;
+}
+</style>
