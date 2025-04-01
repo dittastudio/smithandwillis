@@ -86,7 +86,17 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
           to="/"
         >
           <IconLogo
-            class="text-orange w-[174px] h-[13px] mx-auto lg:w-[232px] lg:h-[17px]"
+            class="
+              w-[174px]
+              h-[13px]
+              mx-auto
+              lg:w-[232px]
+              lg:h-[17px]
+              transition-colors
+              duration-500
+              ease-out
+            "
+            :class="hasScrolled ? 'text-white delay-500' : 'text-orange'"
           />
 
           <span class="sr-only">Smith & Willis</span>
@@ -114,7 +124,7 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
     left: 0;
     width: 100%;
     height: 150%;
-    opacity: 0.6;
+    opacity: 0;
     background-image:
       linear-gradient(
         to bottom,
@@ -138,6 +148,12 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
     ;
     z-index: -1;
     transition: opacity 1s var(--ease-out);
+  }
+
+  &.app-header--has-scrolled {
+    &::before {
+      opacity: 0.6;
+    }
   }
 
   &.app-header--has-scrolled-down {
