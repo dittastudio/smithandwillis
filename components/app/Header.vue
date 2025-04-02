@@ -61,9 +61,9 @@ onUnmounted(() => {
 
 const classesHeader = computed<Record<string, boolean>>(() => ({
   'app-header--is-open': menuOpen.value,
-  'app-header--has-scrolled': hasScrolled.value,
-  'app-header--has-scrolled-up': hasScrolledUp.value,
-  'app-header--has-scrolled-down': hasScrolledDown.value,
+  'app-header--has-scrolled': hasScrolled.value && !menuOpen.value,
+  'app-header--has-scrolled-up': hasScrolledUp.value && !menuOpen.value,
+  'app-header--has-scrolled-down': hasScrolledDown.value && !menuOpen.value,
 }))
 </script>
 
@@ -82,8 +82,9 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
           <UiBurger :is-open="menuOpen" />
         </button>
 
-        <NuxtLink
-          class="
+        <div class="absolute top-0 inset-x-0 w-full h-full flex items-center justify-center">
+          <NuxtLink
+            class="
             block
             p-6
             -my-6
@@ -93,25 +94,24 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
             hover:text-orange
             md:absolute
           "
-          :class="[
-            hasScrolled ? 'text-white' : 'text-orange',
-            hasScrolledDown && 'delay-500',
-            hasScrolledUp ? 'duration-300 delay-0' : 'duration-500',
-          ]"
-          to="/"
-        >
-          <IconLogo
-            class="
+            :class="[
+              hasScrolled ? 'text-white' : 'text-orange',
+              hasScrolledDown && 'delay-500',
+              hasScrolledUp ? 'duration-300 delay-0' : 'duration-500',
+            ]"
+            to="/"
+          >
+            <IconLogo
+              class="
               w-[174px]
               h-[13px]
               mx-auto
               lg:w-[232px]
               lg:h-[17px]
             "
-          />
-
-          <span class="sr-only">Smith & Willis</span>
-        </NuxtLink>
+            />
+          </NuxtLink>
+        </div>
 
         <AppHeaderMenu>
           <AppHeaderNavigation
