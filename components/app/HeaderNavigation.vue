@@ -42,6 +42,10 @@ const menuOpen = useState<boolean>('menuOpen')
           :item="item.link"
           class="
             block
+            py-3
+            max-md:border-b
+            max-md:border-solid
+            max-md:border-warm-grey/20
             md:p-4
             md:-m-4
             lg:p-6

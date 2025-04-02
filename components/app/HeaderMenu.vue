@@ -10,7 +10,7 @@ const menuOpen = useState<boolean>('menuOpen')
       max-md:top-0
       max-md:left-0
       max-md:right-0
-      max-md:min-h-screen
+      max-md:min-h-dvh
       max-md:-z-1
       max-md:bg-rich-brown
       max-md:text-white
@@ -18,7 +18,9 @@ const menuOpen = useState<boolean>('menuOpen')
     "
     :class="{ 'app-header-menu--is-open': menuOpen }"
   >
-    <slot />
+    <div class="app-header-menu__inner">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -26,15 +28,8 @@ const menuOpen = useState<boolean>('menuOpen')
 @reference "../../assets/css/main.css";
 
 .app-header-menu {
-  width: 100%;
-
-  @variant md {
-    display: flex;
-    justify-content: space-between;
-  }
-
   @variant max-md {
-    transition: opacity 0.3s ease-out;
+    transition: opacity 0.5s var(--ease-in-out);
     opacity: 0;
     pointer-events: none;
     padding-inline: var(--app-outer-gutter);
@@ -42,6 +37,23 @@ const menuOpen = useState<boolean>('menuOpen')
     &--is-open {
       opacity: 1;
       pointer-events: auto;
+    }
+  }
+}
+
+.app-header-menu__inner {
+  @variant md {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @variant max-md {
+    transition: opacity 0.15s var(--ease-in-out);
+    opacity: 0;
+
+    .app-header-menu--is-open & {
+      transition: opacity 0.5s var(--ease-in-out) 0.4s;
+      opacity: 1;
     }
   }
 }
