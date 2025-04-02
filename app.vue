@@ -20,30 +20,18 @@ useSeoMeta({
   robots: 'index, follow',
 })
 
-// useState('reservationsOpen', () => false)
-// useState('navigationOpen', () => false)
-// useNavigation(false)
+useState('menuOpen', () => false)
+// useMenu(false)
 </script>
 
 <template>
   <div>
     <AppLayout>
       <template #header>
-        <AppHeader>
-          <template #navigation-primary>
-            <AppNavigation
-              v-if="settings?.content?.navigation_primary?.length"
-              :items="settings.content.navigation_primary"
-            />
-          </template>
-
-          <template #navigation-secondary>
-            <AppNavigation
-              v-if="settings?.content?.navigation_secondary?.length"
-              :items="settings.content.navigation_secondary"
-            />
-          </template>
-        </AppHeader>
+        <AppHeader
+          :primary-navigation="settings?.content?.navigation_primary"
+          :secondary-navigation="settings?.content?.navigation_secondary"
+        />
       </template>
 
       <template #main>

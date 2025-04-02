@@ -6,26 +6,22 @@ interface Props {
 }
 
 const { items } = defineProps<Props>()
+
+const menuOpen = useState<boolean>('menuOpen')
 </script>
 
 <template>
   <nav
     class="
-      max-md:absolute
-      max-md:top-0
-      max-md:left-0
-      max-md:right-0
-      max-md:min-h-screen
-      max-md:-z-1
-    max-md:bg-rich-brown
-    max-md:text-white
-      max-md:hidden
-    "
+      app-header-navigation"
+    :class="{ 'app-header-navigation--is-open': menuOpen }"
   >
     <ul
       class="
         flex
-        items-center
+        flex-col
+        md:flex-row
+        md:items-center
         md:gap-8
         lg:gap-12
         font-mix
@@ -62,3 +58,21 @@ const { items } = defineProps<Props>()
     </ul>
   </nav>
 </template>
+
+<style>
+@reference "../../assets/css/main.css";
+
+/* .app-header-navigation {
+  @variant max-md {
+    transition: opacity 0.3s ease-out;
+    opacity: 0;
+    pointer-events: none;
+    padding-inline: var(--app-outer-gutter);
+
+    &--is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+} */
+</style>

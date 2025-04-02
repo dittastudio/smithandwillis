@@ -21,12 +21,14 @@ const { isOpen = false } = defineProps<Props>()
 @reference "../../assets/css/main.css";
 
 .ui-burger {
-  --size: --spacing(4.125); /* 16.5px */
+  --burger-button-height: --spacing(6);
+  --burger-size: --spacing(4.125); /* 16.5px */
 
   display: flex;
+  justify-content: center;
   align-items: center;
-  width: var(--size);
-  height: var(--size);
+  width: var(--burger-size);
+  height: var(--burger-button-height);
 }
 
 .ui-burger__inner {
@@ -35,15 +37,15 @@ const { isOpen = false } = defineProps<Props>()
 
   position: relative;
   display: block;
-  width: 100%;
+  width: var(--burger-size);
   height: var(--burger-height);
 
   &::before,
   &::after {
-    --trans-out-open: 0.25s var(--ease-outQuart) 0.35s;
-    --trans-in-open: 0.25s var(--ease-inQuart);
-    --trans-out-close: 0.25s var(--ease-outQuart) 0.35s;
-    --trans-in-close: 0.25s var(--ease-inQuart);
+    --trans-out-open: 0.25s var(--ease-outExpo) 0.3s;
+    --trans-in-open: 0.25s var(--ease-inExpo);
+    --trans-out-close: 0.25s var(--ease-outExpo) 0.3s;
+    --trans-in-close: 0.25s var(--ease-inExpo);
 
     content: '';
 
@@ -51,7 +53,7 @@ const { isOpen = false } = defineProps<Props>()
     top: 0;
     left: 0;
 
-    width: 100%;
+    width: var(--burger-size);
     height: 100%;
 
     background-color: currentcolor;

@@ -71,6 +71,11 @@ export default defineNuxtConfig({
       },
     },
   },
+  postcss: {
+    plugins: {
+      'postcss-nested': {},
+    },
+  },
   eslint: {
     config: {
       standalone: false,
