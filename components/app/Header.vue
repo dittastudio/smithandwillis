@@ -59,6 +59,17 @@ onUnmounted(() => {
   window.removeEventListener('scroll', rAFHeaderScroll)
 })
 
+const isScreenMd = useAtMedia('(min-width: 800px)')
+
+watchEffect(() => {
+  if (!import.meta.client)
+    return
+
+  if (isScreenMd.value) {
+    menuOpen.value = false
+  }
+})
+
 const classesHeader = computed<Record<string, boolean>>(() => ({
   'app-header--is-open': menuOpen.value,
   'app-header--has-scrolled': hasScrolled.value && !menuOpen.value,
