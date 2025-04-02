@@ -29,14 +29,14 @@ const menuOpen = useState<boolean>('menuOpen')
 
 .app-header-menu {
   @variant max-md {
-    transition: opacity 0.5s var(--ease-in-out);
+    transition: opacity 0.5s var(--ease-in-out), visibility 0.5s var(--ease-in-out);
     opacity: 0;
-    pointer-events: none;
+    visibility: hidden;
     padding-inline: var(--app-outer-gutter);
 
     &--is-open {
       opacity: 1;
-      pointer-events: auto;
+      visibility: visible;
     }
   }
 }

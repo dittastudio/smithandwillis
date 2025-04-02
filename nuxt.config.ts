@@ -92,12 +92,11 @@ export default defineNuxtConfig({
     quality: 80,
     screens: {
       'xs': 375,
-      'sm': 640,
-      'md': 768,
-      'lg': 1024,
-      'xl': 1200,
-      '2xl': 1440,
-      '3xl': 1920,
+      'sm': 480,
+      'md': 800,
+      'lg': 1200,
+      'xl': 1440,
+      '2xl': 1800,
     },
   },
   sitemap: {

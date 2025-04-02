@@ -21,6 +21,7 @@ export interface AssetStoryblok {
 export interface BlockMediaStoryblok {
   media: AssetStoryblok;
   ratio: number | string;
+  ratio_desktop?: number | string;
   _uid: string;
   component: "block_media";
   [k: string]: any;

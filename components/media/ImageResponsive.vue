@@ -1,0 +1,235 @@
+<script lang="ts" setup>
+import type { AssetStoryblok } from '@/types/storyblok'
+import { calculateAspectRatio, ratioDimensions, validAspectRatio } from '@/utils/helpers'
+import { storyblokImage, storyblokImageDimensions, storyblokImageUrlUpdate } from '@/utils/storyblok'
+import { useIntersectionObserver } from '@vueuse/core'
+
+defineOptions({
+  inheritAttrs: false,
+})
+
+const attrs = useAttrs() as { [key: string]: any }
+
+interface Props {
+  asset: AssetStoryblok
+  desktopAsset?: AssetStoryblok
+  breakpoint?: string
+  ratio?: string | number
+  desktopRatio?: string | number
+  sizes: string
+  desktopSizes?: string
+  alt?: string
+  lazy?: boolean
+}
+
+const {
+  asset,
+  desktopAsset,
+  breakpoint = '(min-width: 800px)',
+  ratio,
+  desktopRatio,
+  sizes,
+  desktopSizes,
+  lazy = true,
+} = defineProps<Props>()
+
+const container = ref<HTMLPictureElement | null>(null)
+const ready = ref(!lazy)
+const loaded = ref(!lazy)
+
+// Intersection observer to load images when they come into view
+useIntersectionObserver(
+  container,
+  ([{ isIntersecting }], observerElement) => {
+    if (isIntersecting && !ready.value) {
+      ready.value = true
+      observerElement.disconnect()
+    }
+  },
+  { rootMargin: '0px 0px 0px 0px', threshold: 0.25 },
+)
+
+const imgMain = useImage()
+
+// Function to get image size based on asset and ratio
+function getImageSize(imageAsset: AssetStoryblok, imageRatio?: string | number) {
+  const { width, height } = storyblokImageDimensions(imageAsset.filename)
+
+  // Use provided ratio if valid, otherwise calculate from image dimensions
+  const isRatioValid = imageRatio && validAspectRatio(imageRatio)
+  const aspectRatio = isRatioValid
+    ? calculateAspectRatio(ratioDimensions(imageRatio).width, ratioDimensions(imageRatio).height)
+    : calculateAspectRatio(width, height)
+
+  return {
+    width: ratioDimensions(aspectRatio).width,
+    height: ratioDimensions(aspectRatio).height,
+  }
+}
+
+// Function to create image info (srcset, sizes, etc.)
+function createImageInfo(imageAsset: AssetStoryblok, imageSize: { width: number, height: number }, imageSizes: string) {
+  return imgMain.getSizes(storyblokImageUrlUpdate(imageAsset.filename), {
+    provider: 'storyblok',
+    sizes: imageSizes,
+    modifiers: {
+      width: imageSize.width,
+      height: imageSize.height,
+      quality: 80,
+      filters: {
+        focal: imageAsset.focus ?? undefined,
+      },
+    },
+  })
+}
+
+// Function to create placeholder image
+function createPlaceholder(imageAsset: AssetStoryblok, imageSize: { width: number, height: number }) {
+  return storyblokImage(
+    imageAsset.filename,
+    {
+      width: imageSize.width,
+      height: imageSize.height,
+      quality: 10,
+      focal: imageAsset.focus ?? undefined,
+    },
+  )
+}
+
+// Mobile image size and info
+const mobileSize = getImageSize(asset, ratio)
+const imgInfo = computed(() => createImageInfo(asset, mobileSize, sizes))
+const mobilePlaceholder = createPlaceholder(asset, mobileSize)
+
+// Desktop image size and info (if available)
+const hasDesktopImage = computed(() => !!desktopAsset)
+const desktopSize = computed(() => hasDesktopImage.value ? getImageSize(desktopAsset!, desktopRatio) : mobileSize)
+const desktopImgInfo = computed(() => hasDesktopImage.value ? createImageInfo(desktopAsset!, desktopSize.value, desktopSizes || sizes) : null)
+const desktopPlaceholder = computed(() => hasDesktopImage.value ? createPlaceholder(desktopAsset!, desktopSize.value) : null)
+
+const { class: className, ...rest } = attrs
+
+// Attributes for the mobile image
+const imgAttrs = computed(() => ({
+  ...rest,
+  width: mobileSize.width,
+  height: mobileSize.height,
+  src: ready.value ? storyblokImageUrlUpdate(asset.filename) : '',
+  sizes: ready.value ? imgInfo.value.sizes : '',
+  srcset: ready.value ? imgInfo.value.srcset : '',
+  alt: attrs.alt ?? asset.alt ?? '',
+  loading: lazy ? 'eager' : 'lazy',
+}))
+</script>
+
+<template>
+  <div
+    class="media-image-container"
+    :class="[className, { 'is-loaded': loaded, 'is-lazy': lazy }]"
+  >
+    <!-- Main picture element with actual images -->
+    <picture
+      ref="container"
+      class="media-image"
+    >
+      <!-- Desktop image source if provided -->
+      <source
+        v-if="hasDesktopImage"
+        :media="breakpoint"
+        :srcset="desktopImgInfo?.srcset"
+        :sizes="desktopImgInfo?.sizes || imgInfo.sizes"
+        :width="desktopSize.width"
+        :height="desktopSize.height"
+      >
+
+      <!-- Mobile/default image -->
+      <img
+        v-bind="imgAttrs"
+        class="media-image__file"
+        @load="loaded = true"
+      >
+    </picture>
+
+    <!-- Placeholder picture element with responsive sources -->
+    <picture
+      v-if="lazy"
+      class="media-image-placeholder"
+    >
+      <!-- Desktop placeholder source if provided -->
+      <source
+        v-if="hasDesktopImage && desktopPlaceholder"
+        :media="breakpoint"
+        :srcset="desktopPlaceholder"
+        :width="desktopSize.width"
+        :height="desktopSize.height"
+      >
+
+      <!-- Mobile/default placeholder -->
+      <img
+        class="media-image__placeholder"
+        :src="mobilePlaceholder"
+        :width="mobileSize.width"
+        :height="mobileSize.height"
+        alt=""
+        loading="lazy"
+      >
+    </picture>
+  </div>
+</template>
+
+<style lang="postcss" scoped>
+.media-image-container {
+  --media-image-fade-duration: 1s;
+
+  isolation: isolate;
+  position: relative;
+
+  overflow: hidden;
+  display: block;
+
+  width: 100%;
+  height: inherit;
+}
+
+.media-image__file {
+  width: 100%;
+  height: auto;
+
+  .media-image-container.is-lazy & {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+
+    backface-visibility: hidden;
+    opacity: 0;
+
+    transition: opacity var(--media-image-fade-duration) var(--ease-out);
+  }
+
+  .media-image-container.is-loaded & {
+    opacity: 1;
+  }
+}
+
+.media-image-placeholder {
+  display: block;
+  pointer-events: none;
+  width: 100%;
+  height: auto;
+
+  backface-visibility: hidden;
+  opacity: 1;
+  filter: blur(8px);
+
+  transition: opacity calc(var(--media-image-fade-duration) * 2) var(--ease-out) calc(var(--media-image-fade-duration) / 2);
+
+  .media-image-container.is-loaded & {
+    opacity: 0;
+  }
+}
+
+.media-image__placeholder {
+  display: block;
+  width: 100%;
+}
+</style>

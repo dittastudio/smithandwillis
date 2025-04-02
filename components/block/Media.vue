@@ -15,18 +15,14 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     v-editable="block"
     class="block-media"
   >
-    <MediaImage
+    <MediaImageResponsive
       v-if="block.media && assetType === 'image'"
-      class="block-media__media"
       :asset="block.media"
+      :desktop-asset="block.media"
       :ratio="block.ratio"
-      sizes="
-        100vw
-        sm:100vw
-        md:100vw
-        lg:100vw
-        xl:100vw
-      "
+      :desktop-ratio="block.ratio_desktop"
+      sizes="100vw sm:100vw md:100vw"
+      desktop-sizes="md:100vw lg:100vw xl:100vw 2xl:100vw"
     />
   </div>
 </template>

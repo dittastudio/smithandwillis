@@ -34,8 +34,6 @@ const size = {
   height: ratioDimensions(ratioFormat).height,
 }
 
-// console.log(asset)
-
 const placeholder = storyblokImage(
   asset.filename,
   {
@@ -116,7 +114,7 @@ const imgAttrs = computed(() => ({
 
 <style lang="postcss" scoped>
 .media-image {
-  --transition-duration: 1s;
+  --media-image-fade-duration: 1s;
 
   isolation: isolate;
   position: relative;
@@ -140,7 +138,7 @@ const imgAttrs = computed(() => ({
     backface-visibility: hidden;
     opacity: 0;
 
-    transition: opacity var(--transition-duration) theme('transitionTimingFunction.out');
+    transition: opacity var(--media-image-fade-duration) var(--ease-out);
   }
 
   &.is-loaded {
@@ -158,7 +156,7 @@ const imgAttrs = computed(() => ({
   opacity: 1;
   filter: blur(8px);
 
-  transition: opacity calc(var(--transition-duration) * 2) theme('transitionTimingFunction.out') calc(var(--transition-duration) / 2);
+  transition: opacity calc(var(--media-image-fade-duration) * 2) var(--ease-out) calc(var(--media-image-fade-duration) / 2);
 
   .media-image__file.is-loaded + & {
     opacity: 0;
