@@ -9,11 +9,11 @@ useStoryblokSetup<PageStoryblok>(story)
 
 <template>
   <div>
-    <Screen :log="story" />
-
     <BlockComponents
       v-if="story?.content"
       :content="story.content"
     />
+
+    <Screen :log="story" />
   </div>
 </template>

@@ -3,8 +3,8 @@ import type { LinkStoryblok } from '@/types/storyblok'
 import IconLogo from '@/assets/icons/logo.svg'
 
 interface Props {
-  primaryNavigation: LinkStoryblok[]
-  secondaryNavigation: LinkStoryblok[]
+  primaryNavigation: LinkStoryblok[] | undefined
+  secondaryNavigation: LinkStoryblok[] | undefined
 }
 
 const { primaryNavigation, secondaryNavigation } = defineProps<Props>()

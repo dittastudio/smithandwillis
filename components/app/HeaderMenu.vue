@@ -14,7 +14,7 @@ const menuOpen = useState<boolean>('menuOpen')
       max-md:-z-1
       max-md:bg-rich-brown
       max-md:text-white
-      max-md:pt-[var(--header-height)]
+      max-md:pt-[calc(var(--header-height)_+_--spacing(6))]
     "
     :class="{ 'app-header-menu--is-open': menuOpen }"
   >

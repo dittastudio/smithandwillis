@@ -9,11 +9,16 @@ const { content } = defineProps<Props>()
 </script>
 
 <template>
-  <div>
+  <div class="-mt-[var(--header-height)]">
     <section
       v-for="block in content.blocks"
       :key="block._uid"
     >
+      <BlockMedia
+        v-if="block.component === 'block_media'"
+        :block="block"
+      />
+
       <pre>{{ block }}</pre>
     </section>
   </div>

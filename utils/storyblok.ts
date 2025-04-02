@@ -36,15 +36,17 @@ const storyblokImage = (
   const settings: App.ImageTransformOptions = {
     width: 0,
     height: 0,
-    smart: false,
+    // smart: false,
     quality: 80,
     blur: 0,
+    focal: '',
     ...options,
   }
 
   const filterProperties: Record<string, string> = {
     blur: settings.blur && settings.blur > 0 ? `:blur(${settings.blur})` : '',
     quality: `:quality(${settings.quality})`,
+    focal: settings.focal ? `:focal(${settings.focal})` : '',
   }
 
   const filters: string = Object.values(filterProperties)

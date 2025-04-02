@@ -22,6 +22,7 @@ declare namespace App {
     smart?: boolean
     quality?: number
     blur?: number
+    focal?: string
   }
 
   export interface Theme {

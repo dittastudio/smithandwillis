@@ -1,10 +1,10 @@
 <template>
-  <div class="isolate flex flex-col">
+  <div class="isolate flex flex-col min-h-screen">
     <header class="sticky top-0 z-10 pointer-events-none">
       <slot name="header" />
     </header>
 
-    <main class="flex-grow z-[1]">
+    <main class="flex-grow z-[1]n">
       <slot name="main" />
     </main>
 

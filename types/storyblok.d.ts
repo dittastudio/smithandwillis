@@ -1,5 +1,31 @@
 import {StoryblokStory} from 'storyblok-generate-ts'
 
+export interface AssetStoryblok {
+  _uid?: string;
+  id: number | null;
+  alt: string | null;
+  name: string;
+  focus: string | null;
+  source: string | null;
+  title: string | null;
+  filename: string;
+  copyright: string | null;
+  fieldtype?: string;
+  meta_data?: null | {
+    [k: string]: any;
+  };
+  is_external_url?: boolean;
+  [k: string]: any;
+}
+
+export interface BlockMediaStoryblok {
+  media: AssetStoryblok;
+  ratio: number | string;
+  _uid: string;
+  component: "block_media";
+  [k: string]: any;
+}
+
 export type MultilinkStoryblok =
   | {
       id?: string;
@@ -32,28 +58,11 @@ export interface LinkStoryblok {
   [k: string]: any;
 }
 
-export interface AssetStoryblok {
-  _uid?: string;
-  id: number | null;
-  alt: string | null;
-  name: string;
-  focus: string | null;
-  source: string | null;
-  title: string | null;
-  filename: string;
-  copyright: string | null;
-  fieldtype?: string;
-  meta_data?: null | {
-    [k: string]: any;
-  };
-  is_external_url?: boolean;
-  [k: string]: any;
-}
-
 export interface PageStoryblok {
   seo_title: string;
   seo_description: string;
   seo_image: AssetStoryblok;
+  blocks?: BlockMediaStoryblok[];
   _uid: string;
   component: "page";
   uuid?: string;
