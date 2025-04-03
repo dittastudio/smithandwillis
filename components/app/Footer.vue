@@ -1,5 +1,34 @@
 <script setup lang="ts">
+import type { RichtextStoryblok } from '@/types/storyblok'
 import IconLogoMark from '@/assets/icons/logo-mark.svg'
+// import { storyblokRichTextContent } from '@/utils/storyblok'
+
+interface Props {
+  studioTitle?: string
+  studio?: RichtextStoryblok
+  placesTitle?: string
+  places?: RichtextStoryblok
+  contactTitle?: string
+  contact?: RichtextStoryblok
+}
+
+const {
+  studioTitle,
+  studio,
+  placesTitle,
+  places,
+  contactTitle,
+  contact,
+} = defineProps<Props>()
+
+console.table({
+  studioTitle,
+  studio,
+  placesTitle,
+  places,
+  contactTitle,
+  contact,
+})
 
 const currentYear = computed(() => new Date().getFullYear())
 const classesFooterLink = 'block opacity-100 hover:opacity-70 transition-opacity duration-300 ease-out'

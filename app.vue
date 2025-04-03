@@ -39,7 +39,14 @@ useState('menuOpen', () => false)
       </template>
 
       <template #footer>
-        <AppFooter />
+        <AppFooter
+          :studio-title="settings?.content?.studio_title"
+          :studio="settings?.content?.studio"
+          :places-title="settings?.content?.places_title"
+          :places="settings?.content?.places"
+          :contact-title="settings?.content?.contact_title"
+          :contact="settings?.content?.contact"
+        />
       </template>
 
       <template

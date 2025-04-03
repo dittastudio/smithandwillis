@@ -1,8 +1,8 @@
 <script lang="ts">
-import schema from 'storyblok-js-client/schema'
-import VRuntimeTemplate from 'vue3-runtime-template'
 import type { RichtextStoryblok } from '@/types/storyblok'
 import { NuxtLink } from '#components'
+import schema from 'storyblok-js-client/schema'
+import VRuntimeTemplate from 'vue3-runtime-template'
 
 // WARNING: 'vue3-runtime-template' requires Options API.
 // We must also expose NuxtLink component to the template.

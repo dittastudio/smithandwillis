@@ -27,6 +27,24 @@ export interface BlockMediaStoryblok {
   [k: string]: any;
 }
 
+export interface RichtextStoryblok {
+  type: string;
+  content?: RichtextStoryblok[];
+  marks?: RichtextStoryblok[];
+  attrs?: any;
+  text?: string;
+  [k: string]: any;
+}
+
+export interface BlockTextStoryblok {
+  headline?: string;
+  text: RichtextStoryblok;
+  link?: LinkStoryblok[];
+  _uid: string;
+  component: "block_text";
+  [k: string]: any;
+}
+
 export type MultilinkStoryblok =
   | {
       id?: string;
@@ -63,7 +81,7 @@ export interface PageStoryblok {
   seo_title: string;
   seo_description: string;
   seo_image: AssetStoryblok;
-  blocks?: BlockMediaStoryblok[];
+  blocks?: (BlockMediaStoryblok | BlockTextStoryblok)[];
   _uid: string;
   component: "page";
   uuid?: string;
@@ -73,6 +91,12 @@ export interface PageStoryblok {
 export interface SettingsStoryblok {
   navigation_primary?: LinkStoryblok[];
   navigation_secondary?: LinkStoryblok[];
+  studio_title?: string;
+  studio?: RichtextStoryblok;
+  places_title?: string;
+  places?: RichtextStoryblok;
+  contact_title?: string;
+  contact?: RichtextStoryblok;
   _uid: string;
   component: "settings";
   [k: string]: any;

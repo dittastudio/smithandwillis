@@ -1,4 +1,4 @@
-// import type { RichtextStoryblok } from '@/types/storyblok'
+import type { RichtextStoryblok } from '@/types/storyblok'
 import type { LocationQuery } from 'vue-router'
 
 const storyblokEditor = (search: LocationQuery) => '_storyblok' in search
@@ -62,7 +62,7 @@ const storyblokImage = (
   return path
 }
 
-// const storyblokRichTextContent = (richtext: RichtextStoryblok | undefined): boolean => Boolean(richtext?.content?.[0]?.content?.length)
+const storyblokRichTextContent = (richtext: RichtextStoryblok | undefined): boolean => Boolean(richtext?.content?.[0]?.content?.length)
 
 const storyblokSlug = (path: string): string =>
   ['/', ''].includes(path) ? '/home' : path.replace(/\/+$/, '')
@@ -88,6 +88,6 @@ export {
   storyblokImage,
   storyblokImageDimensions,
   storyblokImageUrlUpdate,
-  // storyblokRichTextContent,
+  storyblokRichTextContent,
   storyblokSlug,
 }

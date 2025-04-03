@@ -60,11 +60,67 @@
       "component_group_name": "Blocks"
     },
     {
+      "name": "block_text",
+      "display_name": "Text",
+      "description": "",
+      "created_at": "2025-04-03T18:08:06.117Z",
+      "updated_at": "2025-04-03T18:10:33.015Z",
+      "id": 7166149,
+      "schema": {
+        "headline": {
+          "type": "text",
+          "pos": 0,
+          "id": "_Buzz3b8SS2fgHP5qecaMA"
+        },
+        "text": {
+          "type": "richtext",
+          "pos": 1,
+          "required": true,
+          "customize_toolbar": true,
+          "toolbar": [
+            "italic",
+            "link",
+            "paragraph",
+            "bold",
+            "unset"
+          ],
+          "allow_target_blank": true,
+          "id": "ZvHvPF-RSbedrx1PuHzeYQ"
+        },
+        "link": {
+          "type": "bloks",
+          "pos": 2,
+          "maximum": 1,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "link"
+          ],
+          "id": "7YFvlfE6RLe3uXGJ_92oBw"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "Text",
+      "component_group_uuid": "8aee4235-990a-4a59-ad5f-6d9f73a67be5",
+      "color": "#ef6252",
+      "icon": "block-text-l",
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "link",
       "display_name": "Link",
       "description": "",
       "created_at": "2025-03-31T14:10:10.770Z",
-      "updated_at": "2025-03-31T14:26:00.890Z",
+      "updated_at": "2025-04-03T18:10:54.660Z",
       "id": 7149420,
       "schema": {
         "title": {
@@ -98,8 +154,8 @@
       "preset_id": null,
       "real_name": "Link",
       "component_group_uuid": "672f761d-0561-4a30-add5-a1f182cb3581",
-      "color": null,
-      "icon": null,
+      "color": "#2db47d",
+      "icon": "block-share",
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
@@ -110,7 +166,7 @@
       "display_name": null,
       "description": null,
       "created_at": "2025-03-31T12:24:18.055Z",
-      "updated_at": "2025-04-02T13:58:47.794Z",
+      "updated_at": "2025-04-03T18:13:07.532Z",
       "id": 7148704,
       "schema": {
         "seo_title": {
@@ -170,8 +226,8 @@
       "preset_id": null,
       "real_name": "page",
       "component_group_uuid": "b99262bc-cc03-495a-8503-406c9049bc40",
-      "color": null,
-      "icon": null,
+      "color": "#f4cc48",
+      "icon": "block-text-img-l",
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
@@ -182,7 +238,7 @@
       "display_name": "Settings",
       "description": "",
       "created_at": "2025-03-31T14:12:15.952Z",
-      "updated_at": "2025-03-31T14:51:42.327Z",
+      "updated_at": "2025-04-03T19:10:11.079Z",
       "id": 7149426,
       "schema": {
         "navigation_primary": {
@@ -206,6 +262,64 @@
             "link"
           ],
           "id": "MFOYfpheTGisydke-ANUyg"
+        },
+        "studio_title": {
+          "type": "text",
+          "pos": 2,
+          "id": "lJS5OqLISC6jDI5A7V4Onw"
+        },
+        "studio": {
+          "type": "richtext",
+          "pos": 3,
+          "id": "r-iwgo9fQKCDPEhiFdWXRQ",
+          "customize_toolbar": true,
+          "toolbar": [
+            "link",
+            "bold",
+            "italic"
+          ],
+          "allow_target_blank": true
+        },
+        "places_title": {
+          "type": "text",
+          "pos": 4,
+          "id": "POOcgo7QT12_EcG--iq-Bg"
+        },
+        "places": {
+          "type": "richtext",
+          "pos": 5,
+          "restrict_type": "",
+          "restrict_components": false,
+          "component_whitelist": [
+            "link"
+          ],
+          "id": "nlpLBdq-S-CrCKW9KTtkcw",
+          "minimum": 1,
+          "customize_toolbar": true,
+          "toolbar": [
+            "bold",
+            "italic",
+            "link"
+          ],
+          "allow_custom_attributes": false,
+          "allow_target_blank": true
+        },
+        "contact_title": {
+          "type": "text",
+          "pos": 6,
+          "id": "bDndniw-TmOdY7A_A8qX_A"
+        },
+        "contact": {
+          "type": "richtext",
+          "pos": 7,
+          "customize_toolbar": true,
+          "toolbar": [
+            "link",
+            "italic",
+            "bold"
+          ],
+          "id": "WZ0p2WF1RT6hYRWovUN3tg",
+          "allow_target_blank": true
         }
       },
       "image": null,
