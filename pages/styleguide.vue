@@ -6,12 +6,12 @@ import IconLogo from '@/assets/icons/logo.svg'
 <template>
   <div class="relative mt-8 mb-30">
     <div class="wrapper">
-      <h1 class="t-md-mix-caps">
+      <h1 class="type-mix-medium-caps">
         Styleguide
       </h1>
 
       <section class="my-20">
-        <h2 class="t-sm-mix-caps mb-10">
+        <h2 class="type-mix-small-caps mb-10">
           Logos
         </h2>
 
@@ -23,34 +23,46 @@ import IconLogo from '@/assets/icons/logo.svg'
       </section>
 
       <section class="my-20">
-        <h2 class="t-sm-mix-caps mb-10">
+        <h2 class="type-mix-small-caps mb-10">
           Typography
         </h2>
 
         <div class="flex flex-col gap-4">
-          <h1 class="t-lg">
+          <h1 class="type-sans-large">
             Text Large
           </h1>
 
-          <h2 class="t-md">
+          <p class="type-sans-large max-w-[60ch]">
+            <strong class="font-mix tracking-sm">I’ve always wanted to cook in a restaurant</strong> that felt like home. One of my fondest memories is of making tortelli with my aunt in Campania
+          </p>
+
+          <h1 class="type-sans-large-caps">
+            Text Large Caps
+          </h1>
+
+          <h2 class="type-sans-medium">
             Text Medium
           </h2>
 
-          <h3 class="t-md-mix">
-            Text Medium Mix
+          <p class="type-sans-medium max-w-[60ch]">
+            <strong class="font-mix tracking-sm">Lorem ipsum dolor sit amet</strong> consectetur adipisicing elit. Voluptatem modi laboriosam unde odio praesentium ab quae ut temporibus vero. Nulla accusamus quisquam quas ullam dolore delectus magni at dolor et?
+          </p>
+
+          <h2 class="type-sans-medium-caps">
+            Text Medium Caps
+          </h2>
+
+          <h3 class="type-mix-medium-caps">
+            Text Mix Medium Caps
           </h3>
 
-          <h5 class="t-md-mix-caps">
-            Text Medium Mix Caps
+          <h4 class="type-mix-small-caps">
+            Text Mix Small Caps
+          </h4>
+
+          <h5 class="type-mix-xsmall-caps">
+            Text Mix Extra Small Caps
           </h5>
-
-          <h6 class="t-sm-mix-caps">
-            Text Small Mix Caps
-          </h6>
-
-          <h6 class="t-sm-mix-caps">
-            Text Extra Small Mix Caps
-          </h6>
         </div>
       </section>
     </div>

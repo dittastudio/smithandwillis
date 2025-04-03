@@ -32,5 +32,8 @@
     "toml",
     "gql",
     "graphql"
-  ]
+  ],
+  "[tailwindcss]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  }
 }

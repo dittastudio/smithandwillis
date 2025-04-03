@@ -33,7 +33,8 @@
   --text-16: 1rem; /* 16px */
   --text-18: 1.125rem; /* 18px */
 
-  --tracking-sm: 0.06em;
+  --tracking-sm: 0.04em;
+  --tracking-md: 0.06em;
   --tracking-lg: 0.15em;
 
   --ease-inExpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);

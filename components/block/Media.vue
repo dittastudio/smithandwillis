@@ -26,9 +26,3 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     />
   </div>
 </template>
-
-<style lang="postcss" scoped>
-.block-media {
-
-}
-</style>

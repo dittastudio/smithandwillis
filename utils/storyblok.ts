@@ -36,7 +36,7 @@ const storyblokImage = (
   const settings: App.ImageTransformOptions = {
     width: 0,
     height: 0,
-    // smart: false,
+    smart: false, // Must be set to false if focal point is used
     quality: 80,
     blur: 0,
     focal: '',

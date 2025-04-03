@@ -71,7 +71,7 @@ watchEffect(() => {
 })
 
 const classesHeader = computed<Record<string, boolean>>(() => ({
-  'app-header--is-open': menuOpen.value,
+  'app-header--has-menu': menuOpen.value,
   'app-header--has-scrolled': hasScrolled.value && !menuOpen.value,
   'app-header--has-scrolled-up': hasScrolledUp.value && !menuOpen.value,
   'app-header--has-scrolled-down': hasScrolledDown.value && !menuOpen.value,
@@ -126,10 +126,12 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
 
         <AppHeaderMenu>
           <AppHeaderNavigation
+            v-if="primaryNavigation"
             :items="primaryNavigation"
           />
 
           <AppHeaderNavigation
+            v-if="secondaryNavigation"
             :items="secondaryNavigation"
           />
         </AppHeaderMenu>
@@ -177,17 +179,14 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
     transition: opacity 1s var(--ease-out);
   }
 
-  &.app-header--has-scrolled {
-    &::before {
-      opacity: 0.6;
-    }
+  &.app-header--has-scrolled::before,
+  &.app-header--has-menu::before {
+    opacity: 0.6;
   }
 
-  &.app-header--has-scrolled-down {
-    &::before {
-      opacity: 0;
-      transition: opacity 0.5s var(--ease-inOutQuart);
-    }
+  &.app-header--has-scrolled-down::before {
+    opacity: 0;
+    transition: opacity 0.5s var(--ease-inOutQuart);
   }
 }
 

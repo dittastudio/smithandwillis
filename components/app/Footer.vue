@@ -7,11 +7,11 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
 </script>
 
 <template>
-  <footer class="bg-rich-brown text-white py-16 md:pt-20 md:pb-16">
+  <footer class="bg-rich-brown text-white pt-20 pb-16">
     <div class="wrapper">
       <div class="grid gap-x-[var(--app-inner-gutter)] gap-y-8 grid-cols-2 md:grid-cols-12">
         <div class="col-span-full sm:col-span-1 md:col-span-3 lg:col-span-2 flex flex-col gap-4">
-          <h4 class="t-md-mix-caps">
+          <h4 class="type-mix-medium-caps">
             Studio
           </h4>
 
@@ -19,7 +19,7 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
             href="/"
             :class="classesFooterLink"
           >
-            <address class="t-md not-italic">
+            <address class="type-sans-medium not-italic">
               1 Hat & Mitre Court
               <br>
               London
@@ -30,11 +30,11 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
         </div>
 
         <div class="col-span-full sm:col-span-1 md:col-span-3 lg:col-span-2 flex flex-col gap-4">
-          <h4 class="t-md-mix-caps">
+          <h4 class="type-mix-medium-caps">
             Places
           </h4>
 
-          <ul class="t-md not-italic">
+          <ul class="type-sans-medium">
             <li>
               <a
                 href="/"
@@ -65,11 +65,11 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
         </div>
 
         <div class="col-span-full md:col-span-3 lg:col-span-3 flex flex-col gap-4">
-          <h4 class="t-md-mix-caps">
+          <h4 class="type-mix-medium-caps">
             Contact
           </h4>
 
-          <ul class="t-md not-italic">
+          <ul class="type-sans-medium">
             <li>
               <a
                 href="mailto:hello@smithandwillis.london"
@@ -107,7 +107,7 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
       </div>
 
       <div class="app-footer__meta-container mt-10 md:mt-16">
-        <ul class="app-footer__meta-list t-xs-mix-caps flex flex-col items-center md:flex-row md:flex-wrap md:justify-start md:items-start md:text-left gap-y-3">
+        <ul class="app-footer__meta-list type-mix-xsmall-caps flex flex-col items-center md:flex-row md:flex-wrap md:justify-start md:items-start md:text-left gap-y-3">
           <li class="app-footer__meta-item">
             <p class="app-footer__meta-link opacity-70">
               &copy;{{ currentYear }} All rights reserved

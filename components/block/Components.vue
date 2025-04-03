@@ -19,7 +19,7 @@ const { content } = defineProps<Props>()
         :block="block"
       />
 
-      <pre>{{ block }}</pre>
+      <Screen :log="block" />
     </section>
   </div>
 </template>

@@ -2,7 +2,7 @@
 import type { LinkStoryblok } from '@/types/storyblok'
 
 interface Props {
-  items: LinkStoryblok[]
+  items: LinkStoryblok[] | undefined
 }
 
 const { items } = defineProps<Props>()

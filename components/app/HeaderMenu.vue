@@ -26,7 +26,6 @@ const menuOpen = useState<boolean>('menuOpen')
 
 <style>
 @reference "../../assets/css/main.css";
-
 .app-header-menu {
   @variant max-md {
     transition: opacity 0.5s var(--ease-in-out), visibility 0.5s var(--ease-in-out);
@@ -38,6 +37,10 @@ const menuOpen = useState<boolean>('menuOpen')
       opacity: 1;
       visibility: visible;
     }
+  }
+
+  html:has(&.app-header-menu--is-open) {
+    overflow: hidden;
   }
 }
 
