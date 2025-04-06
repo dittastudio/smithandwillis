@@ -1,3 +1,5 @@
+import { deburr } from 'lodash-es'
+
 const calculateAspectRatio = (width: number, height: number, newWidth: number = 100): string => {
   const aspectRatioWidth = newWidth
   const aspectRatioHeight = Math.round((height / width) * aspectRatioWidth)
@@ -16,6 +18,15 @@ const ratioDimensions = (
   }
 }
 
+const safeKebabCase = (str: string) =>
+  deburr(str)
+    .replace(/[^a-z0-9\s]/gi, '')
+    .replace(/\s+/g, '-')
+    .toLowerCase()
+    .trim()
+
+const wait = (ms: number = 0) => new Promise(resolve => setTimeout(resolve, ms))
+
 const requestDelay = async <T>(promise: T, ms: number = 1000) => {
   const [p] = await Promise.all([promise, wait(ms)])
 
@@ -23,17 +34,16 @@ const requestDelay = async <T>(promise: T, ms: number = 1000) => {
 }
 
 const validAspectRatio = (ratio: string | number = '') => {
-  const pattern = /[0-9.]+:[0-9.]+/g
+  const pattern = /[0-9.]+:[0-9.]+/
 
   return pattern.test(String(ratio))
 }
-
-const wait = (ms: number = 0) => new Promise(resolve => setTimeout(resolve, ms))
 
 export {
   calculateAspectRatio,
   ratioDimensions,
   requestDelay,
+  safeKebabCase,
   validAspectRatio,
   wait,
 }
