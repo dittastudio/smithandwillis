@@ -31,6 +31,11 @@ console.log(content)
         :block="block"
       />
 
+      <BlockText
+        v-else-if="block.component === 'block_text'"
+        :block="block"
+      />
+
       <!-- <Screen :log="block" /> -->
     </section>
   </div>
