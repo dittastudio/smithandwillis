@@ -116,6 +116,65 @@
       "component_group_name": "Blocks"
     },
     {
+      "name": "hero_media",
+      "display_name": "Media",
+      "description": null,
+      "created_at": "2025-04-07T13:54:43.770Z",
+      "updated_at": "2025-04-07T13:55:53.158Z",
+      "id": 7179482,
+      "schema": {
+        "media": {
+          "type": "asset",
+          "pos": 0,
+          "required": true,
+          "filetypes": [
+            "images",
+            "videos"
+          ],
+          "asset_folder_id": null,
+          "key": "media",
+          "id": "sD3Yw-1rSa6WylKLx8s-MA"
+        },
+        "ratio": {
+          "type": "option",
+          "pos": 2,
+          "use_uuid": true,
+          "source": "internal",
+          "datasource_slug": "ratio",
+          "exclude_empty_option": true,
+          "required": true,
+          "key": "ratio",
+          "id": "2z74M2HaQhCs1IJXRR0QOw",
+          "display_name": "Ratio Mobile",
+          "default_value": "9:16"
+        },
+        "ratio_desktop": {
+          "type": "option",
+          "pos": 2,
+          "id": "MPqGIoGXRo6EHfpRkgNnrg",
+          "use_uuid": true,
+          "source": "internal",
+          "datasource_slug": "ratio",
+          "default_value": "16:9"
+        }
+      },
+      "image": null,
+      "preview_field": "media",
+      "is_root": false,
+      "preview_tmpl": "{{@image(it.media.filename)/}}",
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "Media",
+      "component_group_uuid": "1c67fbaf-ea34-47a0-bd3a-10b0d557d1a7",
+      "color": "#fbce41",
+      "icon": "block-image",
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "component_group_name": "Heroes"
+    },
+    {
       "name": "link",
       "display_name": "Link",
       "description": "",
@@ -166,26 +225,48 @@
       "display_name": null,
       "description": null,
       "created_at": "2025-03-31T12:24:18.055Z",
-      "updated_at": "2025-04-03T18:13:07.532Z",
+      "updated_at": "2025-04-07T13:57:03.383Z",
       "id": 7148704,
       "schema": {
+        "hero": {
+          "type": "bloks",
+          "pos": 0,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "hero_media"
+          ],
+          "maximum": 1,
+          "id": "jdJbHHe3SzqWvZHYf6HkXw"
+        },
+        "blocks": {
+          "type": "bloks",
+          "pos": 1,
+          "restrict_type": "groups",
+          "restrict_components": true,
+          "id": "CqOhoRpDTKyaW4TXWcTXzw",
+          "component_whitelist": [],
+          "component_group_whitelist": [
+            "8aee4235-990a-4a59-ad5f-6d9f73a67be5"
+          ]
+        },
         "seo_title": {
           "type": "text",
-          "pos": 0,
+          "pos": 2,
           "id": "6uwTDrmuR2WCEwW7qWLIHA",
           "display_name": "Title",
           "required": true
         },
         "seo_description": {
           "type": "text",
-          "pos": 1,
+          "pos": 3,
           "id": "yj-Vn1jXQPu4km6u1sJbAw",
           "required": true,
           "display_name": "Description"
         },
         "seo_image": {
           "type": "asset",
-          "pos": 2,
+          "pos": 4,
           "required": true,
           "filetypes": [
             "images"
@@ -201,20 +282,9 @@
             "seo_description",
             "seo_image"
           ],
-          "pos": 3,
+          "pos": 5,
           "type": "tab",
           "id": "4kPVpnbgSzu34aVIGO9m_w"
-        },
-        "blocks": {
-          "type": "bloks",
-          "pos": 4,
-          "restrict_type": "groups",
-          "restrict_components": true,
-          "id": "CqOhoRpDTKyaW4TXWcTXzw",
-          "component_whitelist": [],
-          "component_group_whitelist": [
-            "8aee4235-990a-4a59-ad5f-6d9f73a67be5"
-          ]
         }
       },
       "image": null,
@@ -358,6 +428,13 @@
       "name": "Elements",
       "id": 530759,
       "uuid": "672f761d-0561-4a30-add5-a1f182cb3581",
+      "parent_id": null,
+      "parent_uuid": null
+    },
+    {
+      "name": "Heroes",
+      "id": 535189,
+      "uuid": "1c67fbaf-ea34-47a0-bd3a-10b0d557d1a7",
       "parent_id": null,
       "parent_uuid": null
     }

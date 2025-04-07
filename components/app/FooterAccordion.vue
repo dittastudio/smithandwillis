@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import IconArrowAccordion from '@/assets/icons/arrow-accordion.svg'
 import { safeKebabCase } from '@/utils/helpers'
 
 interface Props {

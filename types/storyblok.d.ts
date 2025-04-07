@@ -45,6 +45,15 @@ export interface BlockTextStoryblok {
   [k: string]: any;
 }
 
+export interface HeroMediaStoryblok {
+  media: AssetStoryblok;
+  ratio: number | string;
+  ratio_desktop?: number | string;
+  _uid: string;
+  component: "hero_media";
+  [k: string]: any;
+}
+
 export type MultilinkStoryblok =
   | {
       id?: string;
@@ -78,10 +87,11 @@ export interface LinkStoryblok {
 }
 
 export interface PageStoryblok {
+  hero?: HeroMediaStoryblok[];
+  blocks?: (BlockMediaStoryblok | BlockTextStoryblok)[];
   seo_title: string;
   seo_description: string;
   seo_image: AssetStoryblok;
-  blocks?: (BlockMediaStoryblok | BlockTextStoryblok)[];
   _uid: string;
   component: "page";
   uuid?: string;

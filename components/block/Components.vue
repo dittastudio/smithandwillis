@@ -16,9 +16,9 @@ console.log(content)
       v-for="hero in content.hero"
       :key="hero._uid"
     >
-      <Hero
+      <BlockHero
         v-if="hero.component === 'hero_media'"
-        :content="hero"
+        :block="hero"
       />
     </section>
 
