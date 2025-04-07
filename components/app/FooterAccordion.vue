@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { safeKebabCase } from '@/utils/helpers'
-
 interface Props {
   id: string
 }

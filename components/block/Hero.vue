@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import type { HeroMediaStoryblok } from '@/types/storyblok'
-
 import IconArrowDown from '@/assets/icons/arrow-down.svg'
-import { storyblokAssetType } from '@/utils/storyblok'
 
 interface Props {
   block: HeroMediaStoryblok

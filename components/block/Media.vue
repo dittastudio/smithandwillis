@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { BlockMediaStoryblok } from '@/types/storyblok'
-import { storyblokAssetType } from '@/utils/storyblok'
 
 interface Props {
   block: BlockMediaStoryblok

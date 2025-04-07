@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { RichtextStoryblok } from '@/types/storyblok'
 import IconLogoMark from '@/assets/icons/logo-mark.svg'
-// import { storyblokRichTextContent } from '@/utils/storyblok'
 
 interface Props {
   studioTitle?: string

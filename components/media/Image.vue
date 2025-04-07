@@ -1,7 +1,5 @@
 <script lang="ts" setup>
 import type { AssetStoryblok } from '@/types/storyblok'
-import { calculateAspectRatio, ratioDimensions, validAspectRatio } from '@/utils/helpers'
-import { storyblokImage, storyblokImageDimensions, storyblokImageUrlUpdate } from '@/utils/storyblok'
 import { useIntersectionObserver } from '@vueuse/core'
 
 defineOptions({
