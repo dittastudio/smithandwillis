@@ -6,8 +6,6 @@ interface Props {
 }
 
 const { content } = defineProps<Props>()
-
-console.log(content)
 </script>
 
 <template>
