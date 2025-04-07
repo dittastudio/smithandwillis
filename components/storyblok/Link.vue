@@ -7,12 +7,16 @@ interface Props {
 
 const { item } = defineProps<Props>()
 
+console.log(item)
+
 const href
   = item?.linktype === 'email'
     ? `mailto:${item?.email}`
     : item?.linktype === 'story'
       ? `/${item?.cached_url?.replace('home', '')}`
       : item?.cached_url
+
+console.log(href)
 
 const customAttributes = {
   class: item?.class,

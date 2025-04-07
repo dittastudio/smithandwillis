@@ -6,8 +6,6 @@ interface Props {
 }
 
 const { content } = defineProps<Props>()
-
-console.log(content)
 </script>
 
 <template>
@@ -28,6 +26,11 @@ console.log(content)
     >
       <BlockMedia
         v-if="block.component === 'block_media'"
+        :block="block"
+      />
+
+      <BlockText
+        v-if="block.component === 'block_text'"
         :block="block"
       />
 
