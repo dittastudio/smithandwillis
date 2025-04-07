@@ -13,24 +13,26 @@ const attrs = useAttrs() as { [key: string]: any }
 interface Props {
   asset: AssetStoryblok
   desktopAsset?: AssetStoryblok
-  breakpoint?: string
+  breakpoint?: 'landscape' | 'portrait' | number
   ratio?: string | number
   desktopRatio?: string | number
   sizes: string
   desktopSizes?: string
   alt?: string
   lazy?: boolean
+  cover?: boolean
 }
 
 const {
   asset,
   desktopAsset,
-  breakpoint = '(min-width: 800px)',
+  breakpoint = 800,
   ratio,
   desktopRatio,
   sizes,
   desktopSizes,
   lazy = true,
+  cover = false,
 } = defineProps<Props>()
 
 const container = ref<HTMLPictureElement | null>(null)
@@ -118,13 +120,21 @@ const imgAttrs = computed(() => ({
   sizes: ready.value ? imgInfo.value.sizes : '',
   srcset: ready.value ? imgInfo.value.srcset : '',
   alt: attrs.alt ?? asset.alt ?? '',
-  loading: lazy ? 'eager' : 'lazy',
+  loading: lazy ? 'lazy' as const : 'eager' as const,
 }))
+
+const breakpointMedia = computed(() => {
+  if (typeof breakpoint === 'string') {
+    return breakpoint === 'landscape' ? '(orientation: landscape)' : '(orientation: portrait)'
+  }
+
+  return `(min-width: ${breakpoint}px)`
+})
 </script>
 
 <template>
   <div
-    class="media-image-container"
+    class="media-image-container relative isolate overflow-hidden w-full h-[inherit]"
     :class="[className, { 'is-loaded': loaded, 'is-lazy': lazy }]"
   >
     <!-- Main picture element with actual images -->
@@ -135,7 +145,7 @@ const imgAttrs = computed(() => ({
       <!-- Desktop image source if provided -->
       <source
         v-if="hasDesktopImage"
-        :media="breakpoint"
+        :media="breakpointMedia"
         :srcset="desktopImgInfo?.srcset"
         :sizes="desktopImgInfo?.sizes || imgInfo.sizes"
         :width="desktopSize.width"
@@ -145,7 +155,8 @@ const imgAttrs = computed(() => ({
       <!-- Mobile/default image -->
       <img
         v-bind="imgAttrs"
-        class="media-image__file"
+        class="media-image__file w-full"
+        :class="cover ? 'h-full object-cover' : 'h-auto' "
         @load="loaded = true"
       >
     </picture>
@@ -153,12 +164,12 @@ const imgAttrs = computed(() => ({
     <!-- Placeholder picture element with responsive sources -->
     <picture
       v-if="lazy"
-      class="media-image-placeholder"
+      class="media-image-placeholder block w-full h-[inherit] pointer-events-none"
     >
       <!-- Desktop placeholder source if provided -->
       <source
         v-if="hasDesktopImage && desktopPlaceholder"
-        :media="breakpoint"
+        :media="breakpointMedia"
         :srcset="desktopPlaceholder"
         :width="desktopSize.width"
         :height="desktopSize.height"
@@ -166,7 +177,8 @@ const imgAttrs = computed(() => ({
 
       <!-- Mobile/default placeholder -->
       <img
-        class="media-image__placeholder"
+        class="block w-full"
+        :class="cover ? 'h-full object-cover' : 'h-auto' "
         :src="mobilePlaceholder"
         :width="mobileSize.width"
         :height="mobileSize.height"
@@ -180,21 +192,9 @@ const imgAttrs = computed(() => ({
 <style lang="postcss" scoped>
 .media-image-container {
   --media-image-fade-duration: 1s;
-
-  isolation: isolate;
-  position: relative;
-
-  overflow: hidden;
-  display: block;
-
-  width: 100%;
-  height: inherit;
 }
 
 .media-image__file {
-  width: 100%;
-  height: auto;
-
   .media-image-container.is-lazy & {
     position: absolute;
     z-index: 1;
@@ -212,11 +212,6 @@ const imgAttrs = computed(() => ({
 }
 
 .media-image-placeholder {
-  display: block;
-  pointer-events: none;
-  width: 100%;
-  height: auto;
-
   backface-visibility: hidden;
   opacity: 1;
   filter: blur(8px);
@@ -226,10 +221,5 @@ const imgAttrs = computed(() => ({
   .media-image-container.is-loaded & {
     opacity: 0;
   }
-}
-
-.media-image__placeholder {
-  display: block;
-  width: 100%;
 }
 </style>

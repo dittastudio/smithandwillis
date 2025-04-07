@@ -33,7 +33,7 @@ onUnmounted(() => {
 
 <template>
   <div
-    class="overflow-hidden transition-[height] duration-500 ease-inOutQuart"
+    class="contain-layout contain-paint transition-[height] duration-500 ease-inOutQuart"
     :style="setHeightStyles"
   >
     <div

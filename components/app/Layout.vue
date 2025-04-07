@@ -4,7 +4,7 @@
       <slot name="header" />
     </header>
 
-    <main class="flex-grow z-[1]n">
+    <main class="flex-grow z-[1]">
       <slot name="main" />
     </main>
 

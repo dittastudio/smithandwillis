@@ -33,19 +33,14 @@ const bodyId = `accordion-body-${safeKebabCase(id)}`
       app-footer-accordion
       relative
       w-full
-      max-sm:before:absolute
-      max-sm:before:bottom-0
-      max-sm:before:right-0
-      max-sm:before:left-0
-      max-sm:before:h-[1px]
-      max-sm:before:bg-current
-      max-sm:before:opacity-20
+      max-sm:border-b
+      max-sm:border-current/20
     "
   >
     <button
       :id="headerId"
       type="button"
-      class="flex items-center justify-between w-full max-md:py-3 md:pointer-events-none"
+      class="flex items-center justify-between w-full max-sm:py-3 sm:pointer-events-none"
       :tabindex="isScreenSm ? '-1' : '0'"
       :aria-label="isOpen ? 'Close accordion' : 'Open accordion'"
       :aria-expanded="isOpen ? 'true' : 'false'"
@@ -54,7 +49,7 @@ const bodyId = `accordion-body-${safeKebabCase(id)}`
     >
       <slot name="title" />
 
-      <span class="relative top-[3px] w-4.5 h-2.5 sm:hidden">
+      <span class="relative top-1 w-4.5 h-2.5 sm:hidden">
         <span
           class="absolute top-0 left-0 w-3/5 h-[1px] transition-[rotate] duration-500 ease-inOutQuart"
           :class="{
@@ -94,7 +89,7 @@ const bodyId = `accordion-body-${safeKebabCase(id)}`
         :id="bodyId"
         role="region"
         :aria-labelledby="headerId"
-        class="pb-3"
+        class="pb-5 sm:pt-4"
       >
         <slot name="content" />
       </div>

@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import IconLogoMark from '@/assets/icons/logo-mark.svg'
 import IconLogo from '@/assets/icons/logo.svg'
+
+const classesSectionTitle = 'type-mix-small-caps border-b border-current/20 pb-2 mb-10'
 </script>
 
 <template>
@@ -11,7 +13,7 @@ import IconLogo from '@/assets/icons/logo.svg'
       </h1>
 
       <section class="my-20">
-        <h2 class="type-mix-small-caps mb-10">
+        <h2 :class="classesSectionTitle">
           Logos
         </h2>
 
@@ -23,11 +25,15 @@ import IconLogo from '@/assets/icons/logo.svg'
       </section>
 
       <section class="my-20">
-        <h2 class="type-mix-small-caps mb-10">
+        <h2 :class="classesSectionTitle">
           Typography
         </h2>
 
         <div class="flex flex-col gap-4">
+          <h1 class="type-sans-large-caps">
+            Text Large Caps
+          </h1>
+
           <h1 class="type-sans-large">
             Text Large
           </h1>
@@ -36,9 +42,11 @@ import IconLogo from '@/assets/icons/logo.svg'
             <strong class="font-mix tracking-sm">I’ve always wanted to cook in a restaurant</strong> that felt like home. One of my fondest memories is of making tortelli with my aunt in Campania
           </p>
 
-          <h1 class="type-sans-large-caps">
-            Text Large Caps
-          </h1>
+          <br>
+
+          <h2 class="type-sans-medium-caps">
+            Text Medium Caps
+          </h2>
 
           <h2 class="type-sans-medium">
             Text Medium
@@ -48,9 +56,7 @@ import IconLogo from '@/assets/icons/logo.svg'
             <strong class="font-mix tracking-sm">Lorem ipsum dolor sit amet</strong> consectetur adipisicing elit. Voluptatem modi laboriosam unde odio praesentium ab quae ut temporibus vero. Nulla accusamus quisquam quas ullam dolore delectus magni at dolor et?
           </p>
 
-          <h2 class="type-sans-medium-caps">
-            Text Medium Caps
-          </h2>
+          <br>
 
           <h3 class="type-mix-medium-caps">
             Text Mix Medium Caps

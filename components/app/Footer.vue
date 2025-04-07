@@ -44,7 +44,7 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
             id="studio"
           >
             <template #title>
-              <h4 class="type-mix-medium-caps">
+              <h4 class="type-sans-medium-caps">
                 Studio
               </h4>
             </template>
@@ -71,7 +71,7 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
             id="studio"
           >
             <template #title>
-              <h4 class="type-mix-medium-caps">
+              <h4 class="type-sans-medium-caps">
                 Places
               </h4>
             </template>
@@ -107,12 +107,12 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
           </AppFooterAccordion>
         </div>
 
-        <div class="col-span-full md:col-span-3 lg:col-span-3">
+        <div class="col-span-full md:col-span-4 lg:col-span-3">
           <AppFooterAccordion
             id="studio"
           >
             <template #title>
-              <h4 class="type-mix-medium-caps">
+              <h4 class="type-sans-medium-caps">
                 Contact
               </h4>
             </template>
@@ -148,7 +148,7 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
           </AppFooterAccordion>
         </div>
 
-        <div class="col-span-full md:col-span-3 lg:col-span-5 max-md:mx-auto max-md:mt-10 md:ml-auto">
+        <div class="col-span-full md:col-span-2 lg:col-span-5 max-md:mx-auto max-md:mt-10 md:ml-auto">
           <IconLogoMark
             class="size-22 md:size-18 lg:size-25 opacity-10"
           />

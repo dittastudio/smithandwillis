@@ -6,10 +6,22 @@ interface Props {
 }
 
 const { content } = defineProps<Props>()
+
+console.log(content)
 </script>
 
 <template>
   <div class="-mt-[var(--header-height)]">
+    <section
+      v-for="hero in content.hero"
+      :key="hero._uid"
+    >
+      <Hero
+        v-if="hero.component === 'hero_media'"
+        :content="hero"
+      />
+    </section>
+
     <section
       v-for="block in content.blocks"
       :key="block._uid"
@@ -19,7 +31,7 @@ const { content } = defineProps<Props>()
         :block="block"
       />
 
-      <Screen :log="block" />
+      <!-- <Screen :log="block" /> -->
     </section>
   </div>
 </template>
