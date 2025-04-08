@@ -70,10 +70,4 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
 .content-blocks__item--same-background {
   padding-block-start: 0;
 }
-
-/* .content-blocks__item--block_media {
-  &:has(+ &) {
-    padding-block-end: 0;
-  }
-} */
 </style>

@@ -45,17 +45,24 @@ const classesLinkHover = 'transition-opacity duration-300 ease-out opacity-100 h
         "
       >
         <div>
-          <p class="type-sans-medium">
+          <p
+            v-if="item.role"
+            class="type-sans-medium"
+          >
             {{ item.role }}
           </p>
 
-          <p class="type-sans-medium-caps">
+          <p
+            v-if="item.company"
+            class="type-sans-medium-caps"
+          >
             {{ item.company }}
           </p>
         </div>
 
         <div class="flex pr-3">
           <a
+            v-if="item.pdf?.filename"
             :href="item.pdf.filename"
             target="_blank"
             rel="noopener noreferrer"
@@ -66,6 +73,7 @@ const classesLinkHover = 'transition-opacity duration-300 ease-out opacity-100 h
           </a>
 
           <a
+            v-if="item.email"
             :href="`mailto:${item.email}`"
             class="type-mix-xsmall-caps p-3"
             :class="classesLinkHover"
