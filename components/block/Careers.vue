@@ -59,13 +59,13 @@ const classesLinkHover = 'transition-opacity duration-300 ease-out opacity-100 h
           </p>
         </div>
 
-        <div class="flex pr-3">
+        <div class="flex gap-x-4 md:gap-x-6 lg:pr-6">
           <a
             v-if="item.pdf?.filename"
             :href="item.pdf.filename"
             target="_blank"
             rel="noopener noreferrer"
-            class="type-mix-xsmall-caps p-3"
+            class="type-mix-xsmall-caps p-2 -m-2 md:p-3 md:-m-3"
             :class="classesLinkHover"
           >
             View
@@ -74,7 +74,7 @@ const classesLinkHover = 'transition-opacity duration-300 ease-out opacity-100 h
           <a
             v-if="item.email"
             :href="`mailto:${item.email}`"
-            class="type-mix-xsmall-caps p-3"
+            class="type-mix-xsmall-caps p-2 -m-2 md:p-3 md:-m-3"
             :class="classesLinkHover"
           >
             Apply
