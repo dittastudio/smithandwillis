@@ -13,7 +13,7 @@ const classesLinkHover = 'transition-opacity duration-300 ease-out opacity-100 h
 <template>
   <div
     v-editable="block"
-    class="block-careers wrapper flex flex-col gap-8 md:gap-10"
+    class="block-careers wrapper flex flex-col gap-4 md:gap-6"
   >
     <h2
       v-if="block.headline"
@@ -23,12 +23,26 @@ const classesLinkHover = 'transition-opacity duration-300 ease-out opacity-100 h
     </h2>
 
     <ul
-      class="grid grid-cols-1 md:grid-cols-2 gap-x-[var(--app-inner-gutter)] gap-y-4"
+      class="group grid grid-cols-1 md:grid-cols-2 gap-x-[var(--app-inner-gutter)]"
     >
       <li
         v-for="item in block.items"
         :key="item._uid"
-        class="flex justify-between items-center gap-y-0.5 border-b border-current/20 pb-2"
+        class="
+          flex
+          justify-between
+          items-center
+          gap-y-0.5
+          border-b
+          border-current/20
+          pt-4
+          pb-2
+          transition-opacity
+          duration-300
+          ease-out
+          opacity-100
+          group-hover:[&:not(&:hover)]:opacity-50
+        "
       >
         <div>
           <p class="type-sans-medium">
