@@ -37,6 +37,8 @@ export interface RichtextStoryblok {
 }
 
 export interface BlockTextStoryblok {
+  background_color?: number | string;
+  text_color?: number | string;
   headline?: string;
   text: RichtextStoryblok;
   link?: LinkStoryblok[];
