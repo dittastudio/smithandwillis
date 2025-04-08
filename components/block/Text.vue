@@ -11,7 +11,7 @@ const { block } = defineProps<Props>()
 <template>
   <div
     v-editable="block"
-    class="block-text wrapper md:text-center flex flex-col gap-8 md:gap-10"
+    class="block-text wrapper md:text-center flex flex-col items-start md:items-center gap-8 md:gap-10"
   >
     <h2
       v-if="block.headline"

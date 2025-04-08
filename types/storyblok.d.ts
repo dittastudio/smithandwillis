@@ -46,6 +46,18 @@ export interface RichtextStoryblok {
   [k: string]: any;
 }
 
+export interface BlockSplitStoryblok {
+  background_color?: number | string;
+  text_color?: number | string;
+  media?: AssetStoryblok;
+  headline?: string;
+  text: RichtextStoryblok;
+  link?: LinkStoryblok[];
+  _uid: string;
+  component: "block_split";
+  [k: string]: any;
+}
+
 export interface BlockTextStoryblok {
   background_color?: number | string;
   text_color?: number | string;
@@ -110,7 +122,7 @@ export interface LinkStoryblok {
 
 export interface PageStoryblok {
   hero?: HeroMediaStoryblok[];
-  blocks?: (BlockCareersStoryblok | BlockMediaStoryblok | BlockTextStoryblok)[];
+  blocks?: (BlockCareersStoryblok | BlockMediaStoryblok | BlockSplitStoryblok | BlockTextStoryblok)[];
   seo_title: string;
   seo_description: string;
   seo_image: AssetStoryblok;

@@ -50,6 +50,11 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
         :block="block"
       />
 
+      <BlockSplit
+        v-else-if="block.component === 'block_split'"
+        :block="block"
+      />
+
       <BlockText
         v-else-if="block.component === 'block_text'"
         :block="block"
@@ -61,7 +66,7 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
 </template>
 
 <style lang="postcss">
-.content-blocks__item:not(.content-blocks__item--block_media) {
+.content-blocks__item:not(.content-blocks__item--block_media, .content-blocks__item--block_split) {
   padding-block: 160px;
 }
 

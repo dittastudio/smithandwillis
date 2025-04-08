@@ -1,0 +1,57 @@
+<script lang="ts" setup>
+import type { BlockSplitStoryblok } from '@/types/storyblok'
+
+interface Props {
+  block: BlockSplitStoryblok
+}
+
+const { block } = defineProps<Props>()
+const assetType = computed(() => storyblokAssetType(block.media?.filename || ''))
+</script>
+
+<template>
+  <div
+    v-editable="block"
+    class="block-split flex flex-col-reverse md:flex-row items-center"
+  >
+    <div class="grow w-full md:w-1/2">
+      <MediaImage
+        v-if="block.media && assetType === 'image'"
+        :asset="block.media"
+        :ratio="block.ratio"
+        sizes="100vw sm:100vw md:50vw lg:50vw"
+      />
+    </div>
+
+    <div class="grow w-full md:w-1/2 flex flex-col items-start gap-8 md:gap-10 pt-20 pb-12 px-[var(--app-outer-gutter)] md:py-[var(--app-outer-gutter)]">
+      <h3
+        v-if="block.headline"
+        class="type-sans-large-caps text-balance"
+      >
+        {{ block.headline }}
+      </h3>
+
+      <div
+        v-if="storyblokRichTextContent(block.text)"
+        class="type-sans-large max-w-[60ch] text-pretty"
+      >
+        <StoryblokText :html="block.text" />
+      </div>
+
+      <template
+        v-for="item in block.link"
+      >
+        <StoryblokLink
+          v-if="item"
+          :key="item._uid"
+          :item="item.link"
+          class="type-mix-small-caps"
+        >
+          <UiTextLink :is-external="item.link.linktype === 'url'">
+            {{ item.title }}
+          </UiTextLink>
+        </StoryblokLink>
+      </template>
+    </div>
+  </div>
+</template>
