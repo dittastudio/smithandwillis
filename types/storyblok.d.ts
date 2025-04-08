@@ -50,9 +50,11 @@ export interface BlockSplitStoryblok {
   background_color?: number | string;
   text_color?: number | string;
   media?: AssetStoryblok;
+  ratio?: number | string;
   headline?: string;
   text: RichtextStoryblok;
   link?: LinkStoryblok[];
+  reverse: boolean;
   _uid: string;
   component: "block_split";
   [k: string]: any;

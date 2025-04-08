@@ -4,6 +4,11 @@
 @import "./typography.css";
 @import "tailwindcss";
 
+/* Safelist */
+@source inline("font-mix");
+@source inline("font-bold");
+@source inline("tracking-sm");
+
 @theme {
   /* --*: initial; */
 

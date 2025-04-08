@@ -12,7 +12,8 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 <template>
   <div
     v-editable="block"
-    class="block-split flex flex-col-reverse md:flex-row items-center"
+    class="block-split flex flex-col-reverse items-center"
+    :class="block.reverse ? 'md:flex-row-reverse' : 'md:flex-row'"
   >
     <div class="grow w-full md:w-1/2">
       <MediaImage
@@ -23,7 +24,10 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
       />
     </div>
 
-    <div class="grow w-full md:w-1/2 flex flex-col items-start gap-8 md:gap-10 pt-20 pb-12 px-[var(--app-outer-gutter)] md:py-[var(--app-outer-gutter)]">
+    <div
+      class="grow w-full md:w-1/2 flex flex-col items-start gap-8 md:gap-10 pt-20 pb-12 px-[var(--app-outer-gutter)] md:py-[var(--app-outer-gutter)]"
+      :class="!block.reverse && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))]'"
+    >
       <h3
         v-if="block.headline"
         class="type-sans-large-caps text-balance"
