@@ -20,13 +20,8 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
     class="
       app-header-menu
       max-md:pointer-events-auto
-      max-md:flex
-      max-md:flex-col
-      max-md:justify-between
       max-md:absolute
-      max-md:top-0
-      max-md:left-0
-      max-md:right-0
+      max-md:inset-0
       max-md:min-h-dvh
       max-md:-z-1
       max-md:bg-rich-brown
@@ -36,43 +31,53 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
     "
     :class="{ 'app-header-menu--is-open': menuOpen }"
   >
-    <div class="app-header-menu__inner">
-      <slot />
-    </div>
-
-    <div class="flex flex-col gap-y-8 md:hidden">
-      <div class="flex flex-col gap-y-3">
-        <h4 class="type-sans-medium-caps">
-          {{ studioTitle }}
-        </h4>
-
-        <div
-          v-if="storyblokRichTextContent(contact)"
-          :class="[
-            'type-sans-medium',
-            classesFooterProse,
-          ]"
-        >
-          <StoryblokText :html="contact" />
-        </div>
+    <div
+      class="
+        app-header-menu__inner
+        max-md:flex
+        max-md:flex-col
+        max-md:justify-between
+        max-md:h-full
+      "
+    >
+      <div class="md:flex md:justify-between md:w-full">
+        <slot />
       </div>
 
-      <div class="flex flex-col gap-y-3">
-        <h4 class="type-sans-medium-caps">
-          {{ contactTitle }}
-        </h4>
+      <div class="flex flex-col gap-y-8 md:hidden">
+        <div class="flex flex-col gap-y-3">
+          <h4 class="type-sans-medium-caps">
+            {{ studioTitle }}
+          </h4>
 
-        <address class="type-sans-medium not-italic">
           <div
-            v-if="storyblokRichTextContent(studio)"
+            v-if="storyblokRichTextContent(contact)"
             :class="[
-              'type-inherit',
+              'type-sans-medium',
               classesFooterProse,
             ]"
           >
-            <StoryblokText :html="studio" />
+            <StoryblokText :html="contact" />
           </div>
-        </address>
+        </div>
+
+        <div class="flex flex-col gap-y-3">
+          <h4 class="type-sans-medium-caps">
+            {{ contactTitle }}
+          </h4>
+
+          <address class="type-sans-medium not-italic">
+            <div
+              v-if="storyblokRichTextContent(studio)"
+              :class="[
+                'type-inherit',
+                classesFooterProse,
+              ]"
+            >
+              <StoryblokText :html="studio" />
+            </div>
+          </address>
+        </div>
       </div>
     </div>
   </div>
