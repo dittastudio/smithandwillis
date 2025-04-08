@@ -32,7 +32,6 @@ const classesLinkHover = 'transition-opacity duration-300 ease-out opacity-100 h
           flex
           justify-between
           items-center
-          gap-y-0.5
           border-b
           border-current/20
           pt-4
@@ -44,7 +43,7 @@ const classesLinkHover = 'transition-opacity duration-300 ease-out opacity-100 h
           group-hover:[&:not(&:hover)]:opacity-50
         "
       >
-        <div>
+        <div class="flex flex-col gap-y-0.5">
           <p
             v-if="item.role"
             class="type-sans-medium"
