@@ -20,18 +20,9 @@ const {
   contact,
 } = defineProps<Props>()
 
-console.table({
-  studioTitle,
-  studio,
-  placesTitle,
-  places,
-  contactTitle,
-  contact,
-})
-
 const currentYear = computed(() => new Date().getFullYear())
-const classesFooterLink = 'inline-block w-full opacity-100 hover:opacity-70 transition-opacity duration-300 ease-out'
 const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity duration-300 ease-out'
+const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p_a]:ease-out [&_p_a]:opacity-100 [&_p_a]:hover:opacity-70'
 </script>
 
 <template>
@@ -44,23 +35,22 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
           >
             <template #title>
               <h4 class="type-sans-medium-caps">
-                Studio
+                {{ studioTitle }}
               </h4>
             </template>
 
             <template #content>
-              <a
-                href="/"
-                :class="classesFooterLink"
-              >
-                <address class="type-sans-medium not-italic">
-                  1 Hat & Mitre Court
-                  <br>
-                  London
-                  <br>
-                  EC1M 4EH
-                </address>
-              </a>
+              <address class="type-sans-medium not-italic">
+                <div
+                  v-if="storyblokRichTextContent(studio)"
+                  :class="[
+                    'type-inherit',
+                    classesFooterProse,
+                  ]"
+                >
+                  <StoryblokText :html="studio" />
+                </div>
+              </address>
             </template>
           </AppFooterAccordion>
         </div>
@@ -71,37 +61,20 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
           >
             <template #title>
               <h4 class="type-sans-medium-caps">
-                Places
+                {{ placesTitle }}
               </h4>
             </template>
 
             <template #content>
-              <p class="type-sans-medium">
-                <a
-                  href="/"
-                  :class="classesFooterLink"
-                >
-                  Luca
-                </a>
-
-                <br>
-
-                <a
-                  href="/"
-                  :class="classesFooterLink"
-                >
-                  Osip
-                </a>
-
-                <br>
-
-                <a
-                  href="/"
-                  :class="classesFooterLink"
-                >
-                  The Loft
-                </a>
-              </p>
+              <div
+                v-if="storyblokRichTextContent(places)"
+                :class="[
+                  'type-sans-medium',
+                  classesFooterProse,
+                ]"
+              >
+                <StoryblokText :html="places" />
+              </div>
             </template>
           </AppFooterAccordion>
         </div>
@@ -112,37 +85,20 @@ const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity d
           >
             <template #title>
               <h4 class="type-sans-medium-caps">
-                Contact
+                {{ contactTitle }}
               </h4>
             </template>
 
             <template #content>
-              <p class="type-sans-medium">
-                <a
-                  href="mailto:hello@smithandwillis.london"
-                  :class="classesFooterLink"
-                >
-                  hello@smithandwillis.london
-                </a>
-
-                <br>
-
-                <a
-                  href="mailto:careers@smithandwillis.london"
-                  :class="classesFooterLink"
-                >
-                  careers@smithandwillis.london
-                </a>
-
-                <br>
-
-                <a
-                  href="tel:+442038965454"
-                  :class="classesFooterLink"
-                >
-                  +44 203 896 5454
-                </a>
-              </p>
+              <div
+                v-if="storyblokRichTextContent(contact)"
+                :class="[
+                  'type-sans-medium',
+                  classesFooterProse,
+                ]"
+              >
+                <StoryblokText :html="contact" />
+              </div>
             </template>
           </AppFooterAccordion>
         </div>

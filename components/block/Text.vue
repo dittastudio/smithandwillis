@@ -36,7 +36,9 @@ const { block } = defineProps<Props>()
         :item="item.link"
         class="type-mix-small-caps"
       >
-        {{ item.title }}
+        <UiTextLink :is-external="item.link.linktype === 'url'">
+          {{ item.title }}
+        </UiTextLink>
       </StoryblokLink>
     </template>
   </div>

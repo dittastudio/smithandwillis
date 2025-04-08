@@ -1,8 +1,8 @@
-@import "tailwindcss";
 @import "./resets.css";
 @import "./page.css";
 @import "./fonts.css";
 @import "./typography.css";
+@import "tailwindcss";
 
 @theme {
   /* --*: initial; */

@@ -70,3 +70,9 @@
     line-height: calc(22 / 13);
   }
 }
+
+.type-inherit {
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+}

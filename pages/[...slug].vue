@@ -14,6 +14,6 @@ useStoryblokSetup<PageStoryblok>(story)
       :content="story.content"
     />
 
-    <Screen :log="story" />
+    <!-- <Screen :log="story" /> -->
   </div>
 </template>

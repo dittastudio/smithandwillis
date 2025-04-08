@@ -3,7 +3,7 @@ import type { RichtextStoryblok } from '@/types/storyblok'
 import { StoryblokRichText } from '@storyblok/vue'
 
 interface Props {
-  html: RichtextStoryblok
+  html?: RichtextStoryblok | undefined
 }
 
 const { html } = defineProps<Props>()
