@@ -11,7 +11,7 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
   if (index === 0)
     return false
   else
-    return content?.blocks?.[index].background === content.blocks?.[index - 1].background
+    return content?.blocks?.[index].background_color === content.blocks?.[index - 1].background_color
 }
 </script>
 
@@ -61,7 +61,7 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
 </template>
 
 <style lang="postcss">
-.content-blocks__item {
+.content-blocks__item:not(.content-blocks__item--block_media) {
   padding-block: 160px;
 }
 
@@ -71,9 +71,9 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
   padding-block-start: 0;
 }
 
-.content-blocks__item--block_media {
+/* .content-blocks__item--block_media {
   &:has(+ &) {
     padding-block-end: 0;
   }
-}
+} */
 </style>
