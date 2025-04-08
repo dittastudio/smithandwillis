@@ -1,5 +1,15 @@
 import {StoryblokStory} from 'storyblok-generate-ts'
 
+export interface BlockCareersStoryblok {
+  background_color?: number | string;
+  text_color?: number | string;
+  headline?: string;
+  items?: CareerItemStoryblok[];
+  _uid: string;
+  component: "block_careers";
+  [k: string]: any;
+}
+
 export interface AssetStoryblok {
   _uid?: string;
   id: number | null;
@@ -47,6 +57,16 @@ export interface BlockTextStoryblok {
   [k: string]: any;
 }
 
+export interface CareerItemStoryblok {
+  role: string;
+  company: string;
+  pdf: AssetStoryblok;
+  email: string;
+  _uid: string;
+  component: "career_item";
+  [k: string]: any;
+}
+
 export interface HeroMediaStoryblok {
   media: AssetStoryblok;
   ratio: number | string;
@@ -90,7 +110,7 @@ export interface LinkStoryblok {
 
 export interface PageStoryblok {
   hero?: HeroMediaStoryblok[];
-  blocks?: (BlockMediaStoryblok | BlockTextStoryblok)[];
+  blocks?: (BlockCareersStoryblok | BlockMediaStoryblok | BlockTextStoryblok)[];
   seo_title: string;
   seo_description: string;
   seo_image: AssetStoryblok;

@@ -1,6 +1,64 @@
 {
   "components": [
     {
+      "name": "block_careers",
+      "display_name": "Careers",
+      "description": "",
+      "created_at": "2025-04-08T15:20:27.516Z",
+      "updated_at": "2025-04-08T15:31:40.934Z",
+      "id": 7187946,
+      "schema": {
+        "background_color": {
+          "type": "option",
+          "pos": 0,
+          "use_uuid": true,
+          "display_name": "Background Colour",
+          "id": "IVgMrRA_QtGQlNel6R1F_Q",
+          "source": "internal",
+          "datasource_slug": "colours"
+        },
+        "text_color": {
+          "type": "option",
+          "pos": 1,
+          "use_uuid": true,
+          "display_name": "Text Colour",
+          "id": "eoh4jqf7T8moOFEvXLh6gQ",
+          "source": "internal",
+          "datasource_slug": "colours"
+        },
+        "headline": {
+          "type": "text",
+          "pos": 2,
+          "id": "_Buzz3b8SS2fgHP5qecaMA"
+        },
+        "items": {
+          "type": "bloks",
+          "pos": 3,
+          "restrict_type": "",
+          "restrict_components": true,
+          "component_whitelist": [
+            "career_item"
+          ],
+          "id": "lUBI5cJbQjGfnSC-HjE5fg"
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "Careers",
+      "component_group_uuid": "8aee4235-990a-4a59-ad5f-6d9f73a67be5",
+      "color": "#1a1f36",
+      "icon": "block-block",
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "block_media",
       "display_name": "Media",
       "description": null,
@@ -132,6 +190,56 @@
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
       "component_group_name": "Blocks"
+    },
+    {
+      "name": "career_item",
+      "display_name": "Career Item",
+      "description": "",
+      "created_at": "2025-04-08T15:27:36.138Z",
+      "updated_at": "2025-04-08T15:31:06.387Z",
+      "id": 7187949,
+      "schema": {
+        "role": {
+          "type": "text",
+          "pos": 0,
+          "id": "qFC-t_VNS5qAy8tMQwEyiA",
+          "required": true
+        },
+        "company": {
+          "type": "text",
+          "pos": 1,
+          "id": "xZpm7nDoQoSvByrULlt96Q",
+          "required": true
+        },
+        "pdf": {
+          "type": "asset",
+          "pos": 2,
+          "id": "XJY3mm4DTh6fzd6hwXJ0Yw",
+          "required": true
+        },
+        "email": {
+          "type": "text",
+          "pos": 3,
+          "regex": "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$",
+          "id": "n1g_qaceSBeuijGs6AKcpA",
+          "required": true
+        }
+      },
+      "image": null,
+      "preview_field": null,
+      "is_root": false,
+      "preview_tmpl": null,
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "Career Item",
+      "component_group_uuid": "672f761d-0561-4a30-add5-a1f182cb3581",
+      "color": "#1a1f36",
+      "icon": "block-suitcase",
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "component_group_name": "Elements"
     },
     {
       "name": "hero_media",

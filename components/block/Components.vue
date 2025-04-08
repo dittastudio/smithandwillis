@@ -10,7 +10,8 @@ const { content } = defineProps<Props>()
 const checkBackgroundMatchesPrevBackground = (index: number) => {
   if (index === 0)
     return false
-  return content?.blocks?.[index].background === content.blocks?.[index - 1].background
+  else
+    return content?.blocks?.[index].background === content.blocks?.[index - 1].background
 }
 </script>
 
@@ -28,21 +29,24 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
     </section>
 
     <!-- Blocks -->
-    <!-- <BlockCareers /> -->
-
     <section
       v-for="(block, index) in content.blocks"
       :key="block._uid"
       class="content-blocks__item"
       :class="[
         `content-blocks__item--${block.component}`,
-        block.text_color ? colourText[block.text_color] : '',
-        block.background_color ? colourBackground[block.background_color] : '',
+        block.text_color && colourText[block.text_color],
+        block.background_color && colourBackground[block.background_color],
         checkBackgroundMatchesPrevBackground(index) ? 'content-blocks__item--same-background' : '',
       ]"
     >
+      <BlockCareers
+        v-if="block.component === 'block_careers'"
+        :block="block"
+      />
+
       <BlockMedia
-        v-if="block.component === 'block_media'"
+        v-else-if="block.component === 'block_media'"
         :block="block"
       />
 
@@ -57,7 +61,7 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
 </template>
 
 <style lang="postcss">
-.content-blocks__item--block_text {
+.content-blocks__item {
   padding-block: 160px;
 }
 
@@ -65,5 +69,11 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
 .content-blocks__item.bg-warm-grey + .content-blocks__item:not([class*="bg-"]),
 .content-blocks__item--same-background {
   padding-block-start: 0;
+}
+
+.content-blocks__item--block_media {
+  &:has(+ &) {
+    padding-block-end: 0;
+  }
 }
 </style>

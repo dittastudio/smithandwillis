@@ -12,7 +12,7 @@ const { studioTitle, studio, contactTitle, contact } = defineProps<Props>()
 
 const menuOpen = useState<boolean>('menuOpen')
 
-const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p_a]:ease-out [&_p_a]:opacity-100 [&_p_a]:hover:opacity-70'
+const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p_a]:ease-out [&_p_a]:opacity-100 [&_p_a]:hover:opacity-70'
 </script>
 
 <template>
@@ -54,7 +54,7 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
             v-if="storyblokRichTextContent(contact)"
             :class="[
               'type-sans-medium',
-              classesFooterProse,
+              classesHeaderProse,
             ]"
           >
             <StoryblokText :html="contact" />
@@ -71,7 +71,7 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
               v-if="storyblokRichTextContent(studio)"
               :class="[
                 'type-inherit',
-                classesFooterProse,
+                classesHeaderProse,
               ]"
             >
               <StoryblokText :html="studio" />
