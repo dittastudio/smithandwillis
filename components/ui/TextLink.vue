@@ -19,6 +19,8 @@ const { isExternal } = defineProps<Props>()
       [a_&]:duration-300
       [a_&]:ease-out
       [a:hover_&]:opacity-70
+      p-4
+      -m-4
     "
   >
     <slot />

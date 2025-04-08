@@ -31,6 +31,10 @@ useState('menuOpen', () => false)
         <AppHeader
           :primary-navigation="settings?.content?.navigation_primary"
           :secondary-navigation="settings?.content?.navigation_secondary"
+          :studio-title="settings?.content?.studio_title"
+          :studio="settings?.content?.studio"
+          :contact-title="settings?.content?.contact_title"
+          :contact="settings?.content?.contact"
         />
       </template>
 

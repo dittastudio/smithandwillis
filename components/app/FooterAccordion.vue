@@ -86,7 +86,7 @@ const bodyId = `accordion-body-${safeKebabCase(id)}`
         :id="bodyId"
         role="region"
         :aria-labelledby="headerId"
-        class="pb-5 sm:pt-4"
+        class="pb-5 sm:pt-3 md:pt-4"
       >
         <slot name="content" />
       </div>

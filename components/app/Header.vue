@@ -1,13 +1,18 @@
 <script setup lang="ts">
-import type { LinkStoryblok } from '@/types/storyblok'
+import type { LinkStoryblok, RichtextStoryblok } from '@/types/storyblok'
+
 import IconLogo from '@/assets/icons/logo.svg'
 
 interface Props {
   primaryNavigation: LinkStoryblok[] | undefined
   secondaryNavigation: LinkStoryblok[] | undefined
+  studioTitle?: string
+  studio?: RichtextStoryblok
+  contactTitle?: string
+  contact?: RichtextStoryblok
 }
 
-const { primaryNavigation, secondaryNavigation } = defineProps<Props>()
+const { primaryNavigation, secondaryNavigation, studioTitle, studio, contactTitle, contact } = defineProps<Props>()
 
 const menuOpen = useState<boolean>('menuOpen')
 
@@ -124,7 +129,12 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
           </NuxtLink>
         </div>
 
-        <AppHeaderMenu>
+        <AppHeaderMenu
+          :studio-title="studioTitle"
+          :studio="studio"
+          :contact-title="contactTitle"
+          :contact="contact"
+        >
           <AppHeaderNavigation
             v-if="primaryNavigation"
             :items="primaryNavigation"
@@ -192,20 +202,23 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
 
 .app-header__wrapper {
   opacity: 1;
+  visibility: visible;
   translate: 0 0 0;
 
   transition:
     translate 0s 0s,
-    opacity 1s var(--ease-out);
+    opacity 1s var(--ease-out),
+    visibility 1s var(--ease-out);
 
   .app-header--has-scrolled-down & {
-    pointer-events: none;
     opacity: 0;
+    visibility: hidden;
     translate: 0 --spacing(-3) 0;
 
     transition:
       translate 0.5s var(--ease-inOutQuart),
-      opacity 0.5s var(--ease-inOutQuart);
+      opacity 0.5s var(--ease-inOutQuart),
+      visibility 0.5s var(--ease-inOutQuart);
   }
 }
 </style>

@@ -62,21 +62,3 @@ const menuOpen = useState<boolean>('menuOpen')
     </ul>
   </nav>
 </template>
-
-<style>
-@reference "../../assets/css/main.css";
-
-/* .app-header-navigation {
-  @variant max-md {
-    transition: opacity 0.3s ease-out;
-    opacity: 0;
-    pointer-events: none;
-    padding-inline: var(--app-outer-gutter);
-
-    &--is-open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-  }
-} */
-</style>
