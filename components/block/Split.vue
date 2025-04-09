@@ -15,7 +15,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     class="block-split flex flex-col-reverse items-center"
     :class="block.reverse ? 'md:flex-row-reverse' : 'md:flex-row'"
   >
-    <div class="grow w-full md:w-1/2">
+    <div class="w-full md:w-1/2">
       <MediaImage
         v-if="block.media && assetType === 'image'"
         :asset="block.media"
@@ -25,7 +25,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     </div>
 
     <div
-      class="grow w-full md:w-1/2 flex flex-col items-start gap-8 md:gap-10 pt-20 pb-12 px-[var(--app-outer-gutter)] md:py-[var(--app-outer-gutter)]"
+      class="w-full md:w-1/2 flex flex-col items-start gap-8 md:gap-10 pt-20 pb-12 px-[var(--app-outer-gutter)] md:py-[var(--app-outer-gutter)] max-w-[900px]"
       :class="!block.reverse && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))]'"
     >
       <h3
