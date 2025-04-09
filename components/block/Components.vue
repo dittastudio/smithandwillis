@@ -28,6 +28,8 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
       />
     </section>
 
+    <BlockCarousel />
+
     <!-- Blocks -->
     <section
       v-for="(block, index) in content.blocks"

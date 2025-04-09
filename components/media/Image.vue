@@ -85,50 +85,42 @@ const imgAttrs = computed(() => ({
 </script>
 
 <template>
-  <picture
-    ref="container"
-    class="media-image"
-    :class="className"
+  <div
+    class="media-image relative isolate overflow-hidden block w-full h-[inherit]"
+    :class="[className, { 'is-loaded': loaded, 'is-lazy': lazy }]"
   >
-    <img
-      v-bind="imgAttrs"
-      class="media-image__file"
-      :class="[{ 'is-loaded': loaded, 'is-lazy': lazy }]"
-      :loading="lazy ? 'eager' : 'lazy'"
-      @load="loaded = true"
-    >
+    <picture ref="container">
+      <img
+        v-bind="imgAttrs"
+        class="media-image__file w-full h-auto"
+        :loading="lazy ? 'eager' : 'lazy'"
+        @load="loaded = true"
+      >
+    </picture>
 
-    <img
+    <picture
       v-if="lazy"
-      class="media-image__placeholder"
-      :src="placeholder"
-      :width="size.width"
-      :height="size.height"
-      alt=""
-      loading="lazy"
+      class="media-image__placeholder relative pointer-events-none w-full h-auto"
     >
-  </picture>
+      <img
+        class="block w-full"
+        :src="placeholder"
+        :width="size.width"
+        :height="size.height"
+        alt=""
+        loading="lazy"
+      >
+    </picture>
+  </div>
 </template>
 
 <style lang="postcss" scoped>
 .media-image {
   --media-image-fade-duration: 1s;
-
-  isolation: isolate;
-  position: relative;
-
-  overflow: hidden;
-  display: block;
-
-  width: 100%;
-  height: inherit;
 }
 
 .media-image__file {
-  width: 100%;
-  height: auto;
-
-  &.is-lazy {
+  .media-image.is-lazy & {
     position: absolute;
     z-index: 1;
     inset: 0;
@@ -139,24 +131,25 @@ const imgAttrs = computed(() => ({
     transition: opacity var(--media-image-fade-duration) var(--ease-out);
   }
 
-  &.is-loaded {
+  .media-image.is-loaded & {
     opacity: 1;
   }
 }
 
 .media-image__placeholder {
-  pointer-events: none;
-
-  width: 100%;
-  height: auto;
-
+  position: relative;
   backface-visibility: hidden;
   opacity: 1;
-  filter: blur(8px);
-
   transition: opacity calc(var(--media-image-fade-duration) * 2) var(--ease-out) calc(var(--media-image-fade-duration) / 2);
 
-  .media-image__file.is-loaded + & {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(8px);
+  }
+
+  .media-image.is-loaded & {
     opacity: 0;
   }
 }

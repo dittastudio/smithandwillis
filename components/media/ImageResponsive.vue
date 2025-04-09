@@ -132,14 +132,10 @@ const breakpointMedia = computed(() => {
 
 <template>
   <div
-    class="media-image-container relative isolate overflow-hidden w-full h-[inherit]"
+    class="media-image relative isolate overflow-hidden w-full h-[inherit]"
     :class="[className, { 'is-loaded': loaded, 'is-lazy': lazy }]"
   >
-    <!-- Main picture element with actual images -->
-    <picture
-      ref="container"
-      class="media-image"
-    >
+    <picture ref="container">
       <!-- Desktop image source if provided -->
       <source
         v-if="hasDesktopImage"
@@ -159,10 +155,9 @@ const breakpointMedia = computed(() => {
       >
     </picture>
 
-    <!-- Placeholder picture element with responsive sources -->
     <picture
       v-if="lazy"
-      class="media-image-placeholder block w-full h-[inherit] pointer-events-none"
+      class="media-image__placeholder block w-full h-[inherit] pointer-events-none"
     >
       <!-- Desktop placeholder source if provided -->
       <source
@@ -188,35 +183,39 @@ const breakpointMedia = computed(() => {
 </template>
 
 <style lang="postcss" scoped>
-.media-image-container {
+.media-image {
   --media-image-fade-duration: 1s;
 }
 
 .media-image__file {
-  .media-image-container.is-lazy & {
+  .media-image.is-lazy & {
     position: absolute;
     z-index: 1;
     inset: 0;
-
     backface-visibility: hidden;
     opacity: 0;
-
     transition: opacity var(--media-image-fade-duration) var(--ease-out);
   }
 
-  .media-image-container.is-loaded & {
+  .media-image.is-loaded & {
     opacity: 1;
   }
 }
 
-.media-image-placeholder {
+.media-image__placeholder {
+  position: relative;
   backface-visibility: hidden;
   opacity: 1;
-  filter: blur(8px);
-
   transition: opacity calc(var(--media-image-fade-duration) * 2) var(--ease-out) calc(var(--media-image-fade-duration) / 2);
 
-  .media-image-container.is-loaded & {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(8px);
+  }
+
+  .media-image.is-loaded & {
     opacity: 0;
   }
 }
