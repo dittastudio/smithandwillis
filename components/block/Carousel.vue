@@ -20,6 +20,47 @@ const images = [
 
 const current = ref(0)
 const opacities = ref<number[]>([])
+const cursorPosition = ref({ x: 0, y: 0 })
+const isHovering = ref(false)
+const hoveredButton = ref<'left' | 'right' | null>(null)
+const rafId = ref<number | null>(null)
+
+const updateCursorPosition = (x: number, y: number) => {
+  cursorPosition.value = { x, y }
+}
+
+const handleMouseMove = (e: MouseEvent) => {
+  if (!isHovering.value)
+    return
+
+  if (rafId.value) {
+    cancelAnimationFrame(rafId.value)
+  }
+
+  rafId.value = requestAnimationFrame(() => {
+    updateCursorPosition(e.clientX, e.clientY)
+  })
+}
+
+const handleMouseEnter = (button: 'left' | 'right') => {
+  isHovering.value = true
+  hoveredButton.value = button
+}
+
+const handleMouseLeave = () => {
+  isHovering.value = false
+  hoveredButton.value = null
+  if (rafId.value) {
+    cancelAnimationFrame(rafId.value)
+    rafId.value = null
+  }
+}
+
+onUnmounted(() => {
+  if (rafId.value) {
+    cancelAnimationFrame(rafId.value)
+  }
+})
 
 const [container, slider] = useKeenSlider({
   initial: current.value,
@@ -40,7 +81,7 @@ const [container, slider] = useKeenSlider({
 <template>
   <div
     v-editable="block"
-    class="block-carousel"
+    class="block-carousel text-white"
   >
     <div
       ref="container"
@@ -61,8 +102,11 @@ const [container, slider] = useKeenSlider({
       <div class="absolute inset-0 flex">
         <button
           v-if="slider"
-          class="grow w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] hover:bg-orange/80 hover:cursor-w-resize"
+          class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)]"
           @click="slider.prev()"
+          @mousemove.passive="handleMouseMove"
+          @mouseenter="handleMouseEnter('left')"
+          @mouseleave="handleMouseLeave"
         >
           <span class="sr-only">Previous</span>
 
@@ -71,14 +115,38 @@ const [container, slider] = useKeenSlider({
 
         <button
           v-if="slider"
-          class="grow w-1/2 flex items-center justify-end p-[var(--app-outer-gutter)] hover:bg-orange/80 hover:cursor-e-resize"
+          class="w-1/2 flex items-center justify-end p-[var(--app-outer-gutter)]"
           @click="slider.next()"
+          @mousemove.passive="handleMouseMove"
+          @mouseenter="handleMouseEnter('right')"
+          @mouseleave="handleMouseLeave"
         >
           <span class="sr-only">Next</span>
 
           <IconArrowLarge class="[@media(hover:hover)]:hidden w-[16px] h-[18px] -rotate-90" />
         </button>
       </div>
+
+      <div
+        v-if="isHovering"
+        class="fixed pointer-events-none z-50 will-change-transform top-0 left-0 translate-x-[var(--carousel-cursor-x)] translate-y-[var(--carousel-cursor-y)]"
+        :style="{
+          '--carousel-cursor-x': `${cursorPosition.x}px`,
+          '--carousel-cursor-y': `${cursorPosition.y}px`,
+        }"
+        :class="hoveredButton === 'left' ? 'rotate-90' : '-rotate-90'"
+      >
+        <IconArrowLarge class="w-[16px] h-[18px] -translate-x-1/2 -translate-y-1/2" />
+      </div>
     </div>
   </div>
 </template>
+
+<style lang="postcss">
+.block-carousel {
+  button {
+    cursor: none;
+    touch-action: none;
+  }
+}
+</style>
