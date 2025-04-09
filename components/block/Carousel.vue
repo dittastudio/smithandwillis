@@ -24,13 +24,20 @@ const cursorPosition = ref({ x: 0, y: 0 })
 const isHovering = ref(false)
 const hoveredButton = ref<'left' | 'right' | null>(null)
 const rafId = ref<number | null>(null)
+const supportsHover = ref(false)
+
+onMounted(() => {
+  supportsHover.value = window.matchMedia('(hover: hover)').matches
+})
 
 const updateCursorPosition = (x: number, y: number) => {
+  if (!supportsHover.value)
+    return
   cursorPosition.value = { x, y }
 }
 
 const handleMouseMove = (e: MouseEvent) => {
-  if (!isHovering.value)
+  if (!isHovering.value || !supportsHover.value)
     return
 
   if (rafId.value) {
@@ -43,11 +50,15 @@ const handleMouseMove = (e: MouseEvent) => {
 }
 
 const handleMouseEnter = (button: 'left' | 'right') => {
+  if (!supportsHover.value)
+    return
   isHovering.value = true
   hoveredButton.value = button
 }
 
 const handleMouseLeave = () => {
+  if (!supportsHover.value)
+    return
   isHovering.value = false
   hoveredButton.value = null
   if (rafId.value) {
@@ -102,7 +113,7 @@ const [container, slider] = useKeenSlider({
       <div class="absolute inset-0 flex">
         <button
           v-if="slider"
-          class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)]"
+          class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none touch-none"
           @click="slider.prev()"
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('left')"
@@ -115,7 +126,7 @@ const [container, slider] = useKeenSlider({
 
         <button
           v-if="slider"
-          class="w-1/2 flex items-center justify-end p-[var(--app-outer-gutter)]"
+          class="w-1/2 flex items-center justify-end p-[var(--app-outer-gutter)] cursor-none touch-none"
           @click="slider.next()"
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('right')"
@@ -129,7 +140,7 @@ const [container, slider] = useKeenSlider({
 
       <div
         v-if="isHovering"
-        class="fixed pointer-events-none z-50 will-change-transform top-0 left-0 translate-x-[var(--carousel-cursor-x)] translate-y-[var(--carousel-cursor-y)]"
+        class="fixed pointer-events-none z-1 will-change-transform top-0 left-0 translate-x-[var(--carousel-cursor-x)] translate-y-[var(--carousel-cursor-y)] [@media(hover:none)]:hidden"
         :style="{
           '--carousel-cursor-x': `${cursorPosition.x}px`,
           '--carousel-cursor-y': `${cursorPosition.y}px`,
@@ -141,12 +152,3 @@ const [container, slider] = useKeenSlider({
     </div>
   </div>
 </template>
-
-<style lang="postcss">
-.block-carousel {
-  button {
-    cursor: none;
-    touch-action: none;
-  }
-}
-</style>
