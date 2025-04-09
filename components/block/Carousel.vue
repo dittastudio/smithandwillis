@@ -11,13 +11,6 @@ interface Props {
 
 const { block } = defineProps<Props>()
 
-const images = [
-  'https://images.unsplash.com/photo-1590004953392-5aba2e72269a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80',
-  'https://images.unsplash.com/photo-1590004845575-cc18b13d1d0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80',
-  'https://images.unsplash.com/photo-1590004987778-bece5c9adab6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80',
-  'https://images.unsplash.com/photo-1590005176489-db2e714711fc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=500&w=800&q=80',
-]
-
 const current = ref(0)
 const opacities = ref<number[]>([])
 const cursorPosition = ref({ x: 0, y: 0 })
@@ -75,7 +68,7 @@ onUnmounted(() => {
 
 const [container, slider] = useKeenSlider({
   initial: current.value,
-  slides: images.length,
+  slides: block.slides?.length || 0,
   loop: true,
   defaultAnimation: {
     duration: 1000,
@@ -126,7 +119,7 @@ const [container, slider] = useKeenSlider({
       </div>
 
       <!-- Navigation Buttons -->
-      <div class="absolute inset-0 flexx hidden">
+      <div class="absolute inset-0 flex">
         <button
           v-if="slider"
           class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none touch-none"
