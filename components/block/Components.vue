@@ -28,7 +28,7 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
       />
     </section>
 
-    <BlockCarousel />
+    <!-- <BlockCarousel /> -->
 
     <!-- Blocks -->
     <section
@@ -44,6 +44,11 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
     >
       <BlockCareers
         v-if="block.component === 'block_careers'"
+        :block="block"
+      />
+
+      <BlockCarousel
+        v-if="block.component === 'block_carousel'"
         :block="block"
       />
 
@@ -68,7 +73,11 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
 </template>
 
 <style lang="postcss">
-.content-blocks__item:not(.content-blocks__item--block_media, .content-blocks__item--block_split) {
+.content-blocks__item:not(
+  .content-blocks__item--block_media,
+  .content-blocks__item--block_split,
+  .content-blocks__item--block_carousel
+) {
   padding-block: 160px;
 }
 

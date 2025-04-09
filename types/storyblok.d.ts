@@ -10,6 +10,14 @@ export interface BlockCareersStoryblok {
   [k: string]: any;
 }
 
+export interface BlockCarouselStoryblok {
+  title?: string;
+  slides?: (SlideImageStoryblok | SlideSplitStoryblok)[];
+  _uid: string;
+  component: "block_carousel";
+  [k: string]: any;
+}
+
 export interface AssetStoryblok {
   _uid?: string;
   id: number | null;
@@ -124,7 +132,13 @@ export interface LinkStoryblok {
 
 export interface PageStoryblok {
   hero?: HeroMediaStoryblok[];
-  blocks?: (BlockCareersStoryblok | BlockMediaStoryblok | BlockSplitStoryblok | BlockTextStoryblok)[];
+  blocks?: (
+    | BlockCareersStoryblok
+    | BlockCarouselStoryblok
+    | BlockMediaStoryblok
+    | BlockSplitStoryblok
+    | BlockTextStoryblok
+  )[];
   seo_title: string;
   seo_description: string;
   seo_image: AssetStoryblok;
@@ -145,5 +159,36 @@ export interface SettingsStoryblok {
   contact?: RichtextStoryblok;
   _uid: string;
   component: "settings";
+  [k: string]: any;
+}
+
+export type MultiassetStoryblok = {
+  alt?: string;
+  copyright?: string;
+  id: number;
+  filename: string;
+  name: string;
+  title?: string;
+  [k: string]: any;
+}[];
+
+export interface SlideImageStoryblok {
+  images?: MultiassetStoryblok;
+  _uid: string;
+  component: "slide_image";
+  [k: string]: any;
+}
+
+export interface SlideSplitStoryblok {
+  background_color?: number | string;
+  text_color?: number | string;
+  media?: AssetStoryblok;
+  headline?: string;
+  text: RichtextStoryblok;
+  link?: LinkStoryblok[];
+  reverse: boolean;
+  alignment_mobile?: "" | "top" | "bottom";
+  _uid: string;
+  component: "slide_split";
   [k: string]: any;
 }

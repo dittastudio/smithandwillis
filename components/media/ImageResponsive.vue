@@ -135,7 +135,10 @@ const breakpointMedia = computed(() => {
     class="media-image relative isolate overflow-hidden w-full h-[inherit]"
     :class="[className, { 'is-loaded': loaded, 'is-lazy': lazy }]"
   >
-    <picture ref="container">
+    <picture
+      ref="container"
+      class="h-[inherit]"
+    >
       <!-- Desktop image source if provided -->
       <source
         v-if="hasDesktopImage"
@@ -150,7 +153,7 @@ const breakpointMedia = computed(() => {
       <img
         v-bind="imgAttrs"
         class="media-image__file w-full"
-        :class="cover ? 'h-full object-cover' : 'h-auto' "
+        :class="cover ? 'h-full object-cover' : 'object-cover h-[inherit]' "
         @load="loaded = true"
       >
     </picture>
@@ -171,7 +174,7 @@ const breakpointMedia = computed(() => {
       <!-- Mobile/default placeholder -->
       <img
         class="block w-full"
-        :class="cover ? 'h-full object-cover' : 'h-auto' "
+        :class="cover ? 'h-full object-cover' : ' object-cover h-[inherit]' "
         :src="mobilePlaceholder"
         :width="mobileSize.width"
         :height="mobileSize.height"

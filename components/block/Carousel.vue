@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-// import type { BlockTextStoryblok } from '@/types/storyblok'
+import type { BlockCarouselStoryblok } from '@/types/storyblok'
 import IconArrowLarge from '@/assets/icons/arrow-large.svg'
 
 import { useKeenSlider } from 'keen-slider/vue.es'
 import 'keen-slider/keen-slider.min.css'
 
 interface Props {
-  block?: any
+  block: BlockCarouselStoryblok
 }
 
 const { block } = defineProps<Props>()
@@ -92,32 +92,41 @@ const [container, slider] = useKeenSlider({
 <template>
   <div
     v-editable="block"
-    class="block-carousel text-white"
+    class="block-carousel relative text-white"
   >
     <div
       ref="container"
-      class="relative overflow-hidden w-full aspect-[9/16] md:aspect-video"
+      class="relative overflow-hidden w-full aspect-[10/16] md:aspect-[16/9]"
     >
       <div
-        v-for="(src, index) in images"
+        v-for="(slide, index) in block.slides"
         :key="index"
         class="w-full h-full absolute inset-0"
         :style="{ opacity: opacities[index] }"
       >
-        <img
-          class="w-full h-full object-cover"
-          :src="src"
-        >
-      </div>
+        <!-- <pre>{{ slide }}</pre> -->
 
-      <div class="absolute inset-0 flex items-end justify-start p-[var(--app-outer-gutter)] z-2 pointer-events-none">
-        <p class="type-sans-medium-caps pointer-events-auto">
-          Title goes here
-        </p>
+        <template v-if="slide.component === 'slide_image'">
+          <div class="flex flex-col md:flex-row h-full">
+            <template
+              v-for="image in slide.images"
+              :key="image.id"
+            >
+              <MediaImageResponsive
+                :asset="image"
+                :desktop-asset="image"
+                :ratio="`10:${16 / (slide.images?.length || 1)}`"
+                :desktop-ratio="`${16 / (slide.images?.length || 1)}:9`"
+                sizes="100vw sm:100vw md:100vw"
+                desktop-sizes="md:100vw lg:100vw xl:100vw 2xl:100vw"
+              />
+            </template>
+          </div>
+        </template>
       </div>
 
       <!-- Navigation Buttons -->
-      <div class="absolute inset-0 flex">
+      <div class="absolute inset-0 flexx hidden">
         <button
           v-if="slider"
           class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none touch-none"
@@ -159,6 +168,12 @@ const [container, slider] = useKeenSlider({
           :class="hoveredButton === 'left' ? 'rotate-90' : '-rotate-90'"
         />
       </div>
+    </div>
+
+    <div class="wrapper absolute inset-0 flex items-end py-[var(--app-outer-gutter)] z-2 pointer-events-none">
+      <p class="sticky bottom-[var(--app-outer-gutter)] type-sans-medium-caps pointer-events-auto">
+        {{ block.title }}
+      </p>
     </div>
   </div>
 </template>
