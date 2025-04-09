@@ -110,6 +110,13 @@ const [container, slider] = useKeenSlider({
         >
       </div>
 
+      <div class="absolute inset-0 flex items-end justify-start p-[var(--app-outer-gutter)] z-2 pointer-events-none">
+        <p class="type-sans-medium-caps pointer-events-auto">
+          Title goes here
+        </p>
+      </div>
+
+      <!-- Navigation Buttons -->
       <div class="absolute inset-0 flex">
         <button
           v-if="slider"
@@ -138,6 +145,7 @@ const [container, slider] = useKeenSlider({
         </button>
       </div>
 
+      <!-- Cursor Takeover -->
       <div
         v-if="isHovering"
         class="fixed pointer-events-none z-1 will-change-transform top-0 left-0 translate-x-[var(--carousel-cursor-x)] translate-y-[var(--carousel-cursor-y)] [@media(hover:none)]:hidden"
@@ -145,9 +153,11 @@ const [container, slider] = useKeenSlider({
           '--carousel-cursor-x': `${cursorPosition.x}px`,
           '--carousel-cursor-y': `${cursorPosition.y}px`,
         }"
-        :class="hoveredButton === 'left' ? 'rotate-90' : '-rotate-90'"
       >
-        <IconArrowLarge class="w-[16px] h-[18px] -translate-x-1/2 -translate-y-1/2" />
+        <IconArrowLarge
+          class="block w-[16px] h-[18px] -translate-x-1/2 -translate-y-1/2"
+          :class="hoveredButton === 'left' ? 'rotate-90' : '-rotate-90'"
+        />
       </div>
     </div>
   </div>
