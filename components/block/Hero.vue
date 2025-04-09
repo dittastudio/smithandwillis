@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { HeroMediaStoryblok } from '@/types/storyblok'
-import IconArrowDown from '@/assets/icons/arrow-down.svg'
+import IconArrowLarge from '@/assets/icons/arrow-large.svg'
 
 interface Props {
   block: HeroMediaStoryblok
@@ -58,7 +58,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
           hover:opacity-70
         "
       >
-        <IconArrowDown class="w-[16px] h-[18px] mx-auto" />
+        <IconArrowLarge class="w-[16px] h-[18px] mx-auto" />
 
         <span class="sr-only">
           Scroll

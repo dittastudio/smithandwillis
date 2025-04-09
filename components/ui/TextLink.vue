@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import IconArrowRight from '@/assets/icons/arrow-right-sm.svg'
-import IconArrowTopRight from '@/assets/icons/arrow-top-right.svg'
+import IconArrowExternal from '@/assets/icons/arrow-external.svg'
+import IconArrowSmall from '@/assets/icons/arrow-small.svg'
 
 interface Props {
   isExternal: boolean
@@ -25,7 +25,7 @@ const { isExternal } = defineProps<Props>()
   >
     <slot />
 
-    <IconArrowTopRight
+    <IconArrowExternal
       v-if="isExternal"
       class="
         size-2.5
@@ -37,7 +37,7 @@ const { isExternal } = defineProps<Props>()
       "
     />
 
-    <IconArrowRight
+    <IconArrowSmall
       v-else
       class="
         w-1.75
