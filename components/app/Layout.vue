@@ -1,6 +1,6 @@
 <template>
   <div class="isolate flex flex-col min-h-screen">
-    <header class="sticky top-0 z-10 pointer-events-none">
+    <header class="sticky top-0 z-10">
       <slot name="header" />
     </header>
 

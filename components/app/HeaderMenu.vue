@@ -19,7 +19,6 @@ const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
   <div
     class="
       app-header-menu
-      max-md:pointer-events-auto
       max-md:absolute
       max-md:inset-0
       max-md:min-h-dvh
@@ -28,6 +27,8 @@ const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
       max-md:text-white
       max-md:pt-[calc(var(--header-height)_+_--spacing(6))]
       max-md:pb-[var(--app-outer-gutter)]
+      max-md:overflow-y-auto
+      max-md:overscroll-contain
     "
     :class="{ 'app-header-menu--is-open': menuOpen }"
   >
@@ -37,7 +38,8 @@ const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
         max-md:flex
         max-md:flex-col
         max-md:justify-between
-        max-md:h-full
+        max-md:gap-y-20
+        max-md:min-h-full
       "
     >
       <div class="md:flex md:justify-between md:w-full">

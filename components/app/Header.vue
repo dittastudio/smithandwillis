@@ -54,6 +54,11 @@ const rAFHeaderScroll = () => {
   }
 }
 
+const handleMouseEnter = () => {
+  hasScrolledUp.value = true
+  hasScrolledDown.value = false
+}
+
 onMounted(() => {
   rAFHeaderScroll()
   window.addEventListener('scroll', rAFHeaderScroll)
@@ -87,65 +92,64 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
   <header
     :class="classesHeader"
     class="app-header text-white max-md:h-[var(--header-height)]"
+    @mouseenter="handleMouseEnter"
   >
     <div class="app-header__wrapper wrapper py-8 md:py-10 h-[inherit] max-md:flex max-md:items-center max-md:justify-center">
-      <div class="">
-        <button
-          type="button"
-          class="absolute top-0 left-0 px-[var(--app-outer-gutter)] py-8 md:hidden active:opacity-70 transition-opacity duration-300 ease-out pointer-events-auto"
-          @click="toggleNavigation"
-        >
-          <UiBurger :is-open="menuOpen" />
-        </button>
+      <button
+        type="button"
+        class="absolute top-0 left-0 px-[var(--app-outer-gutter)] py-8 md:hidden active:opacity-70 transition-opacity duration-300 ease-out pointer-events-auto"
+        @click="toggleNavigation"
+      >
+        <UiBurger :is-open="menuOpen" />
+      </button>
 
-        <div class="absolute top-0 inset-x-0 w-full h-full flex items-center justify-center">
-          <NuxtLink
-            class="
+      <div class="absolute top-0 inset-x-0 w-full h-full flex items-center justify-center pointer-events-none">
+        <NuxtLink
+          class="
             block
             p-6
             -my-6
-            pointer-events-auto
             transition-colors
             ease-out
+            pointer-events-auto
             hover:text-orange
             md:absolute
           "
-            :class="[
-              hasScrolled ? 'text-white' : 'text-orange',
-              hasScrolledDown && 'delay-500',
-              hasScrolledUp ? 'duration-300 delay-0' : 'duration-500',
-            ]"
-            to="/"
-          >
-            <IconLogo
-              class="
+          :class="[
+            hasScrolled ? 'text-white' : 'text-orange',
+            hasScrolledDown && 'delay-500',
+            hasScrolledUp ? 'duration-300 delay-0' : 'duration-500',
+          ]"
+          to="/"
+        >
+          <IconLogo
+            class="
               w-[174px]
               h-[13px]
               mx-auto
               lg:w-[232px]
               lg:h-[17px]
             "
-            />
-          </NuxtLink>
-        </div>
-
-        <AppHeaderMenu
-          :studio-title="studioTitle"
-          :studio="studio"
-          :contact-title="contactTitle"
-          :contact="contact"
-        >
-          <AppHeaderNavigation
-            v-if="primaryNavigation"
-            :items="primaryNavigation"
           />
-
-          <AppHeaderNavigation
-            v-if="secondaryNavigation"
-            :items="secondaryNavigation"
-          />
-        </AppHeaderMenu>
+        </NuxtLink>
       </div>
+
+      <AppHeaderMenu
+        :studio-title="studioTitle"
+        :studio="studio"
+        :contact-title="contactTitle"
+        :contact="contact"
+      >
+        <AppHeaderNavigation
+          v-if="primaryNavigation"
+          :items="primaryNavigation"
+        />
+
+        <AppHeaderNavigation
+          v-if="secondaryNavigation"
+          :items="secondaryNavigation"
+        />
+      </AppHeaderMenu>
     </div>
   </header>
 </template>
@@ -187,6 +191,7 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
     ;
     z-index: -1;
     transition: opacity 1s var(--ease-out);
+    pointer-events: none;
   }
 
   &.app-header--has-scrolled::before,
@@ -202,7 +207,7 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
 
 .app-header__wrapper {
   opacity: 1;
-  visibility: visible;
+  /* visibility: visible; */
   translate: 0 0 0;
 
   transition:
@@ -212,7 +217,7 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
 
   .app-header--has-scrolled-down & {
     opacity: 0;
-    visibility: hidden;
+    /* visibility: hidden; */
     translate: 0 --spacing(-3) 0;
 
     transition:

@@ -54,7 +54,7 @@ const menuOpen = useState<boolean>('menuOpen')
             duration-300
             ease-out
             hover:opacity-70
-            pointer-events-auto"
+          "
         >
           {{ item.title }}
         </StoryblokLink>
