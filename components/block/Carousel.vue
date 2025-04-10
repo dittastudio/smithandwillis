@@ -13,8 +13,8 @@ const ratios = {
     y: 16,
   },
   desktop: {
-    x: 6,
-    y: 3,
+    x: 16,
+    y: 9,
   },
 }
 </script>

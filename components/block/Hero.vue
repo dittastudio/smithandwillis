@@ -17,7 +17,6 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
   >
     <MediaImageResponsive
       v-if="block.media && assetType === 'image'"
-      :cover="true"
       breakpoint="landscape"
       :asset="block.media"
       :desktop-asset="block.media"

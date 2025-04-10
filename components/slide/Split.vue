@@ -19,7 +19,7 @@ const assetType = computed(() => storyblokAssetType(media?.filename || ''))
 
 <template>
   <div
-    class="relative flex flex-col-reverse items-center h-[inherit]"
+    class="relative flex flex-col-reverse items-center h-full"
     :class="[
       reverse ? 'md:flex-row-reverse' : 'md:flex-row',
       textColor ? colourText[textColor] : 'text-offblack',
@@ -51,7 +51,7 @@ const assetType = computed(() => storyblokAssetType(media?.filename || ''))
         gap-8
         md:gap-10
         p-[var(--app-outer-gutter)]
-        md:py-[var(--app-outer-gutter)]
+        md:py-[calc(var(--app-outer-gutter)_*_3)]
         max-w-[900px]
       "
       :class="[

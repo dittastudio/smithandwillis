@@ -23,6 +23,13 @@ const hoveredButton = ref<'left' | 'right' | null>(null)
 const rafId = ref<number | null>(null)
 const supportsHover = ref(false)
 
+const hasReverseSlide = computed(() => {
+  const currentSlide = slides[current.value]
+  return currentSlide?.reverse === true
+    && (!currentSlide?.background_color
+      || ['warmgrey', 'white', 'orange'].includes(currentSlide.background_color))
+})
+
 onMounted(() => {
   supportsHover.value = window.matchMedia('(hover: hover)').matches
 })
@@ -95,7 +102,7 @@ const [container, slider] = useKeenSlider({
   <div class="relative text-white">
     <div
       ref="container"
-      class="ui-carousel-fade__container relative overflow-hidden w-full"
+      class="ui-carousel-fade__container relative w-full"
       :style="{
         '--carousel-ratio-x': ratioX,
         '--carousel-ratio-y': ratioY,
@@ -106,7 +113,7 @@ const [container, slider] = useKeenSlider({
       <div
         v-for="(slide, index) in slides"
         :key="index"
-        class="w-full h-full absolute inset-0"
+        class="w-full"
         :style="{ opacity: opacities[index] }"
       >
         <slot
@@ -165,7 +172,10 @@ const [container, slider] = useKeenSlider({
       class="absolute inset-0 z-2 pointer-events-none flex flex-col justify-end contain-paint contain-layout"
     >
       <div class="sticky bottom-0 flex items-start justify-start wrapper">
-        <p class="ui-carousel-fade__gradient py-[var(--app-outer-gutter)] type-sans-medium-caps pointer-events-auto">
+        <p
+          class="ui-carousel-fade__gradient py-[var(--app-outer-gutter)] type-sans-medium-caps pointer-events-auto"
+          :class="{ 'ui-carousel-fade__gradient--reverse': hasReverseSlide } "
+        >
           {{ caption }}
         </p>
       </div>
@@ -177,15 +187,22 @@ const [container, slider] = useKeenSlider({
 @reference "../../assets/css/main.css";
 
 .ui-carousel-fade__container {
+  display: grid;
+  grid-template-areas: "stack";
   aspect-ratio: var(--carousel-ratio-x) / var(--carousel-ratio-y);
 
   @variant md {
     aspect-ratio: var(--carousel-ratio-x-desktop) / var(--carousel-ratio-y-desktop);
   }
+
+  & > * {
+    grid-area: stack;
+  }
 }
 
 .ui-carousel-fade__gradient {
   position: relative;
+  transition: color 0.3s var(--ease-out);
 
   &::before {
     content: '';
@@ -198,6 +215,17 @@ const [container, slider] = useKeenSlider({
     background-image: radial-gradient(ellipse at 52.5% 100%, --alpha(var(--color-black) / 100%) 0%, --alpha(var(--color-black) / 0%) 60%);
     z-index: -1;
     pointer-events: none;
+    transition: opacity 0.3s var(--ease-out);
+  }
+
+  &--reverse {
+    @variant md {
+      color: var(--color-offblack);
+
+      &::before {
+        opacity: 0;
+      }
+    }
   }
 }
 </style>

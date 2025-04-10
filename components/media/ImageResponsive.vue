@@ -18,7 +18,6 @@ interface Props {
   desktopSizes?: string
   alt?: string
   lazy?: boolean
-  cover?: boolean
 }
 
 const {
@@ -30,7 +29,6 @@ const {
   sizes,
   desktopSizes,
   lazy = true,
-  cover = false,
 } = defineProps<Props>()
 
 const container = ref<HTMLPictureElement | null>(null)
@@ -152,8 +150,7 @@ const breakpointMedia = computed(() => {
       <!-- Mobile/default image -->
       <img
         v-bind="imgAttrs"
-        class="media-image__file w-full"
-        :class="cover ? 'h-full object-cover' : 'object-cover h-[inherit]' "
+        class="media-image__file w-full h-[inherit] object-cover"
         @load="loaded = true"
       >
     </picture>
@@ -173,8 +170,7 @@ const breakpointMedia = computed(() => {
 
       <!-- Mobile/default placeholder -->
       <img
-        class="block w-full"
-        :class="cover ? 'h-full object-cover' : ' object-cover h-[inherit]' "
+        class="block w-full object-cover h-[inherit]"
         :src="mobilePlaceholder"
         :width="mobileSize.width"
         :height="mobileSize.height"
