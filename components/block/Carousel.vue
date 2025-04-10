@@ -169,8 +169,8 @@ const [container, slider] = useKeenSlider({
     </div>
 
     <div class="absolute inset-0 z-2 pointer-events-none flex flex-col justify-end contain-paint contain-layout">
-      <div class="block-carousel__gradient sticky bottom-0 py-[var(--app-outer-gutter)]">
-        <p class="wrapper type-sans-medium-caps pointer-events-auto">
+      <div class="sticky bottom-0 flex items-start justify-start wrapper">
+        <p class="block-carousel__gradient py-[var(--app-outer-gutter)] type-sans-medium-caps pointer-events-auto">
           {{ block.title }}
         </p>
       </div>
@@ -182,39 +182,20 @@ const [container, slider] = useKeenSlider({
 @reference "../../assets/css/main.css";
 
 .block-carousel__gradient {
+  position: relative;
+
   &::before {
     --block-carousel-gradient-color: var(--color-black);
 
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 200%;
-    opacity: 0.7;
-    background-image:
-      linear-gradient(
-        to top,
-        --alpha(var(--block-carousel-gradient-color) / 100%) 0%,
-        --alpha(var(--block-carousel-gradient-color) / 98.7%) 8.1%,
-        --alpha(var(--block-carousel-gradient-color) / 95.1%) 15.5%,
-        --alpha(var(--block-carousel-gradient-color) / 89.6%) 22.5%,
-        --alpha(var(--block-carousel-gradient-color) / 82.5%) 29%,
-        --alpha(var(--block-carousel-gradient-color) / 74.1%) 35.3%,
-        --alpha(var(--block-carousel-gradient-color) / 64.8%) 41.2%,
-        --alpha(var(--block-carousel-gradient-color) / 55%) 47.1%,
-        --alpha(var(--block-carousel-gradient-color) / 45%) 52.9%,
-        --alpha(var(--block-carousel-gradient-color) / 35.2%) 58.8%,
-        --alpha(var(--block-carousel-gradient-color) / 25.9%) 64.7%,
-        --alpha(var(--block-carousel-gradient-color) / 17.5%) 71%,
-        --alpha(var(--block-carousel-gradient-color) / 10.4%) 77.5%,
-        --alpha(var(--block-carousel-gradient-color) / 4.9%) 84.5%,
-        --alpha(var(--block-carousel-gradient-color) / 1.3%) 91.9%,
-        --alpha(var(--block-carousel-gradient-color) / 0%) 100%
-      )
-    ;
+    left: calc(-12 * var(--app-outer-gutter));
+    right: calc(-8 * var(--app-outer-gutter));
+    height: 300%;
+    opacity: 0.8;
+    background-image: radial-gradient(ellipse at 50% 120%, --alpha(var(--color-black) / 100%) 0%, transparent 50%);
     z-index: -1;
-    transition: opacity 1s var(--ease-out);
     pointer-events: none;
   }
 }
