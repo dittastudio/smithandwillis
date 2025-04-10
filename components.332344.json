@@ -164,7 +164,7 @@
       "display_name": "Split",
       "description": "",
       "created_at": "2025-04-08T16:30:36.828Z",
-      "updated_at": "2025-04-08T17:07:19.267Z",
+      "updated_at": "2025-04-10T19:35:38.878Z",
       "id": 7188205,
       "schema": {
         "background_color": {
@@ -198,7 +198,7 @@
           "pos": 3,
           "use_uuid": true,
           "source": "internal",
-          "datasource_slug": "ratio",
+          "datasource_slug": "ratio-portrait",
           "default_value": "3:4",
           "id": "N3dYpkkqQomnsJ8FrDQu8Q"
         },
@@ -724,7 +724,7 @@
       "display_name": "Split",
       "description": "",
       "created_at": "2025-04-09T22:14:13.368Z",
-      "updated_at": "2025-04-09T22:18:23.030Z",
+      "updated_at": "2025-04-10T19:39:23.983Z",
       "id": 7195117,
       "schema": {
         "background_color": {
@@ -778,17 +778,6 @@
               "value": "font-mix font-bold tracking-sm"
             }
           ]
-        },
-        "link": {
-          "type": "bloks",
-          "pos": 6,
-          "maximum": 1,
-          "restrict_type": "",
-          "restrict_components": true,
-          "component_whitelist": [
-            "link"
-          ],
-          "id": "7YFvlfE6RLe3uXGJ_92oBw"
         },
         "reverse": {
           "type": "boolean",

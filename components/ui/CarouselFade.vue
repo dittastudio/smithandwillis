@@ -116,7 +116,7 @@ const [container, slider] = useKeenSlider({
       </div>
 
       <!-- Navigation Buttons -->
-      <div class="absolute inset-0 flex">
+      <div class="absolute inset-0 flexx hidden">
         <button
           v-if="slider"
           class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none touch-none"

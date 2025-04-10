@@ -8,14 +8,8 @@ interface Props {
 const { block } = defineProps<Props>()
 
 const ratios = {
-  mobile: {
-    x: 10,
-    y: 16,
-  },
-  desktop: {
-    x: 16,
-    y: 9,
-  },
+  x: 10,
+  y: 16,
 }
 </script>
 
@@ -27,19 +21,31 @@ const ratios = {
     <UiCarouselFade
       :slides="block.slides || []"
       :caption="block.title"
-      :ratio-x="ratios.mobile.x"
-      :ratio-y="ratios.mobile.y"
-      :ratio-desktop-x="ratios.desktop.x"
-      :ratio-desktop-y="ratios.desktop.y"
+      :ratio-x="ratios.x"
+      :ratio-y="ratios.y"
+      :ratio-desktop-x="ratios.y"
+      :ratio-desktop-y="ratios.x"
     >
       <template #slide="{ slide }">
         <template v-if="slide.component === 'slide_image'">
           <SlideImages
             :items="slide.images"
-            :ratio-x="ratios.mobile.x"
-            :ratio-y="ratios.mobile.y"
-            :ratio-desktop-x="ratios.desktop.x"
-            :ratio-desktop-y="ratios.desktop.y"
+            :ratio-x="ratios.x"
+            :ratio-y="ratios.y"
+            :ratio-desktop-x="ratios.y"
+            :ratio-desktop-y="ratios.x"
+          />
+        </template>
+
+        <template v-if="slide.component === 'slide_split'">
+          <SlideSplit
+            :media="slide.media"
+            :ratio="`${ratios.x / 2}:${ratios.y}`"
+            :headline="slide.headline"
+            :text="slide.text"
+            :reverse="slide.reverse"
+            :text-color="slide.text_color"
+            :background-color="slide.background_color"
           />
         </template>
       </template>

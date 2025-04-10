@@ -1,0 +1,75 @@
+<script lang="ts" setup>
+import type { RichtextStoryblok } from '@/types/storyblok'
+
+interface Props {
+  textColor?: string
+  backgroundColor?: string
+  media: any
+  ratio: string
+  headline: string
+  text: RichtextStoryblok
+  reverse?: boolean
+  alignmentMobile?: 'top' | 'bottom'
+}
+
+const { media, ratio, headline, text, reverse = false, textColor, backgroundColor, alignmentMobile = 'bottom' } = defineProps<Props>()
+const assetType = computed(() => storyblokAssetType(media?.filename || ''))
+</script>
+
+<template>
+  <div
+    class="relative flex flex-col-reverse items-center h-[inherit]"
+    :class="[
+      reverse ? 'md:flex-row-reverse' : 'md:flex-row',
+      textColor ? colourText[textColor] : 'text-offblack',
+      backgroundColor ? colourBackground[backgroundColor] : 'bg-warm-grey',
+      'max-md:text-current max-md:bg-transparent',
+    ]"
+  >
+    <div class="w-full h-[inherit] md:w-1/2">
+      <MediaImage
+        v-if="media && assetType === 'image'"
+        :asset="media"
+        :ratio="ratio"
+        sizes="100vw sm:100vw md:50vw lg:50vw"
+      />
+    </div>
+
+    <div
+      class="
+        absolute
+        inset-0
+        md:static
+        w-full
+        md:w-1/2
+        flex
+        flex-col
+        items-start
+        gap-8
+        md:gap-10
+        p-[var(--app-outer-gutter)]
+        md:py-[var(--app-outer-gutter)]
+        max-w-[900px]
+      "
+      :class="[
+        !reverse && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))]',
+        alignmentMobile === 'top' && 'max-md:justify-start',
+        alignmentMobile === 'bottom' && 'max-md:justify-end max-md:pb-[calc(var(--app-outer-gutter)_*_3)]',
+      ]"
+    >
+      <h3
+        v-if="headline"
+        class="type-sans-large-caps text-balance"
+      >
+        {{ headline }}
+      </h3>
+
+      <div
+        v-if="storyblokRichTextContent(text)"
+        class="type-sans-large max-w-[60ch] text-pretty"
+      >
+        <StoryblokText :html="text" />
+      </div>
+    </div>
+  </div>
+</template>

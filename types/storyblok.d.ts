@@ -185,7 +185,6 @@ export interface SlideSplitStoryblok {
   media?: AssetStoryblok;
   headline?: string;
   text: RichtextStoryblok;
-  link?: LinkStoryblok[];
   reverse: boolean;
   alignment_mobile?: "" | "top" | "bottom";
   _uid: string;
