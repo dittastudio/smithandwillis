@@ -41,7 +41,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
         before:right-0
         before:-z-1
         before:w-full
-        before:h-[150%]
+        before:h-[200%]
         before:mx-auto
       "
     >
@@ -58,7 +58,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
           hover:opacity-70
         "
       >
-        <IconArrowLarge class="w-[16px] h-[18px] mx-auto" />
+        <IconArrowLarge class="w-[16px] h-[18px] mx-auto animate-bounce" />
 
         <span class="sr-only">
           Scroll
@@ -69,10 +69,16 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 </template>
 
 <style lang="postcss">
+
+</style>
+
+<style>
+@reference "../../assets/css/main.css";
+
 .block-hero__scroll {
   &::before {
     opacity: 0.8;
-    background-image: radial-gradient(ellipse at 50% 120%, rgba(0, 0, 0, 1) 0%, transparent 50%);
+    background-image: radial-gradient(ellipse at 50% 120%, --alpha(var(--color-black) / 100%) 0%, --alpha(var(--color-black) / 0%) 50%);
     transition: opacity 0.3s var(--ease-out);
   }
 

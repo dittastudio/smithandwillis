@@ -116,7 +116,7 @@ const [container, slider] = useKeenSlider({
       </div>
 
       <!-- Navigation Buttons -->
-      <div class="absolute inset-0 flexx hidden">
+      <div class="absolute inset-0 flex">
         <button
           v-if="slider"
           class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none touch-none"
@@ -192,10 +192,10 @@ const [container, slider] = useKeenSlider({
     position: absolute;
     bottom: 0;
     left: calc(-12 * var(--app-outer-gutter));
-    right: calc(-8 * var(--app-outer-gutter));
+    right: -25vw;
     height: 300%;
     opacity: 0.8;
-    background-image: radial-gradient(ellipse at 50% 120%, --alpha(var(--color-black) / 100%) 0%, transparent 50%);
+    background-image: radial-gradient(ellipse at 52.5% 100%, --alpha(var(--color-black) / 100%) 0%, --alpha(var(--color-black) / 0%) 60%);
     z-index: -1;
     pointer-events: none;
   }

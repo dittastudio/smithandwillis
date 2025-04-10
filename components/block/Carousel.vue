@@ -13,8 +13,8 @@ const ratios = {
     y: 16,
   },
   desktop: {
-    x: 16,
-    y: 9,
+    x: 6,
+    y: 3,
   },
 }
 </script>
@@ -53,6 +53,7 @@ const ratios = {
             :reverse="slide.reverse"
             :text-color="slide.text_color"
             :background-color="slide.background_color"
+            :alignment-mobile="slide.alignment_mobile"
           />
         </template>
       </template>

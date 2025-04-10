@@ -56,8 +56,8 @@ const assetType = computed(() => storyblokAssetType(media?.filename || ''))
       "
       :class="[
         !reverse && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))]',
-        alignmentMobile === 'top' && 'max-md:justify-start',
-        alignmentMobile === 'bottom' && 'max-md:justify-end max-md:pb-[calc(var(--app-outer-gutter)_*_3)]',
+        alignmentMobile === 'top' && 'max-md:justify-start max-md:pt-[calc(var(--app-outer-gutter)_*_2)] max-md:bg-gradient-to-t from-transparent from-40% to-black/80 to-100%',
+        alignmentMobile === 'bottom' && 'max-md:justify-end max-md:pb-[calc(var(--app-outer-gutter)_*_4)] max-md:bg-gradient-to-b from-transparent from-30% to-black/80 to-100%',
       ]"
     >
       <h3
