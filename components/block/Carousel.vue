@@ -8,8 +8,14 @@ interface Props {
 const { block } = defineProps<Props>()
 
 const ratios = {
-  x: 10,
-  y: 16,
+  mobile: {
+    x: 10,
+    y: 16,
+  },
+  desktop: {
+    x: 16,
+    y: 9,
+  },
 }
 </script>
 
@@ -21,26 +27,27 @@ const ratios = {
     <UiCarouselFade
       :slides="block.slides || []"
       :caption="block.title"
-      :ratio-x="ratios.x"
-      :ratio-y="ratios.y"
-      :ratio-desktop-x="ratios.y"
-      :ratio-desktop-y="ratios.x"
+      :ratio-x="ratios.mobile.x"
+      :ratio-y="ratios.mobile.y"
+      :ratio-desktop-x="ratios.desktop.x"
+      :ratio-desktop-y="ratios.desktop.y"
     >
       <template #slide="{ slide }">
         <template v-if="slide.component === 'slide_image'">
           <SlideImages
             :items="slide.images"
-            :ratio-x="ratios.x"
-            :ratio-y="ratios.y"
-            :ratio-desktop-x="ratios.y"
-            :ratio-desktop-y="ratios.x"
+            :ratio-x="ratios.mobile.x"
+            :ratio-y="ratios.mobile.y"
+            :ratio-desktop-x="ratios.desktop.x"
+            :ratio-desktop-y="ratios.desktop.y"
           />
         </template>
 
         <template v-if="slide.component === 'slide_split'">
           <SlideSplit
             :media="slide.media"
-            :ratio="`${ratios.x / 2}:${ratios.y}`"
+            :ratio="`${ratios.mobile.x}:${ratios.mobile.y}`"
+            :desktop-ratio="`${ratios.desktop.x / 2}:${ratios.desktop.y}`"
             :headline="slide.headline"
             :text="slide.text"
             :reverse="slide.reverse"

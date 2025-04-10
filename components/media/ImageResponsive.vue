@@ -102,10 +102,10 @@ const imgInfo = computed(() => createImageInfo(asset, mobileSize, sizes))
 const mobilePlaceholder = createPlaceholder(asset, mobileSize)
 
 // Desktop image size and info (if available)
-const hasDesktopImage = computed(() => !!desktopAsset)
-const desktopSize = computed(() => hasDesktopImage.value ? getImageSize(desktopAsset!, desktopRatio) : mobileSize)
-const desktopImgInfo = computed(() => hasDesktopImage.value ? createImageInfo(desktopAsset!, desktopSize.value, desktopSizes || sizes) : null)
-const desktopPlaceholder = computed(() => hasDesktopImage.value ? createPlaceholder(desktopAsset!, desktopSize.value) : null)
+const hasDesktopImage = computed(() => !!desktopRatio)
+const desktopSize = computed(() => hasDesktopImage.value ? getImageSize(desktopAsset || asset, desktopRatio) : mobileSize)
+const desktopImgInfo = computed(() => hasDesktopImage.value ? createImageInfo(desktopAsset || asset, desktopSize.value, desktopSizes || sizes) : null)
+const desktopPlaceholder = computed(() => hasDesktopImage.value ? createPlaceholder(desktopAsset || asset, desktopSize.value) : null)
 
 const { class: className, ...rest } = attrs
 
