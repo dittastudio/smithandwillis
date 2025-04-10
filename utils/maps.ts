@@ -9,6 +9,17 @@ const colourText: Record<string, string> = {
   richbrown: 'text-rich-brown',
 } as const
 
+const colourTextMd: Record<string, string> = {
+  current: 'md:text-current',
+  white: 'md:text-white',
+  black: 'md:text-black',
+  offwhite: 'md:text-offwhite',
+  offblack: 'md:text-offblack',
+  orange: 'md:text-orange',
+  warmgrey: 'md:text-warm-grey',
+  richbrown: 'md:text-rich-brown',
+} as const
+
 const colourBackground: Record<string, string> = {
   current: 'bg-current',
   white: 'bg-white',
@@ -20,4 +31,4 @@ const colourBackground: Record<string, string> = {
   richbrown: 'bg-rich-brown',
 } as const
 
-export { colourBackground, colourText }
+export { colourBackground, colourText, colourTextMd }

@@ -23,12 +23,15 @@ const hoveredButton = ref<'left' | 'right' | null>(null)
 const rafId = ref<number | null>(null)
 const supportsHover = ref(false)
 
-const hasReverseSlide = computed(() => {
-  const currentSlide = slides[current.value]
-  return currentSlide?.reverse === true
-    && (!currentSlide?.background_color
-      || ['warmgrey', 'white', 'orange'].includes(currentSlide.background_color))
-})
+const currentSlide = computed(() => slides[current.value])
+
+const hasReverseSlide = computed(() => currentSlide.value?.reverse === true)
+
+const textColorClass = computed(() =>
+  hasReverseSlide.value
+    ? (currentSlide.value?.text_color ? colourTextMd[currentSlide.value.text_color] : 'md:text-offblack')
+    : '',
+)
 
 onMounted(() => {
   supportsHover.value = window.matchMedia('(hover: hover)').matches
@@ -113,7 +116,7 @@ const [container, slider] = useKeenSlider({
       <div
         v-for="(slide, index) in slides"
         :key="index"
-        class="w-full"
+        class="ui-carousel-fade__slide w-full"
         :style="{ opacity: opacities[index] }"
       >
         <slot
@@ -174,7 +177,10 @@ const [container, slider] = useKeenSlider({
       <div class="sticky bottom-0 flex items-start justify-start wrapper">
         <p
           class="ui-carousel-fade__gradient py-[var(--app-outer-gutter)] type-sans-medium-caps pointer-events-auto"
-          :class="{ 'ui-carousel-fade__gradient--reverse': hasReverseSlide } "
+          :class="[
+            hasReverseSlide && 'ui-carousel-fade__gradient--reverse',
+            textColorClass,
+          ]"
         >
           {{ caption }}
         </p>
@@ -194,10 +200,10 @@ const [container, slider] = useKeenSlider({
   @variant md {
     aspect-ratio: var(--carousel-ratio-x-desktop) / var(--carousel-ratio-y-desktop);
   }
+}
 
-  & > * {
-    grid-area: stack;
-  }
+.ui-carousel-fade__slide {
+  grid-area: stack;
 }
 
 .ui-carousel-fade__gradient {
@@ -220,8 +226,6 @@ const [container, slider] = useKeenSlider({
 
   &--reverse {
     @variant md {
-      color: var(--color-offblack);
-
       &::before {
         opacity: 0;
       }
