@@ -26,7 +26,6 @@ const ratios = {
   >
     <UiCarouselFade
       :slides="block.slides || []"
-      :caption="block.title"
       :ratio-x="ratios.mobile.x"
       :ratio-y="ratios.mobile.y"
       :ratio-desktop-x="ratios.desktop.x"
@@ -56,6 +55,10 @@ const ratios = {
             :alignment-mobile="slide.alignment_mobile"
           />
         </template>
+      </template>
+
+      <template #caption>
+        {{ block.title }}
       </template>
     </UiCarouselFade>
   </div>

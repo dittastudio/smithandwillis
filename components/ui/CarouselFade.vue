@@ -6,14 +6,13 @@ import 'keen-slider/keen-slider.min.css'
 
 interface Props {
   slides: any[]
-  caption?: string
   ratioX?: number
   ratioY?: number
   ratioDesktopX?: number
   ratioDesktopY?: number
 }
 
-const { slides, caption, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9 } = defineProps<Props>()
+const { slides, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9 } = defineProps<Props>()
 
 const current = ref(0)
 const opacities = ref<number[]>([])
@@ -25,13 +24,27 @@ const supportsHover = ref(false)
 
 const currentSlide = computed(() => slides[current.value])
 
+const isSlideSplit = computed(() => currentSlide.value?.component === 'slide_split')
 const hasReverseSlide = computed(() => currentSlide.value?.reverse === true)
 
+const getTextColorClass = (slide: any) => {
+  return slide?.text_color ? colourTextMd[slide.text_color] : 'md:text-offblack'
+}
+
 const textColorClass = computed(() =>
-  hasReverseSlide.value
-    ? (currentSlide.value?.text_color ? colourTextMd[currentSlide.value.text_color] : 'md:text-offblack')
-    : '',
+  hasReverseSlide.value ? getTextColorClass(currentSlide.value) : '',
 )
+
+const arrowColorClass = computed(() => {
+  if (!isSlideSplit.value)
+    return ''
+
+  const shouldApplyColor
+    = (hasReverseSlide.value && hoveredButton.value === 'left')
+      || (!hasReverseSlide.value && hoveredButton.value === 'right')
+
+  return shouldApplyColor ? getTextColorClass(currentSlide.value) : ''
+})
 
 onMounted(() => {
   supportsHover.value = window.matchMedia('(hover: hover)').matches
@@ -164,25 +177,30 @@ const [container, slider] = useKeenSlider({
         }"
       >
         <IconArrowLarge
-          class="block w-[16px] h-[18px] -translate-x-1/2 -translate-y-1/2"
-          :class="hoveredButton === 'left' ? 'rotate-90' : '-rotate-90'"
+          class="block w-[16px] h-[18px] -translate-x-1/2 -translate-y-1/2 transition-colors duration-300 ease-out"
+          :class="[
+            hoveredButton === 'left' ? 'rotate-90' : '-rotate-90',
+            arrowColorClass,
+          ]"
         />
       </div>
     </div>
 
     <div
-      v-if="caption"
-      class="absolute inset-0 z-2 pointer-events-none flex flex-col justify-end contain-paint contain-layout"
+      v-if="$slots.caption"
+      class="absolute inset-0 pointer-events-none flex flex-col justify-end contain-paint contain-layout"
     >
       <div class="sticky bottom-0 flex items-start justify-start wrapper">
         <p
-          class="ui-carousel-fade__gradient py-[var(--app-outer-gutter)] type-sans-medium-caps pointer-events-auto"
+          class="ui-carousel-fade__gradient py-[var(--app-outer-gutter)] type-sans-medium-caps transition-colors duration-300 ease-out"
           :class="[
             hasReverseSlide && 'ui-carousel-fade__gradient--reverse',
             textColorClass,
           ]"
         >
-          {{ caption }}
+          <span class="block pointer-events-auto">
+            <slot name="caption" />
+          </span>
         </p>
       </div>
     </div>
@@ -208,7 +226,6 @@ const [container, slider] = useKeenSlider({
 
 .ui-carousel-fade__gradient {
   position: relative;
-  transition: color 0.3s var(--ease-out);
 
   &::before {
     content: '';
