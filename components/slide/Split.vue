@@ -81,7 +81,7 @@ const assetType = computed(() => storyblokAssetType(media?.filename || ''))
 
         <div
           v-if="storyblokRichTextContent(text)"
-          class="type-sans-large max-w-[60ch] text-pretty"
+          class="prose-body"
         >
           <StoryblokText :html="text" />
         </div>

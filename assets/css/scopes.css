@@ -1,0 +1,18 @@
+@utility prose-body {
+  & p {
+    font-size: var(--text-16);
+    line-height: calc(24 / 16);
+    letter-spacing: var(--tracking-sm);
+    text-wrap: pretty;
+    max-width: 60ch;
+
+    @variant md {
+      font-size: var(--text-18);
+      line-height: calc(26 / 18);
+    }
+  }
+
+  & p + p {
+    margin-block-start: 1em;
+  }
+}

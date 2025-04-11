@@ -22,7 +22,7 @@ const { block } = defineProps<Props>()
 
     <div
       v-if="storyblokRichTextContent(block.text)"
-      class="type-sans-large max-w-[60ch] md:mx-auto text-pretty"
+      class="prose-body"
     >
       <StoryblokText :html="block.text" />
     </div>
