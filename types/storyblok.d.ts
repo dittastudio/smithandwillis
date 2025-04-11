@@ -12,7 +12,7 @@ export interface BlockCareersStoryblok {
 
 export interface BlockCarouselStoryblok {
   title?: string;
-  slides?: (SlideImageStoryblok | SlideSplitStoryblok)[];
+  slides?: (SlideSplitStoryblok | SlideMediaStoryblok)[];
   _uid: string;
   component: "block_carousel";
   [k: string]: any;
@@ -172,10 +172,10 @@ export type MultiassetStoryblok = {
   [k: string]: any;
 }[];
 
-export interface SlideImageStoryblok {
-  images?: MultiassetStoryblok;
+export interface SlideMediaStoryblok {
+  media?: MultiassetStoryblok;
   _uid: string;
-  component: "slide_image";
+  component: "slide_media";
   [k: string]: any;
 }
 

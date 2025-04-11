@@ -33,9 +33,9 @@ const ratios = {
       :ratio-desktop-y="ratios.desktop.y"
     >
       <template #slide="{ slide }">
-        <template v-if="slide.component === 'slide_image'">
-          <SlideImages
-            :items="slide.images"
+        <template v-if="slide.component === 'slide_media'">
+          <SlideMedia
+            :items="slide.media"
             :ratio-x="ratios.mobile.x"
             :ratio-y="ratios.mobile.y"
             :ratio-desktop-x="ratios.desktop.x"

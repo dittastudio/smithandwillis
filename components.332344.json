@@ -63,7 +63,7 @@
       "display_name": "Carousel",
       "description": "Carousel",
       "created_at": "2025-04-09T22:03:44.611Z",
-      "updated_at": "2025-04-09T23:00:52.044Z",
+      "updated_at": "2025-04-11T00:10:40.373Z",
       "id": 7195114,
       "schema": {
         "title": {
@@ -77,8 +77,8 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
-            "slide_image",
-            "slide_split"
+            "slide_split",
+            "slide_media"
           ],
           "id": "UBTBxWtZR9Su0TBjO3koJA",
           "display_name": ""
@@ -687,20 +687,22 @@
       "component_group_name": "Content Types"
     },
     {
-      "name": "slide_image",
-      "display_name": "Image",
-      "description": "",
+      "name": "slide_media",
+      "display_name": "Media",
+      "description": "Max 3 files recommended",
       "created_at": "2025-04-09T22:12:41.752Z",
-      "updated_at": "2025-04-09T22:20:07.066Z",
+      "updated_at": "2025-04-11T00:11:49.154Z",
       "id": 7195116,
       "schema": {
-        "images": {
+        "media": {
           "type": "multiasset",
           "pos": 0,
           "filetypes": [
-            "images"
+            "images",
+            "videos"
           ],
-          "id": "exDflADhR3iwNY4Q_wywVg"
+          "id": "exDflADhR3iwNY4Q_wywVg",
+          "display_name": "Media (max 3)"
         }
       },
       "image": null,
@@ -710,7 +712,7 @@
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
-      "real_name": "Image",
+      "real_name": "Media",
       "component_group_uuid": "672f761d-0561-4a30-add5-a1f182cb3581",
       "color": "#f4cc48",
       "icon": "block-image",
