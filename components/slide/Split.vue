@@ -43,8 +43,20 @@ const assetType = computed(() => storyblokAssetType(media?.filename || ''))
         absolute
         inset-0
         md:static
+        flex
+        flex-col
+        items-start
         w-full
         md:w-1/2
+        max-w-[900px]
+      "
+      :class="[
+        alignmentMobile === 'top' && 'max-md:justify-start',
+        alignmentMobile === 'bottom' && 'max-md:justify-end',
+      ]"
+    >
+      <div
+        class="
         flex
         flex-col
         items-start
@@ -52,26 +64,27 @@ const assetType = computed(() => storyblokAssetType(media?.filename || ''))
         md:gap-10
         p-[var(--app-outer-gutter)]
         md:py-[calc(var(--app-outer-gutter)_*_3)]
-        max-w-[900px]
+        w-full
       "
-      :class="[
-        !reverse && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))]',
-        alignmentMobile === 'top' && 'max-md:justify-start max-md:pt-[calc(var(--app-outer-gutter)_*_2)] max-md:bg-gradient-to-t from-transparent from-40% to-black/80 to-100%',
-        alignmentMobile === 'bottom' && 'max-md:justify-end max-md:pb-[calc(var(--app-outer-gutter)_*_4)] max-md:bg-gradient-to-b from-transparent from-30% to-black/80 to-100%',
-      ]"
-    >
-      <h3
-        v-if="headline"
-        class="type-sans-large-caps text-balance"
+        :class="[
+          !reverse && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))]',
+          alignmentMobile === 'top' && 'max-md:pt-[calc(var(--app-outer-gutter)_*_2)] max-md:bg-gradient-to-t from-transparent from-0% to-black/80 to-100%',
+          alignmentMobile === 'bottom' && 'max-md:pb-[calc(var(--app-outer-gutter)_*_4)] max-md:bg-gradient-to-b from-transparent from-0% to-black/80 to-100%',
+        ]"
       >
-        {{ headline }}
-      </h3>
+        <h3
+          v-if="headline"
+          class="type-sans-large-caps text-balance"
+        >
+          {{ headline }}
+        </h3>
 
-      <div
-        v-if="storyblokRichTextContent(text)"
-        class="type-sans-large max-w-[60ch] text-pretty"
-      >
-        <StoryblokText :html="text" />
+        <div
+          v-if="storyblokRichTextContent(text)"
+          class="type-sans-large max-w-[60ch] text-pretty"
+        >
+          <StoryblokText :html="text" />
+        </div>
       </div>
     </div>
   </div>

@@ -11,7 +11,7 @@ const { items, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9 }
 </script>
 
 <template>
-  <div class="relative flex flex-col md:flex-row h-full bg-offblack">
+  <div class="relative flex flex-col md:flex-row h-full">
     <template
       v-for="item in items"
       :key="item.id"
