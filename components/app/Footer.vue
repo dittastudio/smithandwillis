@@ -26,7 +26,10 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
 </script>
 
 <template>
-  <footer class="bg-rich-brown text-white pt-20 pb-16">
+  <div
+    id="contact"
+    class="bg-rich-brown text-white pt-20 pb-16"
+  >
     <div class="wrapper">
       <div class="grid gap-x-[var(--app-inner-gutter)] sm:gap-y-8 grid-cols-2 md:grid-cols-12">
         <div class="col-span-full sm:col-span-1 md:col-span-3 lg:col-span-2">
@@ -140,7 +143,7 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
         </ul>
       </div>
     </div>
-  </footer>
+  </div>
 </template>
 
 <style>

@@ -8,6 +8,8 @@ interface Props {
 const { items } = defineProps<Props>()
 
 const menuOpen = useState<boolean>('menuOpen')
+
+const classesHeaderLink = 'block py-3 max-md:border-b max-md:border-solid max-md:border-warm-grey/20 md:p-4 md:-m-4 lg:p-6 lg:-m-6 transition-opacity duration-300 ease-out hover:opacity-70'
 </script>
 
 <template>
@@ -37,24 +39,21 @@ const menuOpen = useState<boolean>('menuOpen')
       <li
         v-for="item in items"
         :key="item._uid"
+        :class="item.link.linktype === 'url' && 'max-md:hidden'"
       >
+        <button
+          v-if="item.link.linktype === 'url'"
+          type="button"
+          :class="classesHeaderLink"
+          @click="scrollToWithEasing('contact', 1000, true)"
+        >
+          {{ item.title }}
+        </button>
+
         <StoryblokLink
+          v-else
           :item="item.link"
-          class="
-            block
-            py-3
-            max-md:border-b
-            max-md:border-solid
-            max-md:border-warm-grey/20
-            md:p-4
-            md:-m-4
-            lg:p-6
-            lg:-m-6
-            transition-opacity
-            duration-300
-            ease-out
-            hover:opacity-70
-          "
+          :class="classesHeaderLink"
         >
           {{ item.title }}
         </StoryblokLink>
