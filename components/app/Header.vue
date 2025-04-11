@@ -129,6 +129,8 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
               mx-auto
               lg:w-[232px]
               lg:h-[17px]
+              md:relative
+              md:left-[1.5%]
             "
           />
         </NuxtLink>
