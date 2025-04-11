@@ -58,7 +58,18 @@ const ratios = {
       </template>
 
       <template #caption>
-        {{ block.title }}
+        <template v-if="block.link">
+          <StoryblokLink
+            :item="block.link"
+            class="block p-3 -m-3 transition-opacity duration-300 ease-out hover:opacity-70"
+          >
+            {{ block.title }}
+          </StoryblokLink>
+        </template>
+
+        <template v-else>
+          {{ block.title }}
+        </template>
       </template>
     </UiCarouselFade>
   </div>

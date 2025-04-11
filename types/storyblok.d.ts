@@ -10,8 +10,33 @@ export interface BlockCareersStoryblok {
   [k: string]: any;
 }
 
+export type MultilinkStoryblok =
+  | {
+      id?: string;
+      cached_url?: string;
+      anchor?: string;
+      linktype?: "story";
+      target?: "_self" | "_blank";
+      [k: string]: any;
+    }
+  | {
+      url?: string;
+      cached_url?: string;
+      anchor?: string;
+      linktype?: "asset" | "url";
+      target?: "_self" | "_blank";
+      [k: string]: any;
+    }
+  | {
+      email?: string;
+      linktype?: "email";
+      target?: "_self" | "_blank";
+      [k: string]: any;
+    };
+
 export interface BlockCarouselStoryblok {
   title?: string;
+  link?: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
   slides?: (SlideSplitStoryblok | SlideMediaStoryblok)[];
   _uid: string;
   component: "block_carousel";
@@ -97,30 +122,6 @@ export interface HeroMediaStoryblok {
   component: "hero_media";
   [k: string]: any;
 }
-
-export type MultilinkStoryblok =
-  | {
-      id?: string;
-      cached_url?: string;
-      anchor?: string;
-      linktype?: "story";
-      target?: "_self" | "_blank";
-      [k: string]: any;
-    }
-  | {
-      url?: string;
-      cached_url?: string;
-      anchor?: string;
-      linktype?: "asset" | "url";
-      target?: "_self" | "_blank";
-      [k: string]: any;
-    }
-  | {
-      email?: string;
-      linktype?: "email";
-      target?: "_self" | "_blank";
-      [k: string]: any;
-    };
 
 export interface LinkStoryblok {
   title: string;

@@ -63,7 +63,7 @@
       "display_name": "Carousel",
       "description": "Carousel",
       "created_at": "2025-04-09T22:03:44.611Z",
-      "updated_at": "2025-04-11T00:10:40.373Z",
+      "updated_at": "2025-04-11T10:17:21.265Z",
       "id": 7195114,
       "schema": {
         "title": {
@@ -71,9 +71,15 @@
           "pos": 0,
           "id": "USfyfMEsTtSajW48lCDHwg"
         },
+        "link": {
+          "type": "multilink",
+          "pos": 1,
+          "allow_target_blank": true,
+          "id": "X1Bq62-XRbSh2IH_crSOxA"
+        },
         "slides": {
           "type": "bloks",
-          "pos": 1,
+          "pos": 2,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
@@ -689,9 +695,9 @@
     {
       "name": "slide_media",
       "display_name": "Media",
-      "description": "Max 3 files recommended",
+      "description": "",
       "created_at": "2025-04-09T22:12:41.752Z",
-      "updated_at": "2025-04-11T00:11:49.154Z",
+      "updated_at": "2025-04-11T00:14:49.036Z",
       "id": 7195116,
       "schema": {
         "media": {
@@ -702,7 +708,7 @@
             "videos"
           ],
           "id": "exDflADhR3iwNY4Q_wywVg",
-          "display_name": "Media (max 3)"
+          "display_name": "Media (max 3 recommended)"
         }
       },
       "image": null,
@@ -726,7 +732,7 @@
       "display_name": "Split",
       "description": "",
       "created_at": "2025-04-09T22:14:13.368Z",
-      "updated_at": "2025-04-10T19:39:23.983Z",
+      "updated_at": "2025-04-11T00:29:55.445Z",
       "id": 7195117,
       "schema": {
         "background_color": {
@@ -736,7 +742,8 @@
           "display_name": "Background Colour",
           "id": "IVgMrRA_QtGQlNel6R1F_Q",
           "source": "internal",
-          "datasource_slug": "colours"
+          "datasource_slug": "colours",
+          "default_value": "warmgrey"
         },
         "text_color": {
           "type": "option",
@@ -745,7 +752,8 @@
           "display_name": "Text Colour",
           "id": "eoh4jqf7T8moOFEvXLh6gQ",
           "source": "internal",
-          "datasource_slug": "colours"
+          "datasource_slug": "colours",
+          "default_value": "offblack"
         },
         "media": {
           "type": "asset",
