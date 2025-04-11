@@ -1,78 +1,80 @@
-.type-sans-large,
-.type-sans-large-caps {
-  font-size: var(--text-16);
-  line-height: calc(24 / 16);
-  letter-spacing: var(--tracking-sm);
-
-  @variant md {
-    font-size: var(--text-18);
-    line-height: calc(26 / 18);
-  }
-}
-
-.type-sans-large-caps {
-  letter-spacing: var(--tracking-lg);
-  text-transform: uppercase;
-}
-
-.type-sans-medium,
-.type-sans-medium-caps {
-  font-size: var(--text-15);
-  line-height: calc(24 / 15);
-  letter-spacing: var(--tracking-md);
-
-  @variant md {
+@layer base {
+  .type-sans-large,
+  .type-sans-large-caps {
     font-size: var(--text-16);
     line-height: calc(24 / 16);
+    letter-spacing: var(--tracking-sm);
+
+    @variant md {
+      font-size: var(--text-18);
+      line-height: calc(26 / 18);
+    }
   }
-}
 
-.type-sans-medium-caps {
-  letter-spacing: var(--tracking-lg);
-  text-transform: uppercase;
-}
-
-.type-mix-medium-caps {
-  font-family: var(--font-mix);
-  font-size: var(--text-15);
-  line-height: calc(24 / 15);
-  letter-spacing: var(--tracking-lg);
-  text-transform: uppercase;
-
-  @variant md {
-    font-size: var(--text-16);
-    line-height: calc(24 / 16);
+  .type-sans-large-caps {
+    letter-spacing: var(--tracking-lg);
+    text-transform: uppercase;
   }
-}
 
-.type-mix-small-caps {
-  font-family: var(--font-mix);
-  font-size: var(--text-13);
-  line-height: calc(22 / 13);
-  letter-spacing: var(--tracking-lg);
-  text-transform: uppercase;
+  .type-sans-medium,
+  .type-sans-medium-caps {
+    font-size: var(--text-15);
+    line-height: calc(24 / 15);
+    letter-spacing: var(--tracking-md);
 
-  @variant md {
-    font-size: var(--text-14);
-    line-height: calc(22 / 14);
+    @variant md {
+      font-size: var(--text-16);
+      line-height: calc(24 / 16);
+    }
   }
-}
 
-.type-mix-xsmall-caps {
-  font-family: var(--font-mix);
-  font-size: var(--text-12);
-  line-height: calc(22 / 12);
-  letter-spacing: var(--tracking-lg);
-  text-transform: uppercase;
+  .type-sans-medium-caps {
+    letter-spacing: var(--tracking-lg);
+    text-transform: uppercase;
+  }
 
-  @variant md {
+  .type-mix-medium-caps {
+    font-family: var(--font-mix);
+    font-size: var(--text-15);
+    line-height: calc(24 / 15);
+    letter-spacing: var(--tracking-lg);
+    text-transform: uppercase;
+
+    @variant md {
+      font-size: var(--text-16);
+      line-height: calc(24 / 16);
+    }
+  }
+
+  .type-mix-small-caps {
+    font-family: var(--font-mix);
     font-size: var(--text-13);
     line-height: calc(22 / 13);
-  }
-}
+    letter-spacing: var(--tracking-lg);
+    text-transform: uppercase;
 
-.type-inherit {
-  font: inherit;
-  letter-spacing: inherit;
-  text-transform: inherit;
+    @variant md {
+      font-size: var(--text-14);
+      line-height: calc(22 / 14);
+    }
+  }
+
+  .type-mix-xsmall-caps {
+    font-family: var(--font-mix);
+    font-size: var(--text-12);
+    line-height: calc(22 / 12);
+    letter-spacing: var(--tracking-lg);
+    text-transform: uppercase;
+
+    @variant md {
+      font-size: var(--text-13);
+      line-height: calc(22 / 13);
+    }
+  }
+
+  .type-inherit {
+    font: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+  }
 }
