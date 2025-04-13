@@ -48,12 +48,12 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
       />
 
       <BlockCarousel
-        v-if="block.component === 'block_carousel'"
+        v-else-if="block.component === 'block_carousel'"
         :block="block"
       />
 
-      <BlockMedia
-        v-else-if="block.component === 'block_media'"
+      <BlockImage
+        v-else-if="block.component === 'block_image'"
         :block="block"
       />
 

@@ -109,11 +109,11 @@
       "component_group_name": "Blocks"
     },
     {
-      "name": "block_media",
-      "display_name": "Media",
+      "name": "block_image",
+      "display_name": "Image",
       "description": null,
       "created_at": "2025-04-02T13:53:04.041Z",
-      "updated_at": "2025-04-02T20:14:33.934Z",
+      "updated_at": "2025-04-13T19:12:03.694Z",
       "id": 7159482,
       "schema": {
         "media": {
@@ -158,7 +158,7 @@
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
-      "real_name": "Media",
+      "real_name": "Image",
       "component_group_uuid": "8aee4235-990a-4a59-ad5f-6d9f73a67be5",
       "color": "#fbce41",
       "icon": "block-image",
@@ -404,7 +404,7 @@
       "display_name": "Media",
       "description": null,
       "created_at": "2025-04-07T13:54:43.770Z",
-      "updated_at": "2025-04-07T13:55:53.158Z",
+      "updated_at": "2025-04-13T18:23:14.830Z",
       "id": 7179482,
       "schema": {
         "media": {
@@ -418,28 +418,6 @@
           "asset_folder_id": null,
           "key": "media",
           "id": "sD3Yw-1rSa6WylKLx8s-MA"
-        },
-        "ratio": {
-          "type": "option",
-          "pos": 2,
-          "use_uuid": true,
-          "source": "internal",
-          "datasource_slug": "ratio",
-          "exclude_empty_option": true,
-          "required": true,
-          "key": "ratio",
-          "id": "2z74M2HaQhCs1IJXRR0QOw",
-          "display_name": "Ratio Mobile",
-          "default_value": "9:16"
-        },
-        "ratio_desktop": {
-          "type": "option",
-          "pos": 2,
-          "id": "MPqGIoGXRo6EHfpRkgNnrg",
-          "use_uuid": true,
-          "source": "internal",
-          "datasource_slug": "ratio",
-          "default_value": "16:9"
         }
       },
       "image": null,
