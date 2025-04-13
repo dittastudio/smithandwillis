@@ -46,37 +46,30 @@ const inOutQuart = (t: number): number => {
   return 1 - (-2 * t + 2) ** 4 / 2
 }
 
-const scrollToWithEasing = (target: number | string, duration: number = 1000, scrollToBottom: boolean = false): void => {
-  let targetPosition: number
+const scrollToWithEasing = (target: number | string | HTMLElement, duration: number = 1000, scrollToBottom: boolean = false): void => {
+  const element = typeof target === 'string'
+    ? document.querySelector(target) as HTMLElement
+    : target instanceof HTMLElement
+      ? target
+      : null
 
-  if (typeof target === 'string') {
-    const element = document.getElementById(target)
-    if (!element) {
-      console.warn(`Element with id "${target}" not found`)
-      return
-    }
-    targetPosition = scrollToBottom
-      ? element.offsetTop + element.offsetHeight - window.innerHeight
-      : element.offsetTop
-  }
-  else {
-    targetPosition = target
+  if (!element && typeof target !== 'number') {
+    console.warn(`Element with selector "${target}" not found`)
+    return
   }
 
   const startPosition = window.scrollY
+  const targetPosition = typeof target === 'number'
+    ? target
+    : element!.offsetTop + (scrollToBottom ? element!.offsetHeight - window.innerHeight : 0)
   const distance = targetPosition - startPosition
   const startTime = performance.now()
 
   const animateScroll = (currentTime: number) => {
-    const elapsedTime = currentTime - startTime
-    const progress = Math.min(elapsedTime / duration, 1)
-    const easedProgress = inOutQuart(progress)
-
-    window.scrollTo(0, startPosition + distance * easedProgress)
-
-    if (progress < 1) {
+    const progress = Math.min((currentTime - startTime) / duration, 1)
+    window.scrollTo(0, startPosition + distance * inOutQuart(progress))
+    if (progress < 1)
       requestAnimationFrame(animateScroll)
-    }
   }
 
   requestAnimationFrame(animateScroll)

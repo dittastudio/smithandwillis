@@ -41,19 +41,11 @@ const classesHeaderLink = 'block py-3 max-md:border-b max-md:border-solid max-md
         :key="item._uid"
         :class="item.link.linktype === 'url' && 'max-md:hidden'"
       >
-        <button
-          v-if="item.link.linktype === 'url'"
-          type="button"
-          :class="classesHeaderLink"
-          @click="scrollToWithEasing('contact', 1000, true)"
-        >
-          {{ item.title }}
-        </button>
-
         <StoryblokLink
-          v-else
+          v-if="item.link"
           :item="item.link"
           :class="classesHeaderLink"
+          @click="scrollToWithEasing(item.link?.url, 1000, true)"
         >
           {{ item.title }}
         </StoryblokLink>

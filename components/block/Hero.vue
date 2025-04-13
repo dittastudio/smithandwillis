@@ -56,7 +56,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
           ease-out
           hover:opacity-70
         "
-        @click="scrollToWithEasing('hero-scroll-target', 1000)"
+        @click="scrollToWithEasing('#hero-scroll-target', 1000)"
       >
         <IconArrowLarge class="w-[16px] h-[18px] mx-auto animate-bounce" />
 
