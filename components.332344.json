@@ -113,7 +113,7 @@
       "display_name": "Image",
       "description": null,
       "created_at": "2025-04-02T13:53:04.041Z",
-      "updated_at": "2025-04-13T19:12:03.694Z",
+      "updated_at": "2025-04-13T19:48:56.308Z",
       "id": 7159482,
       "schema": {
         "media": {
@@ -121,8 +121,7 @@
           "pos": 0,
           "required": true,
           "filetypes": [
-            "images",
-            "videos"
+            "images"
           ],
           "asset_folder_id": null,
           "key": "media",
