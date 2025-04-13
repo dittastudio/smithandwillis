@@ -74,7 +74,7 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
 
 <style lang="postcss">
 .content-blocks__item:not(
-  .content-blocks__item--block_media,
+  .content-blocks__item--block_image,
   .content-blocks__item--block_split,
   .content-blocks__item--block_carousel
 ) {
