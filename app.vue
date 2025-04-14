@@ -24,6 +24,7 @@ useState('menuOpen', () => false)
 useState('hasScrolled', () => false)
 useState('hasScrolledUp', () => false)
 useState('hasScrolledDown', () => false)
+useState('hasSeenCover', () => false)
 </script>
 
 <template>

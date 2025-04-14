@@ -1,83 +1,58 @@
 <script lang="ts" setup>
 import IconLogoMark from '@/assets/icons/logo-mark.svg'
 
-const cover = ref<HTMLDivElement>()
-const coverVisible = ref(true)
-const logoVisible = ref(false)
-const transitionComplete = ref(false)
-const hasHero = ref(false)
-const isAtTop = ref(true)
+const hasSeenCover = useState('hasSeenCover', () => false)
 
-// Check if we're at the top of the page
-const checkScrollPosition = () => {
-  isAtTop.value = window.scrollY === 0
-}
-
-// Check if a hero component exists
-const checkForHero = () => {
-  const hero = document.querySelector('[data-js-hero]')
-  hasHero.value = !!hero
-}
+// const cover = ref<HTMLDivElement>()
+// const coverVisible = ref(true)
+// const logoVisible = ref(false)
 
 onMounted(async () => {
+  // await wait(1000)
+
+  // logoVisible.value = true
   const hero = document.querySelector('[data-js-hero]') as HTMLDivElement
-  const header = document.querySelector('[data-js-header]') as HTMLDivElement
+  const cover = document.querySelector('[data-js-cover]') as HTMLDivElement
 
-  // Check initial conditions
-  checkForHero()
-  checkScrollPosition()
+  if (hero && cover && window.scrollY < 5 && !hasSeenCover.value) {
+    document.documentElement.classList.remove('has-no-hero-animation')
 
-  // Only proceed if we have a hero and are at the top
-  if (!hasHero.value || !isAtTop.value) {
-    transitionComplete.value = true
-    return
+    const header = document.querySelector('[data-js-header]') as HTMLDivElement
+
+    await wait(500)
+
+    hero.style.opacity = '1'
+    cover.style.opacity = '1'
+
+    await wait(2000)
+
+    cover.style.opacity = '0'
+
+    await wait(500)
+
+    header.style.opacity = '1'
+    header.style.translate = '0 0 0'
+
+    hero.style.scale = '1'
+
+    hasSeenCover.value = true
   }
-
-  await wait(1000)
-
-  header?.classList.add('transition-all')
-  header?.classList.add('duration-1000')
-  header?.classList.add('ease-in-out')
-
-  hero?.classList.add('transition-all')
-  hero?.classList.add('duration-1000')
-  hero?.classList.add('ease-in-out')
-
-  logoVisible.value = true
-
-  await wait(2000)
-
-  coverVisible.value = false
-
-  header.style.opacity = '1'
-  header.style.translate = '0 0 0'
-
-  hero.style.scale = '1'
-
-  cover.value?.addEventListener('transitionend', () => {
-    transitionComplete.value = true
-  })
-
-  // Listen for scroll events
-  window.addEventListener('scroll', checkScrollPosition)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', checkScrollPosition)
+  else {
+    document.documentElement.classList.add('has-no-hero-animation')
+    hasSeenCover.value = true
+  }
 })
 </script>
 
 <template>
   <div
-    v-if="hasHero && isAtTop"
-    ref="cover"
-    class="app-cover fixed inset-0 z-50 pointer-events-none h-dvh text-white"
-    :class="[{ 'is-active': coverVisible }]"
+    data-js-cover
+    data-js-cover-animation="true"
+    class="app-cover fixed inset-0 z-50 h-dvh text-white"
   >
     <div class="wrapper flex items-center justify-center h-full">
       <IconLogoMark
         class="app-cover__logo"
-        :class="[{ 'is-active': logoVisible }]"
       />
     </div>
   </div>
@@ -87,21 +62,25 @@ onUnmounted(() => {
 @reference "../../assets/css/main.css";
 
 .app-cover {
-  background: radial-gradient(circle at center, transparent 0%, --alpha(var(--color-black) / 100%) 50%);
+  /* background: radial-gradient(circle at center, transparent 0%, --alpha(var(--color-black) / 100%) 50%); */
+  opacity: 0;
+  pointer-events: none;
+  /* background-color: black; */
+  transition: opacity 1s var(--ease-in-out);
 
   &:has(html.is-storyblok-editor) {
     display: none;
   }
 
-  &.is-active {
+  /* &.is-active {
     pointer-events: auto;
 
     html:has(&) {
       overflow: hidden;
     }
-  }
+  } */
 
-  &,
+  /* &,
   &__logo {
     opacity: 0;
     transition: opacity 1s var(--ease-in-out);
@@ -109,7 +88,7 @@ onUnmounted(() => {
     &.is-active {
       opacity: 1;
     }
-  }
+  } */
 
   &__logo {
     --logo-responsive-width: 9.75vw;
@@ -120,14 +99,17 @@ onUnmounted(() => {
   }
 }
 
-html:has(.app-cover) {
+html:has([data-js-cover-animation="true"]):not(.has-no-hero-animation) {
   [data-js-header] {
     opacity: 0;
-    translate: 0 -10% 0;
+    translate: 0 -20% 0;
+    transition: opacity 1s var(--ease-in-out), translate 1s var(--ease-in-out);
   }
 
   [data-js-hero] {
-    scale: 1.1;
+    opacity: 0;
+    scale: 1.05;
+    transition: opacity 3s var(--ease-in-out), scale 1s var(--ease-in-out);
   }
 }
 
