@@ -6,13 +6,22 @@ import 'keen-slider/keen-slider.min.css'
 
 interface Props {
   slides: any[]
+  options?: {
+    autoplay?: number
+    navigation?: boolean
+    slideClasses?: string
+  }
   ratioX?: number
   ratioY?: number
   ratioDesktopX?: number
   ratioDesktopY?: number
 }
 
-const { slides, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9 } = defineProps<Props>()
+const { slides, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9, options = {
+  autoplay: null,
+  navigation: true,
+  slideClasses: '',
+} } = defineProps<Props>()
 
 const current = ref(0)
 const opacities = ref<number[]>([])
@@ -115,14 +124,43 @@ const [container, slider] = useKeenSlider({
   detailsChanged: (s) => {
     opacities.value = s.track.details.slides.map(slide => slide.portion)
   },
-})
+}, [
+  (slider) => {
+    let timeout: NodeJS.Timeout | null = null
+
+    function clearNextTimeout() {
+      if (timeout) {
+        clearTimeout(timeout)
+      }
+    }
+
+    function nextTimeout() {
+      if (!options?.autoplay)
+        return
+
+      if (timeout) {
+        clearTimeout(timeout)
+      }
+
+      timeout = setTimeout(() => {
+        slider.next()
+      }, options.autoplay)
+    }
+    slider.on('created', () => {
+      nextTimeout()
+    })
+    slider.on('dragStarted', clearNextTimeout)
+    slider.on('animationEnded', nextTimeout)
+    slider.on('updated', nextTimeout)
+  },
+])
 </script>
 
 <template>
-  <div class="relative text-white">
+  <div class="relative h-[inherit]">
     <div
       ref="container"
-      class="ui-carousel-fade__container relative w-full"
+      class="ui-carousel-fade__container relative w-full h-[inherit]"
       :style="{
         '--carousel-ratio-x': ratioX,
         '--carousel-ratio-y': ratioY,
@@ -134,6 +172,7 @@ const [container, slider] = useKeenSlider({
         v-for="(slide, index) in slides"
         :key="index"
         class="ui-carousel-fade__slide w-full"
+        :class="options.slideClasses"
         :style="{ opacity: opacities[index] }"
       >
         <slot
@@ -143,7 +182,10 @@ const [container, slider] = useKeenSlider({
       </div>
 
       <!-- Navigation Buttons -->
-      <div class="absolute inset-0 flex">
+      <div
+        v-if="options.navigation"
+        class="absolute inset-0 flex"
+      >
         <button
           v-if="slider"
           class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none touch-none"

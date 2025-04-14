@@ -476,11 +476,47 @@
       "component_group_name": "Elements"
     },
     {
-      "name": "hero_media",
-      "display_name": "Media",
+      "name": "hero_carousel",
+      "display_name": "Carousel",
+      "description": null,
+      "created_at": "2025-04-14T10:59:15.118Z",
+      "updated_at": "2025-04-14T11:00:11.070Z",
+      "id": 7215241,
+      "schema": {
+        "images": {
+          "type": "multiasset",
+          "pos": 0,
+          "required": true,
+          "filetypes": [
+            "images"
+          ],
+          "asset_folder_id": null,
+          "key": "media",
+          "id": "sD3Yw-1rSa6WylKLx8s-MA"
+        }
+      },
+      "image": null,
+      "preview_field": "media",
+      "is_root": false,
+      "preview_tmpl": "{{@image(it.media.filename)/}}",
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "Carousel",
+      "component_group_uuid": "1c67fbaf-ea34-47a0-bd3a-10b0d557d1a7",
+      "color": "#fbce41",
+      "icon": "block-image",
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "component_group_name": "Heroes"
+    },
+    {
+      "name": "hero_image",
+      "display_name": "Image",
       "description": null,
       "created_at": "2025-04-07T13:54:43.770Z",
-      "updated_at": "2025-04-13T18:23:14.830Z",
+      "updated_at": "2025-04-14T10:41:42.258Z",
       "id": 7179482,
       "schema": {
         "media": {
@@ -503,7 +539,7 @@
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
-      "real_name": "Media",
+      "real_name": "Image",
       "component_group_uuid": "1c67fbaf-ea34-47a0-bd3a-10b0d557d1a7",
       "color": "#fbce41",
       "icon": "block-image",
@@ -563,7 +599,7 @@
       "display_name": null,
       "description": null,
       "created_at": "2025-03-31T12:24:18.055Z",
-      "updated_at": "2025-04-07T13:57:03.383Z",
+      "updated_at": "2025-04-14T11:00:36.175Z",
       "id": 7148704,
       "schema": {
         "hero": {
@@ -572,7 +608,8 @@
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
-            "hero_media"
+            "hero_image",
+            "hero_carousel"
           ],
           "maximum": 1,
           "id": "jdJbHHe3SzqWvZHYf6HkXw"

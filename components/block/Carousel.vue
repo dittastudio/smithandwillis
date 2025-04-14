@@ -22,7 +22,7 @@ const ratios = {
 <template>
   <div
     v-editable="block"
-    class="block-carousel bg-offblack"
+    class="block-carousel bg-offblack text-white"
   >
     <UiCarouselFade
       :slides="block.slides || []"

@@ -13,7 +13,7 @@ useStoryblokSetup<PageStoryblok>(story)
   <div>
     <!-- <AppCover v-if="isHome" /> -->
 
-    <BlockComponents
+    <AppComponents
       v-if="story?.content"
       :content="story.content"
     />

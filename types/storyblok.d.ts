@@ -125,10 +125,27 @@ export interface CareerItemStoryblok {
   [k: string]: any;
 }
 
-export interface HeroMediaStoryblok {
+export type MultiassetStoryblok = {
+  alt?: string;
+  copyright?: string;
+  id: number;
+  filename: string;
+  name: string;
+  title?: string;
+  [k: string]: any;
+}[];
+
+export interface HeroCarouselStoryblok {
+  images: MultiassetStoryblok;
+  _uid: string;
+  component: "hero_carousel";
+  [k: string]: any;
+}
+
+export interface HeroImageStoryblok {
   media: AssetStoryblok;
   _uid: string;
-  component: "hero_media";
+  component: "hero_image";
   [k: string]: any;
 }
 
@@ -141,7 +158,7 @@ export interface LinkStoryblok {
 }
 
 export interface PageStoryblok {
-  hero?: HeroMediaStoryblok[];
+  hero?: (HeroImageStoryblok | HeroCarouselStoryblok)[];
   blocks?: (
     | BlockCareersStoryblok
     | BlockCarouselStoryblok
@@ -172,16 +189,6 @@ export interface SettingsStoryblok {
   component: "settings";
   [k: string]: any;
 }
-
-export type MultiassetStoryblok = {
-  alt?: string;
-  copyright?: string;
-  id: number;
-  filename: string;
-  name: string;
-  title?: string;
-  [k: string]: any;
-}[];
 
 export interface SlideMediaStoryblok {
   media?: MultiassetStoryblok;

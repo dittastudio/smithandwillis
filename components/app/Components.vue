@@ -22,8 +22,13 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
       v-for="hero in content.hero"
       :key="hero._uid"
     >
-      <BlockHero
-        v-if="hero.component === 'hero_media'"
+      <HeroImage
+        v-if="hero.component === 'hero_image'"
+        :block="hero"
+      />
+
+      <HeroCarousel
+        v-if="hero.component === 'hero_carousel'"
         :block="hero"
       />
     </section>
