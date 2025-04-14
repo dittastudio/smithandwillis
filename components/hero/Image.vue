@@ -20,8 +20,8 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
         breakpoint="landscape"
         :asset="block.media"
         :desktop-asset="block.media"
-        :ratio="block.ratio"
-        :desktop-ratio="block.ratio_desktop"
+        ratio="10:16"
+        desktop-ratio="16:9"
         sizes="100vw sm:100vw md:100vw"
         desktop-sizes="md:100vw lg:100vw xl:100vw 2xl:100vw"
       />
