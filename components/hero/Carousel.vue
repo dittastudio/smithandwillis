@@ -25,7 +25,10 @@ const ratios = {
     class="hero-carousel bg-offblack text-white h-svh overflow-hidden"
   >
     <UiScrollDown>
-      <div data-js-hero>
+      <div
+        data-js-hero
+        class="h-[inherit]"
+      >
         <UiCarouselFade
           :options="{
             autoplay: 3000,

@@ -14,6 +14,8 @@
       </footer>
     </UiStickyWrapper>
 
+    <slot name="cover" />
+
     <!-- Contact anchor -->
     <div id="contact" />
 

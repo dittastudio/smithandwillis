@@ -21,9 +21,9 @@ const toggleNavigation = () => {
 }
 
 const prevScrollPos = ref<number>(0)
-const hasScrolled = useState<boolean>('hasScrolled')
-const hasScrolledUp = useState<boolean>('hasScrolledUp')
-const hasScrolledDown = useState<boolean>('hasScrolledDown')
+const hasScrolled = ref<boolean>(false)
+const hasScrolledUp = ref<boolean>(false)
+const hasScrolledDown = ref<boolean>(false)
 const raf = ref<any>(null)
 
 const handleScroll = () => {
@@ -90,9 +90,8 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
 
 <template>
   <div
-    data-js-header
     :class="classesHeader"
-    class="app-header text-white max-md:h-[var(--header-height)]"
+    class="app-header text-white h-[var(--header-height)]"
     @mouseenter="handleMouseEnter"
   >
     <div class="app-header__wrapper wrapper py-8 md:py-10 h-[inherit] max-md:flex max-md:items-center max-md:justify-center">

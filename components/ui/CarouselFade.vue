@@ -1,11 +1,11 @@
 <script lang="ts" setup>
+import type { SlideMediaStoryblok, SlideSplitStoryblok } from '@/types/storyblok'
 import IconArrowLarge from '@/assets/icons/arrow-large.svg'
-
 import { useKeenSlider } from 'keen-slider/vue.es'
 import 'keen-slider/keen-slider.min.css'
 
 interface Props {
-  slides: any[]
+  slides: (SlideSplitStoryblok | SlideMediaStoryblok)[]
   options?: {
     autoplay?: number
     navigation?: boolean
@@ -36,7 +36,7 @@ const currentSlide = computed(() => slides[current.value])
 const isSlideSplit = computed(() => currentSlide.value?.component === 'slide_split')
 const hasReverseSlide = computed(() => currentSlide.value?.reverse === true)
 
-const getTextColorClass = (slide: any) => {
+const getTextColorClass = (slide: SlideSplitStoryblok | SlideMediaStoryblok) => {
   return slide?.text_color ? colourTextMd[slide.text_color] : 'md:text-offblack'
 }
 

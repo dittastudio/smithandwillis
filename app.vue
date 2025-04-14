@@ -21,10 +21,15 @@ useSeoMeta({
 })
 
 useState('menuOpen', () => false)
-useState('hasScrolled', () => false)
-useState('hasScrolledUp', () => false)
-useState('hasScrolledDown', () => false)
-useState('hasSeenCover', () => false)
+useState('coverVisible', () => false)
+
+const handleCoverVisible = (value: boolean) => {
+  const coverVisible = useState<boolean>('coverVisible')
+
+  coverVisible.value = value
+
+  console.log(value)
+}
 </script>
 
 <template>
@@ -54,6 +59,10 @@ useState('hasSeenCover', () => false)
           :contact-title="settings?.content?.contact_title"
           :contact="settings?.content?.contact"
         />
+      </template>
+
+      <template #cover>
+        <AppCover @cover-visible="handleCoverVisible" />
       </template>
 
       <template

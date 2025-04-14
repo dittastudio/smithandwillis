@@ -15,7 +15,10 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     class="hero-image relative overflow-hidden h-svh bg-offblack text-white"
   >
     <UiScrollDown>
-      <div data-js-hero>
+      <div
+        data-js-hero
+        class="h-[inherit]"
+      >
         <MediaImageResponsive
           v-if="block.media && assetType === 'image'"
           :lazy="false"

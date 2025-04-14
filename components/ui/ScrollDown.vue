@@ -55,13 +55,13 @@ import IconArrowLarge from '@/assets/icons/arrow-large.svg'
 
 .ui-scroll-down {
   &::before {
-    opacity: 0.25;
+    opacity: 0.5;
     background-image: radial-gradient(ellipse at 50% 120%, --alpha(var(--color-black) / 100%) 0%, --alpha(var(--color-black) / 0%) 50%);
     transition: opacity 0.3s var(--ease-out);
   }
 
   &:has(.ui-scroll-down__button:hover)::before {
-    opacity: 0.5;
+    opacity: 0.75;
   }
 }
 </style>
