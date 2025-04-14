@@ -1,4 +1,5 @@
 import type { RichtextStoryblok } from '@/types/storyblok'
+import type { ImageModifiers } from '@nuxt/image'
 import type { LocationQuery } from 'vue-router'
 
 const storyblokEditor = (search: LocationQuery) => '_storyblok' in search
@@ -17,7 +18,7 @@ const storyblokAssetType = (filename: string): 'image' | 'video' | 'other' => {
     return 'image'
   }
 
-  if (videoExtensions.includes(ext)) {
+  else if (videoExtensions.includes(ext)) {
     return 'video'
   }
 
@@ -26,38 +27,23 @@ const storyblokAssetType = (filename: string): 'image' | 'video' | 'other' => {
 
 const storyblokImageUrlUpdate = (url: string) => url.replace('//a.storyblok.com', '//a2.storyblok.com')
 
+// Look at replacing this stuff for useImage() in Nuxt image module.
 const storyblokImage = (
   filename: string | null | undefined,
-  options?: App.ImageTransformOptions | undefined,
+  modifiers?: Partial<ImageModifiers> | undefined,
 ): string => {
-  if (!filename?.length)
-    return ''
+  const image = useImage()
 
-  const settings: App.ImageTransformOptions = {
+  const path = image(filename ?? '', {
     width: 0,
     height: 0,
     smart: false, // Must be set to false if focal point is used
     quality: 80,
     blur: 0,
     focal: '',
-    ...options,
-  }
-
-  const filterProperties: Record<string, string> = {
-    blur: settings.blur && settings.blur > 0 ? `:blur(${settings.blur})` : '',
-    quality: `:quality(${settings.quality})`,
-    focal: settings.focal ? `:focal(${settings.focal})` : '',
-  }
-
-  const filters: string = Object.values(filterProperties)
-    .map(item => item.trim())
-    .filter(item => item.length)
-    .join('')
-
-  const transforms = `m/${settings.width}x${settings.height}${
-    settings.smart ? '/smart' : ''
-  }/filters${filters}`
-  const path = storyblokImageUrlUpdate(`${filename}/${transforms}`)
+    format: 'webp',
+    ...modifiers,
+  })
 
   return path
 }
