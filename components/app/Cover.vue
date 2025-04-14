@@ -5,21 +5,43 @@ const cover = ref<HTMLDivElement>()
 const coverVisible = ref(true)
 const logoVisible = ref(false)
 const transitionComplete = ref(false)
+const hasHero = ref(false)
+const isAtTop = ref(true)
 
-// const header = document.querySelector('.app-header') as HTMLDivElement
+// Check if we're at the top of the page
+const checkScrollPosition = () => {
+  isAtTop.value = window.scrollY === 0
+}
+
+// Check if a hero component exists
+const checkForHero = () => {
+  const hero = document.querySelector('[data-js-hero]')
+  hasHero.value = !!hero
+}
 
 onMounted(async () => {
-  const header = document.querySelector('.app-header') as HTMLDivElement
+  const hero = document.querySelector('[data-js-hero]') as HTMLDivElement
+  const header = document.querySelector('[data-js-header]') as HTMLDivElement
 
-  document.documentElement.scrollTo(0, 0)
+  // Check initial conditions
+  checkForHero()
+  checkScrollPosition()
 
-  header?.classList.add('transition-all')
-  header?.classList.add('duration-500')
-  header?.classList.add('ease-out')
-  header?.classList.add('opacity-0')
-  header?.classList.add('-translate-y-4')
+  // Only proceed if we have a hero and are at the top
+  if (!hasHero.value || !isAtTop.value) {
+    transitionComplete.value = true
+    return
+  }
 
   await wait(1000)
+
+  header?.classList.add('transition-all')
+  header?.classList.add('duration-1000')
+  header?.classList.add('ease-in-out')
+
+  hero?.classList.add('transition-all')
+  hero?.classList.add('duration-1000')
+  hero?.classList.add('ease-in-out')
 
   logoVisible.value = true
 
@@ -27,26 +49,32 @@ onMounted(async () => {
 
   coverVisible.value = false
 
-  header?.classList.remove('opacity-0')
-  header?.classList.remove('-translate-y-4')
+  header.style.opacity = '1'
+  header.style.translate = '0 0 0'
+
+  hero.style.scale = '1'
 
   cover.value?.addEventListener('transitionend', () => {
     transitionComplete.value = true
-    header?.classList.remove('transition-all')
-    header?.classList.remove('duration-500')
-    header?.classList.remove('ease-out')
   })
+
+  // Listen for scroll events
+  window.addEventListener('scroll', checkScrollPosition)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', checkScrollPosition)
 })
 </script>
 
 <template>
   <div
-    v-if="!transitionComplete"
+    v-if="hasHero && isAtTop"
     ref="cover"
-    class="app-cover fixed inset-0 z-50 flex items-center justify-center pointer-events-none h-dvh text-white"
+    class="app-cover fixed inset-0 z-50 pointer-events-none h-dvh text-white"
     :class="[{ 'is-active': coverVisible }]"
   >
-    <div class="wrapper">
+    <div class="wrapper flex items-center justify-center h-full">
       <IconLogoMark
         class="app-cover__logo"
         :class="[{ 'is-active': logoVisible }]"
@@ -59,17 +87,11 @@ onMounted(async () => {
 @reference "../../assets/css/main.css";
 
 .app-cover {
-  background-color: --alpha(var(--color-black) / 80%);
+  background: radial-gradient(circle at center, transparent 0%, --alpha(var(--color-black) / 100%) 50%);
 
   &:has(html.is-storyblok-editor) {
     display: none;
   }
-
-  /* html:has(&) .app-header {
-    opacity: 0;
-    translate: 0 100%;
-    transition: opacity 0.5s var(--ease-in-out), translate 0.5s var(--ease-in-out);
-  } */
 
   &.is-active {
     pointer-events: auto;
@@ -82,7 +104,7 @@ onMounted(async () => {
   &,
   &__logo {
     opacity: 0;
-    transition: opacity 0.5s var(--ease-in-out);
+    transition: opacity 1s var(--ease-in-out);
 
     &.is-active {
       opacity: 1;
@@ -97,4 +119,26 @@ onMounted(async () => {
     height: auto;
   }
 }
+
+html:has(.app-cover) {
+  [data-js-header] {
+    opacity: 0;
+    translate: 0 -10% 0;
+  }
+
+  [data-js-hero] {
+    scale: 1.1;
+  }
+}
+
+/* [data-js-header] {
+  translate: 0 0 0;
+  transition: translate 0.5s var(--ease-in-out);
+}
+
+html:has(.app-cover) {
+  [data-js-header] {
+    translate: 0 -100% 0;
+  }
+} */
 </style>

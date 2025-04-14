@@ -11,7 +11,7 @@ useStoryblokSetup<PageStoryblok>(story)
 
 <template>
   <div>
-    <!-- <AppCover v-if="isHome" /> -->
+    <AppCover />
 
     <AppComponents
       v-if="story?.content"

@@ -90,6 +90,7 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
 
 <template>
   <div
+    data-js-header
     :class="classesHeader"
     class="app-header text-white max-md:h-[var(--header-height)]"
     @mouseenter="handleMouseEnter"

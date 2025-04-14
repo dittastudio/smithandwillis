@@ -178,6 +178,7 @@ const [container, slider] = useKeenSlider({
         <slot
           name="slide"
           :slide="slide"
+          :index="index"
         />
       </div>
 

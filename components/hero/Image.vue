@@ -12,11 +12,13 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 <template>
   <div
     v-editable="block"
-    class="relative overflow-hidden h-svh bg-offblack text-white"
+    data-js-hero
+    class="hero-image relative overflow-hidden h-svh bg-offblack text-white"
   >
     <UiScrollDown>
       <MediaImageResponsive
         v-if="block.media && assetType === 'image'"
+        :lazy="false"
         breakpoint="landscape"
         :asset="block.media"
         :desktop-asset="block.media"

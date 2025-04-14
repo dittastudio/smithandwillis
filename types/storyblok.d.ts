@@ -80,25 +80,25 @@ export interface RichtextStoryblok {
 }
 
 export interface BlockSplitStoryblok {
-  background_color?: number | string;
-  text_color?: number | string;
   media?: AssetStoryblok;
   ratio?: number | string;
   headline?: string;
   text: RichtextStoryblok;
   link?: LinkStoryblok[];
   reverse: boolean;
+  background_color?: number | string;
+  text_color?: number | string;
   _uid: string;
   component: "block_split";
   [k: string]: any;
 }
 
 export interface BlockTextStoryblok {
-  background_color?: number | string;
-  text_color?: number | string;
   headline?: string;
   text: RichtextStoryblok;
   link?: LinkStoryblok[];
+  background_color?: number | string;
+  text_color?: number | string;
   _uid: string;
   component: "block_text";
   [k: string]: any;

@@ -22,7 +22,8 @@ const ratios = {
 <template>
   <div
     v-editable="block"
-    class="block-carousel bg-offblack text-white h-svh overflow-hidden"
+    data-js-hero
+    class="hero-carousel bg-offblack text-white h-svh overflow-hidden"
   >
     <UiScrollDown>
       <UiCarouselFade
@@ -37,8 +38,9 @@ const ratios = {
         :ratio-desktop-x="ratios.desktop.x"
         :ratio-desktop-y="ratios.desktop.y"
       >
-        <template #slide="{ slide }">
+        <template #slide="{ slide, index }">
           <MediaImageResponsive
+            :lazy="index !== 0"
             breakpoint="landscape"
             :asset="slide"
             :desktop-asset="slide"
