@@ -16,15 +16,6 @@ declare namespace App {
     height: number
   }
 
-  export interface ImageTransformOptions {
-    width: number
-    height: number
-    smart?: boolean
-    quality?: number
-    blur?: number
-    focal?: string
-  }
-
   export interface Theme {
     background: string
     text: string

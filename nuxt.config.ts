@@ -86,7 +86,7 @@ export default defineNuxtConfig({
   image: {
     provider: 'storyblok',
     storyblok: {
-      baseURL: 'https://a.storyblok.com',
+      baseURL: 'https://a2.storyblok.com',
     },
     domains: ['storyblok.com', 'smithandwillis.london'],
     quality: 80,

@@ -67,9 +67,12 @@ const scrollToWithEasing = (target: number | string | HTMLElement, duration: num
 
   const animateScroll = (currentTime: number) => {
     const progress = Math.min((currentTime - startTime) / duration, 1)
+
     window.scrollTo(0, startPosition + distance * inOutQuart(progress))
-    if (progress < 1)
+
+    if (progress < 1) {
       requestAnimationFrame(animateScroll)
+    }
   }
 
   requestAnimationFrame(animateScroll)
