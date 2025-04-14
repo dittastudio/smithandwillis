@@ -14,6 +14,9 @@
       </footer>
     </UiStickyWrapper>
 
+    <!-- Contact anchor -->
+    <div id="contact" />
+
     <slot name="dev" />
   </div>
 </template>
