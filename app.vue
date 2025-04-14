@@ -21,7 +21,9 @@ useSeoMeta({
 })
 
 useState('menuOpen', () => false)
-// useMenu(false)
+useState('hasScrolled', () => false)
+useState('hasScrolledUp', () => false)
+useState('hasScrolledDown', () => false)
 </script>
 
 <template>

@@ -6,13 +6,22 @@ import 'keen-slider/keen-slider.min.css'
 
 interface Props {
   slides: any[]
+  options?: {
+    autoplay?: number
+    navigation?: boolean
+    slideClasses?: string
+  }
   ratioX?: number
   ratioY?: number
   ratioDesktopX?: number
   ratioDesktopY?: number
 }
 
-const { slides, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9 } = defineProps<Props>()
+const { slides, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9, options = {
+  autoplay: null,
+  navigation: true,
+  slideClasses: '',
+} } = defineProps<Props>()
 
 const current = ref(0)
 const opacities = ref<number[]>([])
@@ -32,7 +41,11 @@ const getTextColorClass = (slide: any) => {
 }
 
 const textColorClass = computed(() =>
-  hasReverseSlide.value ? getTextColorClass(currentSlide.value) : '',
+  isSlideSplit.value && hasReverseSlide.value ? getTextColorClass(currentSlide.value) : '',
+)
+
+const paginationColorClass = computed(() =>
+  isSlideSplit.value && !hasReverseSlide.value ? getTextColorClass(currentSlide.value) : '',
 )
 
 const arrowColorClass = computed(() => {
@@ -111,14 +124,43 @@ const [container, slider] = useKeenSlider({
   detailsChanged: (s) => {
     opacities.value = s.track.details.slides.map(slide => slide.portion)
   },
-})
+}, [
+  (slider) => {
+    let timeout: NodeJS.Timeout | null = null
+
+    function clearNextTimeout() {
+      if (timeout) {
+        clearTimeout(timeout)
+      }
+    }
+
+    function nextTimeout() {
+      if (!options?.autoplay)
+        return
+
+      if (timeout) {
+        clearTimeout(timeout)
+      }
+
+      timeout = setTimeout(() => {
+        slider.next()
+      }, options.autoplay)
+    }
+    slider.on('created', () => {
+      nextTimeout()
+    })
+    slider.on('dragStarted', clearNextTimeout)
+    slider.on('animationEnded', nextTimeout)
+    slider.on('updated', nextTimeout)
+  },
+])
 </script>
 
 <template>
-  <div class="relative text-white">
+  <div class="relative h-[inherit]">
     <div
       ref="container"
-      class="ui-carousel-fade__container relative w-full"
+      class="ui-carousel-fade__container relative w-full h-[inherit]"
       :style="{
         '--carousel-ratio-x': ratioX,
         '--carousel-ratio-y': ratioY,
@@ -130,6 +172,7 @@ const [container, slider] = useKeenSlider({
         v-for="(slide, index) in slides"
         :key="index"
         class="ui-carousel-fade__slide w-full"
+        :class="options.slideClasses"
         :style="{ opacity: opacities[index] }"
       >
         <slot
@@ -139,7 +182,10 @@ const [container, slider] = useKeenSlider({
       </div>
 
       <!-- Navigation Buttons -->
-      <div class="absolute inset-0 flex">
+      <div
+        v-if="options.navigation"
+        class="absolute inset-0 flex"
+      >
         <button
           v-if="slider"
           class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none touch-none"
@@ -190,11 +236,11 @@ const [container, slider] = useKeenSlider({
       v-if="$slots.caption"
       class="absolute inset-0 pointer-events-none flex flex-col justify-end contain-paint contain-layout"
     >
-      <div class="sticky bottom-0 flex items-start justify-start wrapper">
+      <div class="sticky bottom-0 flex items-start justify-between wrapper">
         <p
-          class="ui-carousel-fade__gradient py-[var(--app-outer-gutter)] type-sans-medium-caps transition-colors duration-300 ease-out"
+          class="ui-carousel-fade__gradient ui-carousel-fade__gradient--left py-[var(--app-outer-gutter)] type-sans-medium-caps transition-colors duration-300 ease-out"
           :class="[
-            hasReverseSlide && 'ui-carousel-fade__gradient--reverse',
+            hasReverseSlide && 'ui-carousel-fade__gradient--hide',
             textColorClass,
           ]"
         >
@@ -202,6 +248,16 @@ const [container, slider] = useKeenSlider({
             <slot name="caption" />
           </span>
         </p>
+
+        <div
+          class="ui-carousel-fade__gradient ui-carousel-fade__gradient--right py-[var(--app-outer-gutter)] type-sans-medium-caps transition-colors duration-300 ease-out"
+          :class="[
+            isSlideSplit && !hasReverseSlide ? 'ui-carousel-fade__gradient--hide' : '',
+            paginationColorClass,
+          ]"
+        >
+          {{ current + 1 }} / {{ slides.length }}
+        </div>
       </div>
     </div>
   </div>
@@ -231,8 +287,6 @@ const [container, slider] = useKeenSlider({
     content: '';
     position: absolute;
     bottom: 0;
-    left: calc(-12 * var(--app-outer-gutter));
-    right: -25vw;
     height: 300%;
     opacity: 0.8;
     background-image: radial-gradient(ellipse at 52.5% 100%, --alpha(var(--color-black) / 100%) 0%, --alpha(var(--color-black) / 0%) 60%);
@@ -240,12 +294,26 @@ const [container, slider] = useKeenSlider({
     pointer-events: none;
     transition: opacity 0.3s var(--ease-out);
   }
+}
 
-  &--reverse {
-    @variant md {
-      &::before {
-        opacity: 0;
-      }
+.ui-carousel-fade__gradient--left {
+  &::before {
+    left: calc(-12 * var(--app-outer-gutter));
+    right: -25vw;
+  }
+}
+
+.ui-carousel-fade__gradient--right {
+  &::before {
+    left: -25vw;
+    right: calc(-12 * var(--app-outer-gutter));
+  }
+}
+
+.ui-carousel-fade__gradient--hide {
+  @variant md {
+    &::before {
+      opacity: 0;
     }
   }
 }

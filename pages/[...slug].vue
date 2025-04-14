@@ -5,15 +5,17 @@ const route = useRoute()
 const story = await useStoryblokStory<PageStoryblok>(route.path)
 
 useStoryblokSetup<PageStoryblok>(story)
+
+// const isHome = computed(() => ['/', '/home'].includes(route.path))
 </script>
 
 <template>
   <div>
-    <BlockComponents
+    <!-- <AppCover v-if="isHome" /> -->
+
+    <AppComponents
       v-if="story?.content"
       :content="story.content"
     />
-
-    <!-- <Screen :log="story" /> -->
   </div>
 </template>

@@ -4,13 +4,18 @@
       <slot name="header" />
     </header>
 
-    <main class="flex-grow z-[1]">
+    <main class="flex-grow z-1 bg-warm-grey">
       <slot name="main" />
     </main>
 
-    <footer class="app-layout__footer">
-      <slot name="footer" />
-    </footer>
+    <UiStickyWrapper>
+      <footer>
+        <slot name="footer" />
+      </footer>
+    </UiStickyWrapper>
+
+    <!-- Contact anchor -->
+    <div id="contact" />
 
     <slot name="dev" />
   </div>
