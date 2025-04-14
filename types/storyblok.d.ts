@@ -61,12 +61,12 @@ export interface AssetStoryblok {
   [k: string]: any;
 }
 
-export interface BlockMediaStoryblok {
+export interface BlockImageStoryblok {
   media: AssetStoryblok;
   ratio: number | string;
-  ratio_desktop?: number | string;
+  ratio_desktop: number | string;
   _uid: string;
-  component: "block_media";
+  component: "block_image";
   [k: string]: any;
 }
 
@@ -104,6 +104,17 @@ export interface BlockTextStoryblok {
   [k: string]: any;
 }
 
+export interface BlockVideoStoryblok {
+  poster: AssetStoryblok;
+  video_mobile: AssetStoryblok;
+  ratio_mobile: number | string;
+  video_desktop?: AssetStoryblok;
+  ratio_desktop: number | string;
+  _uid: string;
+  component: "block_video";
+  [k: string]: any;
+}
+
 export interface CareerItemStoryblok {
   role: string;
   company: string;
@@ -116,8 +127,6 @@ export interface CareerItemStoryblok {
 
 export interface HeroMediaStoryblok {
   media: AssetStoryblok;
-  ratio: number | string;
-  ratio_desktop?: number | string;
   _uid: string;
   component: "hero_media";
   [k: string]: any;
@@ -136,9 +145,10 @@ export interface PageStoryblok {
   blocks?: (
     | BlockCareersStoryblok
     | BlockCarouselStoryblok
-    | BlockMediaStoryblok
+    | BlockImageStoryblok
     | BlockSplitStoryblok
     | BlockTextStoryblok
+    | BlockVideoStoryblok
   )[];
   seo_title: string;
   seo_description: string;

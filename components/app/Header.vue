@@ -21,9 +21,9 @@ const toggleNavigation = () => {
 }
 
 const prevScrollPos = ref<number>(0)
-const hasScrolled = ref<boolean>(false)
-const hasScrolledUp = ref<boolean>(false)
-const hasScrolledDown = ref<boolean>(false)
+const hasScrolled = useState<boolean>('hasScrolled')
+const hasScrolledUp = useState<boolean>('hasScrolledUp')
+const hasScrolledDown = useState<boolean>('hasScrolledDown')
 const raf = ref<any>(null)
 
 const handleScroll = () => {
@@ -89,7 +89,7 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
 </script>
 
 <template>
-  <header
+  <div
     :class="classesHeader"
     class="app-header text-white max-md:h-[var(--header-height)]"
     @mouseenter="handleMouseEnter"
@@ -153,7 +153,7 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
         />
       </AppHeaderMenu>
     </div>
-  </header>
+  </div>
 </template>
 
 <style>

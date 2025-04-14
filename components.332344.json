@@ -109,11 +109,11 @@
       "component_group_name": "Blocks"
     },
     {
-      "name": "block_media",
-      "display_name": "Media",
+      "name": "block_image",
+      "display_name": "Image",
       "description": null,
       "created_at": "2025-04-02T13:53:04.041Z",
-      "updated_at": "2025-04-02T20:14:33.934Z",
+      "updated_at": "2025-04-13T22:04:27.753Z",
       "id": 7159482,
       "schema": {
         "media": {
@@ -121,8 +121,7 @@
           "pos": 0,
           "required": true,
           "filetypes": [
-            "images",
-            "videos"
+            "images"
           ],
           "asset_folder_id": null,
           "key": "media",
@@ -148,7 +147,8 @@
           "use_uuid": true,
           "source": "internal",
           "datasource_slug": "ratio",
-          "default_value": "16:9"
+          "default_value": "16:9",
+          "required": true
         }
       },
       "image": null,
@@ -158,7 +158,7 @@
       "is_nestable": true,
       "all_presets": [],
       "preset_id": null,
-      "real_name": "Media",
+      "real_name": "Image",
       "component_group_uuid": "8aee4235-990a-4a59-ad5f-6d9f73a67be5",
       "color": "#fbce41",
       "icon": "block-image",
@@ -350,6 +350,82 @@
       "component_group_name": "Blocks"
     },
     {
+      "name": "block_video",
+      "display_name": "Video",
+      "description": null,
+      "created_at": "2025-04-13T21:59:02.512Z",
+      "updated_at": "2025-04-13T22:08:28.771Z",
+      "id": 7213026,
+      "schema": {
+        "poster": {
+          "type": "asset",
+          "pos": 0,
+          "required": true,
+          "filetypes": [
+            "images"
+          ],
+          "asset_folder_id": null,
+          "key": "media",
+          "id": "sD3Yw-1rSa6WylKLx8s-MA"
+        },
+        "video_mobile": {
+          "type": "asset",
+          "pos": 1,
+          "filetypes": [
+            "videos"
+          ],
+          "id": "WwLojeXhQk6Ccb0S_dyuHw",
+          "required": true
+        },
+        "ratio_mobile": {
+          "type": "option",
+          "pos": 2,
+          "use_uuid": true,
+          "source": "internal",
+          "datasource_slug": "ratio",
+          "exclude_empty_option": true,
+          "required": true,
+          "key": "ratio",
+          "id": "2z74M2HaQhCs1IJXRR0QOw",
+          "display_name": "Ratio Mobile",
+          "default_value": "9:16"
+        },
+        "video_desktop": {
+          "type": "asset",
+          "pos": 3,
+          "filetypes": [
+            "videos"
+          ],
+          "id": "GQrDk-iwTemIfI2482BaZA"
+        },
+        "ratio_desktop": {
+          "type": "option",
+          "pos": 4,
+          "id": "MPqGIoGXRo6EHfpRkgNnrg",
+          "use_uuid": true,
+          "source": "internal",
+          "datasource_slug": "ratio",
+          "default_value": "16:9",
+          "required": true
+        }
+      },
+      "image": null,
+      "preview_field": "media",
+      "is_root": false,
+      "preview_tmpl": "{{@image(it.media.filename)/}}",
+      "is_nestable": true,
+      "all_presets": [],
+      "preset_id": null,
+      "real_name": "Video",
+      "component_group_uuid": "8aee4235-990a-4a59-ad5f-6d9f73a67be5",
+      "color": "#3ea6a6",
+      "icon": "block-mobile",
+      "internal_tags_list": [],
+      "internal_tag_ids": [],
+      "content_type_asset_preview": null,
+      "component_group_name": "Blocks"
+    },
+    {
       "name": "career_item",
       "display_name": "Career Item",
       "description": "",
@@ -404,7 +480,7 @@
       "display_name": "Media",
       "description": null,
       "created_at": "2025-04-07T13:54:43.770Z",
-      "updated_at": "2025-04-07T13:55:53.158Z",
+      "updated_at": "2025-04-13T18:23:14.830Z",
       "id": 7179482,
       "schema": {
         "media": {
@@ -418,28 +494,6 @@
           "asset_folder_id": null,
           "key": "media",
           "id": "sD3Yw-1rSa6WylKLx8s-MA"
-        },
-        "ratio": {
-          "type": "option",
-          "pos": 2,
-          "use_uuid": true,
-          "source": "internal",
-          "datasource_slug": "ratio",
-          "exclude_empty_option": true,
-          "required": true,
-          "key": "ratio",
-          "id": "2z74M2HaQhCs1IJXRR0QOw",
-          "display_name": "Ratio Mobile",
-          "default_value": "9:16"
-        },
-        "ratio_desktop": {
-          "type": "option",
-          "pos": 2,
-          "id": "MPqGIoGXRo6EHfpRkgNnrg",
-          "use_uuid": true,
-          "source": "internal",
-          "datasource_slug": "ratio",
-          "default_value": "16:9"
         }
       },
       "image": null,
