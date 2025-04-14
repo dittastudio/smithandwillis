@@ -64,7 +64,7 @@ export interface AssetStoryblok {
 export interface BlockImageStoryblok {
   media: AssetStoryblok;
   ratio: number | string;
-  ratio_desktop?: number | string;
+  ratio_desktop: number | string;
   _uid: string;
   component: "block_image";
   [k: string]: any;
@@ -80,27 +80,38 @@ export interface RichtextStoryblok {
 }
 
 export interface BlockSplitStoryblok {
-  background_color?: number | string;
-  text_color?: number | string;
   media?: AssetStoryblok;
   ratio?: number | string;
   headline?: string;
   text: RichtextStoryblok;
   link?: LinkStoryblok[];
   reverse: boolean;
+  background_color?: number | string;
+  text_color?: number | string;
   _uid: string;
   component: "block_split";
   [k: string]: any;
 }
 
 export interface BlockTextStoryblok {
-  background_color?: number | string;
-  text_color?: number | string;
   headline?: string;
   text: RichtextStoryblok;
   link?: LinkStoryblok[];
+  background_color?: number | string;
+  text_color?: number | string;
   _uid: string;
   component: "block_text";
+  [k: string]: any;
+}
+
+export interface BlockVideoStoryblok {
+  poster: AssetStoryblok;
+  video_mobile: AssetStoryblok;
+  ratio_mobile: number | string;
+  video_desktop?: AssetStoryblok;
+  ratio_desktop: number | string;
+  _uid: string;
+  component: "block_video";
   [k: string]: any;
 }
 
@@ -114,10 +125,27 @@ export interface CareerItemStoryblok {
   [k: string]: any;
 }
 
-export interface HeroMediaStoryblok {
+export type MultiassetStoryblok = {
+  alt?: string;
+  copyright?: string;
+  id: number;
+  filename: string;
+  name: string;
+  title?: string;
+  [k: string]: any;
+}[];
+
+export interface HeroCarouselStoryblok {
+  images: MultiassetStoryblok;
+  _uid: string;
+  component: "hero_carousel";
+  [k: string]: any;
+}
+
+export interface HeroImageStoryblok {
   media: AssetStoryblok;
   _uid: string;
-  component: "hero_media";
+  component: "hero_image";
   [k: string]: any;
 }
 
@@ -130,13 +158,14 @@ export interface LinkStoryblok {
 }
 
 export interface PageStoryblok {
-  hero?: HeroMediaStoryblok[];
+  hero?: (HeroImageStoryblok | HeroCarouselStoryblok)[];
   blocks?: (
     | BlockCareersStoryblok
     | BlockCarouselStoryblok
     | BlockImageStoryblok
     | BlockSplitStoryblok
     | BlockTextStoryblok
+    | BlockVideoStoryblok
   )[];
   seo_title: string;
   seo_description: string;
@@ -160,16 +189,6 @@ export interface SettingsStoryblok {
   component: "settings";
   [k: string]: any;
 }
-
-export type MultiassetStoryblok = {
-  alt?: string;
-  copyright?: string;
-  id: number;
-  filename: string;
-  name: string;
-  title?: string;
-  [k: string]: any;
-}[];
 
 export interface SlideMediaStoryblok {
   media?: MultiassetStoryblok;

@@ -67,6 +67,11 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
         :block
       />
 
+      <BlockVideo
+        v-else-if="block.component === 'block_video'"
+        :block
+      />
+
       <!-- <Screen :log="block" /> -->
     </section>
   </div>
@@ -75,6 +80,7 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
 <style lang="postcss">
 .content-blocks__item:not(
   .content-blocks__item--block_image,
+  .content-blocks__item--block_video,
   .content-blocks__item--block_split,
   .content-blocks__item--block_carousel
 ) {
