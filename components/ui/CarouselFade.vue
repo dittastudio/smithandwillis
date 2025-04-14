@@ -32,7 +32,11 @@ const getTextColorClass = (slide: any) => {
 }
 
 const textColorClass = computed(() =>
-  hasReverseSlide.value ? getTextColorClass(currentSlide.value) : '',
+  isSlideSplit.value && hasReverseSlide.value ? getTextColorClass(currentSlide.value) : '',
+)
+
+const paginationColorClass = computed(() =>
+  isSlideSplit.value && !hasReverseSlide.value ? getTextColorClass(currentSlide.value) : '',
 )
 
 const arrowColorClass = computed(() => {
@@ -190,11 +194,11 @@ const [container, slider] = useKeenSlider({
       v-if="$slots.caption"
       class="absolute inset-0 pointer-events-none flex flex-col justify-end contain-paint contain-layout"
     >
-      <div class="sticky bottom-0 flex items-start justify-start wrapper">
+      <div class="sticky bottom-0 flex items-start justify-between wrapper">
         <p
-          class="ui-carousel-fade__gradient py-[var(--app-outer-gutter)] type-sans-medium-caps transition-colors duration-300 ease-out"
+          class="ui-carousel-fade__gradient ui-carousel-fade__gradient--left py-[var(--app-outer-gutter)] type-sans-medium-caps transition-colors duration-300 ease-out"
           :class="[
-            hasReverseSlide && 'ui-carousel-fade__gradient--reverse',
+            hasReverseSlide && 'ui-carousel-fade__gradient--hide',
             textColorClass,
           ]"
         >
@@ -202,6 +206,16 @@ const [container, slider] = useKeenSlider({
             <slot name="caption" />
           </span>
         </p>
+
+        <div
+          class="ui-carousel-fade__gradient ui-carousel-fade__gradient--right py-[var(--app-outer-gutter)] type-sans-medium-caps transition-colors duration-300 ease-out"
+          :class="[
+            isSlideSplit && !hasReverseSlide ? 'ui-carousel-fade__gradient--hide' : '',
+            paginationColorClass,
+          ]"
+        >
+          {{ current + 1 }} / {{ slides.length }}
+        </div>
       </div>
     </div>
   </div>
@@ -231,8 +245,6 @@ const [container, slider] = useKeenSlider({
     content: '';
     position: absolute;
     bottom: 0;
-    left: calc(-12 * var(--app-outer-gutter));
-    right: -25vw;
     height: 300%;
     opacity: 0.8;
     background-image: radial-gradient(ellipse at 52.5% 100%, --alpha(var(--color-black) / 100%) 0%, --alpha(var(--color-black) / 0%) 60%);
@@ -241,7 +253,21 @@ const [container, slider] = useKeenSlider({
     transition: opacity 0.3s var(--ease-out);
   }
 
-  &--reverse {
+  &--left {
+    &::before {
+      left: calc(-12 * var(--app-outer-gutter));
+      right: -25vw;
+    }
+  }
+
+  &--right {
+    &::before {
+      left: -25vw;
+      right: calc(-12 * var(--app-outer-gutter));
+    }
+  }
+
+  &--hide {
     @variant md {
       &::before {
         opacity: 0;
