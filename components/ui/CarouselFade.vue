@@ -252,26 +252,26 @@ const [container, slider] = useKeenSlider({
     pointer-events: none;
     transition: opacity 0.3s var(--ease-out);
   }
+}
 
-  &--left {
-    &::before {
-      left: calc(-12 * var(--app-outer-gutter));
-      right: -25vw;
-    }
+.ui-carousel-fade__gradient--left {
+  &::before {
+    left: calc(-12 * var(--app-outer-gutter));
+    right: -25vw;
   }
+}
 
-  &--right {
-    &::before {
-      left: -25vw;
-      right: calc(-12 * var(--app-outer-gutter));
-    }
+.ui-carousel-fade__gradient--right {
+  &::before {
+    left: -25vw;
+    right: calc(-12 * var(--app-outer-gutter));
   }
+}
 
-  &--hide {
-    @variant md {
-      &::before {
-        opacity: 0;
-      }
+.ui-carousel-fade__gradient--hide {
+  @variant md {
+    &::before {
+      opacity: 0;
     }
   }
 }
