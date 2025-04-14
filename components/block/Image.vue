@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { BlockMediaStoryblok } from '@/types/storyblok'
+import type { BlockImageStoryblok } from '@/types/storyblok'
 
 interface Props {
-  block: BlockMediaStoryblok
+  block: BlockImageStoryblok
 }
 
 const { block } = defineProps<Props>()
@@ -10,10 +10,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 </script>
 
 <template>
-  <div
-    v-editable="block"
-    class="block-media"
-  >
+  <div v-editable="block">
     <MediaImageResponsive
       v-if="block.media && assetType === 'image'"
       :asset="block.media"

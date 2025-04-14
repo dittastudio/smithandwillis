@@ -44,27 +44,27 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
     >
       <BlockCareers
         v-if="block.component === 'block_careers'"
-        :block="block"
+        :block
       />
 
       <BlockCarousel
-        v-if="block.component === 'block_carousel'"
-        :block="block"
+        v-else-if="block.component === 'block_carousel'"
+        :block
       />
 
-      <BlockMedia
-        v-else-if="block.component === 'block_media'"
-        :block="block"
+      <BlockImage
+        v-else-if="block.component === 'block_image'"
+        :block
       />
 
       <BlockSplit
         v-else-if="block.component === 'block_split'"
-        :block="block"
+        :block
       />
 
       <BlockText
         v-else-if="block.component === 'block_text'"
-        :block="block"
+        :block
       />
 
       <!-- <Screen :log="block" /> -->
@@ -74,7 +74,7 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
 
 <style lang="postcss">
 .content-blocks__item:not(
-  .content-blocks__item--block_media,
+  .content-blocks__item--block_image,
   .content-blocks__item--block_split,
   .content-blocks__item--block_carousel
 ) {
