@@ -11,22 +11,30 @@ const checkHeight = () => {
   }
 }
 
+const setHeight = (height: number) => {
+  if (!elRef.value)
+    return
+  elHeight.value = height
+  elRef.value.style.setProperty('--_block-height', `${height}px`)
+  checkHeight()
+}
+
 const handleResize = throttle(checkHeight, 200)
 
 onMounted(() => {
   const observedElement = elRef.value
-
   if (!observedElement)
     return
 
   const resizeObserver = new ResizeObserver(([entry]) => {
-    elHeight.value = entry.target.clientHeight
-    observedElement.style.setProperty('--_block-height', `${elHeight.value}px`)
+    setHeight(entry.target.clientHeight)
   })
 
   resizeObserver.observe(observedElement)
-  checkHeight()
   window.addEventListener('resize', handleResize)
+
+  // Initial height check
+  setHeight(observedElement.clientHeight)
 })
 
 onUnmounted(() => {

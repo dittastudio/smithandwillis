@@ -174,8 +174,11 @@ const [container, slider] = useKeenSlider({
       <div
         v-for="(slide, index) in slides"
         :key="index"
-        class="ui-carousel-fade__slide w-full"
-        :class="options.slideClasses"
+        class="ui-carousel-fade__slide w-full select-none"
+        :class="[
+          options.slideClasses,
+          opacities[index] === 1 ? 'pointer-events-auto' : 'pointer-events-none',
+        ]"
         :style="{ opacity: opacities[index] }"
       >
         <slot

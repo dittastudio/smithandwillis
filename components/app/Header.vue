@@ -91,7 +91,7 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
 <template>
   <div
     :class="classesHeader"
-    class="app-header text-white h-[var(--header-height)]"
+    class="app-header text-white h-[var(--app-header-height)]"
     @mouseenter="handleMouseEnter"
   >
     <div class="app-header__wrapper wrapper py-8 md:py-10 h-[inherit] max-md:flex max-md:items-center max-md:justify-center">

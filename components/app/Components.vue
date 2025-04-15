@@ -16,7 +16,7 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
 </script>
 
 <template>
-  <div class="-mt-[var(--header-height)]">
+  <div class="-mt-[var(--app-header-height)]">
     <!-- Hero -->
     <section
       v-for="hero in content.hero"
