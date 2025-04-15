@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import type { SlideMediaStoryblok, SlideSplitStoryblok } from '@/types/storyblok'
 import IconArrowLarge from '@/assets/icons/arrow-large.svg'
-import { useKeenSlider } from 'keen-slider/vue.es'
+import KeenSlider from 'keen-slider'
 import 'keen-slider/keen-slider.min.css'
 
 interface Props {
   slides: (SlideSplitStoryblok | SlideMediaStoryblok)[]
   options?: {
-    autoplay?: number
+    autoplay?: boolean
     navigation?: boolean
     slideClasses?: string
   }
@@ -18,10 +18,13 @@ interface Props {
 }
 
 const { slides, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9, options = {
-  autoplay: null,
+  autoplay: false,
   navigation: true,
   slideClasses: '',
 } } = defineProps<Props>()
+
+const container = ref<HTMLElement | null>(null)
+const sliderInstance = ref<KeenSlider | null>(null)
 
 const current = ref(0)
 const opacities = ref<number[]>([])
@@ -32,13 +35,11 @@ const rafId = ref<number | null>(null)
 const supportsHover = ref(false)
 
 const currentSlide = computed(() => slides[current.value])
-
 const isSlideSplit = computed(() => currentSlide.value?.component === 'slide_split')
 const hasReverseSlide = computed(() => currentSlide.value?.reverse === true)
 
-const getTextColorClass = (slide: SlideSplitStoryblok | SlideMediaStoryblok) => {
-  return slide?.text_color ? colourTextMd[slide.text_color] : 'md:text-offblack'
-}
+const getTextColorClass = (slide: SlideSplitStoryblok | SlideMediaStoryblok) =>
+  slide?.text_color ? colourTextMd[slide.text_color] : 'md:text-offblack'
 
 const textColorClass = computed(() =>
   isSlideSplit.value && hasReverseSlide.value ? getTextColorClass(currentSlide.value) : '',
@@ -51,16 +52,10 @@ const paginationColorClass = computed(() =>
 const arrowColorClass = computed(() => {
   if (!isSlideSplit.value)
     return ''
-
   const shouldApplyColor
     = (hasReverseSlide.value && hoveredButton.value === 'left')
       || (!hasReverseSlide.value && hoveredButton.value === 'right')
-
   return shouldApplyColor ? getTextColorClass(currentSlide.value) : ''
-})
-
-onMounted(() => {
-  supportsHover.value = window.matchMedia('(hover: hover)').matches
 })
 
 const updateCursorPosition = (x: number, y: number) => {
@@ -72,11 +67,8 @@ const updateCursorPosition = (x: number, y: number) => {
 const handleMouseMove = (e: MouseEvent) => {
   if (!isHovering.value || !supportsHover.value)
     return
-
-  if (rafId.value) {
+  if (rafId.value)
     cancelAnimationFrame(rafId.value)
-  }
-
   rafId.value = requestAnimationFrame(() => {
     updateCursorPosition(e.clientX, e.clientY)
   })
@@ -94,66 +86,72 @@ const handleMouseLeave = () => {
     return
   isHovering.value = false
   hoveredButton.value = null
-  if (rafId.value) {
+  if (rafId.value)
     cancelAnimationFrame(rafId.value)
-    rafId.value = null
-  }
 }
 
-onUnmounted(() => {
-  if (rafId.value) {
-    cancelAnimationFrame(rafId.value)
+onMounted(() => {
+  supportsHover.value = window.matchMedia('(hover: hover)').matches
+
+  const easing = (x: number): number => (x < 0.5 ? 8 * x ** 4 : 1 - (-2 * x + 2) ** 4 / 2)
+
+  if (container.value) {
+    sliderInstance.value = new KeenSlider(container.value, {
+      initial: current.value,
+      loop: true,
+      slides: slides?.length || 0,
+      defaultAnimation: {
+        duration: 2000,
+        easing,
+      },
+      slideChanged(slider) {
+        current.value = slider.track.details.rel
+      },
+      detailsChanged: (slider) => {
+        opacities.value = slider.track.details.slides.map((s: any) => s.portion)
+      },
+    })
+
+    // Autoplay logic
+    let timeout: ReturnType<typeof setTimeout> | null = null
+    let isVisible = false
+
+    const nextTimeout = () => {
+      if (!options?.autoplay || !isVisible)
+        return
+      if (timeout)
+        clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        sliderInstance.value?.next()
+      }, 3000)
+    }
+
+    const clearNextTimeout = () => {
+      if (timeout)
+        clearTimeout(timeout)
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        isVisible = entries[0].isIntersecting
+        isVisible ? nextTimeout() : clearNextTimeout()
+      },
+      { threshold: 0.5 },
+    )
+
+    observer.observe(container.value)
+
+    sliderInstance.value.on('dragStarted', clearNextTimeout)
+    sliderInstance.value.on('animationEnded', nextTimeout)
+    sliderInstance.value.on('updated', nextTimeout)
   }
 })
 
-const easing = (x: number): number => {
-  return x < 0.5 ? 8 * x * x * x * x : 1 - (-2 * x + 2) ** 4 / 2
-}
-
-const [container, slider] = useKeenSlider({
-  initial: current.value,
-  slides: slides?.length || 0,
-  loop: true,
-  defaultAnimation: {
-    duration: 1000,
-    easing,
-  },
-  slideChanged: (s) => {
-    current.value = s.track.details.rel
-  },
-  detailsChanged: (s) => {
-    opacities.value = s.track.details.slides.map(slide => slide.portion)
-  },
-}, [
-  (slider) => {
-    let timeout: NodeJS.Timeout | null = null
-
-    function clearNextTimeout() {
-      if (timeout) {
-        clearTimeout(timeout)
-      }
-    }
-
-    function nextTimeout() {
-      if (!options?.autoplay)
-        return
-
-      if (timeout) {
-        clearTimeout(timeout)
-      }
-
-      timeout = setTimeout(() => {
-        slider.next()
-      }, options.autoplay)
-    }
-    slider.on('created', () => {
-      nextTimeout()
-    })
-    slider.on('dragStarted', clearNextTimeout)
-    slider.on('animationEnded', nextTimeout)
-    slider.on('updated', nextTimeout)
-  },
-])
+onUnmounted(() => {
+  sliderInstance.value?.destroy()
+  if (rafId.value)
+    cancelAnimationFrame(rafId.value)
+})
 </script>
 
 <template>
@@ -191,9 +189,8 @@ const [container, slider] = useKeenSlider({
         class="absolute inset-0 flex"
       >
         <button
-          v-if="slider"
           class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none touch-none"
-          @click="slider.prev()"
+          @click="sliderInstance.prev()"
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('left')"
           @mouseleave="handleMouseLeave"
@@ -204,9 +201,8 @@ const [container, slider] = useKeenSlider({
         </button>
 
         <button
-          v-if="slider"
           class="w-1/2 flex items-center justify-end p-[var(--app-outer-gutter)] cursor-none touch-none"
-          @click="slider.next()"
+          @click="sliderInstance.next()"
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('right')"
           @mouseleave="handleMouseLeave"

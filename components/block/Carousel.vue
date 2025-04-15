@@ -25,6 +25,10 @@ const ratios = {
     class="block-carousel bg-offblack text-white"
   >
     <UiCarouselFade
+      :options="{
+        autoplay: block.autoplay,
+        navigation: true,
+      }"
       :slides="block.slides || []"
       :ratio-x="ratios.mobile.x"
       :ratio-y="ratios.mobile.y"

@@ -28,7 +28,7 @@ const ratios = {
       <UiParallax>
         <UiCarouselFade
           :options="{
-            autoplay: 3000,
+            autoplay: true,
             navigation: true,
             slideClasses: 'h-svh',
           }"

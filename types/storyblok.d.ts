@@ -38,6 +38,7 @@ export interface BlockCarouselStoryblok {
   title?: string;
   link?: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
   slides: (SlideSplitStoryblok | SlideMediaStoryblok)[];
+  autoplay: boolean;
   _uid: string;
   component: "block_carousel";
   [k: string]: any;
