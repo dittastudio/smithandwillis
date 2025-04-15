@@ -57,19 +57,20 @@ const assetType = computed(() => storyblokAssetType(media?.filename || ''))
     >
       <div
         class="
-        flex
-        flex-col
-        items-start
-        gap-8
-        md:gap-10
-        p-[var(--app-outer-gutter)]
-        md:py-[calc(var(--app-outer-gutter)_*_3)]
-        w-full
-      "
+          slide-split__content
+          flex
+          flex-col
+          items-start
+          gap-8
+          md:gap-10
+          p-[var(--app-outer-gutter)]
+          md:py-[calc(var(--app-outer-gutter)_*_3)]
+          w-full
+        "
         :class="[
           !reverse && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))]',
-          alignmentMobile === 'top' && 'max-md:pt-[calc(var(--app-outer-gutter)_*_2)] max-md:bg-gradient-to-t from-transparent from-0% to-black/80 to-100%',
-          alignmentMobile === 'bottom' && 'max-md:pb-[calc(var(--app-outer-gutter)_*_4)] max-md:bg-gradient-to-b from-transparent from-0% to-black/80 to-100%',
+          alignmentMobile === 'top' && 'slide-split__content--top max-md:pt-[calc(var(--app-outer-gutter)_*_2)]',
+          alignmentMobile === 'bottom' && 'slide-split__content--bottom max-md:pb-[calc(var(--app-outer-gutter)_*_4)]',
         ]"
       >
         <h3
@@ -89,3 +90,39 @@ const assetType = computed(() => storyblokAssetType(media?.filename || ''))
     </div>
   </div>
 </template>
+
+<style>
+@reference "../../assets/css/main.css";
+
+@variant max-md {
+  .slide-split__content {
+    position: relative;
+    z-index: 0;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      z-index: -1;
+      opacity: 0.6;
+      width: 100%;
+      height: 150%;
+    }
+  }
+
+  .slide-split__content--top {
+    &:before {
+      top: 0;
+      background-image: linear-gradient(to top, transparent, var(--color-black) 50%);
+    }
+  }
+
+  .slide-split__content--bottom {
+    &:before {
+      bottom: 0;
+      background-image: linear-gradient(to bottom, transparent, var(--color-black) 50%);
+    }
+  }
+}
+</style>
