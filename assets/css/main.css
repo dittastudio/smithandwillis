@@ -56,10 +56,10 @@
 :root {
   --app-inner-gutter: --spacing(5);
   --app-outer-gutter: clamp(24px, 12.5714px + 3.5714vw, 64px);
-  --header-height: 88px;
+  --app-header-height: 88px;
 
   @variant md {
     --app-inner-gutter: --spacing(6);
-    --header-height: 104px;
+    --app-header-height: 104px;
   }
 }

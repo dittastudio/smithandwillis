@@ -6,8 +6,20 @@ interface Props {
 const { id } = defineProps<Props>()
 const isOpen = ref<boolean>(false)
 
+const headerId = `accordion-header-${safeKebabCase(id)}`
+const bodyId = `accordion-body-${safeKebabCase(id)}`
+
 const toggleAccordion = () => {
   isOpen.value = !isOpen.value
+
+  if (isOpen.value) {
+    nextTick(() => {
+      const element = document.getElementById(bodyId)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    })
+  }
 }
 
 const isScreenSm = useAtMedia(`(min-width: 600px)`)
@@ -19,9 +31,6 @@ watchEffect(() => {
 
   isOpen.value = isScreenSm.value
 })
-
-const headerId = `accordion-header-${safeKebabCase(id)}`
-const bodyId = `accordion-body-${safeKebabCase(id)}`
 </script>
 
 <template>

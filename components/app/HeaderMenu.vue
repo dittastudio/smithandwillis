@@ -25,7 +25,7 @@ const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
       max-md:-z-1
       max-md:bg-rich-brown
       max-md:text-white
-      max-md:pt-[calc(var(--header-height)_+_--spacing(6))]
+      max-md:pt-[calc(var(--app-header-height)_+_--spacing(6))]
       max-md:pb-[var(--app-outer-gutter)]
       max-md:overflow-y-auto
       max-md:overscroll-contain
