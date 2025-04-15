@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import type { RichtextStoryblok } from '@/types/storyblok'
+import type { Colours } from '@/utils/maps'
 
 interface Props {
-  textColor?: string
-  backgroundColor?: string
+  textColor?: Colours
+  backgroundColor?: Colours
   media: any
   ratio: string
   desktopRatio: string
