@@ -15,10 +15,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     class="hero-image relative overflow-hidden h-svh bg-offblack text-white"
   >
     <UiScrollDown>
-      <div
-        data-js-hero
-        class="h-[inherit]"
-      >
+      <UiParallax>
         <MediaImageResponsive
           v-if="block.media && assetType === 'image'"
           :lazy="false"
@@ -30,7 +27,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
           sizes="100vw sm:100vw md:100vw"
           desktop-sizes="md:100vw lg:100vw xl:100vw 2xl:100vw"
         />
-      </div>
+      </UiParallax>
     </UiScrollDown>
   </div>
 </template>
