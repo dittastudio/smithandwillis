@@ -28,6 +28,7 @@ const ratios = {
       :options="{
         autoplay: block.autoplay,
         navigation: true,
+        pagination: true,
       }"
       :slides="block.slides || []"
       :ratio-x="ratios.mobile.x"
@@ -61,7 +62,10 @@ const ratios = {
         </template>
       </template>
 
-      <template #caption>
+      <template
+        v-if="block.title"
+        #caption
+      >
         <template v-if="block.link">
           <StoryblokLink
             :item="block.link"

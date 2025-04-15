@@ -30,6 +30,7 @@ const ratios = {
           :options="{
             autoplay: true,
             navigation: true,
+            pagination: false,
             slideClasses: 'h-svh',
           }"
           :slides="block.images || []"
