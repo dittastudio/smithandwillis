@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { SlideMediaStoryblok, SlideSplitStoryblok } from '@/types/storyblok'
+import type { Colours } from '@/utils/maps'
 import IconArrowLarge from '@/assets/icons/arrow-large.svg'
 import { useKeenSlider } from 'keen-slider/vue.es'
 import 'keen-slider/keen-slider.min.css'
@@ -37,7 +38,9 @@ const isSlideSplit = computed(() => currentSlide.value?.component === 'slide_spl
 const hasReverseSlide = computed(() => currentSlide.value?.reverse === true)
 
 const getTextColorClass = (slide: SlideSplitStoryblok | SlideMediaStoryblok) => {
-  return slide?.text_color ? colourTextMd[slide.text_color] : 'md:text-offblack'
+  console.log(slide.text_color)
+  const textColor = slide.text_color as Colours
+  return textColor ? colourTextMd[textColor] : 'md:text-offblack'
 }
 
 const textColorClass = computed(() =>

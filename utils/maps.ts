@@ -50,4 +50,4 @@ const ratios: Record<string, string> = {
   'md-1:1': 'md:aspect-[1/1]',
 } as const
 
-export { colourBackground, colourText, colourTextMd, ratios }
+export { colourBackground, type Colours, colourText, colourTextMd, ratios }
