@@ -50,7 +50,7 @@ import IconArrowLarge from '@/assets/icons/arrow-large.svg'
   <div id="ui-scroll-down-anchor" />
 </template>
 
-<style>
+<style scoped>
 @reference "../../assets/css/main.css";
 
 .ui-scroll-down {

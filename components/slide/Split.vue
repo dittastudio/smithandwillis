@@ -97,7 +97,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
   </div>
 </template>
 
-<style>
+<style scoped>
 @reference "../../assets/css/main.css";
 
 @variant max-md {

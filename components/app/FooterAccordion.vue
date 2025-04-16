@@ -103,7 +103,7 @@ watchEffect(() => {
   </div>
 </template>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .app-footer-accordion {
   --accordion-scale: 0.9 1;
   --accordion-wing-leave: wing-leave 0.5s var(--ease-inOutQuart) forwards;

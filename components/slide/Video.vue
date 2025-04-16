@@ -11,8 +11,6 @@ const poster = storyblokImage(block.poster?.filename, {
   width: 1600,
   quality: 70,
 })
-
-console.log(block.video_desktop)
 </script>
 
 <template>

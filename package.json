@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "sb:components": "storyblok pull-components --space 332344",
-    "sb:types": "npm run sb:components && storyblok-generate-ts source=./components.332344.json target=./types/storyblok",
+    "sb:types": "npm run sb:components && storyblok generate-typescript-typedefs --sourceFilePaths ./components.332344.json --destinationFilePath ./types/storyblok.d.ts",
     "dev": "npm run sb:types && nuxt dev --host",
     "dev:ssl": "local-ssl-proxy --source 3010 --target 3000 --cert localhost.pem --key localhost-key.pem",
     "build": "nuxt build",
@@ -39,7 +39,6 @@
     "del-cli": "^6.0.0",
     "eslint": "^9.24.0",
     "sharp": "^0.34.1",
-    "storyblok-generate-ts": "^2.2.0",
     "typescript": "^5.8.3",
     "vite-svg-loader": "^5.1.0"
   }

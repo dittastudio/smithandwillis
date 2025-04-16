@@ -1,15 +1,45 @@
 <script lang="ts" setup>
-import type { PageStoryblok } from '@/types/storyblok'
+import type {
+  BlockCareersStoryblok,
+  BlockCarouselStoryblok,
+  BlockImageStoryblok,
+  BlockSplitStoryblok,
+  BlockTextStoryblok,
+  BlockVideoStoryblok,
+  PageStoryblok,
+} from '@/types/storyblok'
+import type { Colours } from '@/utils/maps'
 
 interface Props {
   content: PageStoryblok
 }
 
+type Blocks = BlockCareersStoryblok
+  | BlockCarouselStoryblok
+  | BlockImageStoryblok
+  | BlockSplitStoryblok
+  | BlockTextStoryblok
+  | BlockVideoStoryblok
+
 const { content } = defineProps<Props>()
 const coverVisible = useState<boolean>('coverVisible')
-const checkBackgroundMatchesPrevBackground = (index: number) => (index === 0)
-  ? false
-  : content?.blocks?.[index].background_color === content.blocks?.[index - 1].background_color
+
+const checkBackgroundMatchesPrevBackground = (index: number) => {
+  const current = content?.blocks?.[index]
+  const previous = content?.blocks?.[index - 1]
+
+  return (index !== 0 && current && previous) ? current.background_color === previous.background_color : false
+}
+
+const hasColourProperties = (block: Blocks): block is BlockSplitStoryblok | BlockTextStoryblok => ['block_text', 'block_split'].includes(block.component)
+
+const setColourProperties = (block: Blocks, index: number) => hasColourProperties(block)
+  ? [
+      colourText[block.text_color as Colours || 'offblack'],
+      colourBackground[block.background_color as Colours || 'warmgrey'],
+      checkBackgroundMatchesPrevBackground(index) ? 'content-blocks__item--same-background' : '',
+    ]
+  : []
 </script>
 
 <template>
@@ -43,9 +73,7 @@ const checkBackgroundMatchesPrevBackground = (index: number) => (index === 0)
       class="content-blocks__item"
       :class="[
         `content-blocks__item--${block.component}`,
-        ['block_text', 'block_split'].includes(block.component) && colourText[block.text_color || 'offblack'],
-        ['block_text', 'block_split'].includes(block.component) && colourBackground[block.background_color || 'warmgrey'],
-        ['block_text', 'block_split'].includes(block.component) && checkBackgroundMatchesPrevBackground(index) ? 'content-blocks__item--same-background' : '',
+        ...setColourProperties(block, index),
       ]"
     >
       <BlockCareers
@@ -83,7 +111,7 @@ const checkBackgroundMatchesPrevBackground = (index: number) => (index === 0)
   </div>
 </template>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .content-blocks__item:not(
   .content-blocks__item--block_image,
   .content-blocks__item--block_video,

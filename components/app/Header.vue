@@ -25,7 +25,7 @@ const prevScrollPos = ref(0)
 const hasScrolled = ref(false)
 const hasScrolledUp = ref(false)
 const hasScrolledDown = ref(false)
-const raf = ref<number>(0)
+const raf = ref<number | null>(null)
 
 const handleScroll = () => {
   const triggerPoint = 50
@@ -70,8 +70,8 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  cancelAnimationFrame(raf.value)
   window.removeEventListener('scroll', rAFHeaderScroll)
+  raf.value && cancelAnimationFrame(raf.value)
 })
 
 const isScreenMd = useAtMedia('(min-width: 800px)')
@@ -158,7 +158,7 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
   </div>
 </template>
 
-<style>
+<style scoped>
 @reference "../../assets/css/main.css";
 
 .app-header {
