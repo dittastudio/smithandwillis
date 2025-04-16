@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { SlideImagesStoryblok, SlideSplitStoryblok } from '@/types/storyblok'
+import type { SlideImagesStoryblok, SlideSplitStoryblok, SlideVideoStoryblok } from '@/types/storyblok'
 import type { Colours } from '@/utils/maps'
 import type { KeenSliderInstance } from 'keen-slider'
 import IconArrowLarge from '@/assets/icons/arrow-large.svg'
@@ -7,7 +7,7 @@ import { useIntersectionObserver } from '@vueuse/core'
 import KeenSlider from 'keen-slider'
 
 interface Props {
-  slides: (SlideSplitStoryblok | SlideImagesStoryblok)[]
+  slides: (SlideSplitStoryblok | SlideImagesStoryblok | SlideVideoStoryblok)[]
   options?: {
     autoplay?: boolean
     navigation?: boolean

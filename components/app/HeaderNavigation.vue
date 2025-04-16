@@ -23,7 +23,6 @@ const menuOpen = useState<boolean>('menuOpen')
         md:items-center
         md:gap-8
         lg:gap-12
-        font-mix
         text-15
         leading-5.5
         tracking-lg
