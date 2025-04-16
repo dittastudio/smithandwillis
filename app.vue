@@ -21,15 +21,18 @@ useSeoMeta({
 })
 
 useState('menuOpen', () => false)
-useState('coverVisible', () => false)
+useState('coverVisible', () => true)
+
+const menuOpen = useState<boolean>('menuOpen')
+const coverVisible = useState<boolean>('coverVisible')
 
 const handleCoverVisible = (value: boolean) => {
-  const coverVisible = useState<boolean>('coverVisible')
-
   coverVisible.value = value
-
-  console.log(value)
 }
+
+watch(() => route.fullPath, async () => {
+  menuOpen.value = false
+})
 </script>
 
 <template>

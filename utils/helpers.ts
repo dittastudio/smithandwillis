@@ -47,14 +47,13 @@ const inOutQuart = (t: number): number => {
 }
 
 const scrollToWithEasing = (target: number | string | HTMLElement, duration: number = 1000, scrollToBottom: boolean = false): void => {
-  const element = typeof target === 'string'
+  const element = typeof target === 'string' && target.length
     ? document.querySelector(target) as HTMLElement
     : target instanceof HTMLElement
       ? target
       : null
 
   if (!element && typeof target !== 'number') {
-    console.warn(`Element with selector "${target}" not found`)
     return
   }
 

@@ -1,10 +1,10 @@
 <template>
-  <div class="isolate flex flex-col min-h-screen">
+  <div class="isolate">
     <header class="sticky top-0 z-10">
       <slot name="header" />
     </header>
 
-    <main class="flex-grow z-1 bg-warm-grey">
+    <main class="relative z-1 min-h-screen bg-offblack">
       <slot name="main" />
     </main>
 
@@ -16,7 +16,6 @@
 
     <slot name="cover" />
 
-    <!-- Contact anchor -->
     <div id="contact" />
 
     <slot name="dev" />
