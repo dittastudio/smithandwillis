@@ -37,8 +37,8 @@ export type MultilinkStoryblok =
 export interface BlockCarouselStoryblok {
   title?: string;
   link?: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
-  slides: (SlideSplitStoryblok | SlideImagesStoryblok | SlideVideoStoryblok)[];
   autoplay: boolean;
+  slides: (SlideSplitStoryblok | SlideImagesStoryblok | SlideVideoStoryblok)[];
   _uid: string;
   component: "block_carousel";
   [k: string]: any;

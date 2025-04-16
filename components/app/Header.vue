@@ -14,17 +14,18 @@ interface Props {
 
 const { primaryNavigation, secondaryNavigation, studioTitle, studio, contactTitle, contact } = defineProps<Props>()
 
+const coverVisible = useState<boolean>('coverVisible')
 const menuOpen = useState<boolean>('menuOpen')
 
 const toggleNavigation = () => {
   menuOpen.value = !menuOpen.value
 }
 
-const prevScrollPos = ref<number>(0)
-const hasScrolled = ref<boolean>(false)
-const hasScrolledUp = ref<boolean>(false)
-const hasScrolledDown = ref<boolean>(false)
-const raf = ref<any>(null)
+const prevScrollPos = ref(0)
+const hasScrolled = ref(false)
+const hasScrolledUp = ref(false)
+const hasScrolledDown = ref(false)
+const raf = ref<number>(0)
 
 const handleScroll = () => {
   const triggerPoint = 50
@@ -55,6 +56,10 @@ const rAFHeaderScroll = () => {
 }
 
 const handleMouseEnter = () => {
+  if (coverVisible.value) {
+    return
+  }
+
   hasScrolledUp.value = true
   hasScrolledDown.value = false
 }
@@ -72,10 +77,7 @@ onUnmounted(() => {
 const isScreenMd = useAtMedia('(min-width: 800px)')
 
 watchEffect(() => {
-  if (!import.meta.client)
-    return
-
-  if (isScreenMd.value) {
+  if (import.meta.client && isScreenMd.value) {
     menuOpen.value = false
   }
 })
@@ -84,7 +86,7 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
   'app-header--has-menu': menuOpen.value,
   'app-header--has-scrolled': hasScrolled.value && !menuOpen.value,
   'app-header--has-scrolled-up': hasScrolledUp.value && !menuOpen.value,
-  'app-header--has-scrolled-down': hasScrolledDown.value && !menuOpen.value,
+  'app-header--has-scrolled-down': coverVisible.value || (hasScrolledDown.value && !menuOpen.value),
 }))
 </script>
 
@@ -209,7 +211,6 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
 
 .app-header__wrapper {
   opacity: 1;
-  /* visibility: visible; */
   translate: 0 0 0;
 
   transition:
@@ -219,7 +220,6 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
 
   .app-header--has-scrolled-down & {
     opacity: 0;
-    /* visibility: hidden; */
     translate: 0 --spacing(-3) 0;
 
     transition:

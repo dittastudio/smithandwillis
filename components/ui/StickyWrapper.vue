@@ -57,7 +57,6 @@ onUnmounted(() => {
   position: sticky;
   bottom: calc((-1 * var(--_block-height)) + 100vh);
   bottom: calc((-1 * var(--_block-height)) + 100svh);
-  z-index: 0;
 
   &.is-shorter {
     bottom: 0;

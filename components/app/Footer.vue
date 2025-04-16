@@ -130,7 +130,8 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
 
           <li class="app-footer__meta-item">
             <a
-              href="/"
+              href="https://ditta.studio"
+              target="_blank"
               class="app-footer__meta-link"
               :class="classesMetaLink"
             >

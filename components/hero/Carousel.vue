@@ -22,7 +22,7 @@ const ratios = {
 <template>
   <div
     v-editable="block"
-    class="hero-carousel bg-offblack text-white h-svh overflow-hidden"
+    class="hero-carousel bg-offblack text-white h-svh"
   >
     <UiScrollDown>
       <UiParallax>

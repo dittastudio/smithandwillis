@@ -8,14 +8,11 @@ interface Props {
 const { items } = defineProps<Props>()
 
 const menuOpen = useState<boolean>('menuOpen')
-
-const classesHeaderLink = 'block py-3 max-md:border-b max-md:border-solid max-md:border-warm-grey/20 md:p-4 md:-m-4 lg:p-6 lg:-m-6 transition-opacity duration-300 ease-out hover:opacity-70'
 </script>
 
 <template>
   <nav
-    class="
-      app-header-navigation"
+    class="app-header-navigation"
     :class="{ 'app-header-navigation--is-open': menuOpen }"
   >
     <ul
@@ -44,7 +41,7 @@ const classesHeaderLink = 'block py-3 max-md:border-b max-md:border-solid max-md
         <StoryblokLink
           v-if="item.link"
           :item="item.link"
-          :class="classesHeaderLink"
+          class="block py-3 max-md:border-b max-md:border-solid max-md:border-warm-grey/20 md:p-4 md:-m-4 lg:p-6 lg:-m-6 transition-opacity duration-300 ease-out hover:opacity-70 [&.router-link-exact-active]:text-orange [&.router-link-active]:text-orange"
           @click="scrollToWithEasing(item.link?.url, 1000, true)"
         >
           {{ item.title }}

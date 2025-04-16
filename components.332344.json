@@ -63,7 +63,7 @@
       "display_name": "Carousel",
       "description": "Carousel",
       "created_at": "2025-04-09T22:03:44.611Z",
-      "updated_at": "2025-04-16T10:55:28.452Z",
+      "updated_at": "2025-04-16T11:21:25.129Z",
       "id": 7195114,
       "schema": {
         "title": {
@@ -77,9 +77,15 @@
           "allow_target_blank": true,
           "id": "X1Bq62-XRbSh2IH_crSOxA"
         },
+        "autoplay": {
+          "type": "boolean",
+          "pos": 2,
+          "inline_label": true,
+          "id": "YDQtVgaBSz6iJjyUwG9V7A"
+        },
         "slides": {
           "type": "bloks",
-          "pos": 2,
+          "pos": 3,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
@@ -91,12 +97,6 @@
           "display_name": "",
           "minimum": 2,
           "required": true
-        },
-        "autoplay": {
-          "type": "boolean",
-          "pos": 3,
-          "inline_label": true,
-          "id": "YDQtVgaBSz6iJjyUwG9V7A"
         }
       },
       "image": null,
@@ -290,7 +290,7 @@
       "display_name": "Text",
       "description": "",
       "created_at": "2025-04-03T18:08:06.117Z",
-      "updated_at": "2025-04-14T13:58:49.360Z",
+      "updated_at": "2025-04-16T12:13:04.479Z",
       "id": 7166149,
       "schema": {
         "headline": {

@@ -5,17 +5,15 @@ const emit = defineEmits<{
   (e: 'cover-visible', value: boolean): void
 }>()
 
-const coverVisible = ref(false)
+const coverVisible = ref(true)
 
 onMounted(async () => {
   if (window.scrollY < 5) {
-    coverVisible.value = true
-    emit('cover-visible', coverVisible.value)
-
     await wait(2000)
-    coverVisible.value = false
-    emit('cover-visible', coverVisible.value)
   }
+
+  coverVisible.value = false
+  emit('cover-visible', false)
 })
 </script>
 
@@ -30,13 +28,13 @@ onMounted(async () => {
   </div>
 </template>
 
-<style>
+<style scoped>
 @reference "../../assets/css/main.css";
 
 .app-cover {
   opacity: 0;
   pointer-events: none;
-  transition: opacity 1s var(--ease-in-out);
+  transition: opacity 0.5s var(--ease-in-out);
 
   &:has(html.is-storyblok-editor) {
     display: none;
@@ -46,6 +44,7 @@ onMounted(async () => {
     opacity: 1;
   }
 }
+
 .app-cover__logo {
   width: 9.75vw;
   max-width: 140px;
