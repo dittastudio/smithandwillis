@@ -17,7 +17,7 @@ const { isOpen = false } = defineProps<Props>()
   </span>
 </template>
 
-<style>
+<style scoped>
 @reference "../../assets/css/main.css";
 
 .ui-burger {

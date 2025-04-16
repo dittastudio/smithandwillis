@@ -276,7 +276,7 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style>
+<style scoped>
 @reference "../../assets/css/main.css";
 
 .ui-carousel-fade__container {

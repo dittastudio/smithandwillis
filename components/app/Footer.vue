@@ -144,7 +144,7 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
   </div>
 </template>
 
-<style>
+<style scoped>
 @reference "../../assets/css/main.css";
 
 .app-footer__meta-container {

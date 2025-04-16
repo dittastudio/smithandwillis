@@ -85,7 +85,7 @@ const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
   </div>
 </template>
 
-<style>
+<style scoped>
 @reference "../../assets/css/main.css";
 .app-header-menu {
   @variant max-md {

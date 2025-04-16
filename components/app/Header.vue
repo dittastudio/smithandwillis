@@ -158,7 +158,7 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
   </div>
 </template>
 
-<style>
+<style scoped>
 @reference "../../assets/css/main.css";
 
 .app-header {
