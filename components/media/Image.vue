@@ -58,7 +58,7 @@ useIntersectionObserver(
 
 const imgMain = useImage()
 
-const imgInfo = computed(() => imgMain.getSizes(storyblokImageUrlUpdate(asset.filename), {
+const imgInfo = computed(() => imgMain.getSizes(storyblokImageUrlUpdate(asset.filename || ''), {
   provider: 'storyblok',
   sizes,
   modifiers: {
@@ -77,7 +77,7 @@ const imgAttrs = computed(() => ({
   ...rest,
   width: size.width,
   height: size.height,
-  src: ready.value ? storyblokImageUrlUpdate(asset.filename) : '',
+  src: ready.value ? storyblokImageUrlUpdate(asset.filename || '') : '',
   sizes: ready.value ? imgInfo.value.sizes : '',
   srcset: ready.value ? imgInfo.value.srcset : '',
   alt: attrs.value?.alt ?? asset.alt ?? '',

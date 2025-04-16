@@ -67,7 +67,7 @@ function getImageSize(imageAsset: AssetStoryblok, imageRatio?: string | number) 
 
 // Function to create image info (srcset, sizes, etc.)
 function createImageInfo(imageAsset: AssetStoryblok, imageSize: { width: number, height: number }, imageSizes: string) {
-  return imgMain.getSizes(storyblokImageUrlUpdate(imageAsset.filename), {
+  return imgMain.getSizes(storyblokImageUrlUpdate(imageAsset.filename || ''), {
     provider: 'storyblok',
     sizes: imageSizes,
     modifiers: {
@@ -112,7 +112,7 @@ const imgAttrs = computed(() => ({
   ...rest,
   width: mobileSize.width,
   height: mobileSize.height,
-  src: ready.value ? storyblokImageUrlUpdate(asset.filename) : '',
+  src: ready.value ? storyblokImageUrlUpdate(asset.filename || '') : '',
   sizes: ready.value ? imgInfo.value.sizes : '',
   srcset: ready.value ? imgInfo.value.srcset : '',
   alt: attrs.alt ?? asset.alt ?? '',
