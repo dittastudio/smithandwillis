@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { SlideMediaStoryblok, SlideSplitStoryblok } from '@/types/storyblok'
+import type { SlideImagesStoryblok, SlideSplitStoryblok } from '@/types/storyblok'
 import type { Colours } from '@/utils/maps'
 import type { KeenSliderInstance } from 'keen-slider'
 import IconArrowLarge from '@/assets/icons/arrow-large.svg'
@@ -7,7 +7,7 @@ import { useIntersectionObserver } from '@vueuse/core'
 import KeenSlider from 'keen-slider'
 
 interface Props {
-  slides: (SlideSplitStoryblok | SlideMediaStoryblok)[]
+  slides: (SlideSplitStoryblok | SlideImagesStoryblok)[]
   options?: {
     autoplay?: boolean
     navigation?: boolean
@@ -43,7 +43,7 @@ const currentSlide = computed(() => slides[current.value])
 const isSlideSplit = computed(() => currentSlide.value?.component === 'slide_split')
 const hasReverseSlide = computed(() => currentSlide.value?.reverse === true)
 
-const getTextColorClass = (slide: SlideSplitStoryblok | SlideMediaStoryblok) => {
+const getTextColorClass = (slide: SlideSplitStoryblok | SlideImagesStoryblok) => {
   const textColor = slide.text_color as Colours
   return textColor ? colourTextMd[textColor] : 'md:text-offblack'
 }
