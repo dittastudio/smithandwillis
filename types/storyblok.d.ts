@@ -253,6 +253,7 @@ export interface PageStoryblok {
 export interface SettingsStoryblok {
   navigation_primary?: LinkStoryblok[];
   navigation_secondary?: LinkStoryblok[];
+  footer_navigation?: LinkStoryblok[];
   studio_title?: string;
   studio?: RichtextStoryblok;
   places_title?: string;

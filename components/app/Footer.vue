@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type { RichtextStoryblok } from '@/types/storyblok'
+import type { LinkStoryblok, RichtextStoryblok } from '@/types/storyblok'
 import IconLogoMark from '@/assets/icons/logo-mark.svg'
 
 interface Props {
+  footerNavigation?: LinkStoryblok[] | undefined
   studioTitle?: string
   studio?: RichtextStoryblok
   placesTitle?: string
@@ -118,14 +119,20 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
             </p>
           </li>
 
-          <li class="app-footer__meta-item">
-            <a
-              href="/"
+          <li
+            v-for="item in footerNavigation"
+            :key="item._uid"
+            class="app-footer__meta-item"
+          >
+            <StoryblokLink
+              v-if="item"
+              :key="item._uid"
+              :item="item.link"
               class="app-footer__meta-link"
               :class="classesMetaLink"
             >
-              Privacy Policy
-            </a>
+              {{ item.title }}
+            </StoryblokLink>
           </li>
 
           <li class="app-footer__meta-item">

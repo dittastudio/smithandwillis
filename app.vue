@@ -55,6 +55,7 @@ watch(() => route.fullPath, async () => {
 
       <template #footer>
         <AppFooter
+          :footer-navigation="settings?.content?.footer_navigation"
           :studio-title="settings?.content?.studio_title"
           :studio="settings?.content?.studio"
           :places-title="settings?.content?.places_title"
