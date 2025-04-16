@@ -16,11 +16,24 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     :class="block.reverse ? 'md:flex-row-reverse' : 'md:flex-row'"
   >
     <div class="w-full md:w-1/2">
-      <MediaImage
+      <MediaImageResponsive
         v-if="block.media && assetType === 'image'"
         :asset="block.media"
+        :desktop-asset="block.media"
         :ratio="block.ratio"
-        sizes="100vw sm:100vw md:50vw lg:50vw"
+        :desktop-ratio="block.ratio_desktop"
+        sizes="
+          2xs:100vw
+          xs:100vw
+          sm:100vw
+          md:100vw
+        "
+        desktop-sizes="
+          md:50vw
+          lg:50vw
+          xl:50vw
+          2xl:50vw
+        "
       />
     </div>
 

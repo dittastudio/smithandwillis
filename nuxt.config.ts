@@ -91,8 +91,9 @@ export default defineNuxtConfig({
     domains: ['storyblok.com', 'smithandwillis.london'],
     quality: 80,
     screens: {
-      'xs': 375,
-      'sm': 480,
+      '2xs': 375,
+      'xs': 480,
+      'sm': 600,
       'md': 800,
       'lg': 1200,
       'xl': 1440,

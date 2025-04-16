@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { useIntersectionObserver } from '@vueuse/core'
+
 const container = ref<HTMLElement | null>(null)
 let rafId: number | null = null
 let lastScrollY = 0
@@ -7,50 +9,39 @@ const handleScroll = () => {
   if (!container.value)
     return
 
-  // Cancel any existing animation frame
   if (rafId) {
     cancelAnimationFrame(rafId)
   }
 
-  // Use requestAnimationFrame for smooth animation
   rafId = requestAnimationFrame(() => {
     const currentScrollY = window.scrollY
     const viewportHeight = window.innerHeight
-    // Calculate percentage based on viewport height
+
     const percentage = (currentScrollY / viewportHeight) * 100
 
-    // Only update if scroll position has changed
     if (currentScrollY !== lastScrollY) {
-      container.value!.style.transform = `translate3d(0, ${percentage * 0.25}%, 0)`
+      container.value!.style.translate = `0 ${percentage * 0.25}% 0`
       lastScrollY = currentScrollY
     }
   })
 }
 
-onMounted(() => {
-  if (!container.value)
-    return
+useIntersectionObserver(
+  container,
+  ([{ isIntersecting }]) => {
+    if (isIntersecting) {
+      window.addEventListener('scroll', handleScroll, { passive: true })
+    }
+    else {
+      window.removeEventListener('scroll', handleScroll)
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          window.addEventListener('scroll', handleScroll, { passive: true })
-        }
-        else {
-          window.removeEventListener('scroll', handleScroll)
-          // Reset transform when out of view
-          if (container.value) {
-            container.value.style.transform = 'translate3d(0, 0, 0)'
-          }
-        }
-      })
-    },
-    { threshold: 0 },
-  )
-
-  observer.observe(container.value)
-})
+      if (container.value) {
+        container.value.style.translate = '0 0 0'
+      }
+    }
+  },
+  { threshold: 0 },
+)
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
@@ -64,7 +55,7 @@ onUnmounted(() => {
   <div
     ref="container"
     data-js-hero
-    class="h-[inherit] will-change-transform backface-visibility-hidden transform-style-preserve-3d"
+    class="h-[inherit] will-change-[translate] backface-visibility-hidden transform-style-preserve-3d transition-transform duration-50 ease-out"
   >
     <slot />
   </div>

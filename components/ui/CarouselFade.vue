@@ -1,15 +1,17 @@
 <script lang="ts" setup>
 import type { SlideMediaStoryblok, SlideSplitStoryblok } from '@/types/storyblok'
 import type { Colours } from '@/utils/maps'
+import type { KeenSliderInstance } from 'keen-slider'
 import IconArrowLarge from '@/assets/icons/arrow-large.svg'
-import { useKeenSlider } from 'keen-slider/vue.es'
-import 'keen-slider/keen-slider.min.css'
+import { useIntersectionObserver } from '@vueuse/core'
+import KeenSlider from 'keen-slider'
 
 interface Props {
   slides: (SlideSplitStoryblok | SlideMediaStoryblok)[]
   options?: {
-    autoplay?: number
+    autoplay?: boolean
     navigation?: boolean
+    pagination?: boolean
     slideClasses?: string
   }
   ratioX?: number
@@ -19,10 +21,14 @@ interface Props {
 }
 
 const { slides, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9, options = {
-  autoplay: null,
+  autoplay: false,
   navigation: true,
+  pagination: true,
   slideClasses: '',
 } } = defineProps<Props>()
+
+const slider = ref<HTMLElement | null>(null)
+const sliderInstance = ref<KeenSliderInstance | null>(null)
 
 const current = ref(0)
 const opacities = ref<number[]>([])
@@ -31,14 +37,13 @@ const isHovering = ref(false)
 const hoveredButton = ref<'left' | 'right' | null>(null)
 const rafId = ref<number | null>(null)
 const supportsHover = ref(false)
+const isVisible = ref(false)
 
 const currentSlide = computed(() => slides[current.value])
-
 const isSlideSplit = computed(() => currentSlide.value?.component === 'slide_split')
 const hasReverseSlide = computed(() => currentSlide.value?.reverse === true)
 
 const getTextColorClass = (slide: SlideSplitStoryblok | SlideMediaStoryblok) => {
-  console.log(slide.text_color)
   const textColor = slide.text_color as Colours
   return textColor ? colourTextMd[textColor] : 'md:text-offblack'
 }
@@ -54,16 +59,10 @@ const paginationColorClass = computed(() =>
 const arrowColorClass = computed(() => {
   if (!isSlideSplit.value)
     return ''
-
   const shouldApplyColor
     = (hasReverseSlide.value && hoveredButton.value === 'left')
       || (!hasReverseSlide.value && hoveredButton.value === 'right')
-
   return shouldApplyColor ? getTextColorClass(currentSlide.value) : ''
-})
-
-onMounted(() => {
-  supportsHover.value = window.matchMedia('(hover: hover)').matches
 })
 
 const updateCursorPosition = (x: number, y: number) => {
@@ -76,12 +75,15 @@ const handleMouseMove = (e: MouseEvent) => {
   if (!isHovering.value || !supportsHover.value)
     return
 
-  if (rafId.value) {
+  if (rafId.value)
     cancelAnimationFrame(rafId.value)
-  }
 
   rafId.value = requestAnimationFrame(() => {
-    updateCursorPosition(e.clientX, e.clientY)
+    const rect = slider.value?.getBoundingClientRect()
+
+    if (rect) {
+      updateCursorPosition(e.clientX - rect.left, e.clientY - rect.top)
+    }
   })
 }
 
@@ -97,72 +99,77 @@ const handleMouseLeave = () => {
     return
   isHovering.value = false
   hoveredButton.value = null
-  if (rafId.value) {
+  if (rafId.value)
     cancelAnimationFrame(rafId.value)
-    rafId.value = null
-  }
 }
 
-onUnmounted(() => {
-  if (rafId.value) {
-    cancelAnimationFrame(rafId.value)
+onMounted(() => {
+  supportsHover.value = window.matchMedia('(hover: hover)').matches
+
+  const easing = (x: number): number => (x < 0.5 ? 8 * x ** 4 : 1 - (-2 * x + 2) ** 4 / 2)
+
+  if (slider.value) {
+    sliderInstance.value = new KeenSlider(slider.value, {
+      initial: current.value,
+      loop: true,
+      slides: slides?.length || 0,
+      defaultAnimation: {
+        duration: 1500,
+        easing,
+      },
+      slideChanged(slider) {
+        current.value = slider.track.details.rel
+      },
+      detailsChanged: (slider) => {
+        opacities.value = slider.track.details.slides.map((s: any) => s.portion)
+      },
+    })
+
+    // Autoplay logic
+    let timeout: ReturnType<typeof setTimeout> | null = null
+
+    const nextTimeout = () => {
+      if (!options?.autoplay || !isVisible.value)
+        return
+
+      if (timeout)
+        clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        sliderInstance.value?.next()
+      }, 3000)
+    }
+
+    const clearNextTimeout = () => {
+      if (timeout)
+        clearTimeout(timeout)
+    }
+
+    useIntersectionObserver(
+      slider,
+      ([{ isIntersecting }]) => {
+        isVisible.value = isIntersecting
+        isVisible.value ? nextTimeout() : clearNextTimeout()
+      },
+      { threshold: 0.5 },
+    )
+
+    sliderInstance.value.on('dragStarted', clearNextTimeout)
+    sliderInstance.value.on('animationEnded', nextTimeout)
+    sliderInstance.value.on('updated', nextTimeout)
   }
 })
 
-const easing = (x: number): number => {
-  return x < 0.5 ? 8 * x * x * x * x : 1 - (-2 * x + 2) ** 4 / 2
-}
-
-const [container, slider] = useKeenSlider({
-  initial: current.value,
-  slides: slides?.length || 0,
-  loop: true,
-  defaultAnimation: {
-    duration: 1000,
-    easing,
-  },
-  slideChanged: (s) => {
-    current.value = s.track.details.rel
-  },
-  detailsChanged: (s) => {
-    opacities.value = s.track.details.slides.map(slide => slide.portion)
-  },
-}, [
-  (slider) => {
-    let timeout: NodeJS.Timeout | null = null
-
-    function clearNextTimeout() {
-      if (timeout) {
-        clearTimeout(timeout)
-      }
-    }
-
-    function nextTimeout() {
-      if (!options?.autoplay)
-        return
-
-      if (timeout) {
-        clearTimeout(timeout)
-      }
-
-      timeout = setTimeout(() => {
-        slider.next()
-      }, options.autoplay)
-    }
-    slider.on('created', () => {
-      nextTimeout()
-    })
-    slider.on('dragStarted', clearNextTimeout)
-    slider.on('animationEnded', nextTimeout)
-    slider.on('updated', nextTimeout)
-  },
-])
+onUnmounted(() => {
+  sliderInstance.value?.destroy()
+  if (rafId.value)
+    cancelAnimationFrame(rafId.value)
+})
 </script>
 
 <template>
   <div class="relative h-[inherit]">
     <div
-      ref="container"
+      ref="slider"
       class="ui-carousel-fade__container relative w-full h-[inherit]"
       :style="{
         '--carousel-ratio-x': ratioX,
@@ -194,9 +201,8 @@ const [container, slider] = useKeenSlider({
         class="absolute inset-0 flex"
       >
         <button
-          v-if="slider"
           class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none touch-none"
-          @click="slider.prev()"
+          @click="sliderInstance?.prev()"
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('left')"
           @mouseleave="handleMouseLeave"
@@ -207,9 +213,8 @@ const [container, slider] = useKeenSlider({
         </button>
 
         <button
-          v-if="slider"
           class="w-1/2 flex items-center justify-end p-[var(--app-outer-gutter)] cursor-none touch-none"
-          @click="slider.next()"
+          @click="sliderInstance?.next()"
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('right')"
           @mouseleave="handleMouseLeave"
@@ -223,7 +228,7 @@ const [container, slider] = useKeenSlider({
       <!-- Cursor Takeover -->
       <div
         v-if="isHovering"
-        class="fixed pointer-events-none z-1 will-change-transform top-0 left-0 translate-x-[var(--carousel-cursor-x)] translate-y-[var(--carousel-cursor-y)] [@media(hover:none)]:hidden"
+        class="absolute pointer-events-none z-1 will-change-transform top-0 left-0 translate-x-[var(--carousel-cursor-x)] translate-y-[var(--carousel-cursor-y)] [@media(hover:none)]:hidden"
         :style="{
           '--carousel-cursor-x': `${cursorPosition.x}px`,
           '--carousel-cursor-y': `${cursorPosition.y}px`,
@@ -240,11 +245,11 @@ const [container, slider] = useKeenSlider({
     </div>
 
     <div
-      v-if="$slots.caption"
       class="absolute inset-0 pointer-events-none flex flex-col justify-end contain-paint contain-layout"
     >
       <div class="sticky bottom-0 flex items-start justify-between wrapper">
         <p
+          v-if="$slots.caption"
           class="ui-carousel-fade__gradient ui-carousel-fade__gradient--left py-[var(--app-outer-gutter)] type-sans-medium-caps transition-colors duration-300 ease-out"
           :class="[
             hasReverseSlide && 'ui-carousel-fade__gradient--hide',
@@ -257,7 +262,8 @@ const [container, slider] = useKeenSlider({
         </p>
 
         <div
-          class="ui-carousel-fade__gradient ui-carousel-fade__gradient--right py-[var(--app-outer-gutter)] type-sans-medium-caps transition-colors duration-300 ease-out"
+          v-if="options.pagination"
+          class="ui-carousel-fade__gradient ui-carousel-fade__gradient--right py-[var(--app-outer-gutter)] type-sans-medium-caps transition-colors duration-300 ease-out ml-auto"
           :class="[
             isSlideSplit && !hasReverseSlide ? 'ui-carousel-fade__gradient--hide' : '',
             paginationColorClass,

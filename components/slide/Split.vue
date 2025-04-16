@@ -1,41 +1,46 @@
 <script lang="ts" setup>
-import type { RichtextStoryblok } from '@/types/storyblok'
+import type { SlideSplitStoryblok } from '@/types/storyblok'
 import type { Colours } from '@/utils/maps'
 
 interface Props {
-  textColor?: Colours
-  backgroundColor?: Colours
-  media: any
+  block: SlideSplitStoryblok
   ratio: string
   desktopRatio: string
-  headline: string
-  text: RichtextStoryblok
-  reverse?: boolean
-  alignmentMobile?: 'top' | 'bottom'
 }
 
-const { media, ratio, headline, text, reverse = false, textColor, backgroundColor, alignmentMobile = 'bottom' } = defineProps<Props>()
-const assetType = computed(() => storyblokAssetType(media?.filename || ''))
+const { block, ratio, desktopRatio } = defineProps<Props>()
+const assetType = computed(() => storyblokAssetType(block.media?.filename || ''))
 </script>
 
 <template>
   <div
     class="relative flex flex-col-reverse items-center h-full"
     :class="[
-      reverse ? 'md:flex-row-reverse' : 'md:flex-row',
-      textColor ? colourText[textColor] : 'text-offblack',
-      backgroundColor ? colourBackground[backgroundColor] : 'bg-warm-grey',
+      block.reverse ? 'md:flex-row-reverse' : 'md:flex-row',
+      block.text_color ? colourText[block.text_color as Colours] : 'text-offblack',
+      block.background_color ? colourBackground[block.background_color as Colours] : 'bg-warm-grey',
       'max-md:text-current max-md:bg-transparent',
     ]"
   >
     <div class="w-full h-[inherit] md:w-1/2">
       <MediaImageResponsive
-        v-if="media && assetType === 'image'"
-        :asset="media"
+        v-if="block.media && assetType === 'image'"
+        :asset="block.media"
+        :desktop-asset="block.media"
         :ratio="ratio"
         :desktop-ratio="desktopRatio"
-        sizes="100vw sm:100vw md:50vw lg:50vw"
-        desktop-sizes="md:100vw lg:100vw xl:100vw 2xl:100vw"
+        sizes="
+          2xs:100vw
+          xs:100vw
+          sm:100vw
+          md:100vw
+        "
+        desktop-sizes="
+          md:50vw
+          lg:50vw
+          xl:50vw
+          2xl:50vw
+        "
       />
     </div>
 
@@ -52,8 +57,8 @@ const assetType = computed(() => storyblokAssetType(media?.filename || ''))
         max-w-[900px]
       "
       :class="[
-        alignmentMobile === 'top' && 'max-md:justify-start',
-        alignmentMobile === 'bottom' && 'max-md:justify-end',
+        block.alignment_mobile === 'top' && 'max-md:justify-start',
+        block.alignment_mobile === 'bottom' && 'max-md:justify-end',
       ]"
     >
       <div
@@ -69,23 +74,23 @@ const assetType = computed(() => storyblokAssetType(media?.filename || ''))
           w-full
         "
         :class="[
-          !reverse && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))]',
-          alignmentMobile === 'top' && 'slide-split__content--top max-md:pt-[calc(var(--app-outer-gutter)_*_2)]',
-          alignmentMobile === 'bottom' && 'slide-split__content--bottom max-md:pb-[calc(var(--app-outer-gutter)_*_4)]',
+          !block.reverse && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))]',
+          block.alignment_mobile === 'top' && 'slide-split__content--top max-md:pt-[calc(var(--app-outer-gutter)_*_2)]',
+          block.alignment_mobile === 'bottom' && 'slide-split__content--bottom max-md:pb-[calc(var(--app-outer-gutter)_*_4)]',
         ]"
       >
         <h3
-          v-if="headline"
+          v-if="block.headline"
           class="type-sans-large-caps text-balance"
         >
-          {{ headline }}
+          {{ block.headline }}
         </h3>
 
         <div
-          v-if="storyblokRichTextContent(text)"
+          v-if="storyblokRichTextContent(block.text)"
           class="prose-body"
         >
-          <StoryblokText :html="text" />
+          <StoryblokText :html="block.text" />
         </div>
       </div>
     </div>

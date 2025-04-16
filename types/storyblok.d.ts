@@ -37,8 +37,8 @@ export type MultilinkStoryblok =
 export interface BlockCarouselStoryblok {
   title?: string;
   link?: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
-  slides: (SlideSplitStoryblok | SlideMediaStoryblok)[];
   autoplay: boolean;
+  slides: (SlideSplitStoryblok | SlideImagesStoryblok | SlideVideoStoryblok)[];
   _uid: string;
   component: "block_carousel";
   [k: string]: any;
@@ -82,9 +82,10 @@ export interface RichtextStoryblok {
 
 export interface BlockSplitStoryblok {
   media?: AssetStoryblok;
-  ratio?: number | string;
   headline?: string;
   text: RichtextStoryblok;
+  ratio?: number | string;
+  ratio_desktop?: number | string;
   link?: LinkStoryblok[];
   reverse: boolean;
   background_color?: number | string;
@@ -191,10 +192,10 @@ export interface SettingsStoryblok {
   [k: string]: any;
 }
 
-export interface SlideMediaStoryblok {
-  media?: MultiassetStoryblok;
+export interface SlideImagesStoryblok {
+  images?: MultiassetStoryblok;
   _uid: string;
-  component: "slide_media";
+  component: "slide_images";
   [k: string]: any;
 }
 
@@ -208,5 +209,14 @@ export interface SlideSplitStoryblok {
   alignment_mobile?: "" | "top" | "bottom";
   _uid: string;
   component: "slide_split";
+  [k: string]: any;
+}
+
+export interface SlideVideoStoryblok {
+  poster: AssetStoryblok;
+  video_mobile: AssetStoryblok;
+  video_desktop?: AssetStoryblok;
+  _uid: string;
+  component: "slide_video";
   [k: string]: any;
 }

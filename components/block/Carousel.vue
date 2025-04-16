@@ -25,6 +25,11 @@ const ratios = {
     class="block-carousel bg-offblack text-white"
   >
     <UiCarouselFade
+      :options="{
+        autoplay: block.autoplay,
+        navigation: true,
+        pagination: true,
+      }"
       :slides="block.slides || []"
       :ratio-x="ratios.mobile.x"
       :ratio-y="ratios.mobile.y"
@@ -32,9 +37,9 @@ const ratios = {
       :ratio-desktop-y="ratios.desktop.y"
     >
       <template #slide="{ slide }">
-        <template v-if="slide.component === 'slide_media'">
-          <SlideMedia
-            :items="slide.media"
+        <template v-if="slide.component === 'slide_images'">
+          <SlideImages
+            :block="slide"
             :ratio-x="ratios.mobile.x"
             :ratio-y="ratios.mobile.y"
             :ratio-desktop-x="ratios.desktop.x"
@@ -42,22 +47,23 @@ const ratios = {
           />
         </template>
 
+        <template v-if="slide.component === 'slide_video'">
+          <SlideVideo :block="slide" />
+        </template>
+
         <template v-if="slide.component === 'slide_split'">
           <SlideSplit
-            :media="slide.media"
+            :block="slide"
             :ratio="`${ratios.mobile.x}:${ratios.mobile.y}`"
             :desktop-ratio="`${ratios.desktop.x / 2}:${ratios.desktop.y}`"
-            :headline="slide.headline"
-            :text="slide.text"
-            :reverse="slide.reverse"
-            :text-color="slide.text_color"
-            :background-color="slide.background_color"
-            :alignment-mobile="slide.alignment_mobile"
           />
         </template>
       </template>
 
-      <template #caption>
+      <template
+        v-if="block.title"
+        #caption
+      >
         <template v-if="block.link">
           <StoryblokLink
             :item="block.link"
