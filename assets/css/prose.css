@@ -1,18 +1,93 @@
-@utility prose-body {
+@utility prose-richtext {
   & p {
-    font-size: var(--text-16);
-    line-height: calc(24 / 16);
-    letter-spacing: var(--tracking-sm);
+    font-size: var(--text-15);
+    line-height: calc(24 / 15);
+    letter-spacing: var(--tracking-md);
     text-wrap: pretty;
     max-width: 60ch;
 
     @variant md {
-      font-size: var(--text-18);
-      line-height: calc(26 / 18);
+      font-size: var(--text-16);
+      line-height: calc(24 / 16);
     }
   }
 
   & p + p {
     margin-block-start: 1em;
+  }
+
+  & :is(
+    h1:has(+ *),
+    h2:has(+ *),
+    h3:has(+ *),
+    h4:has(+ *),
+    h5:has(+ *),
+    h6:has(+ *)
+  ) {
+    margin-block-end: 1em;
+  }
+
+  & :is(h1, h2) {
+    font-family: var(--font-mix);
+    font-size: var(--text-15);
+    line-height: calc(24 / 15);
+    letter-spacing: var(--tracking-lg);
+    text-transform: uppercase;
+
+    @variant md {
+      font-size: var(--text-16);
+      line-height: calc(24 / 16);
+    }
+  }
+
+  & h3 {
+    font-size: var(--text-15);
+    line-height: calc(24 / 15);
+    letter-spacing: var(--tracking-lg);
+    text-transform: uppercase;
+
+    @variant md {
+      font-size: var(--text-16);
+      line-height: calc(24 / 16);
+    }
+  }
+
+  & h4 {
+    font-family: var(--font-mix);
+    font-size: var(--text-13);
+    line-height: calc(22 / 13);
+    letter-spacing: var(--tracking-lg);
+    text-transform: uppercase;
+
+    @variant md {
+      font-size: var(--text-14);
+      line-height: calc(22 / 14);
+    }
+  }
+
+  & :is(h5, h6) {
+    font-family: var(--font-mix);
+    font-size: var(--text-12);
+    line-height: calc(22 / 12);
+    letter-spacing: var(--tracking-lg);
+    text-transform: uppercase;
+
+    @variant md {
+      font-size: var(--text-13);
+      line-height: calc(22 / 13);
+    }
+  }
+}
+
+@utility prose-richtext--lead {
+  & p {
+    font-size: var(--text-16);
+    line-height: calc(24 / 16);
+    letter-spacing: var(--tracking-sm);
+
+    @variant md {
+      font-size: var(--text-18);
+      line-height: calc(26 / 18);
+    }
   }
 }
