@@ -20,10 +20,20 @@ const { items, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9 }
         v-if="storyblokAssetType(item?.filename || '') === 'image'"
         :asset="item"
         :desktop-asset="item"
-        :ratio="`${ratioX}:${ratioY / (items?.length || 1)}`"
-        :desktop-ratio="`${ratioDesktopX / (items?.length || 1)}:${ratioDesktopY}`"
-        sizes="100vw sm:100vw md:100vw"
-        desktop-sizes="md:100vw lg:100vw xl:100vw 2xl:100vw"
+        :ratio="`${ratioX}:${Math.round(ratioY / (items?.length || 1))}`"
+        :desktop-ratio="`${Math.round(ratioDesktopX / (items?.length || 1))}:${ratioDesktopY}`"
+        sizes="
+          2xs:100vw
+          xs:100vw
+          sm:100vw
+          md:100vw
+        "
+        :desktop-sizes="`
+          md:${Math.round(100 / (items?.length || 1))}vw
+          lg:${Math.round(100 / (items?.length || 1))}vw
+          xl:${Math.round(100 / (items?.length || 1))}vw
+          2xl:${Math.round(100 / (items?.length || 1))}vw
+        `"
       />
 
       <div

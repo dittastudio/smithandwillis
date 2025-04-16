@@ -7,7 +7,6 @@ interface Props {
   backgroundColor?: Colours
   media: any
   ratio: string
-  desktopRatio: string
   headline: string
   text: RichtextStoryblok
   reverse?: boolean
@@ -29,13 +28,19 @@ const assetType = computed(() => storyblokAssetType(media?.filename || ''))
     ]"
   >
     <div class="w-full h-[inherit] md:w-1/2">
-      <MediaImageResponsive
+      <MediaImage
         v-if="media && assetType === 'image'"
         :asset="media"
         :ratio="ratio"
-        :desktop-ratio="desktopRatio"
-        sizes="100vw sm:100vw md:50vw lg:50vw"
-        desktop-sizes="md:100vw lg:100vw xl:100vw 2xl:100vw"
+        sizes="
+          2xs:100vw
+          xs:100vw
+          sm:100vw
+          md:50vw
+          lg:50vw
+          xl:50vw
+          2xl:50vw
+        "
       />
     </div>
 

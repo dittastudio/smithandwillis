@@ -89,10 +89,13 @@ const imgAttrs = computed(() => ({
     class="media-image relative isolate overflow-hidden block w-full h-[inherit]"
     :class="[className, { 'is-loaded': loaded, 'is-lazy': lazy }]"
   >
-    <picture ref="container">
+    <picture
+      ref="container"
+      class="h-[inherit]"
+    >
       <img
         v-bind="imgAttrs"
-        class="media-image__file w-full h-auto"
+        class="media-image__file w-full h-[inherit] object-cover"
         :loading="lazy ? 'eager' : 'lazy'"
         @load="loaded = true"
       >
@@ -100,10 +103,10 @@ const imgAttrs = computed(() => ({
 
     <picture
       v-if="lazy"
-      class="media-image__placeholder relative pointer-events-none w-full h-auto"
+      class="media-image__placeholder block w-full h-[inherit] pointer-events-none"
     >
       <img
-        class="block w-full"
+        class="block w-full object-cover h-[inherit]"
         :src="placeholder"
         :width="size.width"
         :height="size.height"

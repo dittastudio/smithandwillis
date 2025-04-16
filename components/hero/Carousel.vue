@@ -47,8 +47,18 @@ const ratios = {
               :desktop-asset="slide"
               :ratio="`${ratios.mobile.x}:${ratios.mobile.y}`"
               :desktop-ratio="`${ratios.desktop.x}:${ratios.desktop.y}`"
-              sizes="100vw sm:100vw md:100vw"
-              desktop-sizes="md:100vw lg:100vw xl:100vw 2xl:100vw"
+              sizes="
+                2xs:100vw
+                xs:100vw
+                sm:100vw
+                md:100vw
+              "
+              desktop-sizes="
+                md:100vw
+                lg:100vw
+                xl:100vw
+                2xl:100vw
+              "
             />
           </template>
         </UiCarouselFade>
