@@ -98,7 +98,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 </template>
 
 <style scoped>
-@reference "../../assets/css/main.css";
+@reference "@/assets/css/main.css";
 
 @variant max-md {
   .slide-split__content {

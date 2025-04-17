@@ -51,7 +51,7 @@ import IconArrowLarge from '@/assets/icons/arrow-large.svg'
 </template>
 
 <style scoped>
-@reference "../../assets/css/main.css";
+@reference "@/assets/css/main.css";
 
 .ui-scroll-down {
   &::before {

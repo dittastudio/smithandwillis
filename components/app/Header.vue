@@ -159,7 +159,7 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
 </template>
 
 <style scoped>
-@reference "../../assets/css/main.css";
+@reference "@/assets/css/main.css";
 
 .app-header {
   &::before {

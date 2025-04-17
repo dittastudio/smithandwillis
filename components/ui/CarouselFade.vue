@@ -38,6 +38,7 @@ const hoveredButton = ref<'left' | 'right' | null>(null)
 const rafId = ref<number | null>(null)
 const supportsHover = ref(false)
 const isVisible = ref(false)
+const isReady = ref(false)
 
 const currentSlide = computed(() => slides[current.value])
 const isSlideSplit = computed(() => currentSlide.value?.component === 'slide_split')
@@ -104,6 +105,7 @@ const handleMouseLeave = () => {
 }
 
 onMounted(() => {
+  isReady.value = true
   supportsHover.value = window.matchMedia('(hover: hover)').matches
 
   const easing = (x: number): number => (x < 0.5 ? 8 * x ** 4 : 1 - (-2 * x + 2) ** 4 / 2)
@@ -185,6 +187,7 @@ onUnmounted(() => {
         :class="[
           options.slideClasses,
           opacities[index] === 1 ? 'pointer-events-auto' : 'pointer-events-none',
+          { 'z-10': index === 0 && !isReady },
         ]"
         :style="{ opacity: opacities[index] }"
       >
@@ -277,7 +280,7 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-@reference "../../assets/css/main.css";
+@reference "@/assets/css/main.css";
 
 .ui-carousel-fade__container {
   display: grid;

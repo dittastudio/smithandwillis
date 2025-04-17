@@ -18,7 +18,7 @@ const { isOpen = false } = defineProps<Props>()
 </template>
 
 <style scoped>
-@reference "../../assets/css/main.css";
+@reference "@/assets/css/main.css";
 
 .ui-burger {
   --burger-button-height: --spacing(6);

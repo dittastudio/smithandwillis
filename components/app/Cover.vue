@@ -9,7 +9,7 @@ const coverVisible = ref(true)
 
 onMounted(async () => {
   if (window.scrollY < 5) {
-    await wait(2000)
+    await wait(3000)
   }
 
   coverVisible.value = false
@@ -18,10 +18,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div
-    class="app-cover fixed inset-0 z-50 h-dvh text-white"
-    :class="{ 'is-visible': coverVisible }"
-  >
+  <div class="app-cover fixed inset-0 z-50 h-dvh text-white">
     <div class="wrapper flex items-center justify-center h-full">
       <IconLogoMark class="app-cover__logo" />
     </div>
@@ -29,25 +26,38 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-@reference "../../assets/css/main.css";
+@reference "@/assets/css/main.css";
+
+@keyframes sequence {
+  0% {
+    opacity: 0;
+    rotate: 15deg;
+  }
+  10%, 90% {
+    opacity: 1;
+    scale: 1;
+    rotate: 0deg;
+  }
+  100% {
+    opacity: 0;
+    scale: 0.85;
+    rotate: -15deg;
+  }
+}
 
 .app-cover {
-  opacity: 0;
   pointer-events: none;
-  transition: opacity 0.5s var(--ease-in-out);
 
   &:has(html.is-storyblok-editor) {
     display: none;
   }
 
-  &.is-visible {
-    opacity: 1;
+  &__logo {
+    width: 9.75vw;
+    max-width: 140px;
+    height: auto;
+    opacity: 0;
+    animation: sequence 2.5s 0.5s ease-out forwards;
   }
-}
-
-.app-cover__logo {
-  width: 9.75vw;
-  max-width: 140px;
-  height: auto;
 }
 </style>
