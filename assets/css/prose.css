@@ -1,5 +1,5 @@
-@utility prose-body {
-  & p {
+@utility prose {
+  & :is(p, ul, ol) {
     font-size: var(--text-16);
     line-height: calc(24 / 16);
     letter-spacing: var(--tracking-sm);
@@ -12,7 +12,110 @@
     }
   }
 
-  & p + p {
-    margin-block-start: 1em;
+  & :is(h1, h2, h3, h4, h5, h6) {
+    margin-block-start: 5em;
+    margin-block-end: 1.5em;
+  }
+
+  & p {
+    margin-block: 1em;
+  }
+
+  & ul,
+  & ol {
+    margin-block: 2em;
+  }
+
+  & ul ul,
+  & ol ol {
+    margin-block: 1em;
+  }
+
+  & li,
+  & li p {
+    margin-block: 0.5em;
+  }
+
+  & ol,
+  & ul {
+    text-align: left;
+  }
+
+  & ol {
+    counter-reset: list-counter;
+  }
+
+  & ol li {
+    position: relative;
+    padding-left: --spacing(5);
+    counter-increment: list-counter;
+
+    &::before {
+      content: counter(list-counter) ".";
+      position: absolute;
+      bottom: 0.15em;
+      left: 0;
+      color: var(--color-rich-brown);
+      font-size: 75%;
+    }
+  }
+
+  & ul li {
+    position: relative;
+    padding-left: --spacing(5);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0.65em;
+      left: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: var(--color-rich-brown);
+    }
+  }
+
+  & ul li li {
+    &::before {
+      border: 1px solid var(--color-rich-brown);
+      background-color: transparent;
+    }
+  }
+
+  & :is(h1, h2) {
+    font-size: var(--text-16);
+    line-height: calc(24 / 16);
+    letter-spacing: var(--tracking-lg);
+    text-transform: uppercase;
+    text-wrap: balance;
+
+    @variant md {
+      font-size: var(--text-18);
+      line-height: calc(26 / 18);
+    }
+  }
+
+  & :is(h3, h4, h5, h6) {
+    font-size: var(--text-15);
+    line-height: calc(24 / 15);
+    letter-spacing: var(--tracking-lg);
+    text-transform: uppercase;
+
+    @variant md {
+      font-size: var(--text-16);
+      line-height: calc(24 / 16);
+    }
+  }
+
+  & p a {
+    text-decoration: underline;
+    text-underline-offset: 0.1em;
+    text-decoration-thickness: 1px;
+    transition: opacity 0.3s var(--ease-in-out);
+
+    &:hover {
+      opacity: 0.6;
+    }
   }
 }

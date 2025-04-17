@@ -23,14 +23,12 @@ const menuOpen = useState<boolean>('menuOpen')
         md:items-center
         md:gap-8
         lg:gap-12
-        font-mix
         text-15
-        leading-5.5
-        tracking-lg
-        uppercase
         md:text-13
         lg:text-14
-        md:leading-6
+        leading-6
+        tracking-lg
+        uppercase
       "
     >
       <li
@@ -41,7 +39,23 @@ const menuOpen = useState<boolean>('menuOpen')
         <StoryblokLink
           v-if="item.link"
           :item="item.link"
-          class="block py-3 max-md:border-b max-md:border-solid max-md:border-warm-grey/20 md:p-4 md:-m-4 lg:p-6 lg:-m-6 transition-opacity duration-300 ease-out hover:opacity-70 [&.router-link-exact-active]:text-orange [&.router-link-active]:text-orange"
+          class="
+            block
+            py-3
+            max-md:border-b
+            max-md:border-solid
+            max-md:border-warm-grey/20
+            md:p-4
+            md:-m-4
+            lg:p-6
+            lg:-m-6
+            transition-[opacity,color]
+            duration-300
+            ease-out
+            hover:opacity-70
+            [&.router-link-exact-active]:text-orange
+            [&.router-link-active]:text-orange
+          "
           @click="scrollToWithEasing(item.link?.url, 1000, true)"
         >
           {{ item.title }}
