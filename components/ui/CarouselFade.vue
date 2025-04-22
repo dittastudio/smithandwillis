@@ -35,10 +35,13 @@ const opacities = ref<number[]>([])
 const cursorPosition = ref({ x: 0, y: 0 })
 const isHovering = ref(false)
 const hoveredButton = ref<'left' | 'right' | null>(null)
-const rafId = ref<number | null>(null)
 const supportsHover = ref(false)
 const isVisible = ref(false)
 const isReady = ref(false)
+const ripples = ref<{ id: number, timestamp: number }[]>([])
+const rippleDuration = ref(1000)
+const rafId = ref<number | null>(null)
+const rippleTimeout = ref<ReturnType<typeof setTimeout> | null>(null)
 
 const currentSlide = computed(() => slides[current.value])
 const isSlideSplit = computed(() => currentSlide.value?.component === 'slide_split')
@@ -100,8 +103,24 @@ const handleMouseLeave = () => {
     return
   isHovering.value = false
   hoveredButton.value = null
+
   if (rafId.value)
     cancelAnimationFrame(rafId.value)
+
+  if (rippleTimeout.value) {
+    clearTimeout(rippleTimeout.value)
+    rippleTimeout.value = null
+  }
+  ripples.value = []
+}
+
+const handleRipple = () => {
+  const id = Date.now()
+  ripples.value.push({ id, timestamp: id })
+
+  rippleTimeout.value = setTimeout(() => {
+    ripples.value = ripples.value.filter(r => r.id !== id)
+  }, rippleDuration.value)
 }
 
 onMounted(() => {
@@ -165,6 +184,8 @@ onUnmounted(() => {
   sliderInstance.value?.destroy()
   if (rafId.value)
     cancelAnimationFrame(rafId.value)
+  if (rippleTimeout.value)
+    clearTimeout(rippleTimeout.value)
 })
 </script>
 
@@ -205,7 +226,7 @@ onUnmounted(() => {
       >
         <button
           class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none touch-none"
-          @click="sliderInstance?.prev()"
+          @click="() => { sliderInstance?.prev(); handleRipple() }"
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('left')"
           @mouseleave="handleMouseLeave"
@@ -217,7 +238,7 @@ onUnmounted(() => {
 
         <button
           class="w-1/2 flex items-center justify-end p-[var(--app-outer-gutter)] cursor-none touch-none"
-          @click="sliderInstance?.next()"
+          @click="() => { sliderInstance?.next(); handleRipple() }"
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('right')"
           @mouseleave="handleMouseLeave"
@@ -231,18 +252,27 @@ onUnmounted(() => {
       <!-- Cursor Takeover -->
       <div
         v-if="isHovering"
-        class="absolute pointer-events-none z-1 will-change-transform top-0 left-0 translate-x-[var(--carousel-cursor-x)] translate-y-[var(--carousel-cursor-y)] [@media(hover:none)]:hidden"
+        class="absolute pointer-events-none z-1 will-change-transform top-0 left-0 translate-x-[calc(var(--carousel-cursor-x)_-_50%)] translate-y-[calc(var(--carousel-cursor-y)_-_50%)] [@media(hover:none)]:hidden"
         :style="{
           '--carousel-cursor-x': `${cursorPosition.x}px`,
           '--carousel-cursor-y': `${cursorPosition.y}px`,
         }"
       >
         <IconArrowLarge
-          class="block w-[16px] h-[18px] -translate-x-1/2 -translate-y-1/2 transition-colors duration-300 ease-out"
+          class="block w-[16px] h-[18px] transition-colors duration-300 ease-out"
           :class="[
             hoveredButton === 'left' ? 'rotate-90' : '-rotate-90',
             arrowColorClass,
           ]"
+        />
+
+        <div
+          v-for="ripple in ripples"
+          :key="ripple.id"
+          class="ui-carousel-fade__ripple absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-5 rounded-full border border-orange/50 bg-orange/30"
+          :style="{
+            '--ui-carousel-fade-animation-duration': `${rippleDuration}ms`,
+          }"
         />
       </div>
     </div>
@@ -332,5 +362,31 @@ onUnmounted(() => {
       opacity: 0;
     }
   }
+}
+
+@keyframes ripple {
+  0% {
+    scale: 1;
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 0.1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    scale: 4;
+    opacity: 0;
+  }
+}
+
+.ui-carousel-fade__ripple {
+  animation-name: ripple;
+  animation-timing-function: var(--ease-out);
+  animation-duration: var(--ui-carousel-fade-animation-duration);
 }
 </style>

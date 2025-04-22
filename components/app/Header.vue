@@ -118,7 +118,6 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
             md:absolute
           "
           :class="[
-            hasScrolled ? 'text-white' : 'text-orange',
             hasScrolledDown && 'delay-500',
             hasScrolledUp ? 'duration-300 delay-0' : 'duration-500',
           ]"
