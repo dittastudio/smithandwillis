@@ -47,17 +47,19 @@ onMounted(async () => {
 
 .app-cover {
   pointer-events: none;
+}
 
-  &:has(html.is-storyblok-editor) {
-    display: none;
-  }
+.app-cover__logo {
+  width: 9.75vw;
+  max-width: 140px;
+  height: auto;
+  opacity: 0;
+  animation: sequence 2.5s 0.5s ease-out forwards;
+}
+</style>
 
-  &__logo {
-    width: 9.75vw;
-    max-width: 140px;
-    height: auto;
-    opacity: 0;
-    animation: sequence 2.5s 0.5s ease-out forwards;
-  }
+<style lang="postcss">
+html.is-storyblok-editor .app-cover {
+  display: none;
 }
 </style>
