@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { LinkStoryblok, PageStoryblok, RichtextStoryblok } from '@/types/storyblok'
+import type { LinkStoryblok, RichtextStoryblok } from '@/types/storyblok'
 
 import IconLogo from '@/assets/icons/logo.svg'
 
@@ -98,7 +98,8 @@ const classesHeader = computed(() => [
 <template>
   <div
     :class="classesHeader"
-    class="app-header h-[var(--app-header-height)] transition-colors ease-in-out text-white hover:text-white"
+    class="app-header h-[var(--app-header-height)] transition-colors ease-in-out"
+
     @mouseenter="handleMouseEnter"
   >
     <div class="app-header__wrapper wrapper py-8 md:py-10 h-[inherit] max-md:flex max-md:items-center max-md:justify-center">
@@ -232,6 +233,16 @@ const classesHeader = computed(() => [
       translate 0.5s var(--ease-inOutQuart),
       opacity 0.5s var(--ease-inOutQuart),
       visibility 0.5s var(--ease-inOutQuart);
+  }
+}
+</style>
+
+<style lang="postcss">
+.app-header {
+  color: var(--color-white);
+
+  html:not(:has([class^="hero-"])) &:not(.app-header--has-menu, .app-header--has-scrolled, :hover) {
+    color: var(--color-offblack);
   }
 }
 </style>
