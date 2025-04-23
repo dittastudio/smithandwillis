@@ -36,6 +36,7 @@ const cursorPosition = ref({ x: 0, y: 0 })
 const isHovering = ref(false)
 const hoveredButton = ref<'left' | 'right' | null>(null)
 const supportsHover = ref(false)
+const canChange = ref(true)
 const isVisible = ref(false)
 const isReady = ref(false)
 const ripples = ref<{ id: number, timestamp: number }[]>([])
@@ -126,6 +127,16 @@ const handleRipple = () => {
   }, rippleDuration.value)
 }
 
+const handleChange = (direction: 'prev' | 'next') => {
+  if (!canChange.value || !sliderInstance.value) {
+    return
+  }
+
+  canChange.value = false
+
+  sliderInstance.value[direction]()
+}
+
 onMounted(() => {
   isReady.value = true
   supportsHover.value = window.matchMedia('(hover: hover)').matches
@@ -182,8 +193,11 @@ onMounted(() => {
     )
 
     sliderInstance.value.on('dragStarted', clearNextTimeout)
-    sliderInstance.value.on('animationEnded', nextTimeout)
     sliderInstance.value.on('updated', nextTimeout)
+    sliderInstance.value.on('animationEnded', () => {
+      nextTimeout()
+      canChange.value = true
+    })
   }
 })
 
@@ -233,7 +247,7 @@ onUnmounted(() => {
       >
         <button
           class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none touch-none"
-          @click="() => { sliderInstance?.prev(); handleRipple() }"
+          @click="() => { handleChange('prev'); handleRipple() }"
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('left')"
           @mouseleave="handleMouseLeave"
@@ -245,7 +259,7 @@ onUnmounted(() => {
 
         <button
           class="w-1/2 flex items-center justify-end p-[var(--app-outer-gutter)] cursor-none touch-none"
-          @click="() => { sliderInstance?.next(); handleRipple() }"
+          @click="() => { handleChange('next'); handleRipple() }"
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('right')"
           @mouseleave="handleMouseLeave"
