@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { LinkStoryblok, RichtextStoryblok } from '@/types/storyblok'
+import type { LinkStoryblok, PageStoryblok, RichtextStoryblok } from '@/types/storyblok'
 
 import IconLogo from '@/assets/icons/logo.svg'
 
@@ -16,6 +16,23 @@ const { primaryNavigation, secondaryNavigation, studioTitle, studio, contactTitl
 
 const coverVisible = useState<boolean>('coverVisible')
 const menuOpen = useState<boolean>('menuOpen')
+const hasHeroBlocks = ref(false)
+
+const checkForHeroBlocks = async (path: string) => {
+  const story = await useStoryblokStory<PageStoryblok>(path)
+  if (story?.value?.content?.hero) {
+    hasHeroBlocks.value = story.value.content.hero.length > 0
+  }
+  else {
+    hasHeroBlocks.value = false
+  }
+
+  console.log('hasHeroBlocks', hasHeroBlocks.value)
+}
+
+watch(() => useRoute().path, async (newPath) => {
+  await checkForHeroBlocks(newPath)
+}, { immediate: true })
 
 const toggleNavigation = () => {
   menuOpen.value = !menuOpen.value
@@ -64,7 +81,7 @@ const handleMouseEnter = () => {
   hasScrolledDown.value = false
 }
 
-onMounted(() => {
+onMounted(async () => {
   rAFHeaderScroll()
   window.addEventListener('scroll', rAFHeaderScroll)
 })
@@ -82,18 +99,22 @@ watchEffect(() => {
   }
 })
 
-const classesHeader = computed<Record<string, boolean>>(() => ({
-  'app-header--has-menu': menuOpen.value,
-  'app-header--has-scrolled': hasScrolled.value && !menuOpen.value,
-  'app-header--has-scrolled-up': hasScrolledUp.value && !menuOpen.value,
-  'app-header--has-scrolled-down': coverVisible.value || (hasScrolledDown.value && !menuOpen.value),
-}))
+const classesHeader = computed(() => [
+  {
+    'app-header--has-menu': menuOpen.value,
+    'app-header--has-scrolled': hasScrolled.value && !menuOpen.value,
+    'app-header--has-scrolled-up': hasScrolledUp.value && !menuOpen.value,
+    'app-header--has-scrolled-down delay-500': coverVisible.value || (hasScrolledDown.value && !menuOpen.value),
+  },
+  !hasHeroBlocks.value && !hasScrolled.value && !menuOpen.value ? 'text-offblack' : 'text-white',
+  hasScrolledUp.value ? 'duration-300 delay-0' : 'duration-500',
+])
 </script>
 
 <template>
   <div
     :class="classesHeader"
-    class="app-header text-white h-[var(--app-header-height)]"
+    class="app-header h-[var(--app-header-height)] transition-colors ease-out"
     @mouseenter="handleMouseEnter"
   >
     <div class="app-header__wrapper wrapper py-8 md:py-10 h-[inherit] max-md:flex max-md:items-center max-md:justify-center">
@@ -112,15 +133,12 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
             p-6
             -my-6
             transition-colors
+            duration-300
             ease-out
             pointer-events-auto
             hover:text-orange
             md:absolute
           "
-          :class="[
-            hasScrolledDown && 'delay-500',
-            hasScrolledUp ? 'duration-300 delay-0' : 'duration-500',
-          ]"
           to="/"
         >
           <IconLogo
