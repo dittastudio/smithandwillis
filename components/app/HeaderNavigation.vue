@@ -53,12 +53,30 @@ const menuOpen = useState<boolean>('menuOpen')
             duration-300
             ease-out
             hover:opacity-70
-            [&.router-link-exact-active]:text-orange
-            [&.router-link-active]:text-orange
+            max-md:[&.router-link-active]:text-orange
+            max-md:[&.router-link-exact-active]:text-orange
           "
           @click="scrollToWithEasing(item.link?.url, 1000, true)"
         >
-          {{ item.title }}
+          <span
+            class="
+              md:relative
+              md:before:absolute
+              md:before:left-0
+              md:before:right-[var(--tracking-lg)]
+              md:before:-bottom-1
+              md:before:h-[1px]
+              md:before:bg-current
+              md:before:opacity-0
+              md:[a.router-link-active>&]:before:opacity-30
+              md:[a.router-link-exact-active>&]:before:opacity-30
+              md:before:transition-opacity
+              md:before:duration-300
+              md:before:ease-out
+            "
+          >
+            {{ item.title }}
+          </span>
         </StoryblokLink>
       </li>
     </ul>

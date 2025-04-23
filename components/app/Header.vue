@@ -97,6 +97,14 @@ watchEffect(() => {
   }
 })
 
+const transitionClasses = computed(() => [
+  'transition-colors ease-in-out',
+  !hasScrolledUp.value && 'duration-300',
+  (hasScrolled.value && hasScrolledDown.value) && 'duration-300 delay-300',
+  (hasScrolled.value && hasScrolledUp.value) && 'duration-300 delay-0',
+  !hasHeroBlocks.value && !hasScrolled.value && !menuOpen.value ? 'text-offblack' : 'text-white',
+])
+
 const classesHeader = computed(() => [
   {
     'app-header--has-menu': menuOpen.value,
@@ -104,15 +112,13 @@ const classesHeader = computed(() => [
     'app-header--has-scrolled-up': hasScrolledUp.value && !menuOpen.value,
     'app-header--has-scrolled-down': coverVisible.value || (hasScrolledDown.value && !menuOpen.value),
   },
-  !hasHeroBlocks.value && !hasScrolled.value && !menuOpen.value ? 'text-offblack' : 'text-white',
-  hasScrolledUp.value ? 'duration-300 delay-0' : 'duration-300',
 ])
 </script>
 
 <template>
   <div
     :class="classesHeader"
-    class="app-header h-[var(--app-header-height)] transition-colors ease-out"
+    class="app-header h-[var(--app-header-height)]"
     @mouseenter="handleMouseEnter"
   >
     <div class="app-header__wrapper wrapper py-8 md:py-10 h-[inherit] max-md:flex max-md:items-center max-md:justify-center">
@@ -130,13 +136,11 @@ const classesHeader = computed(() => [
             block
             p-6
             -my-6
-            transition-colors
-            duration-300
-            ease-in-out
             pointer-events-auto
             hover:text-orange
             md:absolute
           "
+          :class="transitionClasses"
           to="/"
         >
           <IconLogo
@@ -154,6 +158,7 @@ const classesHeader = computed(() => [
       </div>
 
       <AppHeaderMenu
+        :class="transitionClasses"
         :studio-title="studioTitle"
         :studio="studio"
         :contact-title="contactTitle"
