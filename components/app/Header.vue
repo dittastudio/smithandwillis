@@ -102,10 +102,10 @@ const classesHeader = computed(() => [
     'app-header--has-menu': menuOpen.value,
     'app-header--has-scrolled': hasScrolled.value && !menuOpen.value,
     'app-header--has-scrolled-up': hasScrolledUp.value && !menuOpen.value,
-    'app-header--has-scrolled-down delay-500': coverVisible.value || (hasScrolledDown.value && !menuOpen.value),
+    'app-header--has-scrolled-down': coverVisible.value || (hasScrolledDown.value && !menuOpen.value),
   },
   !hasHeroBlocks.value && !hasScrolled.value && !menuOpen.value ? 'text-offblack' : 'text-white',
-  hasScrolledUp.value ? 'duration-300 delay-0' : 'duration-500',
+  hasScrolledUp.value ? 'duration-300 delay-0' : 'duration-300',
 ])
 </script>
 
@@ -132,7 +132,7 @@ const classesHeader = computed(() => [
             -my-6
             transition-colors
             duration-300
-            ease-out
+            ease-in-out
             pointer-events-auto
             hover:text-orange
             md:absolute
