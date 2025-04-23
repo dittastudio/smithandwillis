@@ -31,17 +31,14 @@ onMounted(async () => {
 @keyframes sequence {
   0% {
     opacity: 0;
-    rotate: 15deg;
   }
-  10%, 90% {
+  25%, 75% {
     opacity: 1;
     scale: 1;
-    rotate: 0deg;
   }
   100% {
     opacity: 0;
-    scale: 0.85;
-    rotate: -15deg;
+    scale: 0.95;
   }
 }
 
@@ -51,10 +48,11 @@ onMounted(async () => {
 
 .app-cover__logo {
   width: 9.75vw;
+  min-width: 100px;
   max-width: 140px;
   height: auto;
   opacity: 0;
-  animation: sequence 2.5s 0.5s ease-out forwards;
+  animation: sequence 2.5s 0.5s var(--ease-out) forwards;
 }
 </style>
 

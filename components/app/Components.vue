@@ -52,7 +52,7 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
       <div
         class="w-full h-svh transition-transform duration-1500 ease-in-out"
         :class="{
-          'scale-120': coverVisible,
+          'scale-105': coverVisible,
         }"
       >
         <HeroImage

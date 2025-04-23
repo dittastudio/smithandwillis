@@ -193,7 +193,7 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
       )
     ;
     z-index: -1;
-    transition: opacity 1s var(--ease-out);
+    transition: all 1s var(--ease-out);
     pointer-events: none;
   }
 
@@ -202,9 +202,14 @@ const classesHeader = computed<Record<string, boolean>>(() => ({
     opacity: 0.6;
   }
 
+  &.app-header--has-scrolled:hover::before {
+    opacity: 1;
+    height: 300%;
+  }
+
   &.app-header--has-scrolled-down::before {
     opacity: 0;
-    transition: opacity 0.5s var(--ease-inOutQuart);
+    transition: all 0.5s var(--ease-inOutQuart);
   }
 }
 
