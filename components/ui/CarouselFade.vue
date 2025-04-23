@@ -252,7 +252,18 @@ onUnmounted(() => {
       <!-- Cursor Takeover -->
       <div
         v-if="isHovering"
-        class="absolute pointer-events-none z-1 will-change-transform top-0 left-0 translate-x-[calc(var(--carousel-cursor-x)_-_50%)] translate-y-[calc(var(--carousel-cursor-y)_-_50%)] [@media(hover:none)]:hidden"
+        class="
+          absolute
+          pointer-events-none
+          z-1
+          will-change-transform
+          top-0
+          left-0
+          translate-x-[calc(var(--carousel-cursor-x)_-_50%)]
+          translate-y-[calc(var(--carousel-cursor-y)_-_50%)]
+          [@media(hover:none)]:hidden
+          text-orange
+        "
         :style="{
           '--carousel-cursor-x': `${cursorPosition.x}px`,
           '--carousel-cursor-y': `${cursorPosition.y}px`,
@@ -269,7 +280,7 @@ onUnmounted(() => {
         <div
           v-for="ripple in ripples"
           :key="ripple.id"
-          class="ui-carousel-fade__ripple absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-5 rounded-full border border-orange/50 bg-orange/30"
+          class="ui-carousel-fade__ripple absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-5 rounded-full border border-white/30 bg-white/20"
           :style="{
             '--ui-carousel-fade-animation-duration': `${rippleDuration}ms`,
           }"

@@ -41,11 +41,11 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
             </template>
 
             <template #content>
-              <address class="type-sans-medium not-italic">
+              <address class="not-italic">
                 <div
                   v-if="storyblokRichTextContent(studio)"
                   :class="[
-                    'type-inherit',
+                    'type-mix-medium',
                     classesFooterProse,
                   ]"
                 >
@@ -70,7 +70,7 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
               <div
                 v-if="storyblokRichTextContent(places)"
                 :class="[
-                  'type-sans-medium',
+                  'type-mix-medium',
                   classesFooterProse,
                 ]"
               >
@@ -94,7 +94,7 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
               <div
                 v-if="storyblokRichTextContent(contact)"
                 :class="[
-                  'type-sans-medium',
+                  'type-mix-medium',
                   classesFooterProse,
                 ]"
               >

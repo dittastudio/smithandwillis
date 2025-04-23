@@ -9,7 +9,9 @@ const coverVisible = ref(true)
 
 onMounted(async () => {
   if (window.scrollY < 5) {
+    document.documentElement.classList.add('overflow-hidden')
     await wait(3000)
+    document.documentElement.classList.remove('overflow-hidden')
   }
 
   coverVisible.value = false
@@ -31,14 +33,18 @@ onMounted(async () => {
 @keyframes sequence {
   0% {
     opacity: 0;
+    scale: 0.95;
+    rotate: -6deg;
   }
   25%, 75% {
     opacity: 1;
     scale: 1;
+    rotate: 0deg;
   }
   100% {
     opacity: 0;
     scale: 0.95;
+    rotate: 6deg;
   }
 }
 

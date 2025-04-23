@@ -112,6 +112,7 @@ const classesHeader = computed(() => [
     'app-header--has-scrolled-up': hasScrolledUp.value && !menuOpen.value,
     'app-header--has-scrolled-down': coverVisible.value || (hasScrolledDown.value && !menuOpen.value),
   },
+  ...transitionClasses.value,
 ])
 </script>
 
@@ -137,10 +138,12 @@ const classesHeader = computed(() => [
             p-6
             -my-6
             pointer-events-auto
-            hover:text-orange
+            transition-opacity
+            duration-300
+            ease-out
+            hover:opacity-70
             md:absolute
           "
-          :class="transitionClasses"
           to="/"
         >
           <IconLogo
@@ -158,7 +161,6 @@ const classesHeader = computed(() => [
       </div>
 
       <AppHeaderMenu
-        :class="transitionClasses"
         :studio-title="studioTitle"
         :studio="studio"
         :contact-title="contactTitle"

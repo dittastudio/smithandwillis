@@ -56,6 +56,7 @@
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
+      "metadata": {},
       "component_group_name": "Blocks"
     },
     {
@@ -113,6 +114,7 @@
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
+      "metadata": {},
       "component_group_name": "Blocks"
     },
     {
@@ -120,7 +122,7 @@
       "display_name": "Image",
       "description": null,
       "created_at": "2025-04-02T13:53:04.041Z",
-      "updated_at": "2025-04-13T22:04:27.753Z",
+      "updated_at": "2025-04-23T11:02:45.176Z",
       "id": 7159482,
       "schema": {
         "media": {
@@ -154,8 +156,9 @@
           "use_uuid": true,
           "source": "internal",
           "datasource_slug": "ratio",
-          "default_value": "16:9",
-          "required": true
+          "default_value": "auto",
+          "required": true,
+          "description": ""
         }
       },
       "image": null,
@@ -172,6 +175,7 @@
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
+      "metadata": {},
       "component_group_name": "Blocks"
     },
     {
@@ -283,6 +287,7 @@
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
+      "metadata": {},
       "component_group_name": "Blocks"
     },
     {
@@ -290,7 +295,7 @@
       "display_name": "Text",
       "description": "",
       "created_at": "2025-04-03T18:08:06.117Z",
-      "updated_at": "2025-04-16T15:52:00.370Z",
+      "updated_at": "2025-04-22T12:57:36.836Z",
       "id": 7166149,
       "schema": {
         "headline": {
@@ -315,7 +320,6 @@
             "h4",
             "h5",
             "h6",
-            "hrule",
             "olist",
             "paragraph"
           ],
@@ -373,6 +377,7 @@
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
+      "metadata": {},
       "component_group_name": "Blocks"
     },
     {
@@ -450,6 +455,7 @@
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
+      "metadata": {},
       "component_group_name": "Blocks"
     },
     {
@@ -500,6 +506,7 @@
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
+      "metadata": {},
       "component_group_name": "Elements"
     },
     {
@@ -536,6 +543,7 @@
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
+      "metadata": {},
       "component_group_name": "Heroes"
     },
     {
@@ -573,6 +581,7 @@
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
+      "metadata": {},
       "component_group_name": "Heroes"
     },
     {
@@ -619,6 +628,7 @@
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
+      "metadata": {},
       "component_group_name": "Elements"
     },
     {
@@ -703,6 +713,7 @@
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
+      "metadata": {},
       "component_group_name": "Content Types"
     },
     {
@@ -821,6 +832,7 @@
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
+      "metadata": {},
       "component_group_name": "Content Types"
     },
     {
@@ -855,6 +867,7 @@
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
+      "metadata": {},
       "component_group_name": "Elements"
     },
     {
@@ -959,6 +972,7 @@
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
+      "metadata": {},
       "component_group_name": "Elements"
     },
     {
@@ -1013,6 +1027,7 @@
       "internal_tags_list": [],
       "internal_tag_ids": [],
       "content_type_asset_preview": null,
+      "metadata": {},
       "component_group_name": "Elements"
     }
   ],

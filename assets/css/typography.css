@@ -33,6 +33,18 @@
     text-transform: uppercase;
   }
 
+  .type-mix-medium {
+    font-family: var(--font-mix);
+    font-size: var(--text-15);
+    line-height: calc(24 / 15);
+    letter-spacing: var(--tracking-md);
+
+    @variant md {
+      font-size: var(--text-16);
+      line-height: calc(24 / 16);
+    }
+  }
+
   .type-mix-small-caps {
     font-family: var(--font-mix);
     font-size: var(--text-13);
