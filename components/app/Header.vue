@@ -89,16 +89,14 @@ const classesHeader = computed(() => [
     'app-header--has-scrolled-up': hasScrolledUp.value && !menuOpen.value,
     'app-header--has-scrolled-down': coverVisible.value || (hasScrolledDown.value && !menuOpen.value),
   },
-  !hasScrolledUp.value && 'duration-300',
-  (hasScrolled.value && hasScrolledDown.value) && 'duration-300 delay-300',
-  (hasScrolled.value && hasScrolledUp.value) && 'duration-300 delay-0',
+  (hasScrolled.value && hasScrolledDown.value) && 'transition-colors duration-300 ease-in-out delay-500',
 ])
 </script>
 
 <template>
   <div
     :class="classesHeader"
-    class="app-header h-[var(--app-header-height)] transition-colors ease-in-out"
+    class="app-header h-[var(--app-header-height)]"
 
     @mouseenter="handleMouseEnter"
   >
