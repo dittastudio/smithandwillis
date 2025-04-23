@@ -16,23 +16,7 @@ const { primaryNavigation, secondaryNavigation, studioTitle, studio, contactTitl
 
 const coverVisible = useState<boolean>('coverVisible')
 const menuOpen = ref(false)
-const hasHeroBlocks = ref(false)
-
-const checkForHeroBlocks = async (path: string) => {
-  if (import.meta.client) {
-    const story = await useStoryblokStory<PageStoryblok>(path)
-    if (story?.value?.content?.hero) {
-      hasHeroBlocks.value = story.value.content.hero.length > 0
-    }
-    else {
-      hasHeroBlocks.value = false
-    }
-  }
-}
-
-watch(() => useRoute().path, async (newPath) => {
-  await checkForHeroBlocks(newPath)
-}, { immediate: true })
+const hasHeroBlocks = useState<boolean>('hasHeroBlocks')
 
 const toggleNavigation = () => {
   menuOpen.value = !menuOpen.value
