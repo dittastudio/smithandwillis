@@ -47,7 +47,7 @@ const currentSlide = computed(() => slides[current.value])
 const isSlideSplit = computed(() => currentSlide.value?.component === 'slide_split')
 const hasReverseSlide = computed(() => currentSlide.value?.reverse === true)
 
-const getTextColorClass = (slide: SlideSplitStoryblok | SlideImagesStoryblok) => {
+const getTextColorClass = (slide: SlideSplitStoryblok | SlideImagesStoryblok | SlideVideoStoryblok) => {
   const textColor = slide.text_color as Colours
   return textColor ? colourTextMd[textColor] : 'md:text-offblack'
 }
@@ -61,8 +61,10 @@ const paginationColorClass = computed(() =>
 )
 
 const arrowColorClass = computed(() => {
-  if (!isSlideSplit.value)
+  if (!isSlideSplit.value) {
     return ''
+  }
+
   const shouldApplyColor
     = (hasReverseSlide.value && hoveredButton.value === 'left')
       || (!hasReverseSlide.value && hoveredButton.value === 'right')
@@ -70,17 +72,21 @@ const arrowColorClass = computed(() => {
 })
 
 const updateCursorPosition = (x: number, y: number) => {
-  if (!supportsHover.value)
+  if (!supportsHover.value) {
     return
+  }
+
   cursorPosition.value = { x, y }
 }
 
 const handleMouseMove = (e: MouseEvent) => {
-  if (!isHovering.value || !supportsHover.value)
+  if (!isHovering.value || !supportsHover.value) {
     return
+  }
 
-  if (rafId.value)
+  if (rafId.value) {
     cancelAnimationFrame(rafId.value)
+  }
 
   rafId.value = requestAnimationFrame(() => {
     const rect = slider.value?.getBoundingClientRect()
@@ -99,18 +105,22 @@ const handleMouseEnter = (button: 'left' | 'right') => {
 }
 
 const handleMouseLeave = () => {
-  if (!supportsHover.value)
+  if (!supportsHover.value) {
     return
+  }
+
   isHovering.value = false
   hoveredButton.value = null
 
-  if (rafId.value)
+  if (rafId.value) {
     cancelAnimationFrame(rafId.value)
+  }
 
   if (rippleTimeout.value) {
     clearTimeout(rippleTimeout.value)
     rippleTimeout.value = null
   }
+
   ripples.value = []
 }
 
@@ -150,19 +160,23 @@ onMounted(() => {
     let timeout: ReturnType<typeof setTimeout> | null = null
 
     const nextTimeout = () => {
-      if (!options?.autoplay || !isVisible.value)
+      if (!options?.autoplay || !isVisible.value) {
         return
+      }
 
-      if (timeout)
+      if (timeout) {
         clearTimeout(timeout)
+      }
+
       timeout = setTimeout(() => {
         sliderInstance.value?.next()
       }, 3000)
     }
 
     const clearNextTimeout = () => {
-      if (timeout)
+      if (timeout) {
         clearTimeout(timeout)
+      }
     }
 
     useIntersectionObserver(
@@ -182,10 +196,14 @@ onMounted(() => {
 
 onUnmounted(() => {
   sliderInstance.value?.destroy()
-  if (rafId.value)
+
+  if (rafId.value) {
     cancelAnimationFrame(rafId.value)
-  if (rippleTimeout.value)
+  }
+
+  if (rippleTimeout.value) {
     clearTimeout(rippleTimeout.value)
+  }
 })
 </script>
 
