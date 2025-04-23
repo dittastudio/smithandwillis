@@ -20,7 +20,10 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="app-cover fixed inset-0 z-50 h-dvh text-white">
+  <div
+    v-if="coverVisible"
+    class="app-cover fixed inset-0 z-50 h-dvh text-white"
+  >
     <div class="wrapper flex items-center justify-center h-full">
       <IconLogoMark class="app-cover__logo" />
     </div>
