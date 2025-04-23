@@ -88,8 +88,8 @@ const classesHeader = computed(() => [
     'app-header--has-scrolled': hasScrolled.value && !menuOpen.value,
     'app-header--has-scrolled-up': hasScrolledUp.value && !menuOpen.value,
     'app-header--has-scrolled-down': coverVisible.value || (hasScrolledDown.value && !menuOpen.value),
+    'transition-colors duration-300 ease-in-out delay-500': hasScrolled.value && hasScrolledDown.value,
   },
-  (hasScrolled.value && hasScrolledDown.value) && 'transition-colors duration-300 ease-in-out delay-500',
 ])
 </script>
 
@@ -97,7 +97,6 @@ const classesHeader = computed(() => [
   <div
     :class="classesHeader"
     class="app-header h-[var(--app-header-height)]"
-
     @mouseenter="handleMouseEnter"
   >
     <div class="app-header__wrapper wrapper py-8 md:py-10 h-[inherit] max-md:flex max-md:items-center max-md:justify-center">
@@ -111,6 +110,7 @@ const classesHeader = computed(() => [
 
       <div class="absolute top-0 inset-x-0 w-full h-full flex items-center justify-center pointer-events-none">
         <NuxtLink
+          to="/"
           class="
             block
             p-6
@@ -122,7 +122,6 @@ const classesHeader = computed(() => [
             hover:opacity-70
             md:absolute
           "
-          to="/"
         >
           <IconLogo
             class="
