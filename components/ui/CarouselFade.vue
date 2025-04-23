@@ -40,7 +40,6 @@ const isVisible = ref(false)
 const isReady = ref(false)
 const ripples = ref<{ id: number, timestamp: number }[]>([])
 const rippleDuration = ref(1000)
-const rafId = ref<number | null>(null)
 const rippleTimeout = ref<ReturnType<typeof setTimeout> | null>(null)
 
 const currentSlide = computed(() => slides[current.value])
@@ -68,6 +67,7 @@ const arrowColorClass = computed(() => {
   const shouldApplyColor
     = (hasReverseSlide.value && hoveredButton.value === 'left')
       || (!hasReverseSlide.value && hoveredButton.value === 'right')
+
   return shouldApplyColor ? getTextColorClass(currentSlide.value) : ''
 })
 
@@ -84,22 +84,18 @@ const handleMouseMove = (e: MouseEvent) => {
     return
   }
 
-  if (rafId.value) {
-    cancelAnimationFrame(rafId.value)
+  const rect = slider.value?.getBoundingClientRect()
+
+  if (rect) {
+    updateCursorPosition(e.clientX - rect.left, e.clientY - rect.top)
   }
-
-  rafId.value = requestAnimationFrame(() => {
-    const rect = slider.value?.getBoundingClientRect()
-
-    if (rect) {
-      updateCursorPosition(e.clientX - rect.left, e.clientY - rect.top)
-    }
-  })
 }
 
 const handleMouseEnter = (button: 'left' | 'right') => {
-  if (!supportsHover.value)
+  if (!supportsHover.value) {
     return
+  }
+
   isHovering.value = true
   hoveredButton.value = button
 }
@@ -112,10 +108,6 @@ const handleMouseLeave = () => {
   isHovering.value = false
   hoveredButton.value = null
 
-  if (rafId.value) {
-    cancelAnimationFrame(rafId.value)
-  }
-
   if (rippleTimeout.value) {
     clearTimeout(rippleTimeout.value)
     rippleTimeout.value = null
@@ -126,6 +118,7 @@ const handleMouseLeave = () => {
 
 const handleRipple = () => {
   const id = Date.now()
+
   ripples.value.push({ id, timestamp: id })
 
   rippleTimeout.value = setTimeout(() => {
@@ -196,10 +189,6 @@ onMounted(() => {
 
 onUnmounted(() => {
   sliderInstance.value?.destroy()
-
-  if (rafId.value) {
-    cancelAnimationFrame(rafId.value)
-  }
 
   if (rippleTimeout.value) {
     clearTimeout(rippleTimeout.value)
