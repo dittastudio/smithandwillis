@@ -15,16 +15,18 @@ interface Props {
 const { primaryNavigation, secondaryNavigation, studioTitle, studio, contactTitle, contact } = defineProps<Props>()
 
 const coverVisible = useState<boolean>('coverVisible')
-const menuOpen = useState<boolean>('menuOpen')
+const menuOpen = ref(false)
 const hasHeroBlocks = ref(false)
 
 const checkForHeroBlocks = async (path: string) => {
-  const story = await useStoryblokStory<PageStoryblok>(path)
-  if (story?.value?.content?.hero) {
-    hasHeroBlocks.value = story.value.content.hero.length > 0
-  }
-  else {
-    hasHeroBlocks.value = false
+  if (import.meta.client) {
+    const story = await useStoryblokStory<PageStoryblok>(path)
+    if (story?.value?.content?.hero) {
+      hasHeroBlocks.value = story.value.content.hero.length > 0
+    }
+    else {
+      hasHeroBlocks.value = false
+    }
   }
 }
 
@@ -97,14 +99,6 @@ watchEffect(() => {
   }
 })
 
-const transitionClasses = computed(() => [
-  'transition-colors ease-in-out',
-  !hasScrolledUp.value && 'duration-300',
-  (hasScrolled.value && hasScrolledDown.value) && 'duration-300 delay-300',
-  (hasScrolled.value && hasScrolledUp.value) && 'duration-300 delay-0',
-  !hasHeroBlocks.value && !hasScrolled.value && !menuOpen.value ? 'text-offblack' : 'text-white',
-])
-
 const classesHeader = computed(() => [
   {
     'app-header--has-menu': menuOpen.value,
@@ -112,7 +106,12 @@ const classesHeader = computed(() => [
     'app-header--has-scrolled-up': hasScrolledUp.value && !menuOpen.value,
     'app-header--has-scrolled-down': coverVisible.value || (hasScrolledDown.value && !menuOpen.value),
   },
-  ...transitionClasses.value,
+  'transition-colors ease-in-out',
+  !hasScrolledUp.value && 'duration-300',
+  (hasScrolled.value && hasScrolledDown.value) && 'duration-300 delay-300',
+  (hasScrolled.value && hasScrolledUp.value) && 'duration-300 delay-0',
+  (hasHeroBlocks.value) && 'text-white',
+  (!hasHeroBlocks.value && !hasScrolled.value && !menuOpen.value) && 'text-offblack',
 ])
 </script>
 
