@@ -26,8 +26,6 @@ const checkForHeroBlocks = async (path: string) => {
   else {
     hasHeroBlocks.value = false
   }
-
-  console.log('hasHeroBlocks', hasHeroBlocks.value)
 }
 
 watch(() => useRoute().path, async (newPath) => {
