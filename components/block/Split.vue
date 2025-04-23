@@ -15,7 +15,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     class="block-split flex flex-col-reverse items-center"
     :class="block.reverse ? 'md:flex-row-reverse' : 'md:flex-row'"
   >
-    <div class="w-full md:w-1/2">
+    <div class="w-full md:w-1/2 md:self-stretch md:[&>*]:h-full">
       <MediaImageResponsive
         v-if="block.media && assetType === 'image'"
         :asset="block.media"
