@@ -15,8 +15,7 @@ interface Props {
 const { primaryNavigation, secondaryNavigation, studioTitle, studio, contactTitle, contact } = defineProps<Props>()
 
 const coverVisible = useState<boolean>('coverVisible')
-const menuOpen = ref(false)
-const hasHeroBlocks = useState<boolean>('hasHeroBlocks')
+const menuOpen = useState<boolean>('menuOpen')
 
 const toggleNavigation = () => {
   menuOpen.value = !menuOpen.value
@@ -90,19 +89,16 @@ const classesHeader = computed(() => [
     'app-header--has-scrolled-up': hasScrolledUp.value && !menuOpen.value,
     'app-header--has-scrolled-down': coverVisible.value || (hasScrolledDown.value && !menuOpen.value),
   },
-  'transition-colors ease-in-out',
   !hasScrolledUp.value && 'duration-300',
   (hasScrolled.value && hasScrolledDown.value) && 'duration-300 delay-300',
   (hasScrolled.value && hasScrolledUp.value) && 'duration-300 delay-0',
-  (hasHeroBlocks.value) && 'text-white',
-  (!hasHeroBlocks.value && !hasScrolled.value && !menuOpen.value) && 'text-offblack',
 ])
 </script>
 
 <template>
   <div
     :class="classesHeader"
-    class="app-header h-[var(--app-header-height)]"
+    class="app-header h-[var(--app-header-height)] transition-colors ease-in-out text-white hover:text-white"
     @mouseenter="handleMouseEnter"
   >
     <div class="app-header__wrapper wrapper py-8 md:py-10 h-[inherit] max-md:flex max-md:items-center max-md:justify-center">
@@ -111,7 +107,7 @@ const classesHeader = computed(() => [
         class="absolute top-0 left-0 px-[var(--app-outer-gutter)] py-8 md:hidden active:opacity-70 transition-opacity duration-300 ease-out pointer-events-auto"
         @click="toggleNavigation"
       >
-        <UiBurger :is-open="menuOpen" />
+        <UiBurger />
       </button>
 
       <div class="absolute top-0 inset-x-0 w-full h-full flex items-center justify-center pointer-events-none">
@@ -121,7 +117,7 @@ const classesHeader = computed(() => [
             p-6
             -my-6
             pointer-events-auto
-            transition-opacity
+            transition-[opacity,color]
             duration-300
             ease-out
             hover:opacity-70
@@ -208,7 +204,7 @@ const classesHeader = computed(() => [
     opacity: 0.6;
   }
 
-  &.app-header--has-scrolled:hover::before {
+  &:hover::before {
     opacity: 1;
     height: 300%;
   }

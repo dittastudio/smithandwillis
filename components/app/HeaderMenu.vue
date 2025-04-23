@@ -13,6 +13,10 @@ const { studioTitle, studio, contactTitle, contact } = defineProps<Props>()
 const menuOpen = useState<boolean>('menuOpen')
 
 const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p_a]:ease-out [&_p_a]:opacity-100 [&_p_a]:hover:opacity-70'
+
+watch(() => menuOpen.value, () => {
+  console.log(menuOpen.value)
+})
 </script>
 
 <template>

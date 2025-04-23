@@ -1,15 +1,11 @@
 <script lang="ts" setup>
-interface Props {
-  isOpen?: boolean
-}
-
-const { isOpen = false } = defineProps<Props>()
+const menuOpen = useState<boolean>('menuOpen')
 </script>
 
 <template>
   <span
     class="ui-burger"
-    :class="{ 'ui-burger--is-open': isOpen }"
+    :class="{ 'ui-burger--is-open': menuOpen }"
   >
     <span class="ui-burger__inner" />
 

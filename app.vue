@@ -22,49 +22,16 @@ useSeoMeta({
 
 useState('menuOpen', () => false)
 useState('coverVisible', () => true)
-useState('hasHeroBlocks', () => false)
 
 const menuOpen = useState<boolean>('menuOpen')
 const coverVisible = useState<boolean>('coverVisible')
-const hasHeroBlocks = useState<boolean>('hasHeroBlocks')
 
 const handleCoverVisible = (value: boolean) => {
   coverVisible.value = value
 }
 
-const checkForHeroBlocks = async (path: string) => {
-  if (import.meta.client) {
-    try {
-      const runtimeConfig = useRuntimeConfig()
-      const storyblokApi = useStoryblokApi()
-      const storyBlokSlug = storyblokSlug(path)
-
-      const { data } = await storyblokApi.get(`cdn/stories${storyBlokSlug}`, {
-        version: runtimeConfig.public.STORYBLOK_VERSION === 'published' ? 'published' : 'draft',
-        resolve_relations: [],
-      })
-
-      if (data?.story?.content?.hero) {
-        hasHeroBlocks.value = data.story.content.hero.length > 0
-      }
-      else {
-        hasHeroBlocks.value = false
-      }
-    }
-    catch {
-      hasHeroBlocks.value = false
-    }
-  }
-}
-
 watch(() => route.fullPath, async () => {
   menuOpen.value = false
-  await checkForHeroBlocks(route.path)
-})
-
-// Initial check
-onMounted(async () => {
-  await checkForHeroBlocks(route.path)
 })
 </script>
 
