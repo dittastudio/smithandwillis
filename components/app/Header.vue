@@ -161,16 +161,22 @@ const classesHeader = computed(() => [
 @reference "@/assets/css/main.css";
 
 .app-header {
-  &::before {
-    --app-header-gradient-color: var(--color-rich-brown);
-
+  &::before,
+  &::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 150%;
-    opacity: 0;
+    z-index: -1;
+    transition: all 1s var(--ease-out);
+    pointer-events: none;
+  }
+
+  &::before {
+    --app-header-gradient-color: var(--color-rich-brown);
+
     background-image:
       linear-gradient(
         to bottom,
@@ -192,9 +198,34 @@ const classesHeader = computed(() => [
         --alpha(var(--app-header-gradient-color) / 0%) 100%
       )
     ;
-    z-index: -1;
-    transition: all 1s var(--ease-out);
-    pointer-events: none;
+    opacity: 0;
+  }
+
+  &::after {
+    --app-header-gradient-color: var(--color-offblack);
+
+    background-image:
+      linear-gradient(
+        to bottom,
+        --alpha(var(--app-header-gradient-color) / 100%) 0%,
+        --alpha(var(--app-header-gradient-color) / 98.7%) 8.1%,
+        --alpha(var(--app-header-gradient-color) / 95.1%) 15.5%,
+        --alpha(var(--app-header-gradient-color) / 89.6%) 22.5%,
+        --alpha(var(--app-header-gradient-color) / 82.5%) 29%,
+        --alpha(var(--app-header-gradient-color) / 74.1%) 35.3%,
+        --alpha(var(--app-header-gradient-color) / 64.8%) 41.2%,
+        --alpha(var(--app-header-gradient-color) / 55%) 47.1%,
+        --alpha(var(--app-header-gradient-color) / 45%) 52.9%,
+        --alpha(var(--app-header-gradient-color) / 35.2%) 58.8%,
+        --alpha(var(--app-header-gradient-color) / 25.9%) 64.7%,
+        --alpha(var(--app-header-gradient-color) / 17.5%) 71%,
+        --alpha(var(--app-header-gradient-color) / 10.4%) 77.5%,
+        --alpha(var(--app-header-gradient-color) / 4.9%) 84.5%,
+        --alpha(var(--app-header-gradient-color) / 1.3%) 91.9%,
+        --alpha(var(--app-header-gradient-color) / 0%) 100%
+      )
+    ;
+    opacity: 0.6;
   }
 
   &.app-header--has-scrolled::before,
@@ -202,9 +233,17 @@ const classesHeader = computed(() => [
     opacity: 0.6;
   }
 
-  &:hover::before {
-    opacity: 1;
+  &.app-header--has-scrolled:hover::before {
+    opacity: 0.8;
     height: 300%;
+  }
+
+  &:not(.app-header--has-scrolled):hover::after {
+    opacity: 0.8;
+  }
+
+  &.app-header--has-scrolled::after {
+    opacity: 0;
   }
 
   &.app-header--has-scrolled-down::before {
@@ -238,8 +277,17 @@ const classesHeader = computed(() => [
 .app-header {
   color: var(--color-white);
 
-  html:not(:has([class^="hero-"])) &:not(.app-header--has-menu, .app-header--has-scrolled, :hover) {
+  html:not(:has([class^="hero-"])) &:not(.app-header--has-menu, .app-header--has-scrolled) {
     color: var(--color-offblack);
+  }
+
+  html:not(:has([class^="hero-"])) &:not(.app-header--has-scrolled):hover::before {
+    opacity: 0;
+  }
+
+  html:not(:has([class^="hero-"])) &:not(.app-header--has-scrolled)::after,
+  html:not(:has([class^="hero-"])) &:not(.app-header--has-scrolled):hover::after {
+    opacity: 0;
   }
 }
 </style>

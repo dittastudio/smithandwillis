@@ -54,7 +54,8 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
         items-start
         w-full
         md:w-1/2
-        max-w-[900px]
+        2xl:w-auto
+        2xl:mx-auto
       "
       :class="[
         block.alignment_mobile === 'top' && 'max-md:justify-start',
@@ -74,7 +75,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
           w-full
         "
         :class="[
-          !block.reverse && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))]',
+          !block.reverse && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))] 2xl:pr-[calc(var(--app-outer-gutter)_+_--spacing(4))]',
           block.alignment_mobile === 'top' && 'slide-split__content--top max-md:pt-[calc(var(--app-outer-gutter)_*_2)]',
           block.alignment_mobile === 'bottom' && 'slide-split__content--bottom max-md:pb-[calc(var(--app-outer-gutter)_*_4)]',
         ]"

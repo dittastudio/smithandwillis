@@ -38,8 +38,8 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     </div>
 
     <div
-      class="w-full md:w-1/2 flex flex-col items-start gap-8 md:gap-10 pt-20 pb-12 px-[var(--app-outer-gutter)] md:py-[var(--app-outer-gutter)] max-w-[900px]"
-      :class="!block.reverse && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))]'"
+      class="w-full md:w-1/2 flex flex-col items-start gap-8 md:gap-10 pt-20 pb-12 px-[var(--app-outer-gutter)] md:py-[var(--app-outer-gutter)] 2xl:w-auto 2xl:mx-auto"
+      :class="!block.reverse && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))] 2xl:pr-[calc(var(--app-outer-gutter)_+_--spacing(4))]'"
     >
       <h3
         v-if="block.headline"
