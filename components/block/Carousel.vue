@@ -26,7 +26,7 @@ const ratios = {
   >
     <UiCarouselFade
       :options="{
-        autoplay: block.autoplay,
+        autoplay: false,
         navigation: true,
         pagination: true,
       }"
