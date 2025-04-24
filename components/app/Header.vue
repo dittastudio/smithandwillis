@@ -203,7 +203,7 @@ const classesHeader = computed(() => [
   }
 
   &:hover::before {
-    opacity: 1;
+    opacity: 0.8;
     height: 300%;
   }
 
@@ -238,8 +238,13 @@ const classesHeader = computed(() => [
 .app-header {
   color: var(--color-white);
 
-  html:not(:has([class^="hero-"])) &:not(.app-header--has-menu, .app-header--has-scrolled, :hover) {
+  html:not(:has([class^="hero-"])) &:not(.app-header--has-menu, .app-header--has-scrolled) {
     color: var(--color-offblack);
+  }
+
+  html:not(:has([class^="hero-"])) &:not(.app-header--has-scrolled):hover::before {
+    opacity: 0;
+    height: 100%;
   }
 }
 </style>
