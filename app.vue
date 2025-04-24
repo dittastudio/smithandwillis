@@ -33,16 +33,10 @@ const handleCoverVisible = (value: boolean) => {
 watch(() => route.fullPath, async () => {
   menuOpen.value = false
 })
-
-const runtimeConfig = useRuntimeConfig()
 </script>
 
 <template>
   <div>
-    <p>TEST</p>
-
-    <pre>{{ runtimeConfig.public }}</pre>
-
     <AppLayout>
       <template #header>
         <AppHeader
