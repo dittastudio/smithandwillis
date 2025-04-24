@@ -78,32 +78,32 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
     >
       <BlockCareers
         v-if="block.component === 'block_careers'"
-        :block
+        :block="block"
       />
 
       <BlockCarousel
         v-else-if="block.component === 'block_carousel'"
-        :block
+        :block="block"
       />
 
       <BlockImage
         v-else-if="block.component === 'block_image'"
-        :block
+        :block="block"
       />
 
       <BlockSplit
         v-else-if="block.component === 'block_split'"
-        :block
+        :block="block"
       />
 
       <BlockText
         v-else-if="block.component === 'block_text'"
-        :block
+        :block="block"
       />
 
       <BlockVideo
         v-else-if="block.component === 'block_video'"
-        :block
+        :block="block"
       />
 
       <!-- <Screen :log="block" /> -->
