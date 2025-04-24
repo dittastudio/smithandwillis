@@ -161,16 +161,14 @@ const classesHeader = computed(() => [
 @reference "@/assets/css/main.css";
 
 .app-header {
-  &::before {
-    --app-header-gradient-color: var(--color-rich-brown);
-
+  &::before,
+  &::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 150%;
-    opacity: 0;
     background-image:
       linear-gradient(
         to bottom,
@@ -197,14 +195,34 @@ const classesHeader = computed(() => [
     pointer-events: none;
   }
 
+  &::before {
+    --app-header-gradient-color: var(--color-rich-brown);
+
+    opacity: 0;
+  }
+
+  &::after {
+    --app-header-gradient-color: var(--color-offblack);
+
+    opacity: 0.6;
+  }
+
   &.app-header--has-scrolled::before,
   &.app-header--has-menu::before {
     opacity: 0.6;
   }
 
-  &:hover::before {
+  &.app-header--has-scrolled:hover::before {
     opacity: 0.8;
     height: 300%;
+  }
+
+  &:not(.app-header--has-scrolled):hover::after {
+    opacity: 0.8;
+  }
+
+  &.app-header--has-scrolled::after {
+    opacity: 0;
   }
 
   &.app-header--has-scrolled-down::before {
@@ -244,7 +262,11 @@ const classesHeader = computed(() => [
 
   html:not(:has([class^="hero-"])) &:not(.app-header--has-scrolled):hover::before {
     opacity: 0;
-    height: 100%;
+  }
+
+  html:not(:has([class^="hero-"])) &:not(.app-header--has-scrolled)::after,
+  html:not(:has([class^="hero-"])) &:not(.app-header--has-scrolled):hover::after {
+    opacity: 0;
   }
 }
 </style>
