@@ -2,28 +2,20 @@
 import IconLogoMark from '@/assets/icons/logo-mark.svg'
 
 const emit = defineEmits<{
-  (e: 'cover-visible', value: boolean): void
+  (e: 'done'): void
 }>()
-
-const coverVisible = ref(true)
 
 onMounted(async () => {
   if (window.scrollY < 5) {
-    document.documentElement.classList.add('overflow-hidden')
-    await wait(3000)
-    document.documentElement.classList.remove('overflow-hidden')
+    await wait(1500)
   }
 
-  coverVisible.value = false
-  emit('cover-visible', false)
+  emit('done')
 })
 </script>
 
 <template>
-  <div
-    v-if="coverVisible"
-    class="app-cover fixed inset-0 z-50 h-dvh text-white"
-  >
+  <div class="app-cover fixed inset-0 z-100 h-dvh text-white bg-black/50 pointer-events-none">
     <div class="wrapper flex items-center justify-center h-full">
       <IconLogoMark class="app-cover__logo" />
     </div>
@@ -33,13 +25,25 @@ onMounted(async () => {
 <style scoped>
 @reference "@/assets/css/main.css";
 
-@keyframes sequence {
+@keyframes cover {
+  0% {
+    opacity: 1;
+  }
+  25%, 50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes logo {
   0% {
     opacity: 0;
     scale: 0.95;
     rotate: -6deg;
   }
-  25%, 75% {
+  25%, 50% {
     opacity: 1;
     scale: 1;
     rotate: 0deg;
@@ -52,7 +56,8 @@ onMounted(async () => {
 }
 
 .app-cover {
-  pointer-events: none;
+  display: none;
+  animation: cover 2.5s 0.5s var(--ease-out) forwards;
 }
 
 .app-cover__logo {
@@ -61,12 +66,16 @@ onMounted(async () => {
   max-width: 140px;
   height: auto;
   opacity: 0;
-  animation: sequence 2.5s 0.5s var(--ease-out) forwards;
+  animation: logo 2.5s 0.5s var(--ease-out) forwards;
 }
 </style>
 
 <style lang="postcss">
 html.is-storyblok-editor .app-cover {
   display: none;
+}
+
+html:has([data-component="hero"]) .app-cover {
+  display: block;
 }
 </style>

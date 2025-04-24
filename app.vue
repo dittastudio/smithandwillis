@@ -20,24 +20,26 @@ useSeoMeta({
   robots: 'index, follow',
 })
 
-useState('menuOpen', () => false)
-useState('coverVisible', () => true)
-
-const menuOpen = useState<boolean>('menuOpen')
-const coverVisible = useState<boolean>('coverVisible')
-
-const handleCoverVisible = (value: boolean) => {
-  coverVisible.value = value
-}
+const menuOpen = useState<boolean>('menuOpen', () => false)
 
 watch(() => route.fullPath, async () => {
   menuOpen.value = false
 })
+
+const coverVisible = useState('coverVisible', () => true)
+
+const setDone = () => {
+  coverVisible.value = false
+}
 </script>
 
 <template>
   <div>
     <AppLayout>
+      <template #cover>
+        <AppCover @done="setDone" />
+      </template>
+
       <template #header>
         <AppHeader
           :primary-navigation="settings?.content?.navigation_primary"
@@ -63,10 +65,6 @@ watch(() => route.fullPath, async () => {
           :contact-title="settings?.content?.contact_title"
           :contact="settings?.content?.contact"
         />
-      </template>
-
-      <template #cover>
-        <AppCover @cover-visible="handleCoverVisible" />
       </template>
 
       <template

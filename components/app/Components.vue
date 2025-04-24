@@ -47,10 +47,11 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
     <section
       v-for="hero in content.hero"
       :key="hero._uid"
+      data-component="hero"
       class="overflow-hidden"
     >
       <div
-        class="w-full h-svh transition-transform duration-1500 ease-in-out"
+        class="w-full h-svh transition-transform duration-1500 ease-out"
         :class="{
           'scale-105': coverVisible,
         }"
