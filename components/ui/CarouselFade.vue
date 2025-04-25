@@ -225,7 +225,7 @@ onUnmounted(() => {
       <div
         v-for="(slide, index) in slides"
         :key="index"
-        class="ui-carousel-fade__slide w-full select-none z-1"
+        class="ui-carousel-fade__slide w-full select-none"
         :class="[
           options.slideClasses,
           opacities[index] === 1 ? 'pointer-events-auto' : 'pointer-events-none',
@@ -246,7 +246,7 @@ onUnmounted(() => {
         class="absolute inset-0 flex"
       >
         <button
-          class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none touch-none"
+          class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none"
           @click="() => { handleChange('prev'); handleRipple() }"
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('left')"
@@ -258,7 +258,7 @@ onUnmounted(() => {
         </button>
 
         <button
-          class="w-1/2 flex items-center justify-end p-[var(--app-outer-gutter)] cursor-none touch-none"
+          class="w-1/2 flex items-center justify-end p-[var(--app-outer-gutter)] cursor-none"
           @click="() => { handleChange('next'); handleRipple() }"
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('right')"
