@@ -31,20 +31,32 @@ watch(() => menuOpen.value, () => {
       max-md:text-white
       max-md:pt-[calc(var(--app-header-height)_+_--spacing(6))]
       max-md:pb-[var(--app-outer-gutter)]
+      max-md:px-[var(--app-outer-gutter)]
       max-md:overflow-y-auto
       max-md:overscroll-contain
+      max-md:transition-[opacity,visibility]
+      max-md:duration-500
+      max-md:ease-in-out
     "
-    :class="{ 'app-header-menu--is-open': menuOpen }"
+    :class="{
+      'max-md:opacity-0 max-md:invisible': !menuOpen,
+      'max-md:opacity-100 max-md:visible': menuOpen,
+    }"
   >
     <div
       class="
-        app-header-menu__inner
-        max-md:flex
+        flex
         max-md:flex-col
         max-md:justify-between
         max-md:gap-y-20
         max-md:min-h-full
+        max-md:transition-opacity
+        max-md:ease-in-out
       "
+      :class="{
+        'max-md:opacity-0 max-md:duration-150': !menuOpen,
+        'max-md:opacity-100 max-md:duration-500 max-md:delay-400': menuOpen,
+      }"
     >
       <div class="md:flex md:justify-between md:w-full">
         <slot />
@@ -89,40 +101,10 @@ watch(() => menuOpen.value, () => {
   </div>
 </template>
 
-<style scoped>
-@reference "@/assets/css/main.css";
+<style lang="postcss" scoped>
 .app-header-menu {
-  @variant max-md {
-    transition: opacity 0.5s var(--ease-in-out), visibility 0.5s var(--ease-in-out);
-    opacity: 0;
-    visibility: hidden;
-    padding-inline: var(--app-outer-gutter);
-
-    &--is-open {
-      opacity: 1;
-      visibility: visible;
-    }
-  }
-
   html:has(&.app-header-menu--is-open) {
     overflow: hidden;
-  }
-}
-
-.app-header-menu__inner {
-  @variant md {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  @variant max-md {
-    transition: opacity 0.15s var(--ease-in-out);
-    opacity: 0;
-
-    .app-header-menu--is-open & {
-      transition: opacity 0.5s var(--ease-in-out) 0.4s;
-      opacity: 1;
-    }
   }
 }
 </style>
