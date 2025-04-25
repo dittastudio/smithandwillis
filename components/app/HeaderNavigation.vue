@@ -68,9 +68,12 @@ const menuOpen = useState<boolean>('menuOpen')
               md:before:h-[1px]
               md:before:bg-current
               md:before:opacity-0
+              md:before:translate-y-1
               md:[a.router-link-active>&]:before:opacity-30
               md:[a.router-link-exact-active>&]:before:opacity-30
-              md:before:transition-opacity
+              md:[a.router-link-active>&]:before:translate-y-0
+              md:[a.router-link-exact-active>&]:before:translate-y-0
+              md:before:transition-[opacity,translate]
               md:before:duration-300
               md:before:ease-out
             "
