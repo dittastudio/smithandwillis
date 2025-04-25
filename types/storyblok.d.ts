@@ -212,6 +212,8 @@ export type MultiassetStoryblok = {
 
 export interface HeroCarouselStoryblok {
   images: MultiassetStoryblok;
+  autoplay?: boolean;
+  slides?: (SlideImagesStoryblok | SlideVideoStoryblok)[];
   component: "hero_carousel";
   _uid: string;
   [k: string]: any;

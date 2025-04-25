@@ -2,6 +2,7 @@
 import type { SlideImagesStoryblok } from '@/types/storyblok'
 
 interface Props {
+  index?: number | undefined
   block: SlideImagesStoryblok
   ratioX?: number
   ratioY?: number
@@ -9,7 +10,7 @@ interface Props {
   ratioDesktopY?: number
 }
 
-const { block, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9 } = defineProps<Props>()
+const { block, index, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9 } = defineProps<Props>()
 </script>
 
 <template>
@@ -20,6 +21,7 @@ const { block, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9 }
     >
       <MediaImageResponsive
         v-if="storyblokAssetType(image?.filename || '') === 'image'"
+        :lazy="index ? index !== 0 : true"
         :asset="image"
         :desktop-asset="image"
         :ratio="`${ratioX}:${Math.round(ratioY / (block.images?.length || 1))}`"
