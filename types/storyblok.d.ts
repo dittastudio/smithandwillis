@@ -185,33 +185,7 @@ export interface CareerItemStoryblok {
   [k: string]: any;
 }
 
-export type MultiassetStoryblok = {
-  alt: string | null;
-  copyright?: string | null;
-  fieldtype: "asset";
-  id: number;
-  filename: string | null;
-  name: string;
-  title: string | null;
-  focus: string | null;
-  meta_data?: {
-    [k: string]: any;
-  };
-  source?: string | null;
-  is_external_url?: boolean;
-  is_private?: boolean;
-  src?: string;
-  updated_at?: string;
-  width?: number | null;
-  height?: number | null;
-  aspect_ratio?: number | null;
-  public_id?: string | null;
-  content_type?: string;
-  [k: string]: any;
-}[];
-
 export interface HeroCarouselStoryblok {
-  images: MultiassetStoryblok;
   autoplay?: boolean;
   slides?: (SlideImagesStoryblok | SlideVideoStoryblok)[];
   component: "hero_carousel";
@@ -266,6 +240,31 @@ export interface SettingsStoryblok {
   _uid: string;
   [k: string]: any;
 }
+
+export type MultiassetStoryblok = {
+  alt: string | null;
+  copyright?: string | null;
+  fieldtype: "asset";
+  id: number;
+  filename: string | null;
+  name: string;
+  title: string | null;
+  focus: string | null;
+  meta_data?: {
+    [k: string]: any;
+  };
+  source?: string | null;
+  is_external_url?: boolean;
+  is_private?: boolean;
+  src?: string;
+  updated_at?: string;
+  width?: number | null;
+  height?: number | null;
+  aspect_ratio?: number | null;
+  public_id?: string | null;
+  content_type?: string;
+  [k: string]: any;
+}[];
 
 export interface SlideImagesStoryblok {
   images?: MultiassetStoryblok;

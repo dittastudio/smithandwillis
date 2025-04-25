@@ -1,21 +1,25 @@
 <script lang="ts" setup>
 import IconLogoMark from '@/assets/icons/logo-mark.svg'
 
-const emit = defineEmits<{
-  (e: 'done'): void
-}>()
+const coverVisible = useState('coverVisible')
 
 onMounted(async () => {
   if (window.scrollY < 5) {
+    coverVisible.value = true
     await wait(1500)
   }
 
-  emit('done')
+  coverVisible.value = false
 })
 </script>
 
 <template>
-  <div class="app-cover fixed inset-0 z-100 h-dvh text-white bg-black/50 pointer-events-none">
+  <div
+    class="app-cover fixed inset-0 z-100 h-dvh text-white pointer-events-none opacity-0"
+    :class="{
+      'is-ready': coverVisible,
+    }"
+  >
     <div class="wrapper flex items-center justify-center h-full">
       <IconLogoMark class="app-cover__logo" />
     </div>
@@ -24,18 +28,6 @@ onMounted(async () => {
 
 <style scoped>
 @reference "@/assets/css/main.css";
-
-@keyframes cover {
-  0% {
-    opacity: 1;
-  }
-  25%, 50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 
 @keyframes logo {
   0% {
@@ -56,8 +48,8 @@ onMounted(async () => {
 }
 
 .app-cover {
-  display: none;
-  animation: cover 2.5s 0.5s var(--ease-out) forwards;
+  opacity: 0;
+  transition: opacity 1.5s var(--ease-out);
 }
 
 .app-cover__logo {
@@ -75,7 +67,12 @@ html.is-storyblok-editor .app-cover {
   display: none;
 }
 
-html:has([data-component="hero"]) .app-cover {
-  display: block;
+html:has([data-component="hero"]) .app-cover.is-ready {
+  opacity: 1;
+  transition: none;
+}
+
+html:has([data-component="hero"]):has(.app-cover.is-ready)  {
+  overflow: hidden;
 }
 </style>

@@ -26,18 +26,14 @@ watch(() => route.fullPath, async () => {
   menuOpen.value = false
 })
 
-const coverVisible = useState('coverVisible', () => true)
-
-const setDone = () => {
-  coverVisible.value = false
-}
+useState('coverVisible', () => false)
 </script>
 
 <template>
   <div>
     <AppLayout>
       <template #cover>
-        <AppCover @done="setDone" />
+        <AppCover />
       </template>
 
       <template #header>

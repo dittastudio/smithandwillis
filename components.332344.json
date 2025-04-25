@@ -514,21 +514,9 @@
       "display_name": "Carousel",
       "description": null,
       "created_at": "2025-04-14T10:59:15.118Z",
-      "updated_at": "2025-04-25T12:20:00.085Z",
+      "updated_at": "2025-04-25T12:36:06.638Z",
       "id": 7215241,
       "schema": {
-        "images": {
-          "type": "multiasset",
-          "pos": 0,
-          "required": true,
-          "filetypes": [
-            "images"
-          ],
-          "asset_folder_id": null,
-          "key": "media",
-          "id": "sD3Yw-1rSa6WylKLx8s-MA",
-          "display_name": "Images (OLD)"
-        },
         "autoplay": {
           "type": "boolean",
           "pos": 1,
