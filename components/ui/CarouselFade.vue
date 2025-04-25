@@ -225,7 +225,7 @@ onUnmounted(() => {
       <div
         v-for="(slide, index) in slides"
         :key="index"
-        class="ui-carousel-fade__slide w-full select-none"
+        class="ui-carousel-fade__slide w-full select-none z-1"
         :class="[
           options.slideClasses,
           opacities[index] === 1 ? 'pointer-events-auto' : 'pointer-events-none',
