@@ -233,13 +233,17 @@ const classesHeader = computed(() => [
     opacity: 0.6;
   }
 
-  &.app-header--has-scrolled:hover::before {
-    opacity: 0.8;
-    height: 300%;
+  @media (hover: hover) {
+    &.app-header--has-scrolled:hover::before {
+      opacity: 0.8;
+      height: 300%;
+    }
   }
 
-  &:not(.app-header--has-scrolled):hover::after {
-    opacity: 0.8;
+  @media (hover: hover) {
+    &:not(.app-header--has-scrolled):hover::after {
+      opacity: 0.8;
+    }
   }
 
   &.app-header--has-scrolled::after {
@@ -281,13 +285,20 @@ const classesHeader = computed(() => [
     color: var(--color-offblack);
   }
 
-  html:not(:has([class^="hero-"])) &:not(.app-header--has-scrolled):hover::before {
+  @media (hover: hover) {
+    html:not(:has([class^="hero-"])) &:not(.app-header--has-scrolled):hover::before {
+      opacity: 0;
+    }
+  }
+
+  html:not(:has([class^="hero-"])) &:not(.app-header--has-scrolled)::after {
     opacity: 0;
   }
 
-  html:not(:has([class^="hero-"])) &:not(.app-header--has-scrolled)::after,
-  html:not(:has([class^="hero-"])) &:not(.app-header--has-scrolled):hover::after {
-    opacity: 0;
+  @media (hover: hover) {
+    html:not(:has([class^="hero-"])) &:not(.app-header--has-scrolled):hover::after {
+      opacity: 0;
+    }
   }
 }
 </style>
