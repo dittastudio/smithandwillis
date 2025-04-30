@@ -27,7 +27,6 @@ const storyblokAssetType = (filename: string): 'image' | 'video' | 'other' => {
 
 const storyblokImageUrlUpdate = (url: string) => url.replace('//a.storyblok.com', '//a2.storyblok.com')
 
-// Look at replacing this stuff for useImage() in Nuxt image module.
 const storyblokImage = (
   filename: string | null | undefined,
   modifiers?: Partial<ImageModifiers> | undefined,
