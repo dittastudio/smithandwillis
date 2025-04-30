@@ -23,6 +23,7 @@ useSeoMeta({
 const menuOpen = useState<boolean>('menuOpen', () => false)
 
 watch(() => route.fullPath, async () => {
+  await wait(500)
   menuOpen.value = false
 })
 
