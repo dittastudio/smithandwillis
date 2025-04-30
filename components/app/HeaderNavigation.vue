@@ -6,15 +6,10 @@ interface Props {
 }
 
 const { items } = defineProps<Props>()
-
-const menuOpen = useState<boolean>('menuOpen')
 </script>
 
 <template>
-  <nav
-    class="app-header-navigation"
-    :class="{ 'app-header-navigation--is-open': menuOpen }"
-  >
+  <nav>
     <ul
       class="
         flex
