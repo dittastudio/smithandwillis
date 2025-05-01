@@ -48,7 +48,7 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
       data-component="hero"
       class="relative overflow-hidden"
     >
-      <AppCover class="absolute inset-0 z-100" />
+      <HeroCover class="absolute inset-0 z-100" />
 
       <template
         v-for="hero in content.hero"
