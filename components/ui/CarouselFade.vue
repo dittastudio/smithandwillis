@@ -27,7 +27,7 @@ const { slides, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9,
   slideClasses: '',
 } } = defineProps<Props>()
 
-const slider = ref<HTMLElement | null>(null)
+const slider = useTemplateRef<HTMLElement | null>('slider')
 const sliderInstance = ref<KeenSliderInstance | null>(null)
 
 const current = ref(0)

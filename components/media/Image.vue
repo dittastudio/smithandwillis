@@ -18,7 +18,7 @@ interface Props {
 
 const { asset, ratio, sizes, lazy = true } = defineProps<Props>()
 
-const container = ref<HTMLPictureElement | null>(null)
+const container = useTemplateRef<HTMLPictureElement | null>('container')
 const ready = ref(!lazy)
 const loaded = ref(!lazy)
 
