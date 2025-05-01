@@ -14,8 +14,6 @@
       </footer>
     </UiStickyWrapper>
 
-    <slot name="cover" />
-
     <div id="contact" />
 
     <slot name="dev" />

@@ -22,7 +22,6 @@ type Blocks = BlockCareersStoryblok
   | BlockVideoStoryblok
 
 const { content } = defineProps<Props>()
-const coverVisible = useState<boolean>('coverVisible')
 
 const checkBackgroundMatchesPrevBackground = (index: number) => {
   const current = content?.blocks?.[index]
@@ -45,16 +44,15 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
 <template>
   <div class="-mt-[var(--app-header-height)]">
     <section
-      v-for="hero in content.hero"
-      :key="hero._uid"
+      v-if="content.hero?.length"
       data-component="hero"
-      class="overflow-hidden"
+      class="relative overflow-hidden"
     >
-      <div
-        class="w-full h-svh transition-transform duration-1500 ease-out"
-        :class="{
-          'scale-105': coverVisible,
-        }"
+      <AppCover class="absolute inset-0 z-100" />
+
+      <template
+        v-for="hero in content.hero"
+        :key="hero._uid"
       >
         <HeroImage
           v-if="hero.component === 'hero_image'"
@@ -62,10 +60,10 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
         />
 
         <HeroCarousel
-          v-if="hero.component === 'hero_carousel'"
+          v-else-if="hero.component === 'hero_carousel'"
           :block="hero"
         />
-      </div>
+      </template>
     </section>
 
     <section
