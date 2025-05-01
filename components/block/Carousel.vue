@@ -64,12 +64,14 @@ const ratios = {
         v-if="block.title"
         #caption
       >
-        <template v-if="block.link">
+        <template v-if="block.link?.cached_url">
           <StoryblokLink
             :item="block.link"
             class="block p-3 -m-3 transition-opacity duration-300 ease-out hover:opacity-70"
           >
-            {{ block.title }}
+            <UiTextLink :is-external="block.link.linktype === 'url'">
+              {{ block.title }}
+            </UiTextLink>
           </StoryblokLink>
         </template>
 
