@@ -36,7 +36,6 @@ const cursorPosition = ref({ x: 0, y: 0 })
 const isHovering = ref(false)
 const hoveredButton = ref<'left' | 'right' | null>(null)
 const supportsHover = ref(false)
-const canChange = ref(true)
 const isVisible = ref(false)
 const isReady = ref(false)
 
@@ -108,13 +107,21 @@ const handleMouseLeave = () => {
 }
 
 const handleChange = (direction: 'prev' | 'next') => {
-  if (!canChange.value || !sliderInstance.value) {
+  if (!sliderInstance.value) {
     return
   }
 
-  canChange.value = false
-
   sliderInstance.value[direction]()
+}
+
+const depressed = ref(false)
+
+const handleMouseDown = () => {
+  depressed.value = true
+}
+
+const handleMouseUp = () => {
+  depressed.value = false
 }
 
 onMounted(() => {
@@ -174,10 +181,7 @@ onMounted(() => {
 
     sliderInstance.value.on('dragStarted', clearNextTimeout)
     sliderInstance.value.on('updated', nextTimeout)
-    sliderInstance.value.on('animationEnded', () => {
-      nextTimeout()
-      canChange.value = true
-    })
+    sliderInstance.value.on('animationEnded', nextTimeout)
   }
 })
 
@@ -227,10 +231,14 @@ onUnmounted(() => {
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('left')"
           @mouseleave="handleMouseLeave"
+          @mousedown="handleMouseDown"
+          @mouseup="handleMouseUp"
         >
           <span class="sr-only">Previous</span>
 
-          <IconArrowLarge class="[@media(hover:hover)]:hidden w-[16px] h-[18px] rotate-90" />
+          <IconArrowLarge
+            class="[@media(hover:hover)]:hidden w-[16px] h-[18px] rotate-90"
+          />
         </button>
 
         <button
@@ -239,10 +247,14 @@ onUnmounted(() => {
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('right')"
           @mouseleave="handleMouseLeave"
+          @mousedown="handleMouseDown"
+          @mouseup="handleMouseUp"
         >
           <span class="sr-only">Next</span>
 
-          <IconArrowLarge class="[@media(hover:hover)]:hidden w-[16px] h-[18px] -rotate-90" />
+          <IconArrowLarge
+            class="[@media(hover:hover)]:hidden w-[16px] h-[18px] -rotate-90"
+          />
         </button>
       </div>
 
@@ -267,10 +279,13 @@ onUnmounted(() => {
         }"
       >
         <IconArrowLarge
-          class="block w-[16px] h-[18px] transition-colors duration-300 ease-out"
+          class="block w-[16px] h-[18px] transition-all duration-300 ease-out"
           :class="[
             hoveredButton === 'left' ? 'rotate-90' : '-rotate-90',
             arrowColorClass,
+            {
+              'scale-75': depressed,
+            },
           ]"
         />
       </div>
