@@ -8,17 +8,14 @@ const reversePercentage = (percent: number): number => Math.max(0, Math.min(100,
 const ready = ref(false)
 const { y } = useScroll(window)
 
-const stylesOut = computed(() => {
-  if (import.meta.server) {
-    return {
-      opacity: 100,
+const stylesOut = computed(() => (import.meta.server)
+  ? {
+      opacity: 1,
     }
-  }
-
-  return {
-    opacity: mapRange(reversePercentage(100 / (window.innerHeight / 3) * y.value)),
-  }
-})
+  : {
+      opacity: mapRange(reversePercentage(100 / (window.innerHeight / 3) * y.value)),
+    },
+)
 
 onMounted(async () => {
   await wait(200)
