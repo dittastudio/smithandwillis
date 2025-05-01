@@ -1,27 +1,34 @@
 <script lang="ts" setup>
 import IconLogoMark from '@/assets/icons/logo-mark.svg'
+// import { useScroll } from '@vueuse/core'
 
-const coverVisible = useState('coverVisible')
+const ready = ref(false)
+
+// const { x, y, isScrolling, arrivedState, directions } = useScroll(window)
 
 onMounted(async () => {
-  if (window.scrollY < 5) {
-    coverVisible.value = true
-    await wait(1500)
-  }
-
-  coverVisible.value = false
+  await wait(500)
+  ready.value = true
 })
 </script>
 
 <template>
   <div
-    class="app-cover fixed inset-0 z-100 h-dvh text-white pointer-events-none opacity-0"
+    class="app-cover w-full h-dvh text-white pointer-events-none bg-black/20 opacity-0 transition-opacity duration-1000 ease-out"
     :class="{
-      'is-ready': coverVisible,
+      'opacity-100': ready,
     }"
   >
     <div class="wrapper flex items-center justify-center h-full">
       <IconLogoMark class="app-cover__logo" />
+
+      <!-- <pre>
+        {{ x }}
+        {{ y }}
+        {{ isScrolling }}
+        {{ arrivedState }}
+        {{ directions }}
+      </pre> -->
     </div>
   </div>
 </template>
@@ -29,27 +36,8 @@ onMounted(async () => {
 <style scoped>
 @reference "@/assets/css/main.css";
 
-@keyframes logo {
-  0% {
-    opacity: 0;
-    scale: 0.95;
-    rotate: -6deg;
-  }
-  25%, 50% {
-    opacity: 1;
-    scale: 1;
-    rotate: 0deg;
-  }
-  100% {
-    opacity: 0;
-    scale: 0.95;
-    rotate: 6deg;
-  }
-}
-
 .app-cover {
-  opacity: 0;
-  transition: opacity 1.5s var(--ease-out);
+  /* transition: opacity 1.5s var(--ease-out); */
 }
 
 .app-cover__logo {
@@ -57,8 +45,8 @@ onMounted(async () => {
   min-width: 100px;
   max-width: 140px;
   height: auto;
-  opacity: 0;
-  animation: logo 2.5s 0.5s var(--ease-out) forwards;
+  /* opacity: 0; */
+  /* animation: logo 2.5s 0.5s var(--ease-out) forwards; */
 }
 </style>
 

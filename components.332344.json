@@ -183,7 +183,7 @@
       "display_name": "Split",
       "description": "",
       "created_at": "2025-04-08T16:30:36.828Z",
-      "updated_at": "2025-04-23T16:37:46.109Z",
+      "updated_at": "2025-04-30T14:53:09.704Z",
       "id": 7188205,
       "schema": {
         "media": {
@@ -234,7 +234,7 @@
           "pos": 4,
           "use_uuid": true,
           "source": "internal",
-          "datasource_slug": "ratio-portrait",
+          "datasource_slug": "ratio",
           "id": "_gwNUPdyT5OtPVxmZ0laew",
           "default_value": "1:1"
         },

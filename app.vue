@@ -23,19 +23,14 @@ useSeoMeta({
 const menuOpen = useState<boolean>('menuOpen', () => false)
 
 watch(() => route.fullPath, async () => {
+  await wait(500)
   menuOpen.value = false
 })
-
-useState('coverVisible', () => false)
 </script>
 
 <template>
   <div>
     <AppLayout>
-      <template #cover>
-        <AppCover />
-      </template>
-
       <template #header>
         <AppHeader
           :primary-navigation="settings?.content?.navigation_primary"

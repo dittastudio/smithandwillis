@@ -5,7 +5,7 @@ interface Props {
 
 const { isOpen = false } = defineProps<Props>()
 
-const inner = ref<HTMLDivElement | null>(null)
+const inner = useTemplateRef<HTMLDivElement | null>('inner')
 const height = ref<number>(0)
 const resizeObserver = ref<ResizeObserver | undefined>(undefined)
 

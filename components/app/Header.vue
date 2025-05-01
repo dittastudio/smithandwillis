@@ -14,7 +14,6 @@ interface Props {
 
 const { primaryNavigation, secondaryNavigation, studioTitle, studio, contactTitle, contact } = defineProps<Props>()
 
-const coverVisible = useState<boolean>('coverVisible')
 const menuOpen = useState<boolean>('menuOpen')
 
 const toggleNavigation = () => {
@@ -56,10 +55,6 @@ const rAFHeaderScroll = () => {
 }
 
 const handleMouseEnter = () => {
-  if (coverVisible.value) {
-    return
-  }
-
   hasScrolledUp.value = true
   hasScrolledDown.value = false
 }
@@ -87,7 +82,7 @@ const classesHeader = computed(() => [
     'app-header--has-menu': menuOpen.value,
     'app-header--has-scrolled': hasScrolled.value && !menuOpen.value,
     'app-header--has-scrolled-up': hasScrolledUp.value && !menuOpen.value,
-    'app-header--has-scrolled-down': coverVisible.value || (hasScrolledDown.value && !menuOpen.value),
+    'app-header--has-scrolled-down': hasScrolledDown.value && !menuOpen.value,
     'transition-colors duration-300 ease-in-out delay-500': hasScrolled.value && hasScrolledDown.value,
   },
 ])
