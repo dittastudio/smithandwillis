@@ -123,3 +123,13 @@
     }
   }
 }
+
+@utility prose-large {
+  p {
+    font-size: var(--text-20);
+
+    @variant md {
+      font-size: var(--text-22);
+    }
+  }
+}

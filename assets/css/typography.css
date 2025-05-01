@@ -1,15 +1,4 @@
 @layer base {
-  .type-size-large {
-    font-size: var(--text-18);
-    line-height: calc(26 / 18);
-    letter-spacing: var(--tracking-sm);
-
-    @variant md {
-      font-size: var(--text-20);
-      line-height: calc(28 / 20);
-    }
-  }
-
   .type-sans-large,
   .type-sans-large-caps {
     font-size: var(--text-16);

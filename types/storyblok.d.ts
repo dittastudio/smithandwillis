@@ -155,6 +155,7 @@ export interface BlockSplitStoryblok {
 
 export interface BlockTextStoryblok {
   headline?: string;
+  text_size: number | string;
   text: RichtextStoryblok;
   link?: LinkStoryblok[];
   background_color?: number | string;
