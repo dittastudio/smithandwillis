@@ -1,9 +1,35 @@
 @utility prose {
-  & :is(p, ul, ol) {
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: var(--tracking-lg);
+    text-transform: uppercase;
+    text-wrap: balance;
+    max-width: 60ch;
+  }
+
+  h1, h2 {
+    font-size: var(--text-16);
+    line-height: calc(24 / 16);
+
+    @variant md {
+      font-size: var(--text-18);
+      line-height: calc(26 / 18);
+    }
+  }
+
+  h3, h4, h5, h6 {
+    font-size: var(--text-15);
+    line-height: calc(24 / 15);
+
+    @variant md {
+      font-size: var(--text-16);
+      line-height: calc(24 / 16);
+    }
+  }
+
+  p, ul, ol {
     font-size: var(--text-16);
     line-height: calc(24 / 16);
     letter-spacing: var(--tracking-sm);
-    text-wrap: pretty;
     max-width: 60ch;
 
     @variant md {
@@ -83,31 +109,6 @@
     &::before {
       border: 1px solid var(--color-rich-brown);
       background-color: transparent;
-    }
-  }
-
-  & :is(h1, h2) {
-    font-size: var(--text-16);
-    line-height: calc(24 / 16);
-    letter-spacing: var(--tracking-lg);
-    text-transform: uppercase;
-    text-wrap: balance;
-
-    @variant md {
-      font-size: var(--text-18);
-      line-height: calc(26 / 18);
-    }
-  }
-
-  & :is(h3, h4, h5, h6) {
-    font-size: var(--text-15);
-    line-height: calc(24 / 15);
-    letter-spacing: var(--tracking-lg);
-    text-transform: uppercase;
-
-    @variant md {
-      font-size: var(--text-16);
-      line-height: calc(24 / 16);
     }
   }
 
