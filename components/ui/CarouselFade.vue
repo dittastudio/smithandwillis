@@ -39,9 +39,6 @@ const supportsHover = ref(false)
 const canChange = ref(true)
 const isVisible = ref(false)
 const isReady = ref(false)
-const ripples = ref<{ id: number, timestamp: number }[]>([])
-const rippleDuration = ref(1000)
-const rippleTimeout = ref<ReturnType<typeof setTimeout> | null>(null)
 
 const currentSlide = computed(() => slides[current.value])
 const isSlideSplit = computed(() => currentSlide.value?.component === 'slide_split')
@@ -108,23 +105,6 @@ const handleMouseLeave = () => {
 
   isHovering.value = false
   hoveredButton.value = null
-
-  if (rippleTimeout.value) {
-    clearTimeout(rippleTimeout.value)
-    rippleTimeout.value = null
-  }
-
-  ripples.value = []
-}
-
-const handleRipple = () => {
-  const id = Date.now()
-
-  ripples.value.push({ id, timestamp: id })
-
-  rippleTimeout.value = setTimeout(() => {
-    ripples.value = ripples.value.filter(r => r.id !== id)
-  }, rippleDuration.value)
 }
 
 const handleChange = (direction: 'prev' | 'next') => {
@@ -203,10 +183,6 @@ onMounted(() => {
 
 onUnmounted(() => {
   sliderInstance.value?.destroy()
-
-  if (rippleTimeout.value) {
-    clearTimeout(rippleTimeout.value)
-  }
 })
 </script>
 
@@ -247,7 +223,7 @@ onUnmounted(() => {
       >
         <button
           class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none"
-          @click="() => { handleChange('prev'); handleRipple() }"
+          @click="handleChange('prev')"
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('left')"
           @mouseleave="handleMouseLeave"
@@ -259,7 +235,7 @@ onUnmounted(() => {
 
         <button
           class="w-1/2 flex items-center justify-end p-[var(--app-outer-gutter)] cursor-none"
-          @click="() => { handleChange('next'); handleRipple() }"
+          @click="handleChange('next')"
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('right')"
           @mouseleave="handleMouseLeave"
@@ -296,15 +272,6 @@ onUnmounted(() => {
             hoveredButton === 'left' ? 'rotate-90' : '-rotate-90',
             arrowColorClass,
           ]"
-        />
-
-        <div
-          v-for="ripple in ripples"
-          :key="ripple.id"
-          class="ui-carousel-fade__ripple absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-5 rounded-full border border-white/30 bg-white/20"
-          :style="{
-            '--ui-carousel-fade-animation-duration': `${rippleDuration}ms`,
-          }"
         />
       </div>
     </div>
@@ -394,31 +361,5 @@ onUnmounted(() => {
       opacity: 0;
     }
   }
-}
-
-@keyframes ripple {
-  0% {
-    scale: 1;
-    opacity: 1;
-  }
-
-  25% {
-    opacity: 0.1;
-  }
-
-  50% {
-    opacity: 0;
-  }
-
-  100% {
-    scale: 4;
-    opacity: 0;
-  }
-}
-
-.ui-carousel-fade__ripple {
-  animation-name: ripple;
-  animation-timing-function: var(--ease-out);
-  animation-duration: var(--ui-carousel-fade-animation-duration);
 }
 </style>
