@@ -59,7 +59,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
         v-for="item in block.link"
       >
         <StoryblokLink
-          v-if="item"
+          v-if="item.link.url"
           :key="item._uid"
           :item="item.link"
           class="type-mix-small-caps"

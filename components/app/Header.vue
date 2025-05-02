@@ -238,6 +238,7 @@ const classesHeader = computed(() => [
   @media (hover: hover) {
     &:not(.app-header--has-scrolled):hover::after {
       opacity: 0.8;
+      height: 300%;
     }
   }
 
