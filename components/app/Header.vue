@@ -14,6 +14,7 @@ interface Props {
 const { primaryNavigation, secondaryNavigation, studioTitle, studio, contactTitle, contact } = defineProps<Props>()
 
 const menuOpen = useState<boolean>('menuOpen')
+const ready = ref(false)
 
 const toggleNavigation = () => {
   menuOpen.value = !menuOpen.value
@@ -61,6 +62,9 @@ const handleMouseEnter = () => {
 onMounted(async () => {
   rAFHeaderScroll()
   window.addEventListener('scroll', rAFHeaderScroll)
+
+  await wait(200)
+  ready.value = true
 })
 
 onUnmounted(() => {
@@ -82,6 +86,7 @@ const classesHeader = computed(() => [
     'app-header--has-scrolled': hasScrolled.value && !menuOpen.value,
     'app-header--has-scrolled-up': hasScrolledUp.value && !menuOpen.value,
     'app-header--has-scrolled-down': hasScrolledDown.value && !menuOpen.value,
+    'app-header--is-ready': ready.value,
     'transition-colors duration-300 ease-in-out delay-500': hasScrolled.value && hasScrolledDown.value,
   },
 ])
@@ -252,13 +257,21 @@ const classesHeader = computed(() => [
 }
 
 .app-header__wrapper {
-  opacity: 1;
-  translate: 0 0 0;
-
+  opacity: 0;
+  translate: 0 --spacing(-3) 0;
   transition:
     translate 0s 0s,
     opacity 1s var(--ease-out),
     visibility 1s var(--ease-out);
+
+  .app-header--is-ready & {
+    opacity: 1;
+    translate: 0 0 0;
+    transition:
+      translate 1s var(--ease-inOutQuart),
+      opacity 1s var(--ease-inOutQuart),
+      visibility 1s var(--ease-inOutQuart);
+  }
 
   .app-header--has-scrolled-down & {
     opacity: 0;
