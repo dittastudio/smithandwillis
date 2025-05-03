@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { LinkStoryblok, RichtextStoryblok } from '@/types/storyblok'
-
 import IconLogo from '@/assets/icons/logo.svg'
 
 interface Props {
@@ -277,22 +276,22 @@ const classesHeader = computed(() => [
 .app-header {
   color: var(--color-white);
 
-  html:not(:has([class^="hero-"])) &:not(.app-header--has-menu, .app-header--has-scrolled) {
+  html:not(:has([data-component="hero"])) &:not(.app-header--has-menu, .app-header--has-scrolled) {
     color: var(--color-offblack);
   }
 
   @media (hover: hover) {
-    html:not(:has([class^="hero-"])) &:not(.app-header--has-scrolled):hover::before {
+    html:not(:has([data-component="hero"])) &:not(.app-header--has-scrolled):hover::before {
       opacity: 0;
     }
   }
 
-  html:not(:has([class^="hero-"])) &:not(.app-header--has-scrolled)::after {
+  html:not(:has([data-component="hero"])) &:not(.app-header--has-scrolled)::after {
     opacity: 0;
   }
 
   @media (hover: hover) {
-    html:not(:has([class^="hero-"])) &:not(.app-header--has-scrolled):hover::after {
+    html:not(:has([data-component="hero"])) &:not(.app-header--has-scrolled):hover::after {
       opacity: 0;
     }
   }
