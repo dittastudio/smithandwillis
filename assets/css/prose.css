@@ -1,9 +1,16 @@
 @utility prose {
+  h1, h2, h3, h4, h5, h6, p, ul, ol {
+    max-width: 60ch;
+
+    @variant md {
+      margin-inline: auto;
+    }
+  }
+
   h1, h2, h3, h4, h5, h6 {
     letter-spacing: var(--tracking-lg);
     text-transform: uppercase;
     text-wrap: balance;
-    max-width: 60ch;
   }
 
   h1, h2 {
@@ -30,7 +37,6 @@
     font-size: var(--text-16);
     line-height: calc(24 / 16);
     letter-spacing: var(--tracking-sm);
-    max-width: 60ch;
 
     @variant md {
       font-size: var(--text-18);
@@ -40,29 +46,35 @@
 
   & * + :is(h1, h2, h3, h4, h5, h6) {
     margin-block-start: 5em;
+    margin-block-start: 5lh;
   }
 
   & :is(h1, h2, h3, h4, h5, h6):has(+ p) {
     margin-block-end: 1.5em;
+    margin-block-end: 1.5lh;
   }
 
   & p + p {
     margin-block-start: 1em;
+    margin-block-start: 1lh;
   }
 
   & ul,
   & ol {
-    margin-block: 2em;
+    margin-block: 1.5em;
+    margin-block: 1.5lh;
   }
 
   & ul ul,
   & ol ol {
-    margin-block: 1em;
+    margin-block: 0.5em 1em;
+    margin-block: 0.5lh 1lh;
   }
 
   & li,
   & li p {
     margin-block: 0.5em;
+    margin-block: 0.5lh;
   }
 
   & ol,

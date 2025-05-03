@@ -43,12 +43,15 @@ const { items } = defineProps<Props>()
             md:-m-4
             lg:p-6
             lg:-m-6
-            transition-color
+            transition-colors
             duration-300
             ease-out
             hover:text-orange
             [&.router-link-active]:text-orange
             [&.router-link-exact-active]:text-orange
+            max-md:border-b
+            max-md:border-solid
+            max-md:border-warm-grey/20
           "
           @click="scrollToWithEasing(item.link?.url, 1000, true)"
         >

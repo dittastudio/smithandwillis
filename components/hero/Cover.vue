@@ -30,13 +30,15 @@ onMounted(async () => {
       'opacity-0': !ready,
     }"
   >
-    <div class="wrapper flex items-center justify-center h-full">
+    <div
+      class="hero-cover__wrapper wrapper flex items-center justify-center h-full"
+      :style="stylesOut"
+    >
       <IconLogoMark
         class="w-[9.75vw] min-w-[100px] max-w-[160px] h-auto transition-transform duration-1000 ease-out"
         :class="{
-          'rotate-10': !ready,
+          '-rotate-3': !ready,
         }"
-        :style="stylesOut"
       />
     </div>
   </div>
@@ -54,5 +56,13 @@ html:has([data-component="hero"]) .app-cover.is-ready {
 
 html:has([data-component="hero"]):has(.app-cover.is-ready)  {
   overflow: hidden;
+}
+</style>
+
+<style>
+@reference "@/assets/css/main.css";
+
+.hero-cover__wrapper {
+  background-image: radial-gradient(circle, --alpha(var(--color-black) / 50%) 0%, --alpha(var(--color-black) / 0%) 25%);
 }
 </style>
