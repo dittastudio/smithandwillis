@@ -3,7 +3,6 @@ import type { SettingsStoryblok } from '@/types/storyblok'
 
 const settings = await useStoryblokStory<SettingsStoryblok>('/settings')
 const route = useRoute()
-const isDev = import.meta.dev
 
 const globalClasses = computed(() => ({
   'is-storyblok-editor': storyblokEditor(route.query),
@@ -58,11 +57,8 @@ watch(() => route.fullPath, async () => {
         />
       </template>
 
-      <template
-        v-if="isDev"
-        #dev
-      >
-        <ToolGuide />
+      <template #dev>
+        <DevGuide />
       </template>
     </AppLayout>
   </div>

@@ -16,6 +16,8 @@
 
     <div id="contact" />
 
-    <slot name="dev" />
+    <DevOnly>
+      <slot name="dev" />
+    </DevOnly>
   </div>
 </template>
