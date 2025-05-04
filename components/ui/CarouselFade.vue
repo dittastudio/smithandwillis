@@ -284,7 +284,9 @@ onUnmounted(() => {
             hoveredButton === 'left' ? 'rotate-90' : '-rotate-90',
             arrowColorClass,
             {
-              'scale-75': depressed,
+              'text-orange/70': depressed,
+              '-translate-x-1/4': depressed && hoveredButton === 'left',
+              'translate-x-1/4': depressed && hoveredButton === 'right',
             },
           ]"
         />
