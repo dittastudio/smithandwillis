@@ -18,14 +18,14 @@ const stylesOut = computed(() => (import.meta.server)
 )
 
 onMounted(async () => {
-  await wait(200)
+  await wait(1000)
   ready.value = true
 })
 </script>
 
 <template>
   <div
-    class="w-full h-dvh text-white pointer-events-none transition-opacity duration-1000 ease-out"
+    class="w-full h-dvh text-white pointer-events-none transition-opacity duration-1000 ease-outQuart"
     :class="{
       'opacity-0': !ready,
     }"
@@ -35,9 +35,9 @@ onMounted(async () => {
       :style="stylesOut"
     >
       <IconLogoMark
-        class="w-[9.75vw] min-w-[100px] max-w-[160px] h-auto transition-transform duration-1000 ease-out"
+        class="w-[9.75vw] min-w-[100px] max-w-[160px] h-auto transition-transform duration-1000 ease-outQuart scale-100"
         :class="{
-          '-rotate-3': !ready,
+          'scale-105': !ready,
         }"
       />
     </div>
