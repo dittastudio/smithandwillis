@@ -29,7 +29,7 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
 <template>
   <div class="bg-rich-brown text-white pt-[var(--app-header-height)] sm:pt-20 pb-16">
     <div class="wrapper">
-      <div class="grid gap-x-[var(--app-inner-gutter)] sm:gap-y-8 grid-cols-2 md:grid-cols-12">
+      <div class="relative grid gap-x-[var(--app-inner-gutter)] sm:gap-y-8 grid-cols-2 md:grid-cols-12">
         <div class="col-span-full sm:col-span-1 md:col-span-3 lg:col-span-2">
           <AppFooterAccordion
             id="accordion-studio"
@@ -80,7 +80,7 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
           </AppFooterAccordion>
         </div>
 
-        <div class="col-span-full md:col-span-4 lg:col-span-3">
+        <div class="col-span-full md:col-span-6">
           <AppFooterAccordion
             id="accordion-contact"
           >
@@ -104,7 +104,7 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
           </AppFooterAccordion>
         </div>
 
-        <div class="col-span-full md:col-span-2 lg:col-span-5 max-md:mx-auto max-md:mt-10 md:ml-auto">
+        <div class="md:absolute md:right-0 md:top-0 max-md:col-span-full max-md:mx-auto max-md:mt-10 md:ml-auto">
           <IconLogoMark
             class="size-22 md:size-18 lg:size-25 opacity-10"
           />

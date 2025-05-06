@@ -18,12 +18,19 @@ const ratioDimensions = (
   }
 }
 
-const safeKebabCase = (str: string) =>
-  deburr(str)
-    .replace(/[^a-z0-9\s]/gi, '')
+const safeKebabCase = (str: string) => {
+  const deburred = deburr(str)
+
+  const cleanedStr = deburred
+    .replace(/[^a-z0-9\s-]/gi, '')
     .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
     .toLowerCase()
     .trim()
+    .replace(/^-+|-+$/g, '')
+
+  return cleanedStr
+}
 
 const wait = (ms: number = 0) => new Promise(resolve => setTimeout(resolve, ms))
 
