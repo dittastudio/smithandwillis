@@ -226,7 +226,7 @@ onUnmounted(() => {
         class="absolute inset-0 flex"
       >
         <button
-          class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none"
+          class="ui-carousel-fade__button ui-carousel-fade__button--left w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none"
           @click="handleChange('prev')"
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('left')"
@@ -242,7 +242,7 @@ onUnmounted(() => {
         </button>
 
         <button
-          class="w-1/2 flex items-center justify-end p-[var(--app-outer-gutter)] cursor-none"
+          class="ui-carousel-fade__button ui-carousel-fade__button--right w-1/2 flex items-center justify-end p-[var(--app-outer-gutter)] cursor-none"
           @click="handleChange('next')"
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('right')"
@@ -377,6 +377,39 @@ onUnmounted(() => {
     &::before {
       opacity: 0;
     }
+  }
+}
+
+.ui-carousel-fade__button {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 75%;
+    height: 50%;
+    margin-block: auto;
+    opacity: 0.6;
+
+    @media (hover: hover) {
+      display: none;
+    }
+  }
+}
+
+.ui-carousel-fade__button--left {
+  &::before {
+    left: 0;
+    background-image: radial-gradient(ellipse at -20% 50%, --alpha(var(--color-black) / 100%) 0%, --alpha(var(--color-black) / 0%) 50%);
+  }
+}
+
+.ui-carousel-fade__button--right {
+  &::before {
+    right: 0;
+    background-image: radial-gradient(ellipse at 120% 50%, --alpha(var(--color-black) / 100%) 0%, --alpha(var(--color-black) / 0%) 50%);
   }
 }
 </style>
