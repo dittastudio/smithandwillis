@@ -63,7 +63,7 @@ onMounted(async () => {
   rAFHeaderScroll()
   window.addEventListener('scroll', rAFHeaderScroll)
 
-  await wait(1000)
+  await wait(500)
   ready.value = true
 })
 
@@ -86,8 +86,9 @@ const classesHeader = computed(() => [
     'app-header--has-scrolled': hasScrolled.value && !menuOpen.value,
     'app-header--has-scrolled-up': hasScrolledUp.value && !menuOpen.value,
     'app-header--has-scrolled-down': hasScrolledDown.value && !menuOpen.value,
-    'app-header--is-ready': ready.value,
     'transition-colors duration-300 ease-in-out delay-500': hasScrolled.value && hasScrolledDown.value,
+    'opacity-0 -translate-y-3': !ready.value && !hasScrolled.value,
+    'opacity-100 translate-y-0 transition-[opacity,translate] duration-1000 ease-outQuart': ready.value,
   },
 ])
 </script>
@@ -253,17 +254,6 @@ const classesHeader = computed(() => [
   &.app-header--has-scrolled-down::before {
     opacity: 0;
     transition: opacity 0.5s var(--ease-inOutQuart), height 0.5s var(--ease-inOutQuart);
-  }
-
-  opacity: 0;
-  translate: 0 --spacing(-3) 0;
-  transition:
-    opacity 1s var(--ease-outQuart),
-    translate 1s var(--ease-outQuart);
-
-  &.app-header--is-ready {
-    opacity: 1;
-    translate: 0 0 0;
   }
 }
 

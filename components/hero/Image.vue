@@ -14,7 +14,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     v-editable="block"
     class="relative h-svh bg-offblack text-white"
   >
-    <UiScrollDown>
+    <HeroScrollDown>
       <UiParallax>
         <MediaImageResponsive
           v-if="block.media && assetType === 'image'"
@@ -38,6 +38,6 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
           "
         />
       </UiParallax>
-    </UiScrollDown>
+    </HeroScrollDown>
   </div>
 </template>

@@ -18,14 +18,14 @@ const stylesOut = computed(() => (import.meta.server)
 )
 
 onMounted(async () => {
-  await wait(1000)
+  await wait(500)
   ready.value = true
 })
 </script>
 
 <template>
   <div
-    class="w-full h-dvh text-white pointer-events-none transition-opacity duration-1000 ease-outQuart"
+    class="w-full h-dvh text-white pointer-events-none transition-opacity duration-1500 ease-outQuart"
     :class="{
       'opacity-0': !ready,
     }"
@@ -37,27 +37,12 @@ onMounted(async () => {
       <IconLogoMark
         class="w-[9.75vw] min-w-[100px] max-w-[160px] h-auto transition-transform duration-1000 ease-outQuart scale-100"
         :class="{
-          'scale-105': !ready,
+          'scale-105 -rotate-3': !ready,
         }"
       />
     </div>
   </div>
 </template>
-
-<style lang="postcss">
-html.is-storyblok-editor .app-cover {
-  display: none;
-}
-
-html:has([data-component="hero"]) .app-cover.is-ready {
-  opacity: 1;
-  transition: none;
-}
-
-html:has([data-component="hero"]):has(.app-cover.is-ready)  {
-  overflow: hidden;
-}
-</style>
 
 <style>
 @reference "@/assets/css/main.css";

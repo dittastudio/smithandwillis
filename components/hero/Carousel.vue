@@ -24,7 +24,7 @@ const ratios = {
     v-editable="block"
     class="bg-offblack text-white h-svh"
   >
-    <UiScrollDown>
+    <HeroScrollDown>
       <UiParallax>
         <UiCarouselFade
           :options="{
@@ -55,30 +55,8 @@ const ratios = {
               <SlideVideo :block="slide" />
             </template>
           </template>
-          <!-- <template #slide="{ slide, index }">
-            <MediaImageResponsive
-              :lazy="index !== 0"
-              breakpoint="landscape"
-              :asset="slide"
-              :desktop-asset="slide"
-              :ratio="`${ratios.mobile.x}:${ratios.mobile.y}`"
-              :desktop-ratio="`${ratios.desktop.x}:${ratios.desktop.y}`"
-              sizes="
-                2xs:100vw
-                xs:100vw
-                sm:100vw
-                md:100vw
-              "
-              desktop-sizes="
-                md:100vw
-                lg:100vw
-                xl:100vw
-                2xl:100vw
-              "
-            />
-          </template> -->
         </UiCarouselFade>
       </UiParallax>
-    </UiScrollDown>
+    </HeroScrollDown>
   </div>
 </template>

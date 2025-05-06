@@ -54,7 +54,6 @@ onUnmounted(() => {
 <template>
   <div
     ref="container"
-    data-js-hero
     class="h-[inherit] will-change-[translate] backface-visibility-hidden transform-style-preserve-3d transition-transform duration-50 ease-out"
   >
     <slot />

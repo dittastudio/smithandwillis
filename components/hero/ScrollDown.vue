@@ -1,9 +1,18 @@
 <script lang="ts" setup>
 import IconArrowLarge from '@/assets/icons/arrow-large.svg'
+
+const ready = ref(false)
+
+onMounted(async () => {
+  await wait(500)
+  ready.value = true
+})
 </script>
 
 <template>
-  <div class="relative h-[inherit]">
+  <div
+    class="relative h-[inherit]"
+  >
     <slot />
 
     <div
@@ -22,7 +31,13 @@ import IconArrowLarge from '@/assets/icons/arrow-large.svg'
         before:w-full
         before:h-[200%]
         before:mx-auto
+        transition-[opacity,translate]
+        duration-1000
+        ease-outQuart
       "
+      :class="{
+        'opacity-0 translate-y-1/4': !ready,
+      }"
     >
       <button
         type="button"
