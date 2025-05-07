@@ -183,7 +183,7 @@
       "display_name": "Split",
       "description": "",
       "created_at": "2025-04-08T16:30:36.828Z",
-      "updated_at": "2025-05-07T15:00:56.091Z",
+      "updated_at": "2025-05-07T18:15:10.272Z",
       "id": 7188205,
       "schema": {
         "content": {
@@ -197,14 +197,6 @@
             "split_carousel",
             "split_media"
           ]
-        },
-        "media": {
-          "type": "asset",
-          "pos": 1,
-          "filetypes": [
-            "images"
-          ],
-          "id": "fARuVhNrQeamQwA-nDGmYQ"
         },
         "headline": {
           "type": "text",

@@ -6,7 +6,17 @@ interface Props {
 }
 
 const { block } = defineProps<Props>()
-const assetType = computed(() => storyblokAssetType(block.media?.filename || ''))
+
+const ratios = {
+  mobile: {
+    x: ratioDimensions(block.ratio || '').width,
+    y: ratioDimensions(block.ratio || '').height,
+  },
+  desktop: {
+    x: ratioDimensions(block.ratio_desktop || '').width,
+    y: ratioDimensions(block.ratio_desktop || '').height,
+  },
+}
 </script>
 
 <template>
@@ -16,25 +26,77 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
     :class="block.reverse ? 'md:flex-row-reverse' : 'md:flex-row'"
   >
     <div class="w-full md:w-1/2 md:self-stretch md:[&>*]:h-full">
-      <MediaImageResponsive
-        v-if="block.media && assetType === 'image'"
-        :asset="block.media"
-        :desktop-asset="block.media"
-        :ratio="block.ratio"
-        :desktop-ratio="block.ratio_desktop"
-        sizes="
-          2xs:100vw
-          xs:100vw
-          sm:100vw
-          md:100vw
-        "
-        desktop-sizes="
-          md:50vw
-          lg:50vw
-          xl:50vw
-          2xl:50vw
-        "
-      />
+      <template
+        v-if="block.content?.[0]"
+      >
+        <MediaImageResponsive
+          v-if="block.content[0].component === 'split_media' && block.content[0]?.media"
+          :asset="block.content[0].media"
+          :desktop-asset="block.content[0].media"
+          :ratio="block.ratio"
+          :desktop-ratio="block.ratio_desktop"
+          sizes="
+            2xs:100vw
+            xs:100vw
+            sm:100vw
+            md:100vw
+          "
+          desktop-sizes="
+            md:50vw
+            lg:50vw
+            xl:50vw
+            2xl:50vw
+          "
+        />
+
+        <UiCarouselFade
+          v-else-if="block.content[0].component === 'split_carousel'"
+          :options="{
+            autoplay: block.autoplay,
+            navigation: true,
+            pagination: true,
+          }"
+          :slides="block.content[0].slides || []"
+          :ratio-x="ratios.mobile.x"
+          :ratio-y="ratios.mobile.y"
+          :ratio-desktop-x="ratios.desktop.x"
+          :ratio-desktop-y="ratios.desktop.y"
+        >
+          <template #slide="{ slide }">
+            <template v-if="slide.component === 'slide_images'">
+              <SlideImages
+                :block="slide"
+                :ratio-x="ratios.mobile.x"
+                :ratio-y="ratios.mobile.y"
+                :ratio-desktop-x="ratios.desktop.x"
+                :ratio-desktop-y="ratios.desktop.y"
+              />
+            </template>
+          </template>
+
+          <!--
+          <template
+            v-if="block.title"
+            #caption
+          >
+            <template v-if="block.link?.cached_url">
+              <StoryblokLink
+                :item="block.link"
+                class="block p-3 -m-3 transition-opacity duration-300 ease-out hover:opacity-70"
+              >
+                <UiTextLink :is-external="block.link.linktype === 'url'">
+                  {{ block.title }}
+                </UiTextLink>
+              </StoryblokLink>
+            </template>
+
+            <template v-else>
+              {{ block.title }}
+            </template>
+          </template>
+          -->
+        </UiCarouselFade>
+      </template>
     </div>
 
     <div

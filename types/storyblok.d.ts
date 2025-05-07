@@ -140,7 +140,6 @@ export interface RichtextStoryblok {
 
 export interface BlockSplitStoryblok {
   content?: (SplitCarouselStoryblok | SplitMediaStoryblok)[];
-  media?: AssetStoryblok;
   headline?: string;
   text: RichtextStoryblok;
   ratio?: number | string;
