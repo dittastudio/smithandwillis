@@ -139,6 +139,7 @@ export interface RichtextStoryblok {
 }
 
 export interface BlockSplitStoryblok {
+  content?: (SplitCarouselStoryblok | SplitMediaStoryblok)[];
   media?: AssetStoryblok;
   headline?: string;
   text: RichtextStoryblok;
@@ -292,6 +293,21 @@ export interface SlideVideoStoryblok {
   video_mobile: AssetStoryblok;
   video_desktop?: AssetStoryblok;
   component: "slide_video";
+  _uid: string;
+  [k: string]: any;
+}
+
+export interface SplitCarouselStoryblok {
+  autoplay?: boolean;
+  slides?: SlideImagesStoryblok[];
+  component: "split_carousel";
+  _uid: string;
+  [k: string]: any;
+}
+
+export interface SplitMediaStoryblok {
+  media?: AssetStoryblok;
+  component: "split_media";
   _uid: string;
   [k: string]: any;
 }
