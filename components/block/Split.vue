@@ -51,6 +51,7 @@ const ratios = {
 
         <UiCarouselFade
           v-else-if="block.content[0].component === 'split_carousel'"
+          class="text-white"
           :options="{
             autoplay: block.autoplay,
             navigation: true,
