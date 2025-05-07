@@ -22,7 +22,7 @@ const ratios = {
 <template>
   <div
     v-editable="block"
-    class="block-carousel bg-offblack text-white"
+    class="bg-offblack text-white"
   >
     <UiCarouselFade
       :options="{
@@ -47,11 +47,11 @@ const ratios = {
           />
         </template>
 
-        <template v-if="slide.component === 'slide_video'">
+        <template v-else-if="slide.component === 'slide_video'">
           <SlideVideo :block="slide" />
         </template>
 
-        <template v-if="slide.component === 'slide_split'">
+        <template v-else-if="slide.component === 'slide_split'">
           <SlideSplit
             :block="slide"
             :ratio="`${ratios.mobile.x}:${ratios.mobile.y}`"
