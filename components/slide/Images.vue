@@ -24,8 +24,8 @@ const { block, index, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktop
         :lazy="index ? index !== 0 : true"
         :asset="image"
         :desktop-asset="image"
-        :ratio="`${ratioX}:${Math.round(ratioY / (block.images?.length || 1))}`"
-        :desktop-ratio="`${Math.round(ratioDesktopX / (block.images?.length || 1))}:${ratioDesktopY}`"
+        :ratio="`${ratioX}:${Math.ceil(ratioY / (block.images?.length || 1))}`"
+        :desktop-ratio="`${Math.ceil(ratioDesktopX / (block.images?.length || 1))}:${ratioDesktopY}`"
         sizes="
           2xs:100vw
           xs:100vw
