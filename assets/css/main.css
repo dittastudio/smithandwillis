@@ -56,13 +56,15 @@
   --ease-inOutQuart: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-:root {
-  --app-inner-gutter: --spacing(5);
-  --app-outer-gutter: clamp(24px, 12.5714px + 3.5714vw, 64px);
-  --app-header-height: 88px;
+@layer theme {
+  :root {
+    --app-inner-gutter: --spacing(5);
+    --app-outer-gutter: clamp(24px, 12.5714px + 3.5714vw, 64px);
+    --app-header-height: 88px;
 
-  @variant md {
-    --app-inner-gutter: --spacing(6);
-    --app-header-height: 104px;
+    @variant md {
+      --app-inner-gutter: --spacing(6);
+      --app-header-height: 104px;
+    }
   }
 }

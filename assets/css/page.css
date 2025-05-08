@@ -1,4 +1,4 @@
-@layer base {
+@layer theme {
   html {
     color: var(--color-white);
     background-color: var(--color-offblack);
