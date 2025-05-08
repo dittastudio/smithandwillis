@@ -1,6 +1,6 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "Smith & Willis",
+  "short_name": "Smith & Willis",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
