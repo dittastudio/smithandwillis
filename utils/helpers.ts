@@ -34,12 +34,6 @@ const safeKebabCase = (str: string) => {
 
 const wait = (ms: number = 0) => new Promise(resolve => setTimeout(resolve, ms))
 
-const requestDelay = async <T>(promise: T, ms: number = 1000) => {
-  const [p] = await Promise.all([promise, wait(ms)])
-
-  return p
-}
-
 const validAspectRatio = (ratio: string | number = '') => {
   const pattern = /[0-9.]+:[0-9.]+/
 
@@ -87,7 +81,6 @@ const scrollToWithEasing = (target: number | string | HTMLElement, duration: num
 export {
   calculateAspectRatio,
   ratioDimensions,
-  requestDelay,
   safeKebabCase,
   scrollToWithEasing,
   validAspectRatio,
