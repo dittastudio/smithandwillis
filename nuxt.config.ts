@@ -13,7 +13,7 @@ export default defineNuxtConfig({
       },
     ],
   ],
-  ssr: process.env.SSR === 'true',
+  ssr: true,
   devtools: { enabled: true },
   app: {
     pageTransition: { name: 'fade', mode: 'out-in' },
@@ -53,7 +53,7 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    '/**': { prerender: true },
+    '/**': { prerender: process.env.PRERENDER === 'true' },
   },
   features: {
     noScripts: false,
