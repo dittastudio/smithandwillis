@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import IconLogoMark from '@/assets/icons/logo-mark.svg'
 import { useScroll } from '@vueuse/core'
+import IconLogoMark from '@/assets/icons/logo-mark.svg'
 
 const mapRange = (value: number): number => Math.max(0, Math.min(1, value / 100))
 const reversePercentage = (percent: number): number => Math.max(0, Math.min(100, 100 - percent))
