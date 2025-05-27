@@ -41,7 +41,6 @@ export default defineNuxtConfig({
       ],
     },
   },
-  // css: ['~/assets/css/main.css', process.env.NUXT_STORYBLOK_VERSION === 'draft' ? '@michaelpumo/screen/app.css' : undefined]
   css: ['~/assets/css/main.css'],
   site: {
     url: 'https://smithandwillis.london',
@@ -54,12 +53,18 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    '/**': { prerender: true },
+    '/*': { prerender: true },
   },
   features: {
     noScripts: false,
   },
   compatibilityDate: '2025-04-13',
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ['/'],
+    },
+  },
   vite: {
     plugins: [
       tailwindcss(),
