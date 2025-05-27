@@ -9,11 +9,11 @@ export default defineNuxtConfig({
     [
       '@storyblok/nuxt',
       {
-        accessToken: process.env.NUXT_STORYBLOK_TOKEN,
+        accessToken: process.env.STORYBLOK_TOKEN,
       },
     ],
   ],
-  ssr: true,
+  ssr: process.env.SSR === 'true',
   devtools: { enabled: true },
   app: {
     pageTransition: { name: 'fade', mode: 'out-in' },
@@ -48,12 +48,12 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      STORYBLOK_TOKEN: process.env.NUXT_STORYBLOK_TOKEN,
-      STORYBLOK_VERSION: process.env.NUXT_STORYBLOK_VERSION,
+      STORYBLOK_TOKEN: process.env.STORYBLOK_TOKEN,
+      STORYBLOK_VERSION: process.env.STORYBLOK_VERSION,
     },
   },
   routeRules: {
-    '/*': { prerender: true },
+    '/**': { prerender: true },
   },
   features: {
     noScripts: false,
