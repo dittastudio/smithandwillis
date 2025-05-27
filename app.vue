@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import type { SettingsStoryblok } from '@/types/storyblok'
 
-const settings = await useStoryblokStory<SettingsStoryblok>('/settings')
+const settings = await useStory('/settings')
+const content = settings.value.content as SettingsStoryblok
 const route = useRoute()
 
 const globalClasses = computed(() => ({
@@ -32,12 +33,13 @@ watch(() => route.fullPath, async () => {
     <AppLayout>
       <template #header>
         <AppHeader
-          :primary-navigation="settings?.content?.navigation_primary"
-          :secondary-navigation="settings?.content?.navigation_secondary"
-          :studio-title="settings?.content?.studio_title"
-          :studio="settings?.content?.studio"
-          :contact-title="settings?.content?.contact_title"
-          :contact="settings?.content?.contact"
+          v-if="content"
+          :primary-navigation="content.navigation_primary"
+          :secondary-navigation="content.navigation_secondary"
+          :studio-title="content.studio_title"
+          :studio="content.studio"
+          :contact-title="content.contact_title"
+          :contact="content.contact"
         />
       </template>
 
@@ -47,13 +49,14 @@ watch(() => route.fullPath, async () => {
 
       <template #footer>
         <AppFooter
-          :footer-navigation="settings?.content?.footer_navigation"
-          :studio-title="settings?.content?.studio_title"
-          :studio="settings?.content?.studio"
-          :places-title="settings?.content?.places_title"
-          :places="settings?.content?.places"
-          :contact-title="settings?.content?.contact_title"
-          :contact="settings?.content?.contact"
+          v-if="content"
+          :footer-navigation="content.footer_navigation"
+          :studio-title="content.studio_title"
+          :studio="content.studio"
+          :places-title="content.places_title"
+          :places="content.places"
+          :contact-title="content.contact_title"
+          :contact="content.contact"
         />
       </template>
 
