@@ -30,7 +30,6 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.13.2",
-    "@michaelpumo/screen": "^0.0.18",
     "@nuxt/eslint": "^1.4.1",
     "@nuxt/image": "^1.10.0",
     "@nuxtjs/sitemap": "^7.3.0",
