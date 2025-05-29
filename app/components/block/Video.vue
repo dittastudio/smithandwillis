@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlockVideoStoryblok } from '@/types/storyblok'
+import type { BlockVideoStoryblok } from '@@/types/storyblok'
 
 interface Props {
   block: BlockVideoStoryblok

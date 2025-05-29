@@ -1,4 +1,4 @@
-import type { RichtextStoryblok } from '@/types/storyblok'
+import type { RichtextStoryblok } from '@@/types/storyblok'
 import type { ImageModifiers } from '@nuxt/image'
 import type { LocationQuery } from 'vue-router'
 

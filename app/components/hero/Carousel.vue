@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { HeroCarouselStoryblok } from '@/types/storyblok'
+import type { HeroCarouselStoryblok } from '@@/types/storyblok'
 
 interface Props {
   block: HeroCarouselStoryblok

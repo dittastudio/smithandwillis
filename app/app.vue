@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { SettingsStoryblok } from '@/types/storyblok'
+import type { SettingsStoryblok } from '@@/types/storyblok'
 
 const settings = await useStory('/settings')
 const content = settings.value.content as SettingsStoryblok

@@ -7,7 +7,7 @@ import type {
   BlockTextStoryblok,
   BlockVideoStoryblok,
   PageStoryblok,
-} from '@/types/storyblok'
+} from '@@/types/storyblok'
 import type { Colours } from '@/utils/maps'
 
 interface Props {

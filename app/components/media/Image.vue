@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { AssetStoryblok } from '@/types/storyblok'
+import type { AssetStoryblok } from '@@/types/storyblok'
 import { useIntersectionObserver } from '@vueuse/core'
 
 defineOptions({

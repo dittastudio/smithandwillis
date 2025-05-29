@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { SlideSplitStoryblok } from '@/types/storyblok'
+import type { SlideSplitStoryblok } from '@@/types/storyblok'
 import type { Colours } from '@/utils/maps'
 
 interface Props {
