@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { BlockSplitStoryblok } from '@@/types/storyblok'
+import IconMichelinStar from '@/assets/icons/michelin-star.svg'
 
 interface Props {
   block: BlockSplitStoryblok
@@ -74,28 +75,6 @@ const ratios = {
               />
             </template>
           </template>
-
-          <!--
-          <template
-            v-if="block.title"
-            #caption
-          >
-            <template v-if="block.link?.cached_url">
-              <StoryblokLink
-                :item="block.link"
-                class="block p-3 -m-3 transition-opacity duration-300 ease-out hover:opacity-70"
-              >
-                <UiTextLink :is-external="block.link.linktype === 'url'">
-                  {{ block.title }}
-                </UiTextLink>
-              </StoryblokLink>
-            </template>
-
-            <template v-else>
-              {{ block.title }}
-            </template>
-          </template>
-          -->
         </UiCarouselFade>
       </template>
     </div>
@@ -104,12 +83,19 @@ const ratios = {
       class="w-full md:w-1/2 flex flex-col items-start gap-8 md:gap-10 pt-20 pb-12 px-[var(--app-outer-gutter)] md:py-[var(--app-outer-gutter)] 2xl:w-auto 2xl:mx-auto"
       :class="!block.reverse && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))] 2xl:pr-[calc(var(--app-outer-gutter)_+_--spacing(4))]'"
     >
-      <h3
-        v-if="block.headline"
-        class="type-sans-large-caps text-balance"
-      >
-        {{ block.headline }}
-      </h3>
+      <div class="flex items-center gap-2">
+        <IconMichelinStar
+          v-if="block.michelin_star"
+          class="size-4.5"
+        />
+
+        <h3
+          v-if="block.headline"
+          class="type-sans-large-caps text-balance"
+        >
+          {{ block.headline }}
+        </h3>
+      </div>
 
       <div
         v-if="storyblokRichTextContent(block.text)"
