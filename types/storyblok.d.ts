@@ -86,6 +86,7 @@ export type MultilinkStoryblok =
     };
 
 export interface BlockCarouselStoryblok {
+  michelin_star?: boolean;
   title?: string;
   link?: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
   autoplay?: boolean;

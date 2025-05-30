@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { BlockCarouselStoryblok } from '@@/types/storyblok'
+import IconMichelinStar from '@/assets/icons/michelin-star.svg'
 
 interface Props {
   block: BlockCarouselStoryblok
@@ -67,8 +68,13 @@ const ratios = {
         <template v-if="block.link?.cached_url">
           <StoryblokLink
             :item="block.link"
-            class="block p-3 -m-3 transition-opacity duration-300 ease-out hover:opacity-70"
+            class="flex items-center gap-2 p-4 -m-4 transition-opacity duration-300 ease-out hover:opacity-70"
           >
+            <IconMichelinStar
+              v-if="block.michelin_star"
+              class="size-4.5"
+            />
+
             <UiTextLink :is-external="block.link.linktype === 'url'">
               {{ block.title }}
             </UiTextLink>
@@ -76,7 +82,14 @@ const ratios = {
         </template>
 
         <template v-else>
-          {{ block.title }}
+          <span class="flex items-center gap-2">
+            <IconMichelinStar
+              v-if="block.michelin_star"
+              class="size-4.5"
+            />
+
+            {{ block.title }}
+          </span>
         </template>
       </template>
     </UiCarouselFade>

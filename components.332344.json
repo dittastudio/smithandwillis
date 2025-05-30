@@ -64,29 +64,34 @@
       "display_name": "Carousel",
       "description": "Carousel",
       "created_at": "2025-04-09T22:03:44.611Z",
-      "updated_at": "2025-04-16T11:21:25.129Z",
+      "updated_at": "2025-05-30T15:45:24.241Z",
       "id": 7195114,
       "schema": {
+        "michelin_star": {
+          "type": "boolean",
+          "pos": 0,
+          "id": "5MbvnkPOR921ra0loubF3g"
+        },
         "title": {
           "type": "text",
-          "pos": 0,
+          "pos": 1,
           "id": "USfyfMEsTtSajW48lCDHwg"
         },
         "link": {
           "type": "multilink",
-          "pos": 1,
+          "pos": 2,
           "allow_target_blank": true,
           "id": "X1Bq62-XRbSh2IH_crSOxA"
         },
         "autoplay": {
           "type": "boolean",
-          "pos": 2,
+          "pos": 3,
           "inline_label": true,
           "id": "YDQtVgaBSz6iJjyUwG9V7A"
         },
         "slides": {
           "type": "bloks",
-          "pos": 3,
+          "pos": 4,
           "restrict_type": "",
           "restrict_components": true,
           "component_whitelist": [
