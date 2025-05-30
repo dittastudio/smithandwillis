@@ -30,14 +30,12 @@ const { block } = defineProps<Props>()
       <StoryblokText :html="block.text" />
     </div>
 
-    <template
-      v-for="item in block.link"
-    >
+    <template v-for="item in block.link">
       <StoryblokLink
         v-if="item"
         :key="item._uid"
         :item="item.link"
-        class="type-mix-small-caps"
+        class="p-4 -m-4 type-mix-small-caps"
       >
         <UiTextLink :is-external="item.link.linktype === 'url'">
           {{ item.title }}
