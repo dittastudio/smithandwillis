@@ -39,8 +39,6 @@ watchEffect(() => {
       app-footer-accordion
       relative
       w-full
-      max-sm:border-b
-      max-sm:border-current/20
     "
   >
     <button
