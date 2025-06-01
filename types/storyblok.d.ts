@@ -152,6 +152,7 @@ export interface BlockSplitStoryblok {
   ratio_desktop?: number | string;
   link?: LinkStoryblok[];
   reverse?: boolean;
+  reverse_desktop?: boolean;
   background_color?: number | string;
   text_color?: number | string;
   component: "block_split";

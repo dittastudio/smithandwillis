@@ -23,8 +23,11 @@ const ratios = {
 <template>
   <div
     v-editable="block"
-    class="block-split flex flex-col-reverse items-center"
-    :class="block.reverse ? 'md:flex-row-reverse' : 'md:flex-row'"
+    class="block-split flex items-center"
+    :class="[
+      block.reverse ? 'flex-col-reverse' : 'flex-col',
+      block.reverse_desktop ? 'md:flex-row-reverse' : 'md:flex-row',
+    ]"
   >
     <div class="w-full md:w-1/2 md:self-stretch md:[&>*]:h-full">
       <template
@@ -81,7 +84,7 @@ const ratios = {
 
     <div
       class="w-full md:w-1/2 flex flex-col items-start gap-8 md:gap-10 pt-20 pb-12 px-[var(--app-outer-gutter)] md:py-[var(--app-outer-gutter)] 2xl:w-auto 2xl:mx-auto"
-      :class="!block.reverse && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))] 2xl:pr-[calc(var(--app-outer-gutter)_+_--spacing(4))]'"
+      :class="!block.reverse_desktop && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))] 2xl:pr-[calc(var(--app-outer-gutter)_+_--spacing(4))]'"
     >
       <div class="flex items-center gap-2">
         <IconMichelinStar
