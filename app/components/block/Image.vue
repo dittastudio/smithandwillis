@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { BlockImageStoryblok } from '@@/types/storyblok'
+import IconMichelinStar from '@/assets/icons/michelin-star.svg'
 
 interface Props {
   block: BlockImageStoryblok
@@ -10,7 +11,10 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 </script>
 
 <template>
-  <div v-editable="block">
+  <figure
+    v-editable="block"
+    class="relative"
+  >
     <MediaImageResponsive
       v-if="block.media && assetType === 'image'"
       :asset="block.media"
@@ -30,5 +34,73 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
         2xl:100vw
       "
     />
-  </div>
+
+    <figcaption
+      v-if="block.title || block.sub_title"
+      class="absolute inset-0 flex flex-col items-start justify-end contain-layout contain-paint"
+    >
+      <div class="sticky bottom-0">
+        <div class="block-image__gradient p-[var(--app-outer-gutter)]">
+          <StoryblokLink
+            v-if="block.link?.url"
+            :item="block.link"
+            class="p-4 -m-4 transition-opacity duration-300 ease-out [a&]:hover:opacity-70 flex flex-col gap-1"
+          >
+            <h4 class="type-sans-medium-caps flex items-center gap-2">
+              <IconMichelinStar
+                v-if="block.michelin_star"
+                class="w-4 h-4.5"
+              />
+
+              {{ block.title }}
+            </h4>
+
+            <p class="type-mix-medium">
+              {{ block.sub_title }}
+            </p>
+          </StoryblokLink>
+
+          <div
+            v-else
+            class="flex flex-col gap-0.5"
+          >
+            <h4 class="type-sans-medium-caps flex items-center gap-2">
+              <IconMichelinStar
+                v-if="block.michelin_star"
+                class="w-4 h-4.5"
+              />
+
+              {{ block.title }}
+            </h4>
+
+            <p class="type-mix-medium">
+              {{ block.sub_title }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </figcaption>
+  </figure>
 </template>
+
+<style scoped>
+@reference "@/assets/css/main.css";
+
+.block-image__gradient {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * var(--app-outer-gutter));
+    right: -50vw;
+    bottom: 0;
+    opacity: 0.5;
+    height: 300%;
+    background-image: radial-gradient(ellipse at 0% 100%, --alpha(var(--color-black) / 100%) 0%, --alpha(var(--color-black) / 0%) 60%);
+    z-index: -1;
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease-out);
+  }
+}
+</style>

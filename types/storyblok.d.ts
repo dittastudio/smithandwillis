@@ -125,6 +125,10 @@ export interface BlockImageStoryblok {
   media: AssetStoryblok;
   ratio: number | string;
   ratio_desktop: number | string;
+  michelin_star?: boolean;
+  title?: string;
+  sub_title?: string;
+  link?: Exclude<MultilinkStoryblok, {linktype?: "email"} | {linktype?: "asset"}>;
   component: "block_image";
   _uid: string;
   [k: string]: any;
@@ -141,6 +145,7 @@ export interface RichtextStoryblok {
 
 export interface BlockSplitStoryblok {
   content?: (SplitCarouselStoryblok | SplitMediaStoryblok)[];
+  michelin_star?: boolean;
   headline?: string;
   text: RichtextStoryblok;
   ratio?: number | string;

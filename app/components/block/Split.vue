@@ -86,7 +86,7 @@ const ratios = {
       <div class="flex items-center gap-2">
         <IconMichelinStar
           v-if="block.michelin_star"
-          class="size-4.5"
+          class="w-4 h-4.5"
         />
 
         <h3

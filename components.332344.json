@@ -127,7 +127,7 @@
       "display_name": "Image",
       "description": null,
       "created_at": "2025-04-02T13:53:04.041Z",
-      "updated_at": "2025-04-23T11:02:45.176Z",
+      "updated_at": "2025-06-01T11:07:52.711Z",
       "id": 7159482,
       "schema": {
         "media": {
@@ -143,7 +143,7 @@
         },
         "ratio": {
           "type": "option",
-          "pos": 2,
+          "pos": 1,
           "use_uuid": true,
           "source": "internal",
           "datasource_slug": "ratio",
@@ -164,6 +164,27 @@
           "default_value": "auto",
           "required": true,
           "description": ""
+        },
+        "michelin_star": {
+          "type": "boolean",
+          "pos": 3,
+          "id": "8kKNyjckTz-yB3neVv7-EQ"
+        },
+        "title": {
+          "type": "text",
+          "pos": 4,
+          "id": "Y1s14fXlSoedjX50NgQsow"
+        },
+        "sub_title": {
+          "type": "text",
+          "pos": 5,
+          "id": "6FCGChwNS3i2SQfxUBKUwQ"
+        },
+        "link": {
+          "type": "multilink",
+          "pos": 6,
+          "id": "XndzVA3WRrOmPOclsMP-GQ",
+          "allow_target_blank": true
         }
       },
       "image": null,
@@ -188,7 +209,7 @@
       "display_name": "Split",
       "description": "",
       "created_at": "2025-04-08T16:30:36.828Z",
-      "updated_at": "2025-05-07T18:15:10.272Z",
+      "updated_at": "2025-05-30T16:22:46.887Z",
       "id": 7188205,
       "schema": {
         "content": {
@@ -202,6 +223,11 @@
             "split_carousel",
             "split_media"
           ]
+        },
+        "michelin_star": {
+          "type": "boolean",
+          "pos": 1,
+          "id": "vY6FEXpcSjCJs3TIXfi6lQ"
         },
         "headline": {
           "type": "text",
