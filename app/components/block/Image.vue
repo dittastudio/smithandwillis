@@ -57,7 +57,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
               </span>
             </UiTextLink>
 
-            <p class="type-mix-medium transition-opacity duration-300 ease-out [a:hover_&]:opacity-70">
+            <p class="type-mix-medium transition-opacity duration-300 ease-out [a:hover_&]:opacity-70 italic">
               {{ block.sub_title }}
             </p>
           </StoryblokLink>
@@ -75,7 +75,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
               {{ block.title }}
             </h4>
 
-            <p class="type-mix-medium">
+            <p class="type-mix-medium italic">
               {{ block.sub_title }}
             </p>
           </div>
