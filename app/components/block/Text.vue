@@ -32,7 +32,7 @@ const { block } = defineProps<Props>()
 
     <template v-for="item in block.link">
       <StoryblokLink
-        v-if="item"
+        v-if="item.link.cached_url"
         :key="item._uid"
         :item="item.link"
         class="p-4 -m-4 type-mix-small-caps"

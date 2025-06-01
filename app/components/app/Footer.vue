@@ -125,7 +125,7 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
             class="app-footer__meta-item"
           >
             <StoryblokLink
-              v-if="item"
+              v-if="item.link.cached_url"
               :key="item._uid"
               :item="item.link"
               class="app-footer__meta-link"

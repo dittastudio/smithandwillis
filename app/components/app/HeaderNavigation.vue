@@ -34,7 +34,7 @@ const { items } = defineProps<Props>()
         }]"
       >
         <StoryblokLink
-          v-if="item.link"
+          v-if="item.link.cached_url"
           :item="item.link"
           class="
             block

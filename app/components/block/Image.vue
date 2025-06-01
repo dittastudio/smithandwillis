@@ -42,27 +42,29 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
       <div class="sticky bottom-0">
         <div class="block-image__gradient p-[var(--app-outer-gutter)]">
           <StoryblokLink
-            v-if="block.link?.url"
+            v-if="block.link?.cached_url"
             :item="block.link"
-            class="p-4 -m-4 transition-opacity duration-300 ease-out [a&]:hover:opacity-70 flex flex-col gap-1"
+            class="p-4 -m-4 flex flex-col gap-1"
           >
-            <h4 class="type-sans-medium-caps flex items-center gap-2">
-              <IconMichelinStar
-                v-if="block.michelin_star"
-                class="w-4 h-4.5"
-              />
+            <UiTextLink :is-external="block.link.linktype === 'url'">
+              <span class="type-sans-medium-caps flex items-center gap-2">
+                <IconMichelinStar
+                  v-if="block.michelin_star"
+                  class="w-4 h-4.5"
+                />
 
-              {{ block.title }}
-            </h4>
+                {{ block.title }}
+              </span>
+            </UiTextLink>
 
-            <p class="type-mix-medium">
+            <p class="type-mix-medium transition-opacity duration-300 ease-out [a:hover_&]:opacity-70">
               {{ block.sub_title }}
             </p>
           </StoryblokLink>
 
           <div
             v-else
-            class="flex flex-col gap-0.5"
+            class="flex flex-col gap-1"
           >
             <h4 class="type-sans-medium-caps flex items-center gap-2">
               <IconMichelinStar
