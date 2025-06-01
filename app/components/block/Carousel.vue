@@ -72,7 +72,7 @@ const ratios = {
           >
             <IconMichelinStar
               v-if="block.michelin_star"
-              class="w-4 h-4.5"
+              class="w-[1em] h-[1.125em]"
             />
 
             <UiTextLink :is-external="block.link.linktype === 'url'">
@@ -85,7 +85,7 @@ const ratios = {
           <span class="flex items-center gap-2">
             <IconMichelinStar
               v-if="block.michelin_star"
-              class="w-4 h-4.5"
+              class="w-[1em] h-[1.125em]"
             />
 
             {{ block.title }}

@@ -86,19 +86,17 @@ const ratios = {
       class="w-full md:w-1/2 flex flex-col items-start gap-8 md:gap-10 pt-20 pb-12 px-[var(--app-outer-gutter)] md:py-[var(--app-outer-gutter)] 2xl:w-auto 2xl:mx-auto"
       :class="!block.reverse_desktop && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))] 2xl:pr-[calc(var(--app-outer-gutter)_+_--spacing(4))]'"
     >
-      <div class="flex items-center gap-2">
+      <h3
+        v-if="block.headline"
+        class="type-sans-large-caps text-balance inline-flex items-center gap-2"
+      >
         <IconMichelinStar
           v-if="block.michelin_star"
-          class="w-4 h-4.5"
+          class="w-[1em] h-[1.125em]"
         />
 
-        <h3
-          v-if="block.headline"
-          class="type-sans-large-caps text-balance"
-        >
-          {{ block.headline }}
-        </h3>
-      </div>
+        {{ block.headline }}
+      </h3>
 
       <div
         v-if="storyblokRichTextContent(block.text)"

@@ -50,7 +50,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
               <span class="type-sans-medium-caps flex items-center gap-2">
                 <IconMichelinStar
                   v-if="block.michelin_star"
-                  class="w-4 h-4.5"
+                  class="w-[1em] h-[1.125em]"
                 />
 
                 {{ block.title }}
@@ -69,7 +69,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
             <h4 class="type-sans-medium-caps flex items-center gap-2">
               <IconMichelinStar
                 v-if="block.michelin_star"
-                class="w-4 h-4.5"
+                class="w-[1em] h-[1.125em]"
               />
 
               {{ block.title }}
