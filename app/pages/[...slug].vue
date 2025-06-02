@@ -23,8 +23,8 @@ useSeoMeta({
 <template>
   <div>
     <AppComponents
-      v-if="content"
-      :content="content"
+      v-if="story.content"
+      :content="(story.content as PageStoryblok)"
     />
   </div>
 </template>
