@@ -50,6 +50,7 @@ export default defineNuxtConfig({
     public: {
       STORYBLOK_TOKEN: process.env.STORYBLOK_TOKEN,
       STORYBLOK_VERSION: process.env.STORYBLOK_VERSION,
+      PRERENDER: process.env.PRERENDER,
     },
   },
   routeRules: {

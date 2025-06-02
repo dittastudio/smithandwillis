@@ -32,6 +32,10 @@ watch(() => route.fullPath, async () => {
   <div>
     <AppLayout>
       <template #header>
+        <span class="sr-only">
+          PRERENDER: {{ $config.public.PRERENDER }}
+        </span>
+
         <AppHeader
           v-if="content"
           :primary-navigation="content.navigation_primary"
