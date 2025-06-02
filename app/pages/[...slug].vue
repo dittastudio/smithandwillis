@@ -3,8 +3,7 @@ import type { PageStoryblok } from '@@/types/storyblok'
 
 const route = useRoute()
 const story = await useStory(route.path)
-const content = story.value.content as PageStoryblok
-const { seo_title, seo_description, seo_image } = content
+const { seo_title, seo_description, seo_image } = story.value.content
 const imageOptions = { width: 1200, height: 630, format: 'jpg', smart: true, quality: 90 }
 
 useSeoMeta({
