@@ -63,6 +63,9 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2025-04-13',
   nitro: {
+    experimental: {
+      openAPI: true,
+    },
     prerender: {
       crawlLinks: true,
       routes: ['/'],
