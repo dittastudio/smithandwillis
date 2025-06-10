@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import type { SettingsStoryblok } from '@@/types/storyblok'
 
-const settings = await useStory('/settings')
-const content = settings.value.content as SettingsStoryblok
+const story = await useStory<SettingsStoryblok>('/settings')
 const route = useRoute()
 
 const globalClasses = computed(() => ({
@@ -33,13 +32,13 @@ watch(() => route.fullPath, async () => {
     <AppLayout>
       <template #header>
         <AppHeader
-          v-if="content"
-          :primary-navigation="content.navigation_primary"
-          :secondary-navigation="content.navigation_secondary"
-          :studio-title="content.studio_title"
-          :studio="content.studio"
-          :contact-title="content.contact_title"
-          :contact="content.contact"
+          v-if="story"
+          :primary-navigation="story.content.navigation_primary"
+          :secondary-navigation="story.content.navigation_secondary"
+          :studio-title="story.content.studio_title"
+          :studio="story.content.studio"
+          :contact-title="story.content.contact_title"
+          :contact="story.content.contact"
         />
       </template>
 
@@ -49,14 +48,14 @@ watch(() => route.fullPath, async () => {
 
       <template #footer>
         <AppFooter
-          v-if="content"
-          :footer-navigation="content.footer_navigation"
-          :studio-title="content.studio_title"
-          :studio="content.studio"
-          :places-title="content.places_title"
-          :places="content.places"
-          :contact-title="content.contact_title"
-          :contact="content.contact"
+          v-if="story.content"
+          :footer-navigation="story.content.footer_navigation"
+          :studio-title="story.content.studio_title"
+          :studio="story.content.studio"
+          :places-title="story.content.places_title"
+          :places="story.content.places"
+          :contact-title="story.content.contact_title"
+          :contact="story.content.contact"
         />
       </template>
 
