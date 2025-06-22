@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { BlockSplitStoryblok } from '@@/types/storyblok'
+import type { BlockSplit } from '@@/.storyblok/types/332344/storyblok-components'
 import IconMichelinStar from '@/assets/icons/michelin-star.svg'
 
 interface Props {
-  block: BlockSplitStoryblok
+  block: BlockSplit
 }
 
 const { block } = defineProps<Props>()
@@ -57,7 +57,6 @@ const ratios = {
           v-else-if="block.content[0].component === 'split_carousel'"
           class="text-white"
           :options="{
-            autoplay: block.autoplay,
             navigation: true,
             pagination: true,
           }"

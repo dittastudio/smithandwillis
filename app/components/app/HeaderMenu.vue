@@ -1,22 +1,17 @@
 <script lang="ts" setup>
-import type { RichtextStoryblok } from '@@/types/storyblok'
+import type { StoryblokRichtext } from '@@/.storyblok/types/storyblok'
 
 interface Props {
   studioTitle?: string
-  studio?: RichtextStoryblok
+  studio?: StoryblokRichtext
   contactTitle?: string
-  contact?: RichtextStoryblok
+  contact?: StoryblokRichtext
 }
 
 const { studioTitle, studio, contactTitle, contact } = defineProps<Props>()
 
 const menuOpen = useState<boolean>('menuOpen')
-
 const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p_a]:ease-out [&_p_a]:opacity-100 [&_p_a]:hover:opacity-70'
-
-watch(() => menuOpen.value, () => {
-  console.log(menuOpen.value)
-})
 </script>
 
 <template>

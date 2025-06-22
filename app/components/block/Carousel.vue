@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { BlockCarouselStoryblok } from '@@/types/storyblok'
+import type { BlockCarousel } from '@@/.storyblok/types/332344/storyblok-components'
 import IconMichelinStar from '@/assets/icons/michelin-star.svg'
 
 interface Props {
-  block: BlockCarouselStoryblok
+  block: BlockCarousel
 }
 
 const { block } = defineProps<Props>()

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { SlideSplitStoryblok } from '@@/types/storyblok'
+import type { SlideSplit } from '@@/.storyblok/types/332344/storyblok-components'
 import type { Colours } from '@/utils/maps'
 
 interface Props {
-  block: SlideSplitStoryblok
+  block: SlideSplit
   ratio: string
   desktopRatio: string
 }

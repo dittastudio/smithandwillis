@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { HeroImageStoryblok } from '@@/types/storyblok'
+import type { HeroImage } from '@@/.storyblok/types/332344/storyblok-components'
 
 interface Props {
-  block: HeroImageStoryblok
+  block: HeroImage
 }
 
 const { block } = defineProps<Props>()

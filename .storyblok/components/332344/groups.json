@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Blocks",
+    "id": 530760,
+    "uuid": "8aee4235-990a-4a59-ad5f-6d9f73a67be5",
+    "parent_id": null,
+    "parent_uuid": null
+  },
+  {
+    "name": "Content Types",
+    "id": 530762,
+    "uuid": "b99262bc-cc03-495a-8503-406c9049bc40",
+    "parent_id": null,
+    "parent_uuid": null
+  },
+  {
+    "name": "Elements",
+    "id": 530759,
+    "uuid": "672f761d-0561-4a30-add5-a1f182cb3581",
+    "parent_id": null,
+    "parent_uuid": null
+  },
+  {
+    "name": "Heroes",
+    "id": 535189,
+    "uuid": "1c67fbaf-ea34-47a0-bd3a-10b0d557d1a7",
+    "parent_id": null,
+    "parent_uuid": null
+  },
+  {
+    "name": "Split",
+    "id": 551740,
+    "uuid": "1b922efa-d33c-4ad2-b1fe-54d3837a7f3f",
+    "parent_id": null,
+    "parent_uuid": null
+  }
+]

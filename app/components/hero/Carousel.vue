@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { HeroCarouselStoryblok } from '@@/types/storyblok'
+import type { HeroCarousel } from '@@/.storyblok/types/332344/storyblok-components'
 
 interface Props {
-  block: HeroCarouselStoryblok
+  block: HeroCarousel
 }
 
 const { block } = defineProps<Props>()

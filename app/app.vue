@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type { SettingsStoryblok } from '@@/types/storyblok'
+import type { Settings } from '@@/.storyblok/types/332344/storyblok-components'
 
-const story = await useStory<SettingsStoryblok>('/settings')
+const story = await useStory<Settings>('/settings')
 const route = useRoute()
 
 const globalClasses = computed(() => ({

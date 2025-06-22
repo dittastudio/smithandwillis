@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import type { LinkStoryblok, RichtextStoryblok } from '@@/types/storyblok'
+import type { Link } from '@@/.storyblok/types/332344/storyblok-components'
+import type { StoryblokRichtext } from '@@/.storyblok/types/storyblok'
 import IconLogoMark from '@/assets/icons/logo-mark.svg'
 
 interface Props {
-  footerNavigation?: LinkStoryblok[] | undefined
+  footerNavigation?: Link[] | undefined
   studioTitle?: string
-  studio?: RichtextStoryblok
+  studio?: StoryblokRichtext
   placesTitle?: string
-  places?: RichtextStoryblok
+  places?: StoryblokRichtext
   contactTitle?: string
-  contact?: RichtextStoryblok
+  contact?: StoryblokRichtext
 }
 
 const {

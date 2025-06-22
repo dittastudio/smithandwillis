@@ -1,36 +1,42 @@
 <script lang="ts" setup>
 import type {
-  BlockCareersStoryblok,
-  BlockCarouselStoryblok,
-  BlockImageStoryblok,
-  BlockSplitStoryblok,
-  BlockTextStoryblok,
-  BlockVideoStoryblok,
-  PageStoryblok,
-} from '@@/types/storyblok'
+  BlockCareers,
+  BlockCarousel,
+  BlockImage,
+  BlockSplit,
+  BlockText,
+  BlockVideo,
+  Page,
+} from '@@/.storyblok/types/332344/storyblok-components'
 import type { Colours } from '@/utils/maps'
 
 interface Props {
-  content: PageStoryblok
+  content: Page
 }
 
-type Blocks = BlockCareersStoryblok
-  | BlockCarouselStoryblok
-  | BlockImageStoryblok
-  | BlockSplitStoryblok
-  | BlockTextStoryblok
-  | BlockVideoStoryblok
+type Blocks = BlockCareers
+  | BlockCarousel
+  | BlockImage
+  | BlockSplit
+  | BlockText
+  | BlockVideo
 
 const { content } = defineProps<Props>()
+
+const hasColourProperties = (block: Blocks): block is BlockSplit | BlockText => ['block_text', 'block_split'].includes(block.component)
 
 const checkBackgroundMatchesPrevBackground = (index: number) => {
   const current = content?.blocks?.[index]
   const previous = content?.blocks?.[index - 1]
 
+  if (
+    (!current || !previous)
+    || (!hasColourProperties(current) || !hasColourProperties(previous))) {
+    return false
+  }
+
   return (index !== 0 && current && previous) ? current.background_color === previous.background_color : false
 }
-
-const hasColourProperties = (block: Blocks): block is BlockSplitStoryblok | BlockTextStoryblok => ['block_text', 'block_split'].includes(block.component)
 
 const setColourProperties = (block: Blocks, index: number) => hasColourProperties(block)
   ? [

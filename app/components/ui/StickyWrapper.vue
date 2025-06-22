@@ -27,6 +27,9 @@ onMounted(() => {
     return
 
   const resizeObserver = new ResizeObserver(([entry]) => {
+    if (!entry) {
+      return
+    }
     setHeight(entry.target.clientHeight)
   })
 

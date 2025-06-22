@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import type { LinkStoryblok, RichtextStoryblok } from '@@/types/storyblok'
+import type { Link } from '@@/.storyblok/types/332344/storyblok-components'
+import type { StoryblokRichtext } from '@@/.storyblok/types/storyblok'
 import IconLogo from '@/assets/icons/logo.svg'
 
 interface Props {
-  primaryNavigation: LinkStoryblok[] | undefined
-  secondaryNavigation: LinkStoryblok[] | undefined
+  primaryNavigation: Link[] | undefined
+  secondaryNavigation: Link[] | undefined
   studioTitle?: string
-  studio?: RichtextStoryblok
+  studio?: StoryblokRichtext
   contactTitle?: string
-  contact?: RichtextStoryblok
+  contact?: StoryblokRichtext
 }
 
 const { primaryNavigation, secondaryNavigation, studioTitle, studio, contactTitle, contact } = defineProps<Props>()

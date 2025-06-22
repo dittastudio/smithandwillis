@@ -28,8 +28,12 @@ const handleScroll = () => {
 
 useIntersectionObserver(
   container,
-  ([{ isIntersecting }]) => {
-    if (isIntersecting) {
+  ([target]) => {
+    if (!target) {
+      return
+    }
+
+    if (target.isIntersecting) {
       window.addEventListener('scroll', handleScroll, { passive: true })
     }
     else {

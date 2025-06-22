@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { SlideImagesStoryblok, SlideSplitStoryblok, SlideVideoStoryblok } from '@@/types/storyblok'
+import type { SlideImages, SlideSplit, SlideVideo } from '@@/.storyblok/types/332344/storyblok-components'
 import type { KeenSliderInstance } from 'keen-slider'
 import type { Colours } from '@/utils/maps'
 import { useIntersectionObserver } from '@vueuse/core'
@@ -7,7 +7,7 @@ import KeenSlider from 'keen-slider'
 import IconArrowLarge from '@/assets/icons/arrow-large.svg'
 
 interface Props {
-  slides: (SlideSplitStoryblok | SlideImagesStoryblok | SlideVideoStoryblok)[]
+  slides: (SlideSplit | SlideImages | SlideVideo)[]
   options?: {
     autoplay?: boolean
     navigation?: boolean
@@ -39,11 +39,23 @@ const supportsHover = ref(false)
 const isVisible = ref(false)
 const isReady = ref(false)
 
+const isSplitBlock = (block: SlideSplit | SlideImages | SlideVideo): block is SlideSplit => ['block_split'].includes(block.component)
+
 const currentSlide = computed(() => slides[current.value])
 const isSlideSplit = computed(() => currentSlide.value?.component === 'slide_split')
-const hasReverseSlide = computed(() => currentSlide.value?.reverse === true)
+const hasReverseSlide = computed(() => {
+  if (!currentSlide.value || !isSplitBlock(currentSlide.value)) {
+    return false
+  }
 
-const getTextColorClass = (slide: SlideSplitStoryblok | SlideImagesStoryblok | SlideVideoStoryblok) => {
+  return currentSlide.value?.reverse === true
+})
+
+const getTextColorClass = (slide?: SlideSplit | SlideImages | SlideVideo) => {
+  if (!slide || !isSplitBlock(slide)) {
+    return 'md:text-offblack'
+  }
+
   const textColor = slide.text_color as Colours
   return textColor ? colourTextMd[textColor] : 'md:text-offblack'
 }
@@ -172,8 +184,12 @@ onMounted(() => {
 
     useIntersectionObserver(
       slider,
-      ([{ isIntersecting }]) => {
-        isVisible.value = isIntersecting
+      ([target]) => {
+        if (!target) {
+          return
+        }
+
+        isVisible.value = target.isIntersecting
         isVisible.value ? nextTimeout() : clearNextTimeout()
       },
       { threshold: 0.5 },

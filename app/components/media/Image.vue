@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { AssetStoryblok } from '@@/types/storyblok'
+import type { StoryblokAsset } from '@@/.storyblok/types/storyblok'
 import { useIntersectionObserver } from '@vueuse/core'
 
 defineOptions({
@@ -9,7 +9,7 @@ defineOptions({
 const attrs = useAttrs() as { [key: string]: any }
 
 interface Props {
-  asset: AssetStoryblok
+  asset: StoryblokAsset
   ratio?: string | number
   sizes: string
   alt?: string
@@ -44,11 +44,12 @@ const placeholder = storyblokImage(
 
 useIntersectionObserver(
   container,
-  ([{ target, isIntersecting }], observerElement) => {
-    if (!(target instanceof HTMLPictureElement))
+  ([target], observerElement) => {
+    if (!target) {
       return
+    }
 
-    if (isIntersecting && !ready.value) {
+    if (target.isIntersecting && !ready.value) {
       ready.value = true
       observerElement.disconnect()
     }

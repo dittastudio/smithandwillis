@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { LinkStoryblok } from '@@/types/storyblok'
+import type { Link } from '@@/.storyblok/types/332344/storyblok-components'
 
 interface Props {
-  items: LinkStoryblok[] | undefined
+  items: Link[] | undefined
 }
 
 const { items } = defineProps<Props>()

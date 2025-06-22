@@ -20,12 +20,12 @@ const ready = ref(!lazy)
 
 useIntersectionObserver(
   video,
-  ([{ target, isIntersecting }], observerElement) => {
-    if (!(target instanceof HTMLVideoElement)) {
+  ([target], observerElement) => {
+    if (!target) {
       return
     }
 
-    if (isIntersecting && !ready.value) {
+    if (target.isIntersecting && !ready.value) {
       ready.value = true
       observerElement.disconnect()
     }

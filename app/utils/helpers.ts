@@ -13,8 +13,8 @@ const ratioDimensions = (
   const parts = ratio.toString().split(':').map((num: string): number => Number(num))
 
   return {
-    width: parts[0],
-    height: parts[1],
+    width: parts[0] || 0,
+    height: parts[1] || 0,
   }
 }
 
