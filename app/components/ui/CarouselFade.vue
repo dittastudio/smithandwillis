@@ -288,6 +288,7 @@ onUnmounted(() => {
           translate-y-[calc(var(--carousel-cursor-y)_-_50%)]
           [@media(hover:none)]:hidden
           text-white
+          drop-shadow-[0_0_10px_--alpha(var(--color-black)_/100%)]
         "
         :style="{
           '--carousel-cursor-x': `${cursorPosition.x}px`,
@@ -300,7 +301,7 @@ onUnmounted(() => {
             hoveredButton === 'left' ? 'rotate-90' : '-rotate-90',
             arrowColorClass,
             {
-              'text-orange-light': depressed,
+              'text-white/60': depressed,
               '-translate-x-1/4': depressed && hoveredButton === 'left',
               'translate-x-1/4': depressed && hoveredButton === 'right',
             },
