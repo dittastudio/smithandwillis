@@ -26,8 +26,8 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1',
       meta: [
         { name: 'author', content: 'Smith & Willis' },
-        { name: 'msapplication-TileColor', content: '#e87a07' },
-        { name: 'theme-color', content: '#e87a07' },
+        { name: 'msapplication-TileColor', content: '#111111' },
+        { name: 'theme-color', content: '#111111' },
         { name: 'apple-mobile-web-app-title', content: 'Smith & Willis' },
         { 'http-equiv': 'content-language', 'content': 'en-GB' },
       ],

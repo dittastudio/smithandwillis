@@ -22,7 +22,7 @@ const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
       max-md:inset-0
       max-md:min-h-dvh
       max-md:-z-1
-      max-md:bg-rich-brown
+      max-md:bg-offblack
       max-md:text-white
       max-md:pt-[calc(var(--app-header-height)_+_--spacing(6))]
       max-md:pb-[var(--app-outer-gutter)]
@@ -46,11 +46,11 @@ const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
         max-md:gap-y-20
         max-md:min-h-full
         max-md:transition-opacity
-        max-md:ease-in-out
+        max-md:ease-out
       "
       :class="{
-        'max-md:opacity-0 max-md:duration-150': !menuOpen,
-        'max-md:opacity-100 max-md:duration-500 max-md:delay-400': menuOpen,
+        'max-md:opacity-0 max-md:duration-200': !menuOpen,
+        'max-md:opacity-100 max-md:duration-1000 max-md:delay-300': menuOpen,
       }"
     >
       <div class="md:flex md:justify-between md:w-full">
