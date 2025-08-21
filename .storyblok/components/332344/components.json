@@ -377,7 +377,7 @@
     "display_name": "Text",
     "description": "",
     "created_at": "2025-04-03T18:08:06.117Z",
-    "updated_at": "2025-08-21T21:08:52.444Z",
+    "updated_at": "2025-08-21T22:53:43.495Z",
     "id": 7166149,
     "schema": {
       "headline": {
@@ -420,8 +420,8 @@
         "style_options": [
           {
             "_uid": "68708cf8-bed2-4437-85f6-6c800a0903f7",
-            "name": "Emphasise",
-            "value": "font-mix font-bold tracking-sm"
+            "name": "Mix Font",
+            "value": "font-mix tracking-sm"
           }
         ]
       },
@@ -683,7 +683,7 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-08-21T21:55:33.002Z",
-    "updated_at": "2025-08-21T22:05:05.912Z",
+    "updated_at": "2025-08-21T22:55:54.311Z",
     "id": 82426810381905,
     "schema": {
       "brand": {
@@ -692,7 +692,7 @@
         "use_uuid": true,
         "required": true,
         "source": "internal",
-        "datasource_slug": "career-brand",
+        "datasource_slug": "brand",
         "exclude_empty_option": true,
         "id": "bJFENZDuS-emPfWT7r7WPg"
       },
@@ -702,7 +702,7 @@
         "required": true,
         "use_uuid": true,
         "source": "internal",
-        "datasource_slug": "career-department",
+        "datasource_slug": "department",
         "exclude_empty_option": true,
         "id": "CGr6PnukRtyhuP9NfqIxpA"
       },

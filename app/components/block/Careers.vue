@@ -15,11 +15,11 @@ const storyblokApi = useStoryblokApi()
 // const routeQueryDepartment = computed(() => route.query?.department ?? null)
 
 const { data: brand } = await useAsyncData('brand', async () => await storyblokApi.get(`cdn/datasource_entries`, {
-  datasource: 'career-brand',
+  datasource: 'brand',
 }))
 
 const { data: department } = await useAsyncData('department', async () => await storyblokApi.get(`cdn/datasource_entries`, {
-  datasource: 'career-department',
+  datasource: 'department',
 }))
 
 const jobs = computed(() => block.jobs
@@ -48,12 +48,24 @@ console.log('block', jobs.value)
       {{ department }}
     </pre>
 
+    <FilterDatasource
+      v-if="brand?.data.datasource_entries.length"
+      slug="brand"
+      :entries="brand.data.datasource_entries"
+    />
+
+    <FilterDatasource
+      v-if="department?.data.datasource_entries.length"
+      slug="department"
+      :entries="department.data.datasource_entries"
+    />
+
     <ul
       class="group grid grid-cols-1 md:grid-cols-2 gap-x-[var(--app-inner-gutter)]"
     >
       <li
         v-for="job in jobs"
-        :key="job._uid"
+        :key="job.id"
         class="
           flex
           justify-between
