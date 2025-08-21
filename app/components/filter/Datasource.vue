@@ -13,6 +13,8 @@ interface Props {
 const { slug, entries = [] } = defineProps<Props>()
 const route = useRoute()
 
+const applied = computed(() => route.query[slug] ?? null)
+
 const filters = computed(() => {
   const others = entries.map(entry => ({
     ...entry,
@@ -44,14 +46,25 @@ const filters = computed(() => {
 </script>
 
 <template>
-  <ul>
-    <li
-      v-for="filter in filters"
-      :key="filter.id"
-    >
-      <NuxtLink :to="filter.to">
-        {{ filter.name }}
-      </NuxtLink>
-    </li>
-  </ul>
+  <div class="@container">
+    <ul class="flex flex-col gap-0.5">
+      <li
+        v-for="filter in filters"
+        :key="filter.id"
+        class="text-14"
+      >
+        <NuxtLink
+          :to="filter.to"
+          class="opacity-50 hover:opacity-100 transition-opacity duration-200 no-underline"
+          :class="[
+            {
+              'opacity-100': applied === filter.value || (!applied && !filter.value),
+            },
+          ]"
+        >
+          {{ filter.name }}
+        </NuxtLink>
+      </li>
+    </ul>
+  </div>
 </template>
