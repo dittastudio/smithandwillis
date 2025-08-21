@@ -136,12 +136,24 @@
   }
 }
 
-@utility prose-large {
+@utility prose-medium {
   p {
     font-size: var(--text-20);
 
     @variant md {
       font-size: var(--text-22);
     }
+  }
+}
+
+@utility prose-large {
+  p {
+    font-size: clamp(1.25rem, 0.8979rem + 1.5023vw, 2.25rem); /* 20px - 36px */
+    max-width: 30em;
+    text-wrap: balance;
+  }
+
+  p strong {
+    letter-spacing: var(--tracking-xs);
   }
 }

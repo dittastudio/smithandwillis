@@ -45,7 +45,8 @@ onMounted(async () => {
           ui-scroll-down__button
           block
           size-full
-          py-10
+          pt-30
+          pb-10
           transition-opacity
           duration-300
           ease-out
