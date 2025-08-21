@@ -4,12 +4,19 @@
     "display_name": "Careers",
     "description": "",
     "created_at": "2025-04-08T15:20:27.516Z",
-    "updated_at": "2025-04-08T15:31:40.934Z",
+    "updated_at": "2025-08-21T15:42:09.981Z",
     "id": 7187946,
     "schema": {
+      "anchor_id": {
+        "type": "text",
+        "pos": 0,
+        "description": "Make sure this ID matches the one added with a link.\n\nOtherwise this anchor is what you can add to directly link to a section in the page. i.e. https://site.com/page#anchorID",
+        "id": "K1UGEzRYQYSexG-pFoRXxw",
+        "display_name": "Anchor ID"
+      },
       "background_color": {
         "type": "option",
-        "pos": 0,
+        "pos": 1,
         "use_uuid": true,
         "display_name": "Background Colour",
         "id": "IVgMrRA_QtGQlNel6R1F_Q",
@@ -18,7 +25,7 @@
       },
       "text_color": {
         "type": "option",
-        "pos": 1,
+        "pos": 2,
         "use_uuid": true,
         "display_name": "Text Colour",
         "id": "eoh4jqf7T8moOFEvXLh6gQ",
@@ -27,22 +34,31 @@
       },
       "headline": {
         "type": "text",
-        "pos": 2,
+        "pos": 3,
         "id": "_Buzz3b8SS2fgHP5qecaMA"
       },
       "items": {
         "type": "bloks",
-        "pos": 3,
+        "pos": 4,
         "restrict_type": "",
         "restrict_components": true,
         "component_whitelist": [
           "career_item"
         ],
         "id": "lUBI5cJbQjGfnSC-HjE5fg"
+      },
+      "tab-74bcc446-f685-4646-9287-4543555b7ba7": {
+        "display_name": "Anchor",
+        "keys": [
+          "anchor_id"
+        ],
+        "pos": 5,
+        "type": "tab",
+        "id": "dLzERvaFRkaSh0VDVVt7pw"
       }
     },
     "image": null,
-    "preview_field": null,
+    "preview_field": "headline",
     "is_root": false,
     "preview_tmpl": null,
     "is_nestable": true,
@@ -124,7 +140,7 @@
     "display_name": "Image",
     "description": null,
     "created_at": "2025-04-02T13:53:04.041Z",
-    "updated_at": "2025-06-01T11:07:52.711Z",
+    "updated_at": "2025-08-21T14:59:37.154Z",
     "id": 7159482,
     "schema": {
       "media": {
@@ -181,7 +197,8 @@
         "type": "multilink",
         "pos": 6,
         "id": "XndzVA3WRrOmPOclsMP-GQ",
-        "allow_target_blank": true
+        "allow_target_blank": true,
+        "show_anchor": true
       }
     },
     "image": null,
@@ -205,12 +222,19 @@
     "display_name": "Split",
     "description": "",
     "created_at": "2025-04-08T16:30:36.828Z",
-    "updated_at": "2025-06-01T14:17:17.181Z",
+    "updated_at": "2025-08-21T15:33:41.351Z",
     "id": 7188205,
     "schema": {
+      "anchor_id": {
+        "type": "text",
+        "pos": 0,
+        "display_name": "Anchor ID",
+        "id": "nzkwFIAdS-urM-G0jDbigQ",
+        "description": "Make sure this ID matches the one added with a link."
+      },
       "content": {
         "type": "bloks",
-        "pos": 0,
+        "pos": 1,
         "maximum": 1,
         "restrict_type": "",
         "restrict_components": true,
@@ -222,17 +246,17 @@
       },
       "michelin_star": {
         "type": "boolean",
-        "pos": 1,
+        "pos": 2,
         "id": "vY6FEXpcSjCJs3TIXfi6lQ"
       },
       "headline": {
         "type": "text",
-        "pos": 2,
+        "pos": 3,
         "id": "_Buzz3b8SS2fgHP5qecaMA"
       },
       "text": {
         "type": "richtext",
-        "pos": 3,
+        "pos": 4,
         "required": true,
         "customize_toolbar": true,
         "toolbar": [
@@ -253,7 +277,7 @@
       },
       "ratio": {
         "type": "option",
-        "pos": 4,
+        "pos": 5,
         "use_uuid": true,
         "source": "internal",
         "datasource_slug": "ratio-portrait",
@@ -262,7 +286,7 @@
       },
       "ratio_desktop": {
         "type": "option",
-        "pos": 5,
+        "pos": 6,
         "use_uuid": true,
         "source": "internal",
         "datasource_slug": "ratio",
@@ -271,7 +295,7 @@
       },
       "link": {
         "type": "bloks",
-        "pos": 6,
+        "pos": 7,
         "maximum": 1,
         "restrict_type": "",
         "restrict_components": true,
@@ -282,18 +306,18 @@
       },
       "reverse": {
         "type": "boolean",
-        "pos": 7,
+        "pos": 8,
         "id": "6SeQcuxJQMSBCDVoA8CIjA",
         "default_value": true
       },
       "reverse_desktop": {
         "type": "boolean",
-        "pos": 8,
+        "pos": 9,
         "id": "ZlQ_ZapQSM6T2TaWleM5SA"
       },
       "background_color": {
         "type": "option",
-        "pos": 9,
+        "pos": 10,
         "use_uuid": true,
         "display_name": "Background Colour",
         "id": "IVgMrRA_QtGQlNel6R1F_Q",
@@ -302,16 +326,25 @@
       },
       "text_color": {
         "type": "option",
-        "pos": 10,
+        "pos": 11,
         "use_uuid": true,
         "display_name": "Text Colour",
         "id": "eoh4jqf7T8moOFEvXLh6gQ",
         "source": "internal",
         "datasource_slug": "colours"
+      },
+      "tab-2cbbaf52-ab4b-4ff1-bea4-5e0516282466": {
+        "display_name": "Anchor",
+        "keys": [
+          "anchor_id"
+        ],
+        "pos": 12,
+        "type": "tab",
+        "id": "LLuvUqtLT_G-pF4FFigkZg"
       }
     },
     "image": null,
-    "preview_field": null,
+    "preview_field": "headline",
     "is_root": false,
     "preview_tmpl": null,
     "is_nestable": true,
@@ -331,7 +364,7 @@
     "display_name": "Text",
     "description": "",
     "created_at": "2025-04-03T18:08:06.117Z",
-    "updated_at": "2025-05-27T19:15:41.692Z",
+    "updated_at": "2025-08-21T14:27:47.360Z",
     "id": 7166149,
     "schema": {
       "headline": {
@@ -361,7 +394,6 @@
           "bold",
           "unset",
           "list",
-          "h1",
           "h2",
           "h3",
           "h4",

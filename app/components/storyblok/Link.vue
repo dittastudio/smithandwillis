@@ -22,7 +22,7 @@ const customAttributes = {
 
 const attributes = {
   ...customAttributes,
-  to: href?.trim().replace(/\/+$/, ''),
+  to: `${href?.trim().replace(/\/+$/, '')}${item?.anchor ? `#${item?.anchor}` : ''}`,
   target: item?.target ?? item?.linktype === 'asset' ? '_blank' : null,
 }
 </script>

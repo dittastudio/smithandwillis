@@ -74,6 +74,7 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
 
     <section
       v-for="(block, index) in content.blocks"
+      :id="block.anchor_id ? safeKebabCase(block.anchor_id) : null"
       :key="block._uid"
       class="content-blocks__item"
       :class="[

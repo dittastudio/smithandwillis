@@ -2,6 +2,7 @@
 // DO NOT MODIFY THIS FILE BY HAND.
 import type { StoryblokAsset, StoryblokMultiasset, StoryblokMultilink, StoryblokRichtext } from '../storyblok.d.ts';
 export interface BlockCareers {
+  anchor_id?: string;
   background_color?: number | string;
   text_color?: number | string;
   headline?: string;
@@ -33,6 +34,7 @@ export interface BlockImage {
 }
 
 export interface BlockSplit {
+  anchor_id?: string;
   content?: (SplitCarousel | SplitMedia)[];
   michelin_star?: boolean;
   headline?: string;
