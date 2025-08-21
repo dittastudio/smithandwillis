@@ -4,19 +4,12 @@
     "display_name": "Careers",
     "description": "",
     "created_at": "2025-04-08T15:20:27.516Z",
-    "updated_at": "2025-08-21T15:42:09.981Z",
+    "updated_at": "2025-08-21T22:13:22.934Z",
     "id": 7187946,
     "schema": {
-      "anchor_id": {
-        "type": "text",
-        "pos": 0,
-        "description": "Make sure this ID matches the one added with a link.\n\nOtherwise this anchor is what you can add to directly link to a section in the page. i.e. https://site.com/page#anchorID",
-        "id": "K1UGEzRYQYSexG-pFoRXxw",
-        "display_name": "Anchor ID"
-      },
       "background_color": {
         "type": "option",
-        "pos": 1,
+        "pos": 0,
         "use_uuid": true,
         "display_name": "Background Colour",
         "id": "IVgMrRA_QtGQlNel6R1F_Q",
@@ -25,7 +18,7 @@
       },
       "text_color": {
         "type": "option",
-        "pos": 2,
+        "pos": 1,
         "use_uuid": true,
         "display_name": "Text Colour",
         "id": "eoh4jqf7T8moOFEvXLh6gQ",
@@ -34,8 +27,21 @@
       },
       "headline": {
         "type": "text",
-        "pos": 3,
+        "pos": 2,
         "id": "_Buzz3b8SS2fgHP5qecaMA"
+      },
+      "jobs": {
+        "type": "options",
+        "pos": 3,
+        "required": true,
+        "source": "internal_stories",
+        "filter_content_type": [
+          "job"
+        ],
+        "entry_appearance": "link",
+        "min_options": "1",
+        "description": "Select the jobs you wish to display.",
+        "id": "na0zpdHxQjWZD49ZZtATuA"
       },
       "items": {
         "type": "bloks",
@@ -47,12 +53,19 @@
         ],
         "id": "lUBI5cJbQjGfnSC-HjE5fg"
       },
+      "anchor_id": {
+        "type": "text",
+        "pos": 5,
+        "description": "Make sure this ID matches the one added with a link.\n\nOtherwise this anchor is what you can add to directly link to a section in the page. i.e. https://site.com/page#anchorID",
+        "id": "K1UGEzRYQYSexG-pFoRXxw",
+        "display_name": "Anchor ID"
+      },
       "tab-74bcc446-f685-4646-9287-4543555b7ba7": {
         "display_name": "Anchor",
         "keys": [
           "anchor_id"
         ],
-        "pos": 5,
+        "pos": 6,
         "type": "tab",
         "id": "dLzERvaFRkaSh0VDVVt7pw"
       }
@@ -364,7 +377,7 @@
     "display_name": "Text",
     "description": "",
     "created_at": "2025-04-03T18:08:06.117Z",
-    "updated_at": "2025-08-21T14:27:47.360Z",
+    "updated_at": "2025-08-21T21:08:52.444Z",
     "id": 7166149,
     "schema": {
       "headline": {
@@ -394,7 +407,6 @@
           "bold",
           "unset",
           "list",
-          "h2",
           "h3",
           "h4",
           "h5",
@@ -444,7 +456,7 @@
       }
     },
     "image": null,
-    "preview_field": null,
+    "preview_field": "text",
     "is_root": false,
     "preview_tmpl": null,
     "is_nestable": true,
@@ -541,7 +553,7 @@
     "display_name": "Career Item",
     "description": "",
     "created_at": "2025-04-08T15:27:36.138Z",
-    "updated_at": "2025-04-08T15:31:06.387Z",
+    "updated_at": "2025-08-21T21:18:19.599Z",
     "id": 7187949,
     "schema": {
       "role": {
@@ -560,7 +572,8 @@
         "type": "asset",
         "pos": 2,
         "id": "XJY3mm4DTh6fzd6hwXJ0Yw",
-        "required": true
+        "required": true,
+        "display_name": "PDF"
       },
       "email": {
         "type": "text",
@@ -660,6 +673,67 @@
     "component_group_uuid": "1c67fbaf-ea34-47a0-bd3a-10b0d557d1a7",
     "color": "#fbce41",
     "icon": "block-image",
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "job",
+    "display_name": null,
+    "description": "",
+    "created_at": "2025-08-21T21:55:33.002Z",
+    "updated_at": "2025-08-21T22:05:05.912Z",
+    "id": 82426810381905,
+    "schema": {
+      "brand": {
+        "type": "option",
+        "pos": 0,
+        "use_uuid": true,
+        "required": true,
+        "source": "internal",
+        "datasource_slug": "career-brand",
+        "exclude_empty_option": true,
+        "id": "bJFENZDuS-emPfWT7r7WPg"
+      },
+      "department": {
+        "type": "option",
+        "pos": 1,
+        "required": true,
+        "use_uuid": true,
+        "source": "internal",
+        "datasource_slug": "career-department",
+        "exclude_empty_option": true,
+        "id": "CGr6PnukRtyhuP9NfqIxpA"
+      },
+      "pdf": {
+        "type": "asset",
+        "pos": 2,
+        "required": true,
+        "id": "HW_2x3ibQMmmBj0lqBLnaQ",
+        "display_name": "PDF",
+        "description": "File for a more detailed job description."
+      },
+      "email": {
+        "type": "text",
+        "pos": 3,
+        "required": true,
+        "regex": "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$",
+        "description": "Email that will receive the application.",
+        "id": "3ec3vK6HTQy5xD8lSY6_Rw"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": true,
+    "preview_tmpl": null,
+    "is_nestable": false,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "job",
+    "component_group_uuid": "b99262bc-cc03-495a-8503-406c9049bc40",
+    "color": "#ef6252",
+    "icon": "block-arrow-pointer",
     "internal_tags_list": [],
     "internal_tag_ids": [],
     "content_type_asset_preview": null,

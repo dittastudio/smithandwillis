@@ -8,6 +8,27 @@ interface Props {
 const { block } = defineProps<Props>()
 
 const classesLinkHover = 'transition-opacity duration-300 ease-out opacity-100 hover:opacity-70'
+
+const storyblokApi = useStoryblokApi()
+// const route = useRoute()
+// const routeQueryBrand = computed(() => route.query?.brand ?? null)
+// const routeQueryDepartment = computed(() => route.query?.department ?? null)
+
+const { data: brand } = await useAsyncData('brand', async () => await storyblokApi.get(`cdn/datasource_entries`, {
+  datasource: 'career-brand',
+}))
+
+const { data: department } = await useAsyncData('department', async () => await storyblokApi.get(`cdn/datasource_entries`, {
+  datasource: 'career-department',
+}))
+
+const jobs = computed(() => block.jobs
+  .filter(item => typeof item !== 'string'),
+  // .filter(job => (routeQueryBrand.value && job.content?.brand?.includes(routeQueryBrand.value as string)))
+  // .filter(job => (routeQueryDepartment.value && job.content?.department?.includes(routeQueryDepartment.value as string))),
+)
+
+console.log('block', jobs.value)
 </script>
 
 <template>
@@ -22,12 +43,17 @@ const classesLinkHover = 'transition-opacity duration-300 ease-out opacity-100 h
       {{ block.headline }}
     </h2>
 
+    <pre>
+      {{ brand }}
+      {{ department }}
+    </pre>
+
     <ul
       class="group grid grid-cols-1 md:grid-cols-2 gap-x-[var(--app-inner-gutter)]"
     >
       <li
-        v-for="item in block.items"
-        :key="item._uid"
+        v-for="job in jobs"
+        :key="job._uid"
         class="
           flex
           justify-between
@@ -45,24 +71,24 @@ const classesLinkHover = 'transition-opacity duration-300 ease-out opacity-100 h
       >
         <div class="flex flex-col gap-y-0.5">
           <p
-            v-if="item.role"
+            v-if="job.name"
             class="type-sans-medium"
           >
-            {{ item.role }}
+            {{ job.name }}
           </p>
 
           <p
-            v-if="item.company"
+            v-if="job.content.brand"
             class="type-sans-medium-caps"
           >
-            {{ item.company }}
+            {{ job.content.brand }}
           </p>
         </div>
 
         <div class="flex gap-x-4 md:gap-x-6 lg:pr-6">
           <a
-            v-if="item.pdf?.filename"
-            :href="item.pdf.filename"
+            v-if="job.content.pdf?.filename"
+            :href="job.content.pdf.filename"
             target="_blank"
             rel="noopener noreferrer"
             class="type-mix-xsmall-caps p-2 -m-2 md:p-3 md:-m-3"
@@ -72,8 +98,8 @@ const classesLinkHover = 'transition-opacity duration-300 ease-out opacity-100 h
           </a>
 
           <a
-            v-if="item.email"
-            :href="`mailto:${item.email}`"
+            v-if="job.content.email"
+            :href="`mailto:${job.content.email}`"
             class="type-mix-xsmall-caps p-2 -m-2 md:p-3 md:-m-3"
             :class="classesLinkHover"
           >

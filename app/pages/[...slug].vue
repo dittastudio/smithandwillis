@@ -2,7 +2,7 @@
 import type { Page } from '@@/.storyblok/types/332344/storyblok-components'
 
 const route = useRoute()
-const story = await useStory<Page>(route.path)
+const story = await useStory<Page>(route.path, { resolve_relations: ['block_careers.jobs'] }, { resolveRelations: ['block_careers.jobs'] })
 const { seo_title, seo_description, seo_image } = story.value.content
 const imageOptions = { width: 1200, height: 630, format: 'jpg', smart: true, quality: 90 }
 
