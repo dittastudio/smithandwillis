@@ -3,6 +3,9 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "sb:login": "storyblok login",
+    "sb:logout": "storyblok logout",
+    "sb:help": "storyblok --help",
     "sb:components": "storyblok components pull --space 332344",
     "sb:types": "storyblok types generate --space 332344 --strict",
     "dev": "npm run sb:components && npm run sb:types && nuxt dev --host",
@@ -17,7 +20,7 @@
   },
   "dependencies": {
     "@ditta/colophon": "^0.0.5",
-    "@storyblok/nuxt": "^7.0.1",
+    "@storyblok/nuxt": "^8.0.4",
     "@tailwindcss/vite": "^4.1.12",
     "@vueuse/core": "^13.7.0",
     "keen-slider": "^6.8.6",
