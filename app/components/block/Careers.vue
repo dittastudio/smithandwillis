@@ -43,11 +43,6 @@ console.log('block', jobs.value)
       {{ block.headline }}
     </h2>
 
-    <pre>
-      {{ brand }}
-      {{ department }}
-    </pre>
-
     <FilterDatasource
       v-if="brand?.data.datasource_entries.length"
       slug="brand"
