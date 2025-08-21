@@ -36,13 +36,6 @@ useIntersectionObserver(
     if (target.isIntersecting) {
       window.addEventListener('scroll', handleScroll, { passive: true })
     }
-    else {
-      window.removeEventListener('scroll', handleScroll)
-
-      if (container.value) {
-        container.value.style.translate = '0 0 0'
-      }
-    }
   },
   { threshold: 0 },
 )
