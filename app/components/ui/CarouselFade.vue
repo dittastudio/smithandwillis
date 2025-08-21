@@ -242,7 +242,7 @@ onUnmounted(() => {
         class="absolute inset-0 flex"
       >
         <button
-          class="ui-carousel-fade__button ui-carousel-fade__button--left w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none"
+          class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none"
           @click="handleChange('prev')"
           @mousemove.passive="handleMouseMove"
           @mouseenter="handleMouseEnter('left')"
@@ -253,7 +253,7 @@ onUnmounted(() => {
           <span class="sr-only">Previous</span>
 
           <IconArrowLarge
-            class="[@media(hover:hover)]:hidden w-[16px] h-[18px] rotate-90"
+            class="[@media(hover:hover)]:hidden w-[16px] h-[18px] rotate-90 drop-shadow-sm"
           />
         </button>
 
@@ -269,7 +269,7 @@ onUnmounted(() => {
           <span class="sr-only">Next</span>
 
           <IconArrowLarge
-            class="[@media(hover:hover)]:hidden w-[16px] h-[18px] -rotate-90"
+            class="[@media(hover:hover)]:hidden w-[16px] h-[18px] -rotate-90 drop-shadow-sm"
           />
         </button>
       </div>
@@ -288,7 +288,7 @@ onUnmounted(() => {
           translate-y-[calc(var(--carousel-cursor-y)_-_50%)]
           [@media(hover:none)]:hidden
           text-white
-          drop-shadow-[0_0_10px_--alpha(var(--color-black)_/100%)]
+          drop-shadow-sm
         "
         :style="{
           '--carousel-cursor-x': `${cursorPosition.x}px`,
@@ -394,39 +394,6 @@ onUnmounted(() => {
     &::before {
       opacity: 0;
     }
-  }
-}
-
-.ui-carousel-fade__button {
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 75%;
-    height: 50%;
-    margin-block: auto;
-    opacity: 0.6;
-
-    @media (hover: hover) {
-      display: none;
-    }
-  }
-}
-
-.ui-carousel-fade__button--left {
-  &::before {
-    left: 0;
-    background-image: radial-gradient(ellipse at -20% 50%, --alpha(var(--color-black) / 100%) 0%, --alpha(var(--color-black) / 0%) 50%);
-  }
-}
-
-.ui-carousel-fade__button--right {
-  &::before {
-    right: 0;
-    background-image: radial-gradient(ellipse at 120% 50%, --alpha(var(--color-black) / 100%) 0%, --alpha(var(--color-black) / 0%) 50%);
   }
 }
 </style>

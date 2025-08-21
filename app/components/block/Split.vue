@@ -29,7 +29,7 @@ const ratios = {
       block.reverse_desktop ? 'md:flex-row-reverse' : 'md:flex-row',
     ]"
   >
-    <div class="w-full md:w-1/2 md:self-stretch md:[&>*]:h-full">
+    <div class="w-full md:w-1/2 md:self-stretch md:[&>*]:h-full bg-offblack">
       <template
         v-if="block.content?.[0]"
       >

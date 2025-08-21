@@ -222,7 +222,7 @@
     "display_name": "Split",
     "description": "",
     "created_at": "2025-04-08T16:30:36.828Z",
-    "updated_at": "2025-08-21T15:33:41.351Z",
+    "updated_at": "2025-08-21T15:53:20.412Z",
     "id": 7188205,
     "schema": {
       "anchor_id": {
@@ -230,7 +230,7 @@
         "pos": 0,
         "display_name": "Anchor ID",
         "id": "nzkwFIAdS-urM-G0jDbigQ",
-        "description": "Make sure this ID matches the one added with a link."
+        "description": "Make sure this ID matches the one added with a link.\n\nOtherwise this anchor is what you can add to directly link to a section in the page. i.e. https://site.com/page#anchorID"
       },
       "content": {
         "type": "bloks",
