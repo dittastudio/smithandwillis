@@ -287,7 +287,7 @@ onUnmounted(() => {
           translate-x-[calc(var(--carousel-cursor-x)_-_50%)]
           translate-y-[calc(var(--carousel-cursor-y)_-_50%)]
           [@media(hover:none)]:hidden
-          text-orange
+          text-white
         "
         :style="{
           '--carousel-cursor-x': `${cursorPosition.x}px`,

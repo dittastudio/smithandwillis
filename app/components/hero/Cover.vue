@@ -25,7 +25,7 @@ onMounted(async () => {
 
 <template>
   <div
-    class="size-full text-warm-grey pointer-events-none transition-opacity duration-1500 ease-outQuart"
+    class="size-full text-white/90 pointer-events-none transition-opacity duration-1500 ease-outQuart"
     :class="{
       'opacity-0': !ready,
     }"
@@ -48,6 +48,6 @@ onMounted(async () => {
 @reference "@/assets/css/main.css";
 
 .hero-cover__wrapper {
-  background-image: radial-gradient(circle, --alpha(var(--color-black) / 50%) 0%, --alpha(var(--color-black) / 0%) 25%);
+  filter: drop-shadow(0 0 10px --alpha(var(--color-black) / 50%));
 }
 </style>
