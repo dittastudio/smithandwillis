@@ -4,7 +4,7 @@
     "display_name": "Careers",
     "description": "",
     "created_at": "2025-04-08T15:20:27.516Z",
-    "updated_at": "2025-08-21T22:13:22.934Z",
+    "updated_at": "2025-08-21T23:21:48.209Z",
     "id": 7187946,
     "schema": {
       "background_color": {
@@ -14,7 +14,8 @@
         "display_name": "Background Colour",
         "id": "IVgMrRA_QtGQlNel6R1F_Q",
         "source": "internal",
-        "datasource_slug": "colours"
+        "datasource_slug": "colours",
+        "required": true
       },
       "text_color": {
         "type": "option",
@@ -23,7 +24,8 @@
         "display_name": "Text Colour",
         "id": "eoh4jqf7T8moOFEvXLh6gQ",
         "source": "internal",
-        "datasource_slug": "colours"
+        "datasource_slug": "colours",
+        "required": true
       },
       "headline": {
         "type": "text",
@@ -42,16 +44,6 @@
         "min_options": "1",
         "description": "Select the jobs you wish to display.",
         "id": "na0zpdHxQjWZD49ZZtATuA"
-      },
-      "items": {
-        "type": "bloks",
-        "pos": 4,
-        "restrict_type": "",
-        "restrict_components": true,
-        "component_whitelist": [
-          "career_item"
-        ],
-        "id": "lUBI5cJbQjGfnSC-HjE5fg"
       },
       "anchor_id": {
         "type": "text",
@@ -377,7 +369,7 @@
     "display_name": "Text",
     "description": "",
     "created_at": "2025-04-03T18:08:06.117Z",
-    "updated_at": "2025-08-21T22:53:43.495Z",
+    "updated_at": "2025-08-21T23:26:54.967Z",
     "id": 7166149,
     "schema": {
       "headline": {
@@ -420,7 +412,7 @@
         "style_options": [
           {
             "_uid": "68708cf8-bed2-4437-85f6-6c800a0903f7",
-            "name": "Mix Font",
+            "name": "Season Mix",
             "value": "font-mix tracking-sm"
           }
         ]

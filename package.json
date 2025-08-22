@@ -22,14 +22,20 @@
     "@ditta/colophon": "^0.0.5",
     "@storyblok/nuxt": "^8.0.4",
     "@tailwindcss/vite": "^4.1.12",
+    "@vee-validate/zod": "^4.15.1",
     "@vueuse/core": "^13.7.0",
+    "form-data": "^4.0.4",
     "keen-slider": "^6.8.6",
     "lodash-es": "^4.17.21",
+    "lucide-vue-next": "^0.540.0",
     "nuxt": "^4.0.3",
     "postcss-nested": "^7.0.2",
+    "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.12",
+    "vee-validate": "^4.15.1",
     "vue": "^3.5.19",
-    "vue-router": "^4.5.1"
+    "vue-router": "^4.5.1",
+    "zod": "^4.0.17"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^5.2.1",
@@ -44,5 +50,8 @@
     "storyblok": "^4.3.4",
     "typescript": "^5.9.2",
     "vite-svg-loader": "^5.1.0"
+  },
+  "overrides": {
+    "zod": "^4.0.17"
   }
 }

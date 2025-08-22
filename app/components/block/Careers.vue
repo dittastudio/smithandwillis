@@ -148,14 +148,18 @@ const jobs = computed(() => {
                 View
               </a>
 
-              <a
-                v-if="job.content.email"
-                :href="`mailto:${job.content.email}`"
-                class="type-mix-xsmall-caps p-2 -m-2 md:p-3 md:-m-3"
-                :class="classesLinkHover"
-              >
-                Apply
-              </a>
+              <UiModal v-if="job.content.email">
+                <template #trigger>
+                  <span
+                    class="type-mix-xsmall-caps p-2 -m-2 md:p-3 md:-m-3"
+                    :class="classesLinkHover"
+                  >
+                    Apply
+                  </span>
+                </template>
+
+                <JobApplication />
+              </UiModal>
             </div>
           </li>
         </ul>
