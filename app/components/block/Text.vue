@@ -24,6 +24,7 @@ const { block } = defineProps<Props>()
       v-if="storyblokRichTextContent(block.text)"
       class="prose"
       :class="[{
+        'prose-medium': block.text_size === 'medium',
         'prose-large': block.text_size === 'large',
       }]"
     >

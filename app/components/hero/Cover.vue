@@ -25,7 +25,7 @@ onMounted(async () => {
 
 <template>
   <div
-    class="size-full text-white/90 pointer-events-none transition-opacity duration-1500 ease-outQuart"
+    class="size-full text-white/80 pointer-events-none transition-opacity duration-1500 ease-outQuart"
     :class="{
       'opacity-0': !ready,
     }"

@@ -253,7 +253,7 @@ onUnmounted(() => {
           <span class="sr-only">Previous</span>
 
           <IconArrowLarge
-            class="[@media(hover:hover)]:hidden w-[16px] h-[18px] rotate-90 drop-shadow-sm"
+            class="[@media(hover:hover)]:hidden w-[16px] h-[18px] rotate-90 filter-shadow-light"
           />
         </button>
 
@@ -269,7 +269,7 @@ onUnmounted(() => {
           <span class="sr-only">Next</span>
 
           <IconArrowLarge
-            class="[@media(hover:hover)]:hidden w-[16px] h-[18px] -rotate-90 drop-shadow-sm"
+            class="[@media(hover:hover)]:hidden w-[16px] h-[18px] -rotate-90 filter-shadow-light"
           />
         </button>
       </div>
@@ -288,7 +288,7 @@ onUnmounted(() => {
           translate-y-[calc(var(--carousel-cursor-y)_-_50%)]
           [@media(hover:none)]:hidden
           text-white
-          drop-shadow-sm
+          filter-shadow-light
         "
         :style="{
           '--carousel-cursor-x': `${cursorPosition.x}px`,
