@@ -151,14 +151,14 @@ const jobs = computed(() => {
               <UiModal v-if="job.content.email">
                 <template #trigger>
                   <span
-                    class="type-mix-xsmall-caps p-2 -m-2 md:p-3 md:-m-3"
+                    class="block type-mix-xsmall-caps p-2 -m-2 md:p-3 md:-m-3"
                     :class="classesLinkHover"
                   >
                     Apply
                   </span>
                 </template>
 
-                <JobApplication />
+                <JobApplication :headline="`Apply for ${job.name}${job.content.brand ? ` at ${job.content.brand}` : ``}`" />
               </UiModal>
             </div>
           </li>

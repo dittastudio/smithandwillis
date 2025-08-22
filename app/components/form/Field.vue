@@ -17,11 +17,11 @@ const {
 </script>
 
 <template>
-  <div class="flex flex-col gap-2 w-full">
+  <div class="flex flex-col gap-3 w-full">
     <Component
       :is="as"
       v-if="label"
-      :class="a11y ? 'sr-only' : 'relative z-10 flex flex-col gap-1 items-baseline w-auto'"
+      :class="a11y ? 'sr-only' : 'relative z-10 flex flex-col gap-0.5 items-baseline w-auto'"
       :for="id && as === 'label' ? id : null"
     >
       <span class="text-balance">
@@ -30,7 +30,7 @@ const {
 
       <span
         v-if="hint"
-        class="text-balance w-auto text-12 text-black/40"
+        class="text-balance w-auto text-12 opacity-40"
       >
         {{ hint }}
       </span>

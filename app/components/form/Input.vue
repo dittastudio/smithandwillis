@@ -34,7 +34,7 @@ const onInput = (event: Event) => {
     :id="id"
     :type="field && !multiLine ? field : null"
     :class="[
-      'w-full border-0 ring-0 outline-1 outline-black/10 focus:outline-black transition-colors duration-500 ease-outQuint px-4 py-3 text-14 rounded-none',
+      'w-full border-0 ring-0 outline-1 -outline-offset-1 focus:outline-inherit transition-colors duration-500 ease-outQuint px-4 py-3 text-14 rounded-none',
       { 'min-h-[180px]': multiLine },
     ]"
     :value="modelValue"

@@ -5,10 +5,11 @@ import { useField, useForm, useValidateForm } from 'vee-validate'
 import { z } from 'zod'
 
 interface Props {
+  headline?: string
   legend?: string
 }
 
-const { legend } = defineProps<Props>()
+const { headline, legend } = defineProps<Props>()
 
 const loading = ref<boolean>(false)
 const status = ref<{
@@ -17,38 +18,45 @@ const status = ref<{
 } | null>(null)
 
 const MAX_FILE_SIZE = 500 * 1024 // 500KB
-const ALLOWED_FILE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif']
+const ALLOWED_FILE_TYPES = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
 
 const validationSchema = toTypedSchema(
   z.object({
-    image: z
-      .instanceof(File)
-      .optional()
-      .refine(file => (!file) ? true : file.size <= MAX_FILE_SIZE, 'Image must be less than 500KB')
-      .refine(file => (!file) ? true : ALLOWED_FILE_TYPES.includes(file.type), 'Image must be JPEG, PNG, WebP, or GIF'),
-    comment: z
-      .string()
-      .trim()
-      .max(280, 'Comment must be less than 280 characters')
-      .default(''),
     name: z
       .string()
       .trim()
       .min(1, 'Name is required')
       .max(50, 'Name must be less than 50 characters')
-      .regex(/^[a-z\s\-'.]+$/i, 'Name contains invalid characters')
-      .default(''),
+      .regex(/^[a-z\s\-'.]+$/i, 'Name contains invalid characters'),
+    email: z
+      .email()
+      .trim(),
+    file: z
+      .instanceof(File, { message: 'A file attachment is required' })
+      .refine(file => (!file) ? true : file.size <= MAX_FILE_SIZE, 'File must be less than 500KB')
+      .refine(file => (!file) ? true : ALLOWED_FILE_TYPES.includes(file.type), 'File must be a PDF or Word document'),
+    cover: z
+      .string()
+      .trim()
+      .max(1000, 'Cover must be less than 1000 characters'),
   }),
 )
 
 const { errors } = useForm({
   validationSchema,
+  initialValues: {
+    name: '',
+    email: '',
+    file: undefined,
+    cover: '',
+  },
 })
 
 const validate = useValidateForm()
-const { value: comment } = useField<string>('comment')
 const { value: name } = useField<string>('name')
-const { value: image, setValue: setImageValue } = useField<File | undefined>('image')
+const { value: email } = useField<string>('email')
+const { value: file, setValue: setFileValue } = useField<File | undefined>('file')
+const { value: cover } = useField<string>('cover')
 
 const metadata = ref<Payload['metadata']>({})
 
@@ -58,11 +66,12 @@ const setMetaData = (data: Payload['metadata']) => {
 
 const defaultErrorMessage = 'Please check the form and try again.'
 
-const imageSelected = ({ file, metadata }: Payload) => {
-  setImageValue(file)
+const fileSelected = ({ file, metadata }: Payload) => {
+  setFileValue(file)
   setMetaData(metadata)
 }
-const imageCleared = () => setImageValue(undefined)
+
+const fileCleared = () => setFileValue(undefined)
 
 const onSubmit = async () => {
   try {
@@ -76,26 +85,28 @@ const onSubmit = async () => {
 
     const formData = new FormData()
 
-    if (image.value) {
-      formData.append('image', image.value)
+    formData.append('name', name.value.trim())
+    formData.append('email', email.value.trim())
+
+    if (file.value) {
+      formData.append('file', file.value)
       formData.append('metadata', JSON.stringify(metadata.value))
     }
 
-    formData.append('comment', comment.value.trim())
-    formData.append('name', name.value.trim())
+    formData.append('cover', cover.value.trim())
 
-    const createEntry = await $fetch('/api/guestbook/createEntry', {
+    const createApplication = await $fetch('/api/createApplication', {
       method: 'POST',
       body: formData,
     })
 
-    if (!createEntry || createEntry.statusCode !== 200) {
-      throw new Error(createEntry?.statusMessage || defaultErrorMessage)
+    if (!createApplication || createApplication.statusCode !== 200) {
+      throw new Error(createApplication?.statusMessage || defaultErrorMessage)
     }
 
     status.value = {
       type: 'success',
-      message: 'Your entry has been successfully made.',
+      message: 'Your application has been successfully made.',
     }
   }
   catch (error: any) {
@@ -114,82 +125,110 @@ const onSubmit = async () => {
 <template>
   <div>
     <div v-if="status && status.type === 'success'">
-      <p>Thanks for sharing your experience with us. We'll review your submission shortly.</p>
+      <p>Thanks for applying with us. We'll review your submission shortly.</p>
     </div>
 
-    <FormBase
-      v-else
-      :loading="loading"
-      @submit.prevent="onSubmit"
-    >
-      <FormFieldset
-        :legend="legend"
-        a11y
-      >
-        <FormField
-          id="image"
-          label="Image"
-          hint="Optional image (JPEG, PNG, WebP, GIF - max 500KB)"
+    <template v-else>
+      <div class="flex flex-col gap-8">
+        <h2
+          v-if="headline"
+          class="type-sans-medium-caps"
         >
-          <FormUpload
-            id="image"
-            :types="ALLOWED_FILE_TYPES"
-            :max-size="MAX_FILE_SIZE"
-            @selected="imageSelected"
-            @cleared="imageCleared"
-          />
+          {{ headline }}
+        </h2>
+
+        <FormBase
+          :loading="loading"
+          @submit.prevent="onSubmit"
+        >
+          <FormFieldset
+            :legend="legend"
+            a11y
+          >
+            <FormField
+              id="name"
+              label="Name *"
+              hint="Your full legal name"
+            >
+              <FormInput
+                id="name"
+                v-model="name"
+                placeholder="Enter your name"
+              />
+
+              <FormMessage
+                v-if="errors.name"
+                :message="errors.name"
+              />
+            </FormField>
+
+            <FormField
+              id="email"
+              label="Email *"
+              hint="You will receive a confirmation email"
+            >
+              <FormInput
+                id="email"
+                v-model="email"
+                placeholder="Enter your email address"
+              />
+
+              <FormMessage
+                v-if="errors.email"
+                :message="errors.email"
+              />
+            </FormField>
+
+            <FormField
+              id="file"
+              label="File Attachment *"
+              hint="File must be a PDF or Word document"
+            >
+              <FormUpload
+                id="file"
+                :types="ALLOWED_FILE_TYPES"
+                :max-size="MAX_FILE_SIZE"
+                @selected="fileSelected"
+                @cleared="fileCleared"
+              />
+
+              <FormMessage
+                v-if="errors.file"
+                :message="errors.file"
+              />
+            </FormField>
+
+            <FormField
+              id="cover"
+              label="Cover"
+              hint="Please write an optional cover letter"
+            >
+              <FormInput
+                id="cover"
+                v-model="cover"
+                placeholder="Enter your cover letter"
+                multi-line
+              />
+
+              <FormMessage
+                v-if="errors.cover"
+                :message="errors.cover"
+              />
+            </FormField>
+          </FormFieldset>
 
           <FormMessage
-            v-if="errors.image"
-            :message="errors.image"
-          />
-        </FormField>
-
-        <FormField
-          id="comment"
-          label="Comment"
-          hint="Thoughts about your experience"
-        >
-          <FormInput
-            id="comment"
-            v-model="comment"
-            placeholder="Enter your comment"
+            v-if="status"
+            :type="status.type"
+            :message="status.message"
           />
 
-          <FormMessage
-            v-if="errors.comment"
-            :message="errors.comment"
-          />
-        </FormField>
-
-        <FormField
-          id="name"
-          label="Name *"
-          hint="As you want it to appear in the guestbook"
-        >
-          <FormInput
-            id="name"
-            v-model="name"
-            placeholder="Enter your name"
-          />
-
-          <FormMessage
-            v-if="errors.name"
-            :message="errors.name"
-          />
-        </FormField>
-      </FormFieldset>
-
-      <FormMessage
-        v-if="status"
-        :type="status.type"
-        :message="status.message"
-      />
-
-      <button>
-        <UiLoading v-if="loading" />
-        {{ loading ? 'Please wait...' : 'Submit' }}
-      </button>
-    </FormBase>
+          <button>
+            <UiLoading v-if="loading" />
+            {{ loading ? 'Please wait...' : 'Submit' }}
+          </button>
+        </FormBase>
+      </div>
+    </template>
   </div>
 </template>
