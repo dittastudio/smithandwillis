@@ -7,7 +7,7 @@ interface Props {
 
 const { block } = defineProps<Props>()
 
-const classesLinkHover = 'transition-opacity duration-300 ease-out opacity-100 hover:opacity-70'
+const classesLinkHover = 'transition-opacity duration-300 ease-out group-hover/link:not-hover:opacity-70'
 
 const storyblokApi = useStoryblokApi()
 const route = useRoute()
@@ -80,7 +80,7 @@ const jobs = computed(() => {
       {{ block.headline }}
     </h2>
 
-    <div class="group grid grid-cols-1 md:grid-cols-12 gap-[var(--app-inner-gutter)]">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-[var(--app-inner-gutter)]">
       <div class="md:col-span-3 xl:col-span-2 flex flex-col gap-4 md:gap-6 md:pt-4">
         <FilterDatasource
           v-if="brand?.data.datasource_entries.length"
@@ -101,24 +101,24 @@ const jobs = computed(() => {
       >
         <ul
           :key="listKey"
-          class="md:col-span-9 xl:col-span-10 group flex flex-col gap-x-[var(--app-inner-gutter)]"
+          class="group/list md:col-span-9 xl:col-span-10 flex flex-col gap-x-[var(--app-inner-gutter)]"
         >
           <li
             v-for="job in jobs"
             :key="job.id"
             class="
-          flex
-          justify-between
-          items-center
-          border-b
-          border-current/20
-          py-4
-          transition-opacity
-          duration-300
-          ease-out
-          opacity-100
-          group-hover:[&:not(&:hover)]:opacity-50
-        "
+              flex
+              justify-between
+              items-center
+              border-b
+              border-current/20
+              py-4
+              transition-opacity
+              duration-300
+              ease-out
+              opacity-100
+              group-hover/list:not-hover:opacity-50
+            "
           >
             <div class="flex flex-col gap-y-0.5">
               <p
@@ -136,7 +136,7 @@ const jobs = computed(() => {
               </p>
             </div>
 
-            <div class="flex gap-x-4 md:gap-x-6 lg:pr-6">
+            <div class="group/link flex gap-x-4 md:gap-x-6 lg:pr-6">
               <a
                 v-if="job.content.pdf?.filename"
                 :href="job.content.pdf.filename"
