@@ -47,6 +47,7 @@ export default defineNuxtConfig({
     name: 'Smith & Willis',
   },
   runtimeConfig: {
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
     public: {
       STORYBLOK_TOKEN: process.env.STORYBLOK_TOKEN,
       STORYBLOK_VERSION: process.env.STORYBLOK_VERSION,

@@ -65,7 +65,7 @@ defineOptions({
 
   <dialog
     ref="modal"
-    class="fixed inset-0 w-full h-dvh max-w-full max-h-none backdrop-blur-2xl transition-opacity duration-500 overflow-hidden [&::backdrop]:hidden bg-warm-grey/10"
+    class="fixed inset-0 w-full h-dvh max-w-full max-h-none backdrop-blur-2xl transition-opacity duration-500 overflow-hidden [&::backdrop]:hidden bg-warm-grey/5"
     :class="{
       'opacity-0 delay-500 pointer-events-none': !modalOpen,
       'opacity-100 delay-0 pointer-events-auto': modalOpen,
