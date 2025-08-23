@@ -40,11 +40,11 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
       class="absolute inset-0 flex flex-col items-start justify-end contain-layout contain-paint"
     >
       <div class="sticky bottom-0">
-        <div class="block-image__gradient p-[var(--app-outer-gutter)]">
+        <div class="block-image__gradient p-(--app-outer-gutter)">
           <StoryblokLink
             v-if="block.link?.cached_url"
             :item="block.link"
-            class="p-4 -m-4 flex flex-col gap-1"
+            class="p-(--app-outer-gutter) -m-(--app-outer-gutter) flex flex-col gap-1"
           >
             <UiTextLink :is-external="block.link.linktype === 'url'">
               <span class="type-sans-medium-caps flex items-center gap-2">
