@@ -158,7 +158,11 @@ const jobs = computed(() => {
                   </span>
                 </template>
 
-                <JobApplication :headline="`Apply for ${job.name}${job.content.brand ? ` at ${job.content.brand}` : ``}`" />
+                <JobApplication
+                  :legend="`Apply for ${job.name}${job.content.brand ? ` at ${job.content.brand}` : ``}`"
+                  :headline="`Apply for ${job.name}${job.content.brand ? ` at ${job.content.brand}` : ``}`"
+                  :recipient="job.content.email"
+                />
               </UiModal>
             </div>
           </li>
