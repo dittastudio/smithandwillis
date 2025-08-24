@@ -26,8 +26,7 @@ const validationSchema = toTypedSchema(
       .string()
       .trim()
       .min(1, 'Name is required')
-      .max(50, 'Name must be less than 50 characters')
-      .regex(/^[a-z\s\-'.]+$/i, 'Name contains invalid characters'),
+      .max(50, 'Name must be less than 50 characters'),
     email: z
       .email()
       .trim(),

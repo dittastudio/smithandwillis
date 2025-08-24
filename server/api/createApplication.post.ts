@@ -37,8 +37,7 @@ export default defineEventHandler(async (event) => {
       .string()
       .trim()
       .min(1, 'Name is required')
-      .max(50, 'Name must be less than 50 characters')
-      .regex(/^[a-z\s\-'.]+$/i, 'Name contains invalid characters'),
+      .max(50, 'Name must be less than 50 characters'),
     email: z
       .email('Invalid email')
       .trim(),
@@ -108,13 +107,13 @@ export default defineEventHandler(async (event) => {
 
     throw createError({
       statusCode: err?.statusCode ?? 500,
-      statusMessage: err?.message ?? err?.error ?? 'Failed to send email',
+      statusMessage: err?.message ?? err?.error ?? 'Failed to send email.',
       data: err,
     })
   }
 
   return {
     statusCode: 200,
-    statusMessage: 'Entry created successfully.',
+    statusMessage: 'Application created successfully.',
   }
 })
