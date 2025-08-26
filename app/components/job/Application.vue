@@ -7,10 +7,11 @@ import { z } from 'zod'
 interface Props {
   legend?: string
   headline?: string
-  recipient?: string
+  jobTitle?: string
+  jobEmail?: string
 }
 
-const { legend, headline, recipient } = defineProps<Props>()
+const { legend, headline, jobTitle, jobEmail } = defineProps<Props>()
 const loading = ref<boolean>(false)
 const status = ref<{
   type: 'error' | 'success'
@@ -19,6 +20,7 @@ const status = ref<{
 
 const MAX_FILE_SIZE = 500 * 1024 // 500KB
 const ALLOWED_FILE_TYPES = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+const ALLOWED_EMAIL_DOMAINS = ['@smithandwillis.london', '@luca.restaurant']
 
 const validationSchema = toTypedSchema(
   z.object({
@@ -38,6 +40,18 @@ const validationSchema = toTypedSchema(
       .string()
       .trim()
       .max(1000, 'Cover must be less than 1000 characters'),
+    title: z
+      .string()
+      .trim()
+      .min(1, 'Job title is required')
+      .max(100, 'Job title must be less than 100 characters'),
+    recipient: z
+      .email()
+      .trim()
+      .refine((email) => {
+        const domain = email.split('@')[1]
+        return ALLOWED_EMAIL_DOMAINS.includes(`@${domain}`)
+      }, 'Recipient email domain is not allowed'),
   }),
 )
 
@@ -48,6 +62,8 @@ const { errors } = useForm({
     email: '',
     file: undefined,
     cover: '',
+    title: jobTitle,
+    recipient: jobEmail,
   },
 })
 
@@ -56,6 +72,8 @@ const { value: name } = useField<string>('name')
 const { value: email } = useField<string>('email')
 const { value: file, setValue: setFileValue } = useField<File | undefined>('file')
 const { value: cover } = useField<string>('cover')
+const { value: title } = useField<string>('title')
+const { value: recipient } = useField<string>('recipient')
 
 const metadata = ref<Payload['metadata']>({})
 
@@ -93,7 +111,8 @@ const onSubmit = async () => {
     }
 
     formData.append('cover', cover.value.trim())
-    formData.append('recipient', recipient || '')
+    formData.append('title', title.value.trim())
+    formData.append('recipient', recipient.value.trim())
 
     const createApplication = await $fetch('/api/createApplication', {
       method: 'POST',
@@ -170,6 +189,7 @@ const onSubmit = async () => {
                 id="email"
                 v-model="email"
                 placeholder="Enter your email address"
+                field="email"
               />
 
               <FormMessage
@@ -214,6 +234,28 @@ const onSubmit = async () => {
                 :message="errors.cover"
               />
             </FormField>
+
+            <FormInput
+              id="title"
+              v-model="title"
+              field="hidden"
+            />
+
+            <FormMessage
+              v-if="errors.title"
+              :message="errors.title"
+            />
+
+            <FormInput
+              id="recipient"
+              v-model="recipient"
+              field="hidden"
+            />
+
+            <FormMessage
+              v-if="errors.recipient"
+              :message="errors.recipient"
+            />
           </FormFieldset>
 
           <FormMessage

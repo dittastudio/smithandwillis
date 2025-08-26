@@ -9,6 +9,7 @@ export default defineEventHandler(async (event) => {
     'application/msword',
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
   ]
+  const ALLOWED_EMAIL_DOMAINS = ['@smithandwillis.london', '@luca.restaurant']
 
   const config = useRuntimeConfig()
   const resend = new Resend(config.RESEND_API_KEY)
@@ -25,6 +26,8 @@ export default defineEventHandler(async (event) => {
   const email = form.find(f => f.name === 'email')?.data?.toString() ?? ''
   const cover = form.find(f => f.name === 'cover')?.data?.toString() ?? ''
   const file = form.find(f => f.name === 'file')
+  const title = form.find(f => f.name === 'title')?.data?.toString() ?? ''
+  const recipient = form.find(f => f.name === 'recipient')?.data?.toString() ?? ''
 
   if (!file) {
     throw createError({
@@ -52,6 +55,18 @@ export default defineEventHandler(async (event) => {
       size: z.number().max(MAX_FILE_SIZE, 'File must be less than 500KB'),
       data: z.instanceof(Buffer),
     }),
+    title: z
+      .string()
+      .trim()
+      .min(1, 'Job title is required')
+      .max(100, 'Job title must be less than 100 characters'),
+    recipient: z
+      .email()
+      .trim()
+      .refine((email) => {
+        const domain = email.split('@')[1]
+        return ALLOWED_EMAIL_DOMAINS.includes(`@${domain}`)
+      }, 'Recipient email domain is not allowed'),
   })
 
   const validationResult = serverValidationSchema.safeParse({
@@ -64,15 +79,26 @@ export default defineEventHandler(async (event) => {
       size: file.data.length,
       data: file.data,
     },
+    title,
+    recipient,
   })
 
   if (!validationResult.success) {
-    const errors = validationResult.error.flatten().fieldErrors
+    const fieldErrors = validationResult.error.issues.reduce((acc: Record<string, string[]>, issue) => {
+      if (issue.path && issue.path.length) {
+        const key = issue.path.join('.')
+        ;(acc[key] ||= []).push(issue.message)
+      }
+      else {
+        ;(acc._errors ||= []).push(issue.message)
+      }
+      return acc
+    }, {})
 
     throw createError({
       statusCode: 400,
-      statusMessage: 'Validation failed',
-      data: errors,
+      statusMessage: 'Application validation failed.',
+      data: fieldErrors,
     })
   }
 
@@ -80,9 +106,9 @@ export default defineEventHandler(async (event) => {
   const fileBase64 = validated.file.data.toString('base64')
 
   const response = await resend.emails.send({
-    from: 'Smith & Willis <hello@smithandwillis.london>',
-    to: 'michael@ditta.studio',
-    subject: 'New Job Application',
+    from: 'Smith & Willis <careers@smithandwillis.london>',
+    to: validated.recipient,
+    subject: `New Application: ${validated.title}`,
     html: `
       <p><strong>Name:</strong> ${validated.name}</p>
       <p><strong>Email:</strong> ${validated.email}</p>

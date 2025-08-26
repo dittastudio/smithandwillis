@@ -183,7 +183,8 @@ const { scrollMarginTop } = useCentreAnchor(scrollAnchor, 150)
                   <JobApplication
                     :legend="`Apply for ${job.name}${getDatasourceName(brand, job.content.brand) ? ` at ${getDatasourceName(brand, job.content.brand)}` : ``}`"
                     :headline="`Apply for ${job.name}${getDatasourceName(brand, job.content.brand) ? ` at ${getDatasourceName(brand, job.content.brand)}` : ``}`"
-                    :recipient="job.content.email"
+                    :job-title="`${job.name}${getDatasourceName(brand, job.content.brand) ? ` at ${getDatasourceName(brand, job.content.brand)}` : ``}`"
+                    :job-email="job.content.email"
                   />
                 </UiModal>
               </div>
