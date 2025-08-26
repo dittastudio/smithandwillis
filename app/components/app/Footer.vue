@@ -28,7 +28,7 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
 </script>
 
 <template>
-  <div class="bg-rich-brown text-white pt-[var(--app-header-height)] sm:pt-20 pb-16">
+  <div class="bg-rich-brown text-white pt-(--app-header-height) sm:pt-20 pb-16">
     <div class="wrapper">
       <div class="relative grid gap-x-[var(--app-inner-gutter)] sm:gap-y-8 grid-cols-2 md:grid-cols-12">
         <div class="col-span-full sm:col-span-1 md:col-span-3 lg:col-span-2">

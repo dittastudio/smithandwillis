@@ -18,7 +18,7 @@ export const twMerge = extendTailwindMerge({
         'text-black',
         'text-offblack',
         'text-orange',
-        'text-orange-light',
+        'text-orange-soft',
         'text-warm-grey',
         'text-rich-brown',
       ],
