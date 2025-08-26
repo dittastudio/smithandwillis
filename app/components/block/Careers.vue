@@ -66,11 +66,17 @@ const jobs = computed(() => {
     matches(job.content?.brand, brandFilters) && matches(job.content?.department, deptFilters)
   ))
 })
+
+const scrollAnchor = ref<HTMLElement>()
+const { scrollMarginTop } = useCentreAnchor(scrollAnchor, 150)
 </script>
 
 <template>
   <div
+    :id="block.anchor_id ? safeKebabCase(block.anchor_id) : undefined"
+    ref="scrollAnchor"
     v-editable="block"
+    :style="scrollMarginTop"
     class="block-careers wrapper flex flex-col gap-4 md:gap-6"
   >
     <h2

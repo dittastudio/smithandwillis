@@ -8,6 +8,9 @@ interface Props {
 
 const { block } = defineProps<Props>()
 
+const scrollAnchor = ref<HTMLElement>()
+const { scrollMarginTop } = useCentreAnchor(scrollAnchor, 100)
+
 const ratios = {
   mobile: {
     x: ratioDimensions(block.ratio || '').width,
@@ -82,6 +85,9 @@ const ratios = {
     </div>
 
     <div
+      :id="block.anchor_id ? safeKebabCase(block.anchor_id) : undefined"
+      ref="scrollAnchor"
+      :style="scrollMarginTop"
       class="w-full md:w-1/2 flex flex-col items-start gap-8 md:gap-10 pt-20 pb-12 px-[var(--app-outer-gutter)] md:py-[var(--app-outer-gutter)] 2xl:w-auto 2xl:mx-auto"
       :class="!block.reverse_desktop && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))] 2xl:pr-[calc(var(--app-outer-gutter)_+_--spacing(4))]'"
     >
@@ -119,3 +125,9 @@ const ratios = {
     </div>
   </div>
 </template>
+
+<style lang="postcss">
+[id] {
+  scroll-margin-top: 50vh;
+}
+</style>
