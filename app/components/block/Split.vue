@@ -60,6 +60,7 @@ const ratios = {
           v-else-if="block.content[0].component === 'split_carousel'"
           class="text-white"
           :options="{
+            autoplay: block.content[0].autoplay || false,
             navigation: true,
             pagination: true,
           }"
