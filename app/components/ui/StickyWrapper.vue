@@ -36,7 +36,6 @@ onMounted(() => {
   resizeObserver.observe(observedElement)
   window.addEventListener('resize', handleResize)
 
-  // Initial height check
   setHeight(observedElement.clientHeight)
 })
 
@@ -58,8 +57,8 @@ onUnmounted(() => {
 <style lang="postcss" scoped>
 .ui-sticky-wrapper {
   position: sticky;
-  bottom: calc((-1 * var(--_block-height)) + 100vh);
-  bottom: calc((-1 * var(--_block-height)) + 100svh);
+  bottom: calc((-1 * (var(--_block-height) + var(--app-header-height))) + 100vh);
+  bottom: calc((-1 * (var(--_block-height) + var(--app-header-height))) + 100svh);
 
   &.is-shorter {
     bottom: 0;
