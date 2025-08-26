@@ -5,12 +5,12 @@ import { useField, useForm, useValidateForm } from 'vee-validate'
 import { z } from 'zod'
 
 interface Props {
-  headline?: string
   legend?: string
+  headline?: string
+  recipient?: string
 }
 
-const { headline, legend } = defineProps<Props>()
-
+const { legend, headline, recipient } = defineProps<Props>()
 const loading = ref<boolean>(false)
 const status = ref<{
   type: 'error' | 'success'
@@ -26,8 +26,7 @@ const validationSchema = toTypedSchema(
       .string()
       .trim()
       .min(1, 'Name is required')
-      .max(50, 'Name must be less than 50 characters')
-      .regex(/^[a-z\s\-'.]+$/i, 'Name contains invalid characters'),
+      .max(50, 'Name must be less than 50 characters'),
     email: z
       .email()
       .trim(),
@@ -94,6 +93,7 @@ const onSubmit = async () => {
     }
 
     formData.append('cover', cover.value.trim())
+    formData.append('recipient', recipient || '')
 
     const createApplication = await $fetch('/api/createApplication', {
       method: 'POST',
@@ -110,7 +110,6 @@ const onSubmit = async () => {
     }
   }
   catch (error: any) {
-    // console.error('Error creating entry:', error)
     status.value = {
       type: 'error',
       message: error.statusMessage || defaultErrorMessage,

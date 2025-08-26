@@ -47,6 +47,7 @@ export default defineNuxtConfig({
     name: 'Smith & Willis',
   },
   runtimeConfig: {
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
     public: {
       STORYBLOK_TOKEN: process.env.STORYBLOK_TOKEN,
       STORYBLOK_VERSION: process.env.STORYBLOK_VERSION,
@@ -64,7 +65,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-04-13',
   nitro: {
     experimental: {
-      openAPI: true,
+      openAPI: false,
     },
     prerender: {
       crawlLinks: true,
