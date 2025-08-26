@@ -192,7 +192,7 @@ onMounted(() => {
         isVisible.value = target.isIntersecting
         isVisible.value ? nextTimeout() : clearNextTimeout()
       },
-      { threshold: 0.5 },
+      { threshold: 0.1 },
     )
 
     sliderInstance.value.on('dragStarted', clearNextTimeout)
