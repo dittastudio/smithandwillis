@@ -37,7 +37,18 @@ const close = async () => {
   await wait(1000)
 
   modal.value?.close()
+
   emit('closed')
+}
+
+const cancel = () => {
+  const active = document.activeElement as HTMLElement | null
+
+  if (active?.tagName === 'INPUT' && (active as HTMLInputElement).type === 'file') {
+    return
+  }
+
+  close()
 }
 
 defineExpose({
@@ -70,7 +81,7 @@ defineOptions({
       'opacity-0 delay-500 pointer-events-none': !modalOpen,
       'opacity-100 delay-0 pointer-events-auto': modalOpen,
     }"
-    @cancel.prevent="close"
+    @cancel.prevent="cancel"
   >
     <div class="@container size-full">
       <div
