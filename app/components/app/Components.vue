@@ -74,7 +74,6 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
 
     <section
       v-for="(block, index) in content.blocks"
-      :id="block.anchor_id ? safeKebabCase(block.anchor_id) : null"
       :key="block._uid"
       class="content-blocks__item"
       :class="[
@@ -117,14 +116,20 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
+@reference "@/assets/css/main.css";
+
 .content-blocks__item:not(
   .content-blocks__item--block_image,
   .content-blocks__item--block_video,
   .content-blocks__item--block_split,
   .content-blocks__item--block_carousel
 ) {
-  padding-block: 160px;
+  padding-block: --spacing(30);
+
+  @variant md {
+    padding-block: --spacing(40);
+  }
 }
 
 .content-blocks__item:not([class*="bg-"]) + .content-blocks__item.bg-offblack,

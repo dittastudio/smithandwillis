@@ -22,7 +22,8 @@ const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
       max-md:inset-0
       max-md:min-h-dvh
       max-md:-z-1
-      max-md:bg-offblack
+      max-md:bg-offblack/90
+      max-md:backdrop-blur-md
       max-md:text-white
       max-md:pt-[calc(var(--app-header-height)_+_--spacing(6))]
       max-md:pb-[var(--app-outer-gutter)]
@@ -35,7 +36,7 @@ const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
     "
     :class="{
       'max-md:opacity-0 max-md:invisible': !menuOpen,
-      'max-md:opacity-100 max-md:visible': menuOpen,
+      'app-header-menu--is-open max-md:opacity-100 max-md:visible': menuOpen,
     }"
   >
     <div
@@ -96,9 +97,9 @@ const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
 .app-header-menu {
-  html:has(&.app-header-menu--is-open) {
+  :global(html:has(&.app-header-menu--is-open)) {
     overflow: hidden;
   }
 }

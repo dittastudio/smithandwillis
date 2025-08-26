@@ -3,11 +3,10 @@
 import type { ISbStoryData } from '@storyblok/js';
 import type { StoryblokAsset, StoryblokMultiasset, StoryblokMultilink, StoryblokRichtext } from '../storyblok.d.ts';
 export interface BlockCareers {
-  background_color?: number | string;
-  text_color?: number | string;
+  background_color: number | string;
+  text_color: number | string;
   headline?: string;
   jobs: (ISbStoryData<Job> | string)[];
-  items?: CareerItem[];
   anchor_id?: string;
   component: "block_careers";
   _uid: string;
