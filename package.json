@@ -35,7 +35,7 @@
     "vee-validate": "^4.15.1",
     "vue": "^3.5.20",
     "vue-router": "^4.5.1",
-    "zod": "^4.1.1"
+    "zod": "^4.1.3"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^5.2.1",
@@ -47,11 +47,11 @@
     "del-cli": "^6.0.0",
     "eslint": "^9.34.0",
     "sharp": "^0.34.3",
-    "storyblok": "^4.3.4",
+    "storyblok": "^4.4.0",
     "typescript": "^5.9.2",
     "vite-svg-loader": "^5.1.0"
   },
   "overrides": {
-    "zod": "^4.1.1"
+    "zod": "^4.1.3"
   }
 }
