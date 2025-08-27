@@ -82,17 +82,19 @@ const { scrollMarginTop } = useCentreAnchor(scrollAnchor, 150)
     ref="scrollAnchor"
     v-editable="block"
     :style="scrollMarginTop"
-    class="block-careers wrapper flex flex-col gap-4 md:gap-6"
+    class="wrapper"
   >
-    <h2
-      v-if="block.headline"
-      class="type-sans-large-caps text-balance"
-    >
-      {{ block.headline }}
-    </h2>
-
     <div class="grid grid-cols-1 md:grid-cols-12 gap-[var(--app-inner-gutter)]">
-      <div class="md:col-span-3 xl:col-span-2 flex flex-col gap-4 md:gap-6 md:pt-4">
+      <div
+        v-if="block.headline"
+        class="md:col-start-4 md:-col-end-1 md:row-start-1 xl:col-start-3"
+      >
+        <h2 class="type-sans-large-caps text-balance">
+          {{ block.headline }}
+        </h2>
+      </div>
+
+      <div class="md:col-span-3 md:row-start-2 xl:col-span-2 flex flex-col gap-4 md:gap-6 md:pt-4">
         <FilterDatasource
           v-if="brand?.data.datasource_entries.length"
           slug="brand"
@@ -106,7 +108,7 @@ const { scrollMarginTop } = useCentreAnchor(scrollAnchor, 150)
         />
       </div>
 
-      <div class="md:col-span-9 xl:col-span-10">
+      <div class="md:col-span-9 md:row-start-2 xl:col-span-10">
         <p
           v-if="!jobs.length"
           class="pt-4"
