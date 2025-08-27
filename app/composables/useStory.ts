@@ -24,6 +24,7 @@ export async function useStory<T>(
         preventClicks: true,
         ...bridge,
       },
+      deep: true,
       ...options,
     },
   )
