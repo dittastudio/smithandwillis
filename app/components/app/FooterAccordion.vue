@@ -27,10 +27,6 @@ const toggleAccordion = () => {
 const isScreenSm = useAtMedia(`(min-width: 600px)`)
 
 watchEffect(() => {
-  if (!import.meta.client) {
-    return
-  }
-
   isOpen.value = isScreenSm.value
 })
 </script>
