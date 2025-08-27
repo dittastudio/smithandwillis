@@ -46,7 +46,7 @@ const { items } = defineProps<Props>()
             transition-colors
             duration-300
             ease-out
-            hover:text-orange
+            hover:text-orange-soft
             [&.router-link-active]:text-orange-soft
             [&.router-link-exact-active]:text-orange-soft
           "

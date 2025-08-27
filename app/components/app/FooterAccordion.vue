@@ -9,15 +9,17 @@ const isOpen = ref<boolean>(false)
 const headerId = `accordion-header-${safeKebabCase(id)}`
 const bodyId = `accordion-body-${safeKebabCase(id)}`
 
+const elRef = ref<HTMLElement>()
+
 const toggleAccordion = () => {
   isOpen.value = !isOpen.value
 
   if (isOpen.value) {
     nextTick(() => {
-      const element = document.getElementById(bodyId)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
+      if (!elRef.value)
+        return
+
+      elRef.value.scrollIntoView({ behavior: 'smooth', block: 'start' })
     })
   }
 }
@@ -35,10 +37,12 @@ watchEffect(() => {
 
 <template>
   <div
+    ref="elRef"
     class="
       app-footer-accordion
       relative
       w-full
+      scroll-mt-(--app-header-height)
     "
   >
     <button
