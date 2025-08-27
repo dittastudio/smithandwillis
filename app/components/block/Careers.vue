@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { BlockCareers } from '@@/.storyblok/types/332344/storyblok-components'
 import type { ISbResult } from '@storyblok/js'
+import { ListFilter } from 'lucide-vue-next'
 
 interface Props {
   block: BlockCareers
@@ -74,6 +75,13 @@ const getDatasourceName = (datasource: ISbResult | undefined, key: string | numb
 
 const scrollAnchor = ref<HTMLElement>()
 const { scrollMarginTop } = useCentreAnchor(scrollAnchor, 150)
+
+const isScreenMd = useAtMedia(`(min-width: 800px)`)
+const isFiltersOpen = ref(false)
+
+watchEffect(() => {
+  isFiltersOpen.value = isScreenMd.value
+})
 </script>
 
 <template>
@@ -95,17 +103,29 @@ const { scrollMarginTop } = useCentreAnchor(scrollAnchor, 150)
       </div>
 
       <div class="md:col-span-3 md:row-start-2 xl:col-span-2 flex flex-col gap-4 md:gap-6 md:pt-4">
-        <FilterDatasource
-          v-if="brand?.data.datasource_entries.length"
-          slug="brand"
-          :entries="brand.data.datasource_entries"
-        />
+        <button
+          type="button"
+          class="flex items-center justify-start gap-4 text-14 md:hidden"
+          @click="isFiltersOpen = !isFiltersOpen"
+        >
+          {{ isFiltersOpen ? 'Close filters' : 'Filter jobs' }} <ListFilter class="size-3 text-inherit" />
+        </button>
 
-        <FilterDatasource
-          v-if="department?.data.datasource_entries.length"
-          slug="department"
-          :entries="department.data.datasource_entries"
-        />
+        <UiExpandCollapse :is-open="isFiltersOpen">
+          <div class="flex flex-col gap-4 md:gap-6">
+            <FilterDatasource
+              v-if="brand?.data.datasource_entries.length"
+              slug="brand"
+              :entries="brand.data.datasource_entries"
+            />
+
+            <FilterDatasource
+              v-if="department?.data.datasource_entries.length"
+              slug="department"
+              :entries="department.data.datasource_entries"
+            />
+          </div>
+        </UiExpandCollapse>
       </div>
 
       <div class="md:col-span-9 md:row-start-2 xl:col-span-10">
