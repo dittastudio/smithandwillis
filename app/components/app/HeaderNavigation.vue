@@ -43,6 +43,8 @@ const { items } = defineProps<Props>()
             md:-m-4
             lg:p-6
             lg:-m-6
+            max-md:border-b
+            max-md:border-current/20
             transition-colors
             duration-300
             ease-out
