@@ -10,6 +10,7 @@ interface Props {
   slides: (SlideSplit | SlideImages | SlideVideo)[]
   options?: {
     autoplay?: boolean
+    autoplayDuration?: number
     navigation?: boolean
     pagination?: boolean
     slideClasses?: string
@@ -22,6 +23,7 @@ interface Props {
 
 const { slides, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9, options = {
   autoplay: false,
+  autoplayDuration: 3,
   navigation: true,
   pagination: true,
   slideClasses: '',
@@ -173,7 +175,7 @@ onMounted(() => {
 
       timeout = setTimeout(() => {
         sliderInstance.value?.next()
-      }, 3000)
+      }, (options.autoplayDuration ?? 3) * 1000)
     }
 
     const clearNextTimeout = () => {

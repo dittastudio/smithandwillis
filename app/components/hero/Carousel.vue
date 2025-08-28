@@ -29,6 +29,7 @@ const ratios = {
         <UiCarouselFade
           :options="{
             autoplay: block.autoplay,
+            autoplayDuration: Number(block.autoplay_duration),
             navigation: true,
             pagination: false,
             slideClasses: 'h-svh',

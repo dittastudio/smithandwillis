@@ -61,6 +61,7 @@ const ratios = {
           class="text-white"
           :options="{
             autoplay: block.content[0].autoplay || false,
+            autoplayDuration: Number(block.content[0].autoplay_duration),
             navigation: true,
             pagination: true,
           }"

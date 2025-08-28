@@ -17,6 +17,7 @@ export interface BlockCarousel {
   title?: string;
   link?: Exclude<StoryblokMultilink, {linktype?: "email"} | {linktype?: "asset"}>;
   autoplay?: boolean;
+  autoplay_duration?: string;
   slides: (SlideSplit | SlideImages | SlideVideo)[];
   component: "block_carousel";
   _uid: string;
@@ -83,6 +84,7 @@ export interface CareerItem {
 
 export interface HeroCarousel {
   autoplay?: boolean;
+  autoplay_duration?: string;
   slides?: (SlideImages | SlideVideo)[];
   component: "hero_carousel";
   _uid: string;
@@ -162,6 +164,7 @@ export interface SlideVideo {
 
 export interface SplitCarousel {
   autoplay?: boolean;
+  autoplay_duration?: string;
   slides?: SlideImages[];
   component: "split_carousel";
   _uid: string;
