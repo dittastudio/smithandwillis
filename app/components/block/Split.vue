@@ -96,10 +96,10 @@ const ratios = {
         flex-col
         items-start
         gap-8
-        px-[var(--app-outer-gutter)]
+        px-(--app-outer-gutter)
         md:w-1/2
         md:gap-10
-        md:py-[var(--app-outer-gutter)]
+        md:py-(--app-outer-gutter)
         2xl:w-auto
         2xl:mx-auto
         max-md:border-b
