@@ -168,6 +168,7 @@ const onSubmit = async () => {
           @submit.prevent="onSubmit"
         >
           <FormFieldset
+            class="type-sans-medium"
             :legend="legend"
             a11y
           >
@@ -272,7 +273,10 @@ const onSubmit = async () => {
             :message="status.message"
           />
 
-          <button>
+          <button
+            type="submit"
+            class="type-sans-medium-caps w-full transition-opacity duration-200 ease-in-out hover:opacity-70"
+          >
             <UiLoading v-if="loading" />
             {{ loading ? 'Please wait...' : 'Submit' }}
           </button>

@@ -96,7 +96,27 @@ onUnmounted(() => {
   <div class="w-full flex flex-col items-start justify-start gap-4">
     <div
       as="div"
-      class="outline-1 -outline-offset-1 relative w-full max-h-50 flex flex-col items-center justify-center aspect-[5/2] cursor-pointer p-4"
+      class="
+        outline-1
+        outline-current/20
+        hover:outline-current/50
+        has-focus:outline-current
+        -outline-offset-1
+        relative
+        w-full
+        max-h-50
+        flex
+        flex-col
+        items-center
+        justify-center
+        aspect-[5/2]
+        cursor-pointer
+        p-4
+        rounded-xs
+        transition-colors
+        duration-200
+        ease-in-out
+      "
     >
       <img
         v-if="preview && file?.type.startsWith('image/')"
@@ -107,14 +127,14 @@ onUnmounted(() => {
 
       <p
         v-else-if="file"
-        class="text-14"
+        class="text-14 text-center w-full wrap-break-word"
       >
         {{ file.name }}
       </p>
 
       <p
         v-else
-        class="text-14"
+        class="text-14 text-center w-full wrap-break-word"
       >
         Select File
       </p>
@@ -132,6 +152,7 @@ onUnmounted(() => {
     <button
       v-if="file"
       type="button"
+      class="text-12 transition-opacity duration-200 ease-in-out hover:opacity-70"
       @click="clear"
     >
       Remove File

@@ -102,7 +102,7 @@ watchEffect(() => {
         </h2>
       </div>
 
-      <div class="md:col-span-3 md:row-start-2 xl:col-span-2 flex flex-col gap-4 md:gap-6 md:pt-4">
+      <div class="md:col-span-3 md:row-start-2 xl:col-span-2 flex flex-col gap-4 md:gap-6 md:pt-4.5">
         <button
           type="button"
           class="flex items-center justify-start gap-4 text-14 md:hidden"

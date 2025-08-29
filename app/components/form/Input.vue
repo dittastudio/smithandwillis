@@ -33,10 +33,24 @@ const onInput = (event: Event) => {
     :is="multiLine ? 'textarea' : 'input'"
     :id="id"
     :type="field && !multiLine ? field : null"
-    :class="[
-      'w-full border-0 ring-0 outline-1 -outline-offset-1 focus:outline-inherit transition-colors duration-500 ease-outQuint px-4 py-3 text-14 rounded-none',
-      { 'min-h-[180px]': multiLine },
-    ]"
+    class="
+      w-full
+      border-0
+      ring-0
+      outline-1
+      outline-current/20
+      hover:outline-current/50
+      -outline-offset-1
+      focus:outline-current
+      transition-colors
+      duration-200
+      ease-in-out
+      px-4
+      py-3
+      text-14
+      rounded-xs
+    "
+    :class="{ 'min-h-[180px]': multiLine }"
     :value="modelValue"
     autocomplete="off"
     spellcheck="false"

@@ -17,7 +17,7 @@ const emit = defineEmits<Emits>()
 const modal = useTemplateRef<HTMLDialogElement>('modal')
 const modalOpen = ref(immediate)
 const attrs = useAttrs()
-const baseClasses = '@container/modal-content relative w-full max-w-154 m-auto transition-[opacity,translate] duration-500 ease-inOutSine'
+const baseClasses = '@container/modal-content relative w-full max-w-180 m-auto transition-[opacity,translate] duration-500 ease-inOutSine'
 
 const mergedAttrs = computed(() => ({
   ...attrs,
@@ -85,8 +85,7 @@ defineOptions({
   >
     <div class="@container size-full">
       <div
-        data-lenis-prevent
-        class="flex flex-col gap-4 size-full px-4 pt-18 pb-16 @2xl:py-20 overflow-y-scroll overscroll-contain"
+        class="flex flex-col gap-4 size-full wrapper pt-18 pb-16 @2xl:py-20 overflow-y-scroll overscroll-contain"
         @click.self="close"
       >
         <div
@@ -101,7 +100,7 @@ defineOptions({
           >
             <div class="pointer-events-none flex justify-end @xl/modal-content:h-full @xl/modal-content:order-3">
               <button
-                class="flex flex-col items-center justify-center pointer-events-auto @xl/modal-content:sticky @xl/modal-content:top-0 @xl/modal-content:left-0 bg-black text-white outline-0 size-9"
+                class="flex flex-col items-center justify-center pointer-events-auto @xl/modal-content:sticky @xl/modal-content:top-0 @xl/modal-content:left-0 bg-offblack text-white rounded-xs outline-0 size-9"
                 type="button"
                 @click="close"
               >
@@ -111,7 +110,7 @@ defineOptions({
               </button>
             </div>
 
-            <div class="w-full text-left p-6 @xl/modal-content:p-8 bg-black text-white @xl/modal-content:order-2">
+            <div class="w-full text-left p-(--app-outer-gutter) bg-offblack text-white @xl/modal-content:order-2 rounded-xs">
               <slot />
             </div>
           </div>
