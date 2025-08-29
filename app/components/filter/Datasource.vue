@@ -47,15 +47,14 @@ const filters = computed(() => {
 
 <template>
   <div class="@container">
-    <ul class="flex flex-col gap-0.5">
+    <ul class="flex flex-col gap-0.5 type-sans-medium text-14">
       <li
         v-for="filter in filters"
         :key="filter.id"
-        class="text-14"
       >
         <NuxtLink
           :to="filter.to"
-          class="opacity-50 hover:opacity-100 transition-opacity duration-200 no-underline"
+          class="opacity-50 hover:opacity-100 transition-opacity duration-200 ease-in-out no-underline"
           :class="[
             {
               'opacity-100': applied === filter.value || (!applied && !filter.value),

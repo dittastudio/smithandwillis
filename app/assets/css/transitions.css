@@ -15,3 +15,21 @@
 .fade-leave-to {
   opacity: 0;
 }
+
+.fade-quick-enter-active {
+  transition: opacity 0.5s var(--ease-outQuart);
+}
+
+.fade-quick-leave-active {
+  transition: opacity 0.25s var(--ease-inQuart);
+}
+
+.fade-quick-enter-to,
+.fade-quick-leave-from {
+  opacity: 1;
+}
+
+.fade-quick-enter-from,
+.fade-quick-leave-to {
+  opacity: 0;
+}

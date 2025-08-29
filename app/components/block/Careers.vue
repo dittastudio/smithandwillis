@@ -131,16 +131,21 @@ watchEffect(() => {
       <div class="md:col-span-9 md:row-start-2 xl:col-span-10">
         <p
           v-if="!jobs.length"
-          class="pt-4"
+          class="type-sans-medium pt-4"
         >
-          No opportunities found at <strong>{{ getDatasourceName(brand, String(routeQueryBrand)) }}</strong>
+          No opportunities found
+          <template v-if="getDatasourceName(brand, String(routeQueryBrand))">
+            at <strong class="font-mix font-bold tracking-sm">{{ getDatasourceName(brand, String(routeQueryBrand)) }}</strong>
+          </template>
 
-          in <strong>{{ getDatasourceName(department, String(routeQueryDepartment)) }}</strong>.
+          <template v-if="getDatasourceName(department, String(routeQueryDepartment))">
+            in <strong class="font-mix font-bold tracking-sm">{{ getDatasourceName(department, String(routeQueryDepartment)) }}</strong>.
+          </template>
         </p>
 
         <Transition
           v-if="jobs.length"
-          name="fade"
+          name="fade-quick"
           mode="out-in"
         >
           <ul
