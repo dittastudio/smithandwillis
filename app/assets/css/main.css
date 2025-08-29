@@ -11,6 +11,9 @@
 @source inline("font-bold");
 @source inline("tracking-sm");
 
+@custom-variant only-touch (@media not (hover: hover));
+@custom-variant only-hover (@media (hover: hover));
+
 @theme {
   /* --*: initial; */
 

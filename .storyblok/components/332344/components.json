@@ -83,7 +83,7 @@
     "display_name": "Carousel",
     "description": "Carousel",
     "created_at": "2025-04-09T22:03:44.611Z",
-    "updated_at": "2025-08-28T22:07:32.119Z",
+    "updated_at": "2025-08-29T06:46:55.098Z",
     "id": 7195114,
     "schema": {
       "michelin_star": {
@@ -111,12 +111,13 @@
       "autoplay_duration": {
         "type": "number",
         "pos": 4,
-        "min_value": 1,
-        "max_value": 10,
-        "decimals": 1,
-        "steps": 0.1,
-        "default_value": "2",
-        "id": "Qx_G0DfZQGOCJ3RNFlIIqg"
+        "min_value": 100,
+        "max_value": 10000,
+        "decimals": 0,
+        "steps": 250,
+        "default_value": "2000",
+        "id": "Qx_G0DfZQGOCJ3RNFlIIqg",
+        "description": "Milliseconds"
       },
       "slides": {
         "type": "bloks",
@@ -606,7 +607,7 @@
     "display_name": "Carousel",
     "description": null,
     "created_at": "2025-04-14T10:59:15.118Z",
-    "updated_at": "2025-08-28T22:07:58.726Z",
+    "updated_at": "2025-08-29T06:46:24.310Z",
     "id": 7215241,
     "schema": {
       "autoplay": {
@@ -617,12 +618,13 @@
       "autoplay_duration": {
         "type": "number",
         "pos": 1,
-        "default_value": "2",
-        "min_value": 1,
-        "max_value": 10,
-        "decimals": 1,
-        "steps": 0.1,
-        "id": "_O--L-h7R2u1hLkfnpFbJQ"
+        "default_value": "2000",
+        "min_value": 1000,
+        "max_value": 10000,
+        "decimals": 0,
+        "steps": 250,
+        "id": "_O--L-h7R2u1hLkfnpFbJQ",
+        "description": "Milliseconds"
       },
       "slides": {
         "type": "bloks",
@@ -1196,7 +1198,7 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-05-07T14:26:36.574Z",
-    "updated_at": "2025-08-28T22:02:55.930Z",
+    "updated_at": "2025-08-29T06:47:58.533Z",
     "id": 7311811,
     "schema": {
       "autoplay": {
@@ -1208,12 +1210,13 @@
       "autoplay_duration": {
         "type": "number",
         "pos": 1,
-        "min_value": 1,
-        "max_value": 10,
-        "decimals": 1,
-        "steps": 0.1,
+        "min_value": 1000,
+        "max_value": 10000,
+        "decimals": 0,
+        "steps": 250,
         "id": "yVLcLiMyR6uEqfEka3d1TQ",
-        "default_value": "2"
+        "default_value": "2000",
+        "description": "Milliseconds"
       },
       "slides": {
         "type": "bloks",

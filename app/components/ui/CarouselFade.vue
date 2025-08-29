@@ -23,7 +23,7 @@ interface Props {
 
 const { slides, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9, options = {
   autoplay: false,
-  autoplayDuration: 3,
+  autoplayDuration: 2000,
   navigation: true,
   pagination: true,
   slideClasses: '',
@@ -175,7 +175,7 @@ onMounted(() => {
 
       timeout = setTimeout(() => {
         sliderInstance.value?.next()
-      }, (options.autoplayDuration ?? 3) * 1000)
+      }, options.autoplayDuration)
     }
 
     const clearNextTimeout = () => {
@@ -227,7 +227,7 @@ onUnmounted(() => {
         :class="[
           options.slideClasses,
           opacities[index] === 1 ? 'pointer-events-auto' : 'pointer-events-none',
-          { 'z-10': index === 0 && !isReady },
+          { 'z-1': index === 0 && !isReady },
         ]"
         :style="{ opacity: opacities[index] }"
       >
@@ -255,7 +255,7 @@ onUnmounted(() => {
           <span class="sr-only">Previous</span>
 
           <IconArrowLarge
-            class="[@media(hover:hover)]:hidden w-[16px] h-[18px] rotate-90 filter-shadow-light"
+            class="only-hover:hidden w-[16px] h-[18px] rotate-90 filter-shadow-light"
           />
         </button>
 
@@ -271,7 +271,7 @@ onUnmounted(() => {
           <span class="sr-only">Next</span>
 
           <IconArrowLarge
-            class="[@media(hover:hover)]:hidden w-[16px] h-[18px] -rotate-90 filter-shadow-light"
+            class="only-hover:hidden w-[16px] h-[18px] -rotate-90 filter-shadow-light"
           />
         </button>
       </div>
