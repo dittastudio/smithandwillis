@@ -90,8 +90,26 @@ const ratios = {
       :id="block.anchor_id ? safeKebabCase(block.anchor_id) : undefined"
       ref="scrollAnchor"
       :style="scrollMarginTop"
-      class="w-full md:w-1/2 flex flex-col items-start gap-8 md:gap-10 pt-20 pb-12 px-[var(--app-outer-gutter)] md:py-[var(--app-outer-gutter)] 2xl:w-auto 2xl:mx-auto"
-      :class="!block.reverse_desktop && 'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))] 2xl:pr-[calc(var(--app-outer-gutter)_+_--spacing(4))]'"
+      class="
+        w-full
+        flex
+        flex-col
+        items-start
+        gap-8
+        px-[var(--app-outer-gutter)]
+        md:w-1/2
+        md:gap-10
+        md:py-[var(--app-outer-gutter)]
+        2xl:w-auto
+        2xl:mx-auto
+        max-md:border-b
+        max-md:border-warm-grey/20
+      "
+      :class="{
+        'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))] 2xl:pr-[calc(var(--app-outer-gutter)_+_--spacing(4))]': !block.reverse_desktop,
+        'pt-20 pb-12': block.reverse,
+        'pb-20 pt-12': !block.reverse,
+      }"
     >
       <h3
         v-if="block.headline"
