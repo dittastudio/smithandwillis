@@ -39,6 +39,8 @@ watchEffect(() => {
       relative
       w-full
       scroll-mt-(--app-header-height)
+      max-md:border-b
+      max-md:border-warm-grey/20
     "
   >
     <button
