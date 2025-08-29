@@ -32,9 +32,7 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
     <div class="wrapper">
       <div class="relative grid gap-x-[var(--app-inner-gutter)] sm:gap-y-8 grid-cols-2 md:grid-cols-12">
         <div class="col-span-full sm:col-span-1 md:col-span-3 lg:col-span-2">
-          <AppFooterAccordion
-            id="accordion-studio"
-          >
+          <AppFooterAccordion id="accordion-studio">
             <template #title>
               <h4 class="type-sans-medium-caps">
                 {{ studioTitle }}
@@ -58,9 +56,7 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
         </div>
 
         <div class="col-span-full sm:col-span-1 md:col-span-3 lg:col-span-2">
-          <AppFooterAccordion
-            id="accordion-places"
-          >
+          <AppFooterAccordion id="accordion-places">
             <template #title>
               <h4 class="type-sans-medium-caps">
                 {{ placesTitle }}
@@ -82,9 +78,7 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
         </div>
 
         <div class="col-span-full md:col-span-6">
-          <AppFooterAccordion
-            id="accordion-contact"
-          >
+          <AppFooterAccordion id="accordion-contact">
             <template #title>
               <h4 class="type-sans-medium-caps">
                 {{ contactTitle }}
