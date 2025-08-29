@@ -19,8 +19,16 @@ const status = ref<{
 } | null>(null)
 
 const MAX_FILE_SIZE = 500 * 1024 // 500KB
-const ALLOWED_FILE_TYPES = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
-const ALLOWED_EMAIL_DOMAINS = ['@smithandwillis.london', '@luca.restaurant']
+const ALLOWED_FILE_TYPES = [
+  'application/pdf',
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+]
+const ALLOWED_EMAIL_DOMAINS = [
+  '@smithandwillis.london',
+  '@luca.restaurant',
+  '@osiprestaurant.com',
+]
 
 const validationSchema = toTypedSchema(
   z.object({

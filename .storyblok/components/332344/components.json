@@ -697,7 +697,7 @@
     "display_name": null,
     "description": "",
     "created_at": "2025-08-21T21:55:33.002Z",
-    "updated_at": "2025-08-26T12:11:37.200Z",
+    "updated_at": "2025-08-29T13:25:00.295Z",
     "id": 82426810381905,
     "schema": {
       "brand": {
@@ -732,8 +732,8 @@
         "type": "text",
         "pos": 3,
         "required": true,
-        "regex": "^[^\\s@]+@(smithandwillis\\.london|luca\\.restaurant)$",
-        "description": "Email that will receive the application. Must be a @smithandwillis.london or @luca.restaurant email address.",
+        "regex": "^[^\\s@]+@(smithandwillis\\.london|luca\\.restaurant|osiprestaurant\\.com)$",
+        "description": "Email that will receive the application. Must be one of @smithandwillis.london, @luca.restaurant or @osiprestaurant.com email addresses.",
         "id": "3ec3vK6HTQy5xD8lSY6_Rw"
       }
     },

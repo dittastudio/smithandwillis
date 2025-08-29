@@ -9,7 +9,11 @@ export default defineEventHandler(async (event) => {
     'application/msword',
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
   ]
-  const ALLOWED_EMAIL_DOMAINS = ['@smithandwillis.london', '@luca.restaurant']
+  const ALLOWED_EMAIL_DOMAINS = [
+    '@smithandwillis.london',
+    '@luca.restaurant',
+    '@osiprestaurant.com',
+  ]
 
   const config = useRuntimeConfig()
   const resend = new Resend(config.RESEND_API_KEY)
