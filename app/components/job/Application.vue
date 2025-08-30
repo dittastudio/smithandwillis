@@ -160,14 +160,14 @@ const onSubmit = async () => {
       <div class="flex flex-col gap-8">
         <h2
           v-if="headline"
-          class="type-sans-medium-caps"
+          class="type-sans-large-caps"
         >
           {{ headline }}
         </h2>
 
         <FormBase
           :loading="loading"
-          class="type-sans-medium"
+          class="type-sans-medium text-16"
           @submit.prevent="onSubmit"
         >
           <FormFieldset

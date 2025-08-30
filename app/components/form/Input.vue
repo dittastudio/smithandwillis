@@ -47,7 +47,6 @@ const onInput = (event: Event) => {
       ease-in-out
       px-4
       py-3
-      text-14
       rounded-xs
     "
     :class="{ 'min-h-[180px] field-sizing-content': multiLine }"
