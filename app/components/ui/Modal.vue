@@ -34,10 +34,21 @@ const close = async () => {
   emit('closed')
 }
 
-const cancel = () => {
-  const active = document.activeElement as HTMLElement | null
+const cancel = (event: Event) => {
+  const target = event.target as HTMLElement
 
-  if (active?.tagName === 'INPUT' && (active as HTMLInputElement).type === 'file') {
+  const hasFileInput = event.composedPath().some((element) => {
+    if (element instanceof HTMLInputElement) {
+      return element.type === 'file'
+    }
+    return false
+  })
+
+  if (target instanceof HTMLInputElement && target.type === 'file') {
+    return
+  }
+
+  if (hasFileInput) {
     return
   }
 
