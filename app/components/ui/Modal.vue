@@ -103,7 +103,7 @@ defineOptions({
               </button>
             </div>
 
-            <div class="w-full text-left p-(--app-outer-gutter) bg-offblack text-white @xl/modal-content:order-2 rounded-xs">
+            <div class="w-full text-left pt-10 px-(--app-outer-gutter) pb-(--app-outer-gutter) @xl/modal-content:p-(--app-outer-gutter) @xl/modal-content:pb-(--app-outer-gutter) bg-offblack text-white @xl/modal-content:order-2 rounded-xs">
               <slot />
             </div>
           </div>
