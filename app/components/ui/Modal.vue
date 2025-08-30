@@ -16,13 +16,6 @@ const emit = defineEmits<Emits>()
 
 const modal = useTemplateRef<HTMLDialogElement>('modal')
 const modalOpen = ref(immediate)
-const attrs = useAttrs()
-const baseClasses = '@container/modal-content relative w-full max-w-180 m-auto transition-[opacity,translate] duration-500 ease-inOutSine'
-
-const mergedAttrs = computed(() => ({
-  ...attrs,
-  class: typeof attrs.class === 'string' ? twMerge(baseClasses, attrs.class) : baseClasses,
-}))
 
 const open = () => {
   modal.value?.showModal()
@@ -76,23 +69,23 @@ defineOptions({
 
   <dialog
     ref="modal"
-    class="fixed inset-0 w-full h-dvh max-w-full max-h-none backdrop-blur-2xl transition-opacity duration-500 overflow-hidden [&::backdrop]:hidden bg-warm-grey/5"
+    class="fixed inset-0 w-full h-dvh max-w-full max-h-none backdrop-blur-2xl transition-opacity duration-1000 overflow-hidden [&::backdrop]:hidden bg-warm-grey/5"
     :class="{
-      'opacity-0 delay-500 pointer-events-none': !modalOpen,
+      'opacity-0 delay-150 pointer-events-none': !modalOpen,
       'opacity-100 delay-0 pointer-events-auto': modalOpen,
     }"
     @cancel.prevent="cancel"
   >
     <div class="@container size-full">
       <div
-        class="flex flex-col gap-4 size-full wrapper pt-18 pb-16 @2xl:py-20 overflow-y-scroll overscroll-contain"
+        class="flex flex-col gap-4 size-full wrapper py-(--app-outer-gutter) @xl:py-16 overflow-y-scroll overscroll-contain"
         @click.self="close"
       >
         <div
-          v-bind="mergedAttrs"
+          class="@container/modal-content relative w-full max-w-180 m-auto"
           :class="{
-            'opacity-0 translate-y-1/2 delay-0': !modalOpen,
-            'opacity-100 translate-y-0 delay-500': modalOpen,
+            'opacity-0 translate-y-[10%] scale-95 transition-[opacity,translate,scale] duration-[300ms,0ms,300ms] ease-out delay-[0ms,300ms,0ms]': !modalOpen,
+            'opacity-100 translate-y-0 scale-100 transition-[opacity,translate,scale] duration-[500ms,500ms,0ms] ease-inOutQuart delay-[0ms,0ms,0ms]': modalOpen,
           }"
         >
           <div
@@ -100,13 +93,13 @@ defineOptions({
           >
             <div class="pointer-events-none flex justify-end @xl/modal-content:h-full @xl/modal-content:order-3">
               <button
-                class="flex flex-col items-center justify-center pointer-events-auto @xl/modal-content:sticky @xl/modal-content:top-0 @xl/modal-content:left-0 bg-offblack text-white rounded-xs outline-0 size-9"
+                class="flex flex-col items-center justify-center pointer-events-auto @xl/modal-content:sticky @xl/modal-content:top-0 @xl/modal-content:left-0 bg-offblack text-white rounded-xs outline-0 size-9 transition-opacity duration-200 ease-in-out hover:opacity-70"
                 type="button"
                 @click="close"
               >
                 <span class="sr-only">Close</span>
 
-                <X class="size-3 text-inherit" />
+                <X class="size-5" />
               </button>
             </div>
 

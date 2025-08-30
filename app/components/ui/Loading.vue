@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { LoaderCircleIcon } from 'lucide-vue-next'
+import { Disc3Icon } from 'lucide-vue-next'
 </script>
 
 <template>
-  <LoaderCircleIcon class="size-4 animate-spin" />
+  <Disc3Icon class="size-4 fill-none stroke-1 animate-spin" />
 </template>

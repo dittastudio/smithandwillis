@@ -151,7 +151,9 @@ const onSubmit = async () => {
 <template>
   <div>
     <div v-if="status && status.type === 'success'">
-      <p>Thanks for applying with us. We'll review your submission shortly.</p>
+      <p class="type-sans-medium">
+        Thanks for applying with us. We'll review your submission shortly.
+      </p>
     </div>
 
     <template v-else>
@@ -165,10 +167,10 @@ const onSubmit = async () => {
 
         <FormBase
           :loading="loading"
+          class="type-sans-medium"
           @submit.prevent="onSubmit"
         >
           <FormFieldset
-            class="type-sans-medium"
             :legend="legend"
             a11y
           >
@@ -228,8 +230,8 @@ const onSubmit = async () => {
 
             <FormField
               id="cover"
-              label="Cover"
-              hint="Please write an optional cover letter"
+              label="Cover Letter"
+              hint="Please write an optional message"
             >
               <FormInput
                 id="cover"
@@ -275,10 +277,18 @@ const onSubmit = async () => {
 
           <button
             type="submit"
-            class="type-sans-medium-caps w-full transition-opacity duration-200 ease-in-out hover:opacity-70"
+            class="type-mix-small-caps w-full p-[1em] bg-warm-grey text-offblack rounded-xs transition-colors duration-200 ease-in-out hover:bg-white/80"
           >
-            <UiLoading v-if="loading" />
-            {{ loading ? 'Please wait...' : 'Submit' }}
+            <span
+              v-if="loading"
+              class="flex items-center justify-center gap-2"
+            >
+              Please wait... <UiLoading />
+            </span>
+
+            <template v-else>
+              Submit
+            </template>
           </button>
         </FormBase>
       </div>

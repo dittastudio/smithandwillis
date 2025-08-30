@@ -145,9 +145,3 @@ const ratios = {
     </div>
   </div>
 </template>
-
-<style lang="postcss">
-[id] {
-  scroll-margin-top: 50vh;
-}
-</style>

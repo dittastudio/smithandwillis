@@ -50,7 +50,7 @@ const onInput = (event: Event) => {
       text-14
       rounded-xs
     "
-    :class="{ 'min-h-[180px]': multiLine }"
+    :class="{ 'min-h-[180px] field-sizing-content': multiLine }"
     :value="modelValue"
     autocomplete="off"
     spellcheck="false"
