@@ -54,7 +54,7 @@ useIntersectionObserver(
       observerElement.disconnect()
     }
   },
-  { rootMargin: '0px 0px 0px 0px', threshold: 0.25 },
+  { rootMargin: '0px 0px 0px 0px', threshold: 0 },
 )
 
 const imgMain = useImage()
