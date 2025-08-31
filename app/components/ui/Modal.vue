@@ -96,7 +96,7 @@ defineOptions({
           class="@container/modal-content relative w-full max-w-180 m-auto"
           :class="{
             'opacity-0 translate-y-[10%] scale-95 transition-[opacity,translate,scale] duration-[300ms,0ms,300ms] ease-out delay-[0ms,300ms,0ms]': !modalOpen,
-            'opacity-100 translate-y-0 scale-100 transition-[opacity,translate,scale] duration-[500ms,500ms,0ms] ease-inOutQuart delay-[0ms,0ms,0ms]': modalOpen,
+            'opacity-100 translate-y-0 scale-100 transition-[opacity,translate,scale] duration-[500ms,500ms,0ms] ease-outQuart delay-500': modalOpen,
           }"
         >
           <div
