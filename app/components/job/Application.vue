@@ -160,7 +160,7 @@ const onSubmit = async () => {
       <div class="flex flex-col gap-8">
         <h2
           v-if="headline"
-          class="type-sans-large-caps"
+          class="type-sans-large-caps text-balance"
         >
           {{ headline }}
         </h2>
