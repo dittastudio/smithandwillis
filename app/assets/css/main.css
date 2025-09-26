@@ -3,6 +3,7 @@
 @import "./fonts.css";
 @import "./typography.css";
 @import "./prose.css";
+@import "./storyblok.css";
 @import "./transitions.css";
 @import "tailwindcss";
 
