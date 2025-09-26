@@ -129,33 +129,33 @@ watchEffect(() => {
       </div>
 
       <div class="md:col-span-9 md:row-start-2 xl:col-span-10">
-        <p
-          v-if="!jobs.length"
-          class="type-sans-medium pt-4"
-        >
-          No opportunities found
-          <template v-if="getDatasourceName(brand, String(routeQueryBrand))">
-            at <strong class="font-mix font-bold tracking-sm">{{ getDatasourceName(brand, String(routeQueryBrand)) }}</strong>
-          </template>
-
-          <template v-if="getDatasourceName(department, String(routeQueryDepartment))">
-            in <strong class="font-mix font-bold tracking-sm">{{ getDatasourceName(department, String(routeQueryDepartment)) }}</strong>.
-          </template>
-        </p>
-
         <Transition
-          v-if="jobs.length"
           name="fade-quick"
           mode="out-in"
         >
-          <ul
-            :key="listKey"
-            class="group/list flex flex-col gap-x-[var(--app-inner-gutter)]"
+          <p
+            v-if="!jobs.length"
+            class="type-sans-medium pt-4"
           >
-            <li
-              v-for="job in jobs"
-              :key="job.id"
-              class="
+            No opportunities found
+            <template v-if="getDatasourceName(brand, String(routeQueryBrand))">
+              at <strong class="font-mix font-bold tracking-sm">{{ getDatasourceName(brand, String(routeQueryBrand)) }}</strong>
+            </template>
+
+            <template v-if="getDatasourceName(department, String(routeQueryDepartment))">
+              in <strong class="font-mix font-bold tracking-sm">{{ getDatasourceName(department, String(routeQueryDepartment)) }}</strong>.
+            </template>
+          </p>
+
+          <template v-else>
+            <ul
+              :key="listKey"
+              class="group/list flex flex-col gap-x-[var(--app-inner-gutter)]"
+            >
+              <li
+                v-for="job in jobs"
+                :key="job.id"
+                class="
                 flex
                 justify-between
                 items-center
@@ -168,55 +168,56 @@ watchEffect(() => {
                 opacity-100
                 group-hover/list:not-hover:opacity-50
               "
-            >
-              <div class="flex flex-col gap-y-0.5">
-                <p
-                  v-if="job.name"
-                  class="type-sans-medium"
-                >
-                  {{ job.name }}
-                </p>
+              >
+                <div class="flex flex-col gap-y-0.5">
+                  <p
+                    v-if="job.name"
+                    class="type-sans-medium"
+                  >
+                    {{ job.name }}
+                  </p>
 
-                <p
-                  v-if="job.content.brand"
-                  class="type-sans-medium-caps"
-                >
-                  {{ getDatasourceName(brand, job.content.brand) }}
-                </p>
-              </div>
+                  <p
+                    v-if="job.content.brand"
+                    class="type-sans-medium-caps"
+                  >
+                    {{ getDatasourceName(brand, job.content.brand) }}
+                  </p>
+                </div>
 
-              <div class="group/link flex gap-x-4 md:gap-x-6 lg:pr-6">
-                <a
-                  v-if="job.content.pdf?.filename"
-                  :href="job.content.pdf.filename"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="type-mix-xsmall-caps p-2 -m-2 md:p-3 md:-m-3"
-                  :class="classesLinkHover"
-                >
-                  View
-                </a>
+                <div class="group/link flex gap-x-4 md:gap-x-6 lg:pr-6">
+                  <a
+                    v-if="job.content.pdf?.filename"
+                    :href="job.content.pdf.filename"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="type-mix-xsmall-caps p-2 -m-2 md:p-3 md:-m-3"
+                    :class="classesLinkHover"
+                  >
+                    View
+                  </a>
 
-                <UiModal v-if="job.content.email">
-                  <template #trigger>
-                    <span
-                      class="block type-mix-xsmall-caps p-2 -m-2 md:p-3 md:-m-3"
-                      :class="classesLinkHover"
-                    >
-                      Apply
-                    </span>
-                  </template>
+                  <UiModal v-if="job.content.email">
+                    <template #trigger>
+                      <span
+                        class="block type-mix-xsmall-caps p-2 -m-2 md:p-3 md:-m-3"
+                        :class="classesLinkHover"
+                      >
+                        Apply
+                      </span>
+                    </template>
 
-                  <JobApplication
-                    :legend="`Apply for ${job.name}${getDatasourceName(brand, job.content.brand) ? ` at ${getDatasourceName(brand, job.content.brand)}` : ``}`"
-                    :headline="`Apply for ${job.name}${getDatasourceName(brand, job.content.brand) ? ` at ${getDatasourceName(brand, job.content.brand)}` : ``}`"
-                    :job-title="`${job.name}${getDatasourceName(brand, job.content.brand) ? ` at ${getDatasourceName(brand, job.content.brand)}` : ``}`"
-                    :job-email="job.content.email"
-                  />
-                </UiModal>
-              </div>
-            </li>
-          </ul>
+                    <JobApplication
+                      :legend="`Apply for ${job.name}${getDatasourceName(brand, job.content.brand) ? ` at ${getDatasourceName(brand, job.content.brand)}` : ``}`"
+                      :headline="`Apply for ${job.name}${getDatasourceName(brand, job.content.brand) ? ` at ${getDatasourceName(brand, job.content.brand)}` : ``}`"
+                      :job-title="`${job.name}${getDatasourceName(brand, job.content.brand) ? ` at ${getDatasourceName(brand, job.content.brand)}` : ``}`"
+                      :job-email="job.content.email"
+                    />
+                  </UiModal>
+                </div>
+              </li>
+            </ul>
+          </template>
         </Transition>
       </div>
     </div>

@@ -20,38 +20,38 @@
   },
   "dependencies": {
     "@ditta/colophon": "^0.0.5",
-    "@storyblok/nuxt": "^8.0.4",
-    "@tailwindcss/vite": "^4.1.12",
+    "@storyblok/nuxt": "^8.1.2",
+    "@tailwindcss/vite": "^4.1.13",
     "@vee-validate/zod": "^4.15.1",
-    "@vueuse/core": "^13.8.0",
+    "@vueuse/core": "^13.9.0",
     "keen-slider": "^6.8.6",
     "lodash-es": "^4.17.21",
-    "lucide-vue-next": "^0.542.0",
-    "nuxt": "^4.0.3",
+    "lucide-vue-next": "^0.544.0",
+    "nuxt": "^4.1.2",
     "postcss-nested": "^7.0.2",
-    "resend": "^6.0.1",
+    "resend": "^6.1.0",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.12",
+    "tailwindcss": "^4.1.13",
     "vee-validate": "^4.15.1",
-    "vue": "^3.5.20",
+    "vue": "^3.5.22",
     "vue-router": "^4.5.1",
-    "zod": "^4.1.5"
+    "zod": "^4.1.11"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^5.2.1",
+    "@antfu/eslint-config": "^5.4.1",
     "@nuxt/eslint": "^1.9.0",
     "@nuxt/image": "^1.11.0",
-    "@nuxtjs/sitemap": "^7.4.3",
+    "@nuxtjs/sitemap": "^7.4.7",
     "@total-typescript/ts-reset": "^0.6.1",
     "@types/lodash-es": "^4.17.12",
-    "del-cli": "^6.0.0",
-    "eslint": "^9.34.0",
-    "sharp": "^0.34.3",
-    "storyblok": "^4.4.0",
+    "del-cli": "^7.0.0",
+    "eslint": "^9.36.0",
+    "sharp": "^0.34.4",
+    "storyblok": "^4.6.4",
     "typescript": "^5.9.2",
     "vite-svg-loader": "^5.1.0"
   },
   "overrides": {
-    "zod": "^4.1.5"
+    "zod": "^4.1.11"
   }
 }
