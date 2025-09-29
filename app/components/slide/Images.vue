@@ -21,7 +21,6 @@ const { block, index, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktop
     >
       <MediaImageResponsive
         v-if="storyblokAssetType(image?.filename || '') === 'image'"
-        :lazy="index ? index !== 0 : true"
         :asset="image"
         :desktop-asset="image"
         :ratio="`${ratioX}:${Math.ceil(ratioY / (block.images?.length || 1))}`"
