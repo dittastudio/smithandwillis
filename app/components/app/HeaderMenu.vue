@@ -65,13 +65,13 @@ const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
           </h4>
 
           <div
-            v-if="storyblokRichTextContent(contact)"
+            v-if="storyblokRichTextContent(studio)"
             :class="[
               'type-sans-medium',
               classesHeaderProse,
             ]"
           >
-            <StoryblokText :html="contact" />
+            <StoryblokText :html="studio" />
           </div>
         </div>
 
@@ -82,13 +82,13 @@ const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
 
           <address class="type-sans-medium not-italic">
             <div
-              v-if="storyblokRichTextContent(studio)"
+              v-if="storyblokRichTextContent(contact)"
               :class="[
                 'type-inherit',
                 classesHeaderProse,
               ]"
             >
-              <StoryblokText :html="studio" />
+              <StoryblokText :html="contact" />
             </div>
           </address>
         </div>

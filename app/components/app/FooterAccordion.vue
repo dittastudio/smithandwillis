@@ -11,16 +11,15 @@ const bodyId = `accordion-body-${safeKebabCase(id)}`
 
 const elRef = ref<HTMLElement>()
 
-const toggleAccordion = () => {
+const toggleAccordion = async () => {
   isOpen.value = !isOpen.value
 
   if (isOpen.value) {
-    nextTick(() => {
-      if (!elRef.value)
-        return
+    if (!elRef.value)
+      return
 
-      elRef.value.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    })
+    await wait(300)
+    elRef.value.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 }
 
