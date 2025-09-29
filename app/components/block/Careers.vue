@@ -76,7 +76,7 @@ const getDatasourceName = (datasource: ISbResult | undefined, key: string | numb
 const scrollAnchor = ref<HTMLElement>()
 const { scrollMarginTop } = useCentreAnchor(scrollAnchor, 150)
 
-const isScreenMd = useAtMedia(`(min-width: 800px)`)
+const isScreenMd = useAtMedia(getMediaQuery('md'))
 const isFiltersOpen = ref(false)
 
 watchEffect(() => {

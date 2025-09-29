@@ -18,7 +18,8 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
       <UiParallax>
         <MediaImageResponsive
           v-if="block.media && assetType === 'image'"
-          :lazy="false"
+          :lazy="true"
+          :lazy-placeholder="true"
           breakpoint="landscape"
           :asset="block.media"
           :desktop-asset="block.media"

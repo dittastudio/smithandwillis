@@ -18,6 +18,7 @@ interface Props {
   desktopSizes?: string
   alt?: string
   lazy?: boolean
+  lazyPlaceholder?: boolean
 }
 
 const {
@@ -29,6 +30,7 @@ const {
   sizes,
   desktopSizes,
   lazy = true,
+  lazyPlaceholder = true,
 } = defineProps<Props>()
 
 const container = useTemplateRef<HTMLPictureElement | null>('container')
@@ -92,7 +94,9 @@ function createPlaceholder(imageAsset: StoryblokAsset, imageSize: { width: numbe
       width: imageSize.width,
       height: imageSize.height,
       quality: 10,
-      focal: imageAsset.focus ?? undefined,
+      filters: {
+        focal: imageAsset.focus ?? undefined,
+      },
     },
   )
 }
@@ -100,7 +104,7 @@ function createPlaceholder(imageAsset: StoryblokAsset, imageSize: { width: numbe
 // Mobile image size and info
 const mobileSize = getImageSize(asset, ratio)
 const imgInfo = computed(() => createImageInfo(asset, mobileSize, sizes))
-const mobilePlaceholder = createPlaceholder(asset, mobileSize)
+const mobilePlaceholder = computed(() => createPlaceholder(asset, mobileSize))
 
 // Desktop image size and info (if available)
 const hasDesktopImage = computed(() => !!desktopRatio)
@@ -138,7 +142,7 @@ const breakpointMedia = computed(() => {
   >
     <picture
       ref="container"
-      class="h-[inherit]"
+      class="media-image__file block w-full h-[inherit]"
     >
       <!-- Desktop image source if provided -->
       <source
@@ -153,13 +157,13 @@ const breakpointMedia = computed(() => {
       <!-- Mobile/default image -->
       <img
         v-bind="imgAttrs"
-        class="media-image__file w-full h-[inherit] object-cover"
+        class="w-full h-[inherit] object-cover"
         @load="loaded = true"
       >
     </picture>
 
     <picture
-      v-if="lazy"
+      v-if="lazy && lazyPlaceholder"
       class="media-image__placeholder block w-full h-[inherit] pointer-events-none"
     >
       <!-- Desktop placeholder source if provided -->

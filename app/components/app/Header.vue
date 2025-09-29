@@ -73,7 +73,7 @@ onUnmounted(() => {
   raf.value && cancelAnimationFrame(raf.value)
 })
 
-const isScreenMd = useAtMedia('(min-width: 800px)')
+const isScreenMd = useAtMedia(getMediaQuery('md'))
 
 watchEffect(() => {
   if (import.meta.client && isScreenMd.value) {

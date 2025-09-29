@@ -23,7 +23,7 @@ const toggleAccordion = async () => {
   }
 }
 
-const isScreenSm = useAtMedia(`(min-width: 600px)`)
+const isScreenSm = useAtMedia(getMediaQuery('sm'))
 
 watchEffect(() => {
   isOpen.value = isScreenSm.value
