@@ -79,6 +79,7 @@ function createImageInfo(imageAsset: StoryblokAsset, imageSize: { width: number,
       width: imageSize.width,
       height: imageSize.height,
       quality: 80,
+      format: 'webp',
       filters: {
         focal: imageAsset.focus ?? undefined,
       },
@@ -94,6 +95,7 @@ function createPlaceholder(imageAsset: StoryblokAsset, imageSize: { width: numbe
       width: imageSize.width,
       height: imageSize.height,
       quality: 10,
+      format: 'webp',
       filters: {
         focal: imageAsset.focus ?? undefined,
       },
