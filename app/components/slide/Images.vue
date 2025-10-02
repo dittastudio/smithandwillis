@@ -10,7 +10,7 @@ interface Props {
   ratioDesktopY?: number
 }
 
-const { block, index, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9 } = defineProps<Props>()
+const { block, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9 } = defineProps<Props>()
 </script>
 
 <template>
