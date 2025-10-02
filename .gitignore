@@ -17,8 +17,13 @@ logs
 .DS_Store
 .fleet
 .idea
+.cursor
 
 # Local env files
 .env
 .env.*
 !.env.example
+*.pem
+
+# Local Netlify folder
+.netlify

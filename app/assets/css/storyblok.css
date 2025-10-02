@@ -1,0 +1,8 @@
+@layer base {
+  .is-storyblok-editor {
+    a,
+    button[type="submit"] {
+      pointer-events: none !important;
+    }
+  }
+}

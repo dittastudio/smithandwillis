@@ -1,0 +1,144 @@
+<script lang="ts" setup>
+import type { BlockSplit } from '@@/.storyblok/types/332344/storyblok-components'
+import IconMichelinStar from '@/assets/icons/michelin-star.svg'
+
+interface Props {
+  block: BlockSplit
+}
+
+const { block } = defineProps<Props>()
+
+const scrollAnchor = useTemplateRef('scrollAnchor')
+const { scrollMarginTop } = useCentreAnchor(scrollAnchor, 100)
+
+const ratios = {
+  mobile: {
+    x: ratioDimensions(block.ratio || '').width,
+    y: ratioDimensions(block.ratio || '').height,
+  },
+  desktop: {
+    x: ratioDimensions(block.ratio_desktop || '').width,
+    y: ratioDimensions(block.ratio_desktop || '').height,
+  },
+}
+</script>
+
+<template>
+  <div
+    v-editable="block"
+    class="block-split flex items-center"
+    :class="[
+      block.reverse ? 'flex-col-reverse' : 'flex-col',
+      block.reverse_desktop ? 'md:flex-row-reverse' : 'md:flex-row',
+    ]"
+  >
+    <div class="w-full md:w-1/2 md:self-stretch md:[&>*]:h-full bg-offblack">
+      <template
+        v-if="block.content?.[0]"
+      >
+        <MediaImageResponsive
+          v-if="block.content[0].component === 'split_media' && block.content[0]?.media"
+          :asset="block.content[0].media"
+          :desktop-asset="block.content[0].media"
+          :ratio="block.ratio"
+          :desktop-ratio="block.ratio_desktop"
+          sizes="
+            2xs:100vw
+            xs:100vw
+            sm:100vw
+          "
+          desktop-sizes="
+            md:50vw
+            lg:50vw
+          "
+        />
+
+        <UiCarouselFade
+          v-else-if="block.content[0].component === 'split_carousel'"
+          class="text-white"
+          :options="{
+            autoplay: block.content[0].autoplay || false,
+            autoplayDuration: Number(block.content[0].autoplay_duration),
+            navigation: true,
+            pagination: true,
+          }"
+          :slides="block.content[0].slides || []"
+          :ratio-x="ratios.mobile.x"
+          :ratio-y="ratios.mobile.y"
+          :ratio-desktop-x="ratios.desktop.x"
+          :ratio-desktop-y="ratios.desktop.y"
+        >
+          <template #slide="{ slide }">
+            <template v-if="slide.component === 'slide_images'">
+              <SlideImages
+                :block="slide"
+                :ratio-x="ratios.mobile.x"
+                :ratio-y="ratios.mobile.y"
+                :ratio-desktop-x="ratios.desktop.x"
+                :ratio-desktop-y="ratios.desktop.y"
+              />
+            </template>
+          </template>
+        </UiCarouselFade>
+      </template>
+    </div>
+
+    <div
+      :id="block.anchor_id ? safeKebabCase(block.anchor_id) : undefined"
+      ref="scrollAnchor"
+      :style="scrollMarginTop"
+      class="
+        w-full
+        flex
+        flex-col
+        items-start
+        gap-8
+        px-(--app-outer-gutter)
+        md:w-1/2
+        md:gap-10
+        md:py-(--app-outer-gutter)
+        2xl:w-auto
+        2xl:mx-auto
+        max-md:border-b
+        max-md:border-warm-grey/20
+      "
+      :class="{
+        'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))] 2xl:pr-[calc(var(--app-outer-gutter)_+_--spacing(4))]': !block.reverse_desktop,
+        'pt-20 pb-12': block.reverse,
+        'pb-20 pt-12': !block.reverse,
+      }"
+    >
+      <h3
+        v-if="block.headline"
+        class="type-sans-large-caps text-balance inline-flex items-center gap-2"
+      >
+        <IconMichelinStar
+          v-if="block.michelin_star"
+          class="w-[1em] h-[1.125em]"
+        />
+
+        {{ block.headline }}
+      </h3>
+
+      <div
+        v-if="storyblokRichTextContent(block.text)"
+        class="prose"
+      >
+        <StoryblokText :html="block.text" />
+      </div>
+
+      <template v-for="item in block.link">
+        <StoryblokLink
+          v-if="item.link.cached_url"
+          :key="item._uid"
+          :item="item.link"
+          class="p-4 -m-4 type-mix-small-caps"
+        >
+          <UiTextLink :is-external="item.link.linktype === 'url'">
+            {{ item.title }}
+          </UiTextLink>
+        </StoryblokLink>
+      </template>
+    </div>
+  </div>
+</template>

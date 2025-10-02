@@ -1,0 +1,47 @@
+<script lang="ts" setup>
+import type { BlockText } from '@@/.storyblok/types/332344/storyblok-components'
+
+interface Props {
+  block: BlockText
+}
+
+const { block } = defineProps<Props>()
+</script>
+
+<template>
+  <div
+    v-editable="block"
+    class="block-text wrapper md:text-center flex flex-col items-start md:items-center gap-8 md:gap-10"
+  >
+    <h2
+      v-if="block.headline"
+      class="type-sans-large-caps text-balance"
+    >
+      {{ block.headline }}
+    </h2>
+
+    <div
+      v-if="storyblokRichTextContent(block.text)"
+      class="prose"
+      :class="[{
+        'prose-medium': block.text_size === 'medium',
+        'prose-large': block.text_size === 'large',
+      }]"
+    >
+      <StoryblokText :html="block.text" />
+    </div>
+
+    <template v-for="item in block.link">
+      <StoryblokLink
+        v-if="item.link.cached_url"
+        :key="item._uid"
+        :item="item.link"
+        class="p-4 -m-4 type-mix-small-caps"
+      >
+        <UiTextLink :is-external="item.link.linktype === 'url'">
+          {{ item.title }}
+        </UiTextLink>
+      </StoryblokLink>
+    </template>
+  </div>
+</template>

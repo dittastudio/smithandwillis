@@ -1,9 +1,0 @@
-@layer base {
-  @font-face {
-    font-family: 'Season Sans';
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-    src: url('/fonts/SeasonSans-Regular.woff2') format('woff2');
-  }
-}

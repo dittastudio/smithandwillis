@@ -2,11 +2,16 @@ import antfu from '@antfu/eslint-config'
 import withNuxt from './.nuxt/eslint.config.mjs'
 
 export default withNuxt(
+  {
+    ignores: [
+      '.storyblok/**',
+    ],
+  },
   antfu({
     rules: {
       'antfu/top-level-function': 'off',
       'toml/indent': ['error', 2, { subTables: 1, keyValuePairs: 1 }],
-      'curly': 'off',
+      'curly': ['error', 'all'],
       'no-console': 'off',
       'node/prefer-global/process': 'off',
       'vue/define-macros-order': 'off',
@@ -34,6 +39,7 @@ export default withNuxt(
           },
         },
       ],
+      'vue/prefer-separate-static-class': 'off',
     },
   }),
 )

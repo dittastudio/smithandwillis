@@ -1,4 +1,5 @@
 {
+  "workbench.editorAssociations": { "*.svg": "default" },
   "eslint.useFlatConfig": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "typescript.suggest.autoImports": false,
@@ -32,5 +33,11 @@
     "toml",
     "gql",
     "graphql"
-  ]
+  ],
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar"
+  },
+  "[tailwindcss]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  }
 }
