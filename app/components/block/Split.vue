@@ -8,7 +8,7 @@ interface Props {
 
 const { block } = defineProps<Props>()
 
-const scrollAnchor = ref<HTMLElement>()
+const scrollAnchor = useTemplateRef('scrollAnchor')
 const { scrollMarginTop } = useCentreAnchor(scrollAnchor, 100)
 
 const ratios = {

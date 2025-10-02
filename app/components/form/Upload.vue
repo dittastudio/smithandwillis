@@ -24,7 +24,7 @@ interface Emits {
 const { id = '', types = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'], maxSize = 500 * 1024 } = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
-const input = useTemplateRef<HTMLInputElement>('input')
+const input = useTemplateRef('input')
 const preview = ref<string | undefined>(undefined)
 const file = ref<File | undefined>(undefined)
 

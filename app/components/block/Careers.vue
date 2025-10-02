@@ -73,7 +73,7 @@ const getDatasourceName = (datasource: ISbResult | undefined, key: string | numb
   return entry?.name ?? null
 }
 
-const scrollAnchor = ref<HTMLElement>()
+const scrollAnchor = useTemplateRef('scrollAnchor')
 const { scrollMarginTop } = useCentreAnchor(scrollAnchor, 150)
 
 const isScreenMd = useAtMedia(getMediaQuery('md'))

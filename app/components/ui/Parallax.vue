@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useIntersectionObserver } from '@vueuse/core'
 
-const container = useTemplateRef<HTMLElement | null>('container')
+const container = useTemplateRef('container')
 let rafId: number | null = null
 let lastScrollY = 0
 

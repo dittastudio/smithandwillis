@@ -14,7 +14,7 @@ interface Emits {
 
 const emit = defineEmits<Emits>()
 
-const modal = useTemplateRef<HTMLDialogElement>('modal')
+const modal = useTemplateRef('modal')
 const modalOpen = ref(immediate)
 
 const open = () => {

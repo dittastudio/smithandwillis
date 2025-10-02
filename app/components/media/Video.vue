@@ -15,7 +15,7 @@ interface Props {
 
 const { sources, lazy = true, io = {} } = defineProps<Props>()
 
-const video = useTemplateRef<HTMLVideoElement | null>('video')
+const video = useTemplateRef('video')
 const ready = ref(!lazy)
 
 useIntersectionObserver(

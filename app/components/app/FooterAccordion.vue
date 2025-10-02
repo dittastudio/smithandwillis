@@ -9,7 +9,7 @@ const isOpen = ref<boolean>(false)
 const headerId = `accordion-header-${safeKebabCase(id)}`
 const bodyId = `accordion-body-${safeKebabCase(id)}`
 
-const elRef = ref<HTMLElement>()
+const elRef = useTemplateRef('elRef')
 
 const toggleAccordion = async () => {
   isOpen.value = !isOpen.value

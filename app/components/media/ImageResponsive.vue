@@ -33,7 +33,7 @@ const {
   lazyPlaceholder = true,
 } = defineProps<Props>()
 
-const container = useTemplateRef<HTMLPictureElement | null>('container')
+const container = useTemplateRef('container')
 const ready = ref(!lazy)
 const loaded = ref(!lazy)
 
