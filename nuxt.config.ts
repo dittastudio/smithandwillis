@@ -32,8 +32,8 @@ export default defineNuxtConfig({
         { 'http-equiv': 'content-language', 'content': 'en-GB' },
       ],
       link: [
-        { rel: 'icon', href: '/favicon.ico', sizes: '32x32' },
-        { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
+        { rel: 'icon', href: '/favicon.ico?v=1', sizes: '32x32' },
+        { rel: 'icon', href: '/favicon.svg?v=1', type: 'image/svg+xml' },
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
         { rel: 'manifest', href: '/site.webmanifest' },
         { rel: 'preload', type: 'font/woff2', href: '/fonts/SeasonSans-Regular.woff2', as: 'font', crossorigin: '' },
