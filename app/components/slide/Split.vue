@@ -35,8 +35,8 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
           sm:100vw
         "
         desktop-sizes="
+          sm:50vw
           md:50vw
-          lg:50vw
         "
       />
     </div>
