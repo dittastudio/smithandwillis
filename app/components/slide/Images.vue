@@ -29,13 +29,10 @@ const { block, ratioX = 10, ratioY = 16, ratioDesktopX = 16, ratioDesktopY = 9 }
           2xs:100vw
           xs:100vw
           sm:100vw
-          md:100vw
         "
         :desktop-sizes="`
           md:${Math.round(100 / (block.images?.length || 1))}vw
           lg:${Math.round(100 / (block.images?.length || 1))}vw
-          xl:${Math.round(100 / (block.images?.length || 1))}vw
-          2xl:${Math.round(100 / (block.images?.length || 1))}vw
         `"
       />
     </template>

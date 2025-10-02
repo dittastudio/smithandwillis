@@ -46,13 +46,10 @@ const ratios = {
             2xs:100vw
             xs:100vw
             sm:100vw
-            md:100vw
           "
           desktop-sizes="
             md:50vw
             lg:50vw
-            xl:50vw
-            2xl:50vw
           "
         />
 
