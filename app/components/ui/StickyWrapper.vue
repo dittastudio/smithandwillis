@@ -6,16 +6,21 @@ const elHeight = ref(0)
 const isShorter = ref(false)
 
 const checkHeight = () => {
-  if (elRef.value) {
-    isShorter.value = window.innerHeight > elHeight.value
+  if (!elRef.value) {
+    return
   }
+
+  isShorter.value = window.innerHeight > elHeight.value
 }
 
 const setHeight = (height: number) => {
-  if (!elRef.value)
+  if (!elRef.value) {
     return
+  }
+
   elHeight.value = height
   elRef.value.style.setProperty('--_block-height', `${height}px`)
+
   checkHeight()
 }
 
@@ -23,13 +28,16 @@ const handleResize = throttle(checkHeight, 200)
 
 onMounted(() => {
   const observedElement = elRef.value
-  if (!observedElement)
+
+  if (!observedElement) {
     return
+  }
 
   const resizeObserver = new ResizeObserver(([entry]) => {
     if (!entry) {
       return
     }
+
     setHeight(entry.target.clientHeight)
   })
 

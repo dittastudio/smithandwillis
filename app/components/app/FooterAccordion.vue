@@ -14,13 +14,12 @@ const elRef = useTemplateRef('elRef')
 const toggleAccordion = async () => {
   isOpen.value = !isOpen.value
 
-  if (isOpen.value) {
-    if (!elRef.value)
-      return
-
-    await wait(300)
-    elRef.value.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  if (!isOpen.value || !elRef.value) {
+    return
   }
+
+  await wait(300)
+  elRef.value.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 
 const isScreenSm = useAtMedia(getMediaQuery('sm'))
