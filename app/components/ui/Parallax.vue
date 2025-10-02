@@ -6,8 +6,9 @@ let rafId: number | null = null
 let lastScrollY = 0
 
 const handleScroll = () => {
-  if (!container.value)
+  if (!container.value) {
     return
+  }
 
   if (rafId) {
     cancelAnimationFrame(rafId)
