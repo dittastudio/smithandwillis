@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { throttle } from 'lodash-es'
 
-const elRef = useTemplateRef<HTMLElement | null>('elRef')
+const elRef = useTemplateRef('elRef')
 const elHeight = ref(0)
 const isShorter = ref(false)
 
