@@ -241,7 +241,7 @@ onUnmounted(() => {
       <!-- Navigation Buttons -->
       <div
         v-if="options.navigation"
-        class="absolute inset-0 flex"
+        class="absolute inset-0 flex only-touch:hidden"
       >
         <button
           class="w-1/2 flex items-center justify-start p-[var(--app-outer-gutter)] cursor-none"
@@ -253,10 +253,6 @@ onUnmounted(() => {
           @mouseup="handleMouseUp"
         >
           <span class="sr-only">Previous</span>
-
-          <IconArrowLarge
-            class="only-hover:hidden w-[16px] h-[18px] rotate-90 filter-shadow-light"
-          />
         </button>
 
         <button
@@ -269,10 +265,6 @@ onUnmounted(() => {
           @mouseup="handleMouseUp"
         >
           <span class="sr-only">Next</span>
-
-          <IconArrowLarge
-            class="only-hover:hidden w-[16px] h-[18px] -rotate-90 filter-shadow-light"
-          />
         </button>
       </div>
 
@@ -280,6 +272,7 @@ onUnmounted(() => {
       <div
         v-if="isHovering"
         class="
+          only-touch:hidden
           absolute
           pointer-events-none
           z-1

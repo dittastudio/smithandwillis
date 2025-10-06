@@ -66,7 +66,6 @@ onUnmounted(() => {
 .ui-sticky-wrapper {
   position: sticky;
   bottom: calc((-1 * (var(--_block-height) + var(--app-header-height))) + 100vh);
-  bottom: calc((-1 * (var(--_block-height) + var(--app-header-height))) + 100svh);
 
   &.is-shorter {
     bottom: 0;

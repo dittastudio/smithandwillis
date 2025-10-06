@@ -13,7 +13,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
   <div
     v-editable="block"
     data-component="hero-image"
-    class="relative h-svh bg-offblack text-white"
+    class="relative h-screen bg-offblack text-white"
   >
     <HeroScrollDown>
       <UiParallax>
