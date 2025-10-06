@@ -22,7 +22,7 @@ const ratios = {
 <template>
   <div
     v-editable="block"
-    class="bg-offblack text-white h-svh"
+    class="bg-offblack text-white h-screen"
   >
     <HeroScrollDown>
       <UiParallax>
@@ -32,7 +32,7 @@ const ratios = {
             autoplayDuration: Number(block.autoplay_duration),
             navigation: true,
             pagination: false,
-            slideClasses: 'h-svh',
+            slideClasses: 'h-screen',
           }"
           :slides="block.slides || []"
           :ratio-x="ratios.mobile.x"
