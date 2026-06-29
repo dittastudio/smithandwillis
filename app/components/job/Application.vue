@@ -277,7 +277,7 @@ const onSubmit = async () => {
 
           <button
             type="submit"
-            class="type-mix-small-caps w-full p-[1em] bg-warm-grey text-offblack rounded-xs transition-colors duration-200 ease-in-out hover:bg-white/80"
+            class="type-serif-small-caps w-full p-[1em] bg-warm-grey text-offblack rounded-xs transition-colors duration-200 ease-in-out hover:bg-white/80"
           >
             <span
               v-if="loading"

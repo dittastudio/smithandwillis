@@ -139,11 +139,11 @@ watchEffect(() => {
           >
             No opportunities found
             <template v-if="getDatasourceName(brand, String(routeQueryBrand))">
-              at <strong class="font-mix font-bold tracking-sm">{{ getDatasourceName(brand, String(routeQueryBrand)) }}</strong>
+              at <strong class="font-serif font-bold tracking-sm">{{ getDatasourceName(brand, String(routeQueryBrand)) }}</strong>
             </template>
 
             <template v-if="getDatasourceName(department, String(routeQueryDepartment))">
-              in <strong class="font-mix font-bold tracking-sm">{{ getDatasourceName(department, String(routeQueryDepartment)) }}</strong>.
+              in <strong class="font-serif font-bold tracking-sm">{{ getDatasourceName(department, String(routeQueryDepartment)) }}</strong>.
             </template>
           </p>
 
@@ -191,7 +191,7 @@ watchEffect(() => {
                     :href="job.content.pdf.filename"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="type-mix-xsmall-caps p-2 -m-2 md:p-3 md:-m-3"
+                    class="type-serif-xsmall-caps p-2 -m-2 md:p-3 md:-m-3"
                     :class="classesLinkHover"
                   >
                     View
@@ -200,7 +200,7 @@ watchEffect(() => {
                   <UiModal v-if="job.content.email">
                     <template #trigger>
                       <span
-                        class="block type-mix-xsmall-caps p-2 -m-2 md:p-3 md:-m-3"
+                        class="block type-serif-xsmall-caps p-2 -m-2 md:p-3 md:-m-3"
                         :class="classesLinkHover"
                       >
                         Apply

@@ -8,7 +8,7 @@
 @import "tailwindcss";
 
 /* Safelist */
-@source inline("font-mix");
+@source inline("font-serif");
 @source inline("font-bold");
 @source inline("tracking-sm");
 
@@ -37,7 +37,7 @@
   --spacing: 4px;
 
   --font-sans: "Season Sans", sans-serif, system-ui;
-  --font-mix: "Season Mix", serif, system-ui;
+  --font-serif: "Tiempos Text", serif, system-ui;
 
   --text-12: 0.75rem; /* 12px */
   --text-13: 0.8125rem; /* 13px */
@@ -51,7 +51,8 @@
   --tracking-xs: 0.02em;
   --tracking-sm: 0.04em;
   --tracking-md: 0.06em;
-  --tracking-lg: 0.15em;
+  --tracking-lg: 0.1em;
+  --tracking-xl: 0.15em;
 
   --ease-inExpo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
   --ease-outExpo: cubic-bezier(0.19, 1, 0.22, 1);

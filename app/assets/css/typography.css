@@ -12,7 +12,7 @@
   }
 
   .type-sans-large-caps {
-    letter-spacing: var(--tracking-lg);
+    letter-spacing: var(--tracking-xl);
     text-transform: uppercase;
   }
 
@@ -29,15 +29,14 @@
   }
 
   .type-sans-medium-caps {
-    letter-spacing: var(--tracking-lg);
+    letter-spacing: var(--tracking-xl);
     text-transform: uppercase;
   }
 
-  .type-mix-medium {
-    font-family: var(--font-mix);
+  .type-serif-medium {
+    font-family: var(--font-serif);
     font-size: var(--text-15);
     line-height: calc(24 / 15);
-    letter-spacing: var(--tracking-md);
 
     @variant md {
       font-size: var(--text-16);
@@ -45,11 +44,11 @@
     }
   }
 
-  .type-mix-small-caps {
-    font-family: var(--font-mix);
+  .type-serif-small-caps {
+    font-family: var(--font-serif);
     font-size: var(--text-13);
     line-height: calc(22 / 13);
-    letter-spacing: var(--tracking-lg);
+    letter-spacing: var(--tracking-xl);
     text-transform: uppercase;
 
     @variant md {
@@ -58,8 +57,8 @@
     }
   }
 
-  .type-mix-xsmall-caps {
-    font-family: var(--font-mix);
+  .type-serif-xsmall-caps {
+    font-family: var(--font-serif);
     font-size: var(--text-12);
     line-height: calc(22 / 12);
     letter-spacing: var(--tracking-lg);

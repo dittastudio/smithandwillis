@@ -67,7 +67,7 @@ const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
           <div
             v-if="storyblokRichTextContent(studio)"
             :class="[
-              'type-sans-medium',
+              'type-serif-medium',
               classesHeaderProse,
             ]"
           >
@@ -80,7 +80,7 @@ const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
             {{ contactTitle }}
           </h4>
 
-          <address class="type-sans-medium not-italic">
+          <address class="type-serif-medium not-italic">
             <div
               v-if="storyblokRichTextContent(contact)"
               :class="[

@@ -22,7 +22,7 @@ const { items } = defineProps<Props>()
         md:text-13
         lg:text-14
         leading-6
-        tracking-lg
+        tracking-xl
         uppercase
       "
     >

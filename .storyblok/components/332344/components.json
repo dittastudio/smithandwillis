@@ -238,7 +238,7 @@
     "display_name": "Split",
     "description": "",
     "created_at": "2025-04-08T16:30:36.828Z",
-    "updated_at": "2025-08-21T15:53:20.412Z",
+    "updated_at": "2026-06-29T15:59:11.748Z",
     "id": 7188205,
     "schema": {
       "anchor_id": {
@@ -287,7 +287,7 @@
           {
             "_uid": "f38ca414-a571-421e-8787-c2deedb061f8",
             "name": "Emphasise",
-            "value": "font-mix font-bold tracking-sm"
+            "value": "font-serif font-bold"
           }
         ]
       },
@@ -380,7 +380,7 @@
     "display_name": "Text",
     "description": "",
     "created_at": "2025-04-03T18:08:06.117Z",
-    "updated_at": "2025-08-21T23:26:54.967Z",
+    "updated_at": "2026-06-29T16:00:03.278Z",
     "id": 7166149,
     "schema": {
       "headline": {
@@ -424,7 +424,7 @@
           {
             "_uid": "68708cf8-bed2-4437-85f6-6c800a0903f7",
             "name": "Season Mix",
-            "value": "font-mix tracking-sm"
+            "value": "font-serif"
           }
         ]
       },
@@ -1040,7 +1040,7 @@
     "display_name": "Split",
     "description": "",
     "created_at": "2025-04-09T22:14:13.368Z",
-    "updated_at": "2025-04-11T00:29:55.445Z",
+    "updated_at": "2026-06-29T16:00:32.224Z",
     "id": 7195117,
     "schema": {
       "background_color": {
@@ -1093,7 +1093,7 @@
           {
             "_uid": "f38ca414-a571-421e-8787-c2deedb061f8",
             "name": "Emphasise",
-            "value": "font-mix font-bold tracking-sm"
+            "value": "font-serif font-bold"
           }
         ]
       },
