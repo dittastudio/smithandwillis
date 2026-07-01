@@ -15,7 +15,7 @@ const { block } = defineProps<Props>()
   >
     <h2
       v-if="block.headline"
-      class="type-sans-large-caps text-balance"
+      class="type-serif-large-caps text-balance"
     >
       {{ block.headline }}
     </h2>

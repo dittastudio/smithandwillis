@@ -97,7 +97,7 @@ watchEffect(() => {
         v-if="block.headline"
         class="md:col-start-4 md:-col-end-1 md:row-start-1 xl:col-start-3"
       >
-        <h2 class="type-sans-large-caps text-balance">
+        <h2 class="type-serif-large-caps text-balance">
           {{ block.headline }}
         </h2>
       </div>
@@ -135,15 +135,15 @@ watchEffect(() => {
         >
           <p
             v-if="!jobs.length"
-            class="type-sans-medium pt-4"
+            class="type-serif-medium pt-4"
           >
             No opportunities found
             <template v-if="getDatasourceName(brand, String(routeQueryBrand))">
-              at <strong class="font-serif font-bold tracking-sm">{{ getDatasourceName(brand, String(routeQueryBrand)) }}</strong>
+              at <em>{{ getDatasourceName(brand, String(routeQueryBrand)) }}</em>
             </template>
 
             <template v-if="getDatasourceName(department, String(routeQueryDepartment))">
-              in <strong class="font-serif font-bold tracking-sm">{{ getDatasourceName(department, String(routeQueryDepartment)) }}</strong>.
+              in <em>{{ getDatasourceName(department, String(routeQueryDepartment)) }}</em>.
             </template>
           </p>
 
@@ -172,14 +172,14 @@ watchEffect(() => {
                 <div class="flex flex-col gap-y-0.5">
                   <p
                     v-if="job.name"
-                    class="type-sans-medium"
+                    class="type-serif-medium"
                   >
                     {{ job.name }}
                   </p>
 
                   <p
                     v-if="job.content.brand"
-                    class="type-sans-medium-caps"
+                    class="type-serif-medium-caps"
                   >
                     {{ getDatasourceName(brand, job.content.brand) }}
                   </p>
@@ -191,7 +191,7 @@ watchEffect(() => {
                     :href="job.content.pdf.filename"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="type-serif-xsmall-caps p-2 -m-2 md:p-3 md:-m-3"
+                    class="block type-serif-medium lowercase italic p-2 -m-2 md:p-3 md:-m-3"
                     :class="classesLinkHover"
                   >
                     View
@@ -200,7 +200,7 @@ watchEffect(() => {
                   <UiModal v-if="job.content.email">
                     <template #trigger>
                       <span
-                        class="block type-serif-xsmall-caps p-2 -m-2 md:p-3 md:-m-3"
+                        class="block type-serif-medium lowercase italic p-2 -m-2 md:p-3 md:-m-3"
                         :class="classesLinkHover"
                       >
                         Apply

@@ -110,7 +110,7 @@ const ratios = {
     >
       <h3
         v-if="block.headline"
-        class="type-sans-large-caps text-balance inline-flex items-center gap-2"
+        class="type-serif-large-caps text-balance inline-flex items-center gap-2"
       >
         <IconMichelinStar
           v-if="block.michelin_star"
@@ -132,9 +132,9 @@ const ratios = {
           v-if="item.link.cached_url"
           :key="item._uid"
           :item="item.link"
-          class="p-4 -m-4 type-serif-small-caps"
+          class="p-4 -m-4 type-serif-large italic"
         >
-          <UiTextLink :is-external="item.link.linktype === 'url'">
+          <UiTextLink :is-external="item.link.linktype === 'url' || item.link.linktype === 'email'">
             {{ item.title }}
           </UiTextLink>
         </StoryblokLink>
