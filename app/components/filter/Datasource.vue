@@ -47,7 +47,7 @@ const filters = computed(() => {
 
 <template>
   <div class="@container">
-    <ul class="flex flex-col gap-0.5 type-sans-medium text-14">
+    <ul class="flex flex-col gap-0.5 type-serif-medium text-14">
       <li
         v-for="filter in filters"
         :key="filter.id"

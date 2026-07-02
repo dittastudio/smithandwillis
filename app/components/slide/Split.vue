@@ -79,7 +79,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
       >
         <h3
           v-if="block.headline"
-          class="type-sans-large-caps text-balance"
+          class="type-serif-large-caps text-balance"
         >
           {{ block.headline }}
         </h3>

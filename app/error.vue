@@ -33,7 +33,7 @@ useHead({
         <IconLogo class="w-[174px] h-[13px] mx-auto lg:w-[232px] lg:h-[17px]" />
       </a>
 
-      <h1 class="type-mix-medium">
+      <h1 class="type-serif-medium">
         {{ message }}
       </h1>
     </div>
