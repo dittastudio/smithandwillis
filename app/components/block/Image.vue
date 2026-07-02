@@ -41,7 +41,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
           <StoryblokLink
             v-if="block.link?.cached_url"
             :item="block.link"
-            class="p-(--app-outer-gutter) -m-(--app-outer-gutter) flex flex-col gap-1"
+            class="block p-(--app-outer-gutter) -m-(--app-outer-gutter)"
           >
             <UiTextLink :is-external="block.link.linktype === 'url'">
               <span class="type-serif-medium-caps flex items-center gap-2">
@@ -54,7 +54,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
               </span>
             </UiTextLink>
 
-            <p class="type-serif-medium transition-opacity duration-300 ease-out [a:hover_&]:opacity-70 italic">
+            <p class="opacity-80 type-serif-medium transition-opacity duration-300 ease-out [a:hover_&]:opacity-70 italic">
               {{ block.sub_title }}
             </p>
           </StoryblokLink>
