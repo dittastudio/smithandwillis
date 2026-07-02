@@ -24,7 +24,7 @@ const {
 
 const currentYear = computed(() => new Date().getFullYear())
 const classesMetaLink = 'block opacity-70 hover:opacity-100 transition-opacity duration-300 ease-out'
-const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p_a]:ease-out [&_p_a]:opacity-100 [&_p_a]:hover:opacity-70'
+const classesFooterProse = '[&_p_a]:italic [&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p_a]:ease-out [&_p_a]:opacity-100 [&_p_a]:hover:opacity-70'
 </script>
 
 <template>
@@ -34,7 +34,7 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
         <div class="col-span-full sm:col-span-1 md:col-span-3 lg:col-span-2">
           <AppFooterAccordion id="accordion-studio">
             <template #title>
-              <h4 class="type-sans-medium-caps">
+              <h4 class="type-serif-medium-caps">
                 {{ studioTitle }}
               </h4>
             </template>
@@ -58,7 +58,7 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
         <div class="col-span-full sm:col-span-1 md:col-span-3 lg:col-span-2">
           <AppFooterAccordion id="accordion-places">
             <template #title>
-              <h4 class="type-sans-medium-caps">
+              <h4 class="type-serif-medium-caps">
                 {{ placesTitle }}
               </h4>
             </template>
@@ -80,7 +80,7 @@ const classesFooterProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
         <div class="col-span-full md:col-span-6">
           <AppFooterAccordion id="accordion-contact">
             <template #title>
-              <h4 class="type-sans-medium-caps">
+              <h4 class="type-serif-medium-caps">
                 {{ contactTitle }}
               </h4>
             </template>

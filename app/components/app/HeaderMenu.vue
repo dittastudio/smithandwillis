@@ -11,7 +11,7 @@ interface Props {
 const { studioTitle, studio, contactTitle, contact } = defineProps<Props>()
 
 const menuOpen = useState<boolean>('menuOpen')
-const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p_a]:ease-out [&_p_a]:opacity-100 [&_p_a]:hover:opacity-70'
+const classesHeaderProse = '[&_p_a]:italic [&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p_a]:ease-out [&_p_a]:opacity-100 [&_p_a]:hover:opacity-70'
 </script>
 
 <template>
@@ -60,7 +60,7 @@ const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
 
       <div class="flex flex-col gap-y-8 md:hidden">
         <div class="flex flex-col gap-y-3">
-          <h4 class="type-sans-medium-caps">
+          <h4 class="type-serif-medium-caps">
             {{ studioTitle }}
           </h4>
 
@@ -76,7 +76,7 @@ const classesHeaderProse = '[&_p_a]:transition-opacity [&_p_a]:duration-300 [&_p
         </div>
 
         <div class="flex flex-col gap-y-3">
-          <h4 class="type-sans-medium-caps">
+          <h4 class="type-serif-medium-caps">
             {{ contactTitle }}
           </h4>
 

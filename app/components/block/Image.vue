@@ -44,7 +44,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
             class="p-(--app-outer-gutter) -m-(--app-outer-gutter) flex flex-col gap-1"
           >
             <UiTextLink :is-external="block.link.linktype === 'url'">
-              <span class="type-sans-medium-caps flex items-center gap-2">
+              <span class="type-serif-medium-caps flex items-center gap-2">
                 <IconMichelinStar
                   v-if="block.michelin_star"
                   class="w-[1em] h-[1.125em]"
