@@ -160,7 +160,7 @@ const onSubmit = async () => {
       <div class="flex flex-col gap-8">
         <h2
           v-if="headline"
-          class="type-sans-large-caps text-balance"
+          class="type-serif-large-caps text-balance"
         >
           {{ headline }}
         </h2>
@@ -277,7 +277,7 @@ const onSubmit = async () => {
 
           <button
             type="submit"
-            class="type-mix-small-caps w-full p-[1em] bg-warm-grey text-offblack rounded-xs transition-colors duration-200 ease-in-out hover:bg-white/80"
+            class="type-serif-small-caps w-full p-[1em] bg-warm-grey text-offblack rounded-xs transition-colors duration-200 ease-in-out hover:bg-white/80"
           >
             <span
               v-if="loading"
