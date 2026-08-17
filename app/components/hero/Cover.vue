@@ -45,7 +45,7 @@ onMounted(async () => {
 </template>
 
 <style>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .hero-cover__wrapper {
   filter: drop-shadow(0 0 10px --alpha(var(--color-black) / 50%));

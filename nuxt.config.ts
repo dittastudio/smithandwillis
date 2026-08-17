@@ -43,7 +43,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: ['~/assets/css/main.css'],
+  css: ['~/assets/css/app.css'],
   site: {
     url: 'https://smithandwillis.london',
     name: 'Smith & Willis',

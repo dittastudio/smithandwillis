@@ -14,7 +14,7 @@ const menuOpen = useState<boolean>('menuOpen')
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .ui-burger {
   --burger-button-height: --spacing(6);

@@ -159,7 +159,7 @@ const classesHeader = computed(() => [
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .app-header {
   &::before,

@@ -147,7 +147,7 @@ const classesFooterProse = '[&_p_a]:italic [&_p_a]:transition-opacity [&_p_a]:du
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .app-footer__meta-container {
   @variant md {

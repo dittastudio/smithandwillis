@@ -1,4 +1,4 @@
-// Grab breakpoints from Tailwind CSS main.css
+// Grab breakpoints from Tailwind CSS app.css
 const getBreakpoint = (breakpoint: string): number => {
   if (!import.meta.client) {
     return 0

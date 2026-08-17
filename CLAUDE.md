@@ -36,12 +36,12 @@ Single catch-all page: `app/pages/[...slug].vue`. Every route maps to a Storyblo
 ### Component conventions
 - `app/components/` is namespace-prefixed by folder: `app/Header.vue` → `<AppHeader>`.
 - All components: `<script lang="ts" setup>` + `defineProps<Props>()` with an inline `interface Props {}`.
-- Scoped styles use `@reference "@/assets/css/main.css"` to access Tailwind theme tokens inside `<style scoped>`.
+- Scoped styles use `@reference "@/assets/css/app.css"` to access Tailwind theme tokens inside `<style scoped>`.
 - Apply `v-editable="block"` to block root elements for Storyblok Visual Editor.
 - SVGs are imported as Vue components via `vite-svg-loader`.
 
 ### CSS
-Tailwind CSS v4 via `@tailwindcss/vite` (not PostCSS). All design tokens are defined in `app/assets/css/main.css` `@theme` block. Custom breakpoints: `2xs:375`, `xs:480`, `sm:600`, `md:800`, `lg:1200`, `xl:1440`, `2xl:1800`. Custom fonts: Season Sans (sans), Tiempos Text (serif). `postcss-nested` is enabled for nested syntax in plain CSS.
+Tailwind CSS v4 via `@tailwindcss/vite` (not PostCSS). All design tokens are defined in `app/assets/css/app.css` `@theme` block. Custom breakpoints: `2xs:375`, `xs:480`, `sm:600`, `md:800`, `lg:1200`, `xl:1440`, `2xl:1800`. Custom fonts: Season Sans (sans), Tiempos Text (serif). `postcss-nested` is enabled for nested syntax in plain CSS.
 
 Typography uses named utility classes from `app/assets/css/typography.css` (e.g. `type-serif-large-caps`, `type-serif-medium`) — prefer these over ad-hoc Tailwind text classes. Use `twMerge` from `app/utils/twMerge.ts` (extended config) when conditionally merging Tailwind classes.
 

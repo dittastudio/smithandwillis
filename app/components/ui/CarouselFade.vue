@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { KeenSliderInstance } from 'keen-slider'
 import type { SlideImages, SlideSplit, SlideVideo } from '#storyblok-components'
+import type { KeenSliderInstance } from 'keen-slider'
 import type { Colours } from '@/utils/maps'
 import { useIntersectionObserver } from '@vueuse/core'
 import KeenSlider from 'keen-slider'
@@ -338,7 +338,7 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .ui-carousel-fade__container {
   display: grid;

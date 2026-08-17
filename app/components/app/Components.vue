@@ -118,7 +118,7 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .content-blocks__item:not(
   .content-blocks__item--block_image,

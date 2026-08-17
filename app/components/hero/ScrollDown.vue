@@ -67,7 +67,7 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-@reference "@/assets/css/main.css";
+@reference "@/assets/css/app.css";
 
 .ui-scroll-down {
   &::before {

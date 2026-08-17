@@ -59,9 +59,17 @@
   --ease-inOutQuart: cubic-bezier(0.77, 0, 0.175, 1);
 
   --shadow-sm: 0 0 5px var(--color-black);
+}
 
-  /* Force CSS variables for breakpoints and colors */
-  --force-breakpoints: var(--breakpoint-2xs) var(--breakpoint-xs) var(--breakpoint-sm) var(--breakpoint-md) var(--breakpoint-lg) var(--breakpoint-xl) var(--breakpoint-2xl);
+/* Force CSS variables for breakpoints */
+@theme static {
+  --breakpoint-2xs: 375px;
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 600px;
+  --breakpoint-md: 800px;
+  --breakpoint-lg: 1200px;
+  --breakpoint-xl: 1440px;
+  --breakpoint-2xl: 1800px;
 }
 
 @utility filter-shadow-light {
