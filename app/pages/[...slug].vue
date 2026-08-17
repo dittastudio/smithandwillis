@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Page } from '@@/.storyblok/types/332344/storyblok-components'
+import type { Page } from '#storyblok-components'
 
 const route = useRoute()
 const story = await useStory<Page>(route.path, { resolve_relations: ['block_careers.jobs'] }, { resolveRelations: ['block_careers.jobs'] })

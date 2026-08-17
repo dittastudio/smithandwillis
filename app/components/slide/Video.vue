@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { SlideVideo } from '@@/.storyblok/types/332344/storyblok-components'
+import type { SlideVideo } from '#storyblok-components'
 
 interface Props {
   block: SlideVideo

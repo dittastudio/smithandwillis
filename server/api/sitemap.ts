@@ -1,5 +1,5 @@
-import { asSitemapUrl, defineSitemapEventHandler } from '#imports'
 import StoryblokClient from 'storyblok-js-client'
+import { asSitemapUrl, defineSitemapEventHandler } from '#imports'
 
 interface Link {
   id: number

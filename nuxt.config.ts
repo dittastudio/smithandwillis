@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url'
 import tailwindcss from '@tailwindcss/vite'
 import svgLoader from 'vite-svg-loader'
 
@@ -53,6 +54,10 @@ export default defineNuxtConfig({
       STORYBLOK_TOKEN: process.env.STORYBLOK_TOKEN,
       STORYBLOK_VERSION: process.env.STORYBLOK_VERSION,
     },
+  },
+  alias: {
+    '#storyblok-components': fileURLToPath(new URL('./.storyblok/types/332344/storyblok-components', import.meta.url)),
+    '#storyblok-types': fileURLToPath(new URL('./.storyblok/types/storyblok', import.meta.url)),
   },
   routeRules: {
     '/**': { prerender: process.env.PRERENDER === 'true' },

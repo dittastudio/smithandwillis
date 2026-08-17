@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { SlideImages } from '@@/.storyblok/types/332344/storyblok-components'
+import type { SlideImages } from '#storyblok-components'
 
 interface Props {
   index?: number | undefined

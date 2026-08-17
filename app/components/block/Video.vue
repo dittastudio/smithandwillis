@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlockVideo } from '@@/.storyblok/types/332344/storyblok-components'
+import type { BlockVideo } from '#storyblok-components'
 
 interface Props {
   block: BlockVideo

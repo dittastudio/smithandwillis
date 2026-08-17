@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlockCareers } from '@@/.storyblok/types/332344/storyblok-components'
+import type { BlockCareers } from '#storyblok-components'
 import type { ISbResult } from '@storyblok/js'
 import { ListFilter } from 'lucide-vue-next'
 

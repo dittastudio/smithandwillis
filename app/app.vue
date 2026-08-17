@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Settings } from '@@/.storyblok/types/332344/storyblok-components'
+import type { Settings } from '#storyblok-components'
 
 const story = await useStory<Settings>('/settings')
 const route = useRoute()

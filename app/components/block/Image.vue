@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { BlockImage } from '@@/.storyblok/types/332344/storyblok-components'
+import type { BlockImage } from '#storyblok-components'
 import IconMichelinStar from '@/assets/icons/michelin-star.svg'
 
 interface Props {

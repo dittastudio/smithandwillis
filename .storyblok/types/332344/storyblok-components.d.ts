@@ -10,6 +10,7 @@ export interface BlockCareers {
   anchor_id?: string;
   component: "block_careers";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface BlockCarousel {
@@ -21,6 +22,7 @@ export interface BlockCarousel {
   slides: (SlideSplit | SlideImages | SlideVideo)[];
   component: "block_carousel";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface BlockImage {
@@ -33,6 +35,7 @@ export interface BlockImage {
   link?: Exclude<StoryblokMultilink, {linktype?: "email"} | {linktype?: "asset"}>;
   component: "block_image";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface BlockSplit {
@@ -50,6 +53,7 @@ export interface BlockSplit {
   text_color?: number | string;
   component: "block_split";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface BlockText {
@@ -61,6 +65,7 @@ export interface BlockText {
   text_color?: number | string;
   component: "block_text";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface BlockVideo {
@@ -71,6 +76,7 @@ export interface BlockVideo {
   ratio_desktop: number | string;
   component: "block_video";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface CareerItem {
@@ -80,6 +86,7 @@ export interface CareerItem {
   email: string;
   component: "career_item";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface HeroCarousel {
@@ -88,12 +95,14 @@ export interface HeroCarousel {
   slides?: (SlideImages | SlideVideo)[];
   component: "hero_carousel";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface HeroImage {
   media: StoryblokAsset;
   component: "hero_image";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface Job {
@@ -103,6 +112,7 @@ export interface Job {
   email: string;
   component: "job";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface Link {
@@ -110,6 +120,7 @@ export interface Link {
   link: Exclude<StoryblokMultilink, {linktype?: "asset"}>;
   component: "link";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface Page {
@@ -120,6 +131,7 @@ export interface Page {
   seo_image: StoryblokAsset;
   component: "page";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface Settings {
@@ -134,12 +146,14 @@ export interface Settings {
   contact?: StoryblokRichtext;
   component: "settings";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface SlideImages {
   images?: StoryblokMultiasset;
   component: "slide_images";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface SlideSplit {
@@ -152,6 +166,7 @@ export interface SlideSplit {
   alignment_mobile?: "" | "top" | "bottom";
   component: "slide_split";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface SlideVideo {
@@ -160,6 +175,7 @@ export interface SlideVideo {
   video_desktop?: StoryblokAsset;
   component: "slide_video";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface SplitCarousel {
@@ -168,10 +184,14 @@ export interface SplitCarousel {
   slides?: SlideImages[];
   component: "split_carousel";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface SplitMedia {
   media?: StoryblokAsset;
   component: "split_media";
   _uid: string;
+  _editable?: string | undefined;
 }
+
+export type ContentType = Job | Page | Settings;

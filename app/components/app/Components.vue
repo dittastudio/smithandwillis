@@ -7,7 +7,7 @@ import type {
   BlockText,
   BlockVideo,
   Page,
-} from '@@/.storyblok/types/332344/storyblok-components'
+} from '#storyblok-components'
 import type { Colours } from '@/utils/maps'
 
 interface Props {
@@ -31,7 +31,8 @@ const checkBackgroundMatchesPrevBackground = (index: number) => {
 
   if (
     (!current || !previous)
-    || (!hasColourProperties(current) || !hasColourProperties(previous))) {
+    || (!hasColourProperties(current) || !hasColourProperties(previous))
+  ) {
     return false
   }
 

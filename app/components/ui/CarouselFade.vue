@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { SlideImages, SlideSplit, SlideVideo } from '@@/.storyblok/types/332344/storyblok-components'
 import type { KeenSliderInstance } from 'keen-slider'
+import type { SlideImages, SlideSplit, SlideVideo } from '#storyblok-components'
 import type { Colours } from '@/utils/maps'
 import { useIntersectionObserver } from '@vueuse/core'
 import KeenSlider from 'keen-slider'
