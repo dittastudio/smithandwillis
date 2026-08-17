@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { Link } from '#storyblok-components'
 import type { StoryblokRichtext } from '#storyblok-types'
-import IconLogoMark from '@/assets/icons/logo-mark.svg'
 
 interface Props {
   footerNavigation?: Link[] | undefined
@@ -28,120 +27,112 @@ const classesFooterProse = '[&_p_a]:italic [&_p_a]:transition-opacity [&_p_a]:du
 </script>
 
 <template>
-  <div class="bg-rich-brown text-white py-16 sm:pt-20">
-    <div class="wrapper">
-      <div class="relative grid gap-x-[var(--app-inner-gutter)] sm:gap-y-8 grid-cols-2 md:grid-cols-12">
-        <div class="col-span-full sm:col-span-1 md:col-span-3 lg:col-span-2">
-          <AppFooterAccordion id="accordion-studio">
-            <template #title>
-              <h4 class="type-serif-medium-caps">
-                {{ studioTitle }}
-              </h4>
-            </template>
+  <div class="wrapper py-16 sm:pt-20">
+    <div class="relative grid gap-x-(--app-inner-gutter) sm:gap-y-8 grid-cols-2 md:grid-cols-12">
+      <div class="col-span-full sm:col-span-1 md:col-span-3 lg:col-span-2">
+        <AppFooterAccordion id="accordion-studio">
+          <template #title>
+            <h4 class="type-serif-medium-caps">
+              {{ studioTitle }}
+            </h4>
+          </template>
 
-            <template #content>
-              <address class="not-italic">
-                <div
-                  v-if="storyblokRichTextContent(studio)"
-                  :class="[
-                    'type-serif-medium',
-                    classesFooterProse,
-                  ]"
-                >
-                  <StoryblokText :html="studio" />
-                </div>
-              </address>
-            </template>
-          </AppFooterAccordion>
-        </div>
-
-        <div class="col-span-full sm:col-span-1 md:col-span-3 lg:col-span-2">
-          <AppFooterAccordion id="accordion-places">
-            <template #title>
-              <h4 class="type-serif-medium-caps">
-                {{ placesTitle }}
-              </h4>
-            </template>
-
-            <template #content>
+          <template #content>
+            <address class="not-italic">
               <div
-                v-if="storyblokRichTextContent(places)"
+                v-if="storyblokRichTextContent(studio)"
                 :class="[
                   'type-serif-medium',
                   classesFooterProse,
                 ]"
               >
-                <StoryblokText :html="places" />
+                <StoryblokText :html="studio" />
               </div>
-            </template>
-          </AppFooterAccordion>
-        </div>
-
-        <div class="col-span-full md:col-span-6">
-          <AppFooterAccordion id="accordion-contact">
-            <template #title>
-              <h4 class="type-serif-medium-caps">
-                {{ contactTitle }}
-              </h4>
-            </template>
-
-            <template #content>
-              <div
-                v-if="storyblokRichTextContent(contact)"
-                :class="[
-                  'type-serif-medium',
-                  classesFooterProse,
-                ]"
-              >
-                <StoryblokText :html="contact" />
-              </div>
-            </template>
-          </AppFooterAccordion>
-        </div>
-
-        <div class="md:absolute md:right-0 md:top-0 max-md:col-span-full max-md:mx-auto max-md:mt-10 md:ml-auto">
-          <IconLogoMark
-            class="size-22 md:size-18 lg:size-25 opacity-10"
-          />
-        </div>
+            </address>
+          </template>
+        </AppFooterAccordion>
       </div>
 
-      <div class="app-footer__meta-container mt-10 md:mt-16">
-        <ul class="app-footer__meta-list type-serif-xsmall-caps flex flex-col items-center md:flex-row md:flex-wrap md:justify-start md:items-start md:text-left gap-y-3">
-          <li class="app-footer__meta-item">
-            <p class="app-footer__meta-link opacity-70">
-              &copy;{{ currentYear }} All rights reserved
-            </p>
-          </li>
+      <div class="col-span-full sm:col-span-1 md:col-span-3 lg:col-span-2">
+        <AppFooterAccordion id="accordion-places">
+          <template #title>
+            <h4 class="type-serif-medium-caps">
+              {{ placesTitle }}
+            </h4>
+          </template>
 
-          <li
-            v-for="item in footerNavigation"
+          <template #content>
+            <div
+              v-if="storyblokRichTextContent(places)"
+              :class="[
+                'type-serif-medium',
+                classesFooterProse,
+              ]"
+            >
+              <StoryblokText :html="places" />
+            </div>
+          </template>
+        </AppFooterAccordion>
+      </div>
+
+      <div class="col-span-full md:col-span-6">
+        <AppFooterAccordion id="accordion-contact">
+          <template #title>
+            <h4 class="type-serif-medium-caps">
+              {{ contactTitle }}
+            </h4>
+          </template>
+
+          <template #content>
+            <div
+              v-if="storyblokRichTextContent(contact)"
+              :class="[
+                'type-serif-medium',
+                classesFooterProse,
+              ]"
+            >
+              <StoryblokText :html="contact" />
+            </div>
+          </template>
+        </AppFooterAccordion>
+      </div>
+    </div>
+
+    <div class="app-footer__meta-container mt-20 md:mt-16">
+      <ul class="app-footer__meta-list type-serif-xsmall-caps flex flex-col items-center md:flex-row md:flex-wrap md:justify-start md:items-start md:text-left gap-y-3">
+        <li class="app-footer__meta-item">
+          <p class="app-footer__meta-link opacity-70">
+            &copy;{{ currentYear }} All rights reserved
+          </p>
+        </li>
+
+        <li
+          v-for="item in footerNavigation"
+          :key="item._uid"
+          class="app-footer__meta-item"
+        >
+          <StoryblokLink
+            v-if="item.link.cached_url"
             :key="item._uid"
-            class="app-footer__meta-item"
+            :item="item.link"
+            class="app-footer__meta-link"
+            :class="classesMetaLink"
           >
-            <StoryblokLink
-              v-if="item.link.cached_url"
-              :key="item._uid"
-              :item="item.link"
-              class="app-footer__meta-link"
-              :class="classesMetaLink"
-            >
-              {{ item.title }}
-            </StoryblokLink>
-          </li>
+            {{ item.title }}
+          </StoryblokLink>
+        </li>
 
-          <li class="app-footer__meta-item">
-            <a
-              href="https://ditta.studio"
-              target="_blank"
-              class="app-footer__meta-link"
-              :class="classesMetaLink"
-            >
-              Made by ditta
-            </a>
-          </li>
-        </ul>
-      </div>
+        <li class="app-footer__meta-item">
+          <a
+            href="https://ditta.studio"
+            target="_blank"
+            class="app-footer__meta-link"
+            :class="classesMetaLink"
+          >
+            Made by ditta
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </template>

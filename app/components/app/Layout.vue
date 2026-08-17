@@ -4,7 +4,7 @@
       <slot name="header" />
     </header>
 
-    <main class="relative z-1 min-h-screen bg-offblack">
+    <main class="relative z-1 min-h-screen bg-white">
       <slot name="main" />
     </main>
 

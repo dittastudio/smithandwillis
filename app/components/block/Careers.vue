@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { BlockCareers } from '#storyblok-components'
 import type { ISbResult } from '@storyblok/js'
+import type { BlockCareers } from '#storyblok-components'
 import { ListFilter } from 'lucide-vue-next'
 
 interface Props {
@@ -92,7 +92,7 @@ watchEffect(() => {
     :style="scrollMarginTop"
     class="wrapper"
   >
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-[var(--app-inner-gutter)]">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-(--app-inner-gutter)">
       <div
         v-if="block.headline"
         class="md:col-start-4 md:-col-end-1 md:row-start-1 xl:col-start-3"

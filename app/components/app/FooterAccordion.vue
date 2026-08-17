@@ -38,7 +38,7 @@ watchEffect(() => {
       w-full
       scroll-mt-(--app-header-height)
       max-md:border-b
-      max-md:border-warm-grey/20
+      max-md:border-current/15
     "
   >
     <button
@@ -55,7 +55,7 @@ watchEffect(() => {
 
       <span class="relative top-1 w-4.5 h-2.5 sm:hidden">
         <span
-          class="absolute top-0 left-0 w-3/5 h-[1px] transition-[rotate] duration-500 ease-inOutQuart"
+          class="absolute top-0 left-0 w-[60%] h-px transition-[rotate] duration-500 ease-inOutQuart"
           :class="{
             'rotate-45': !isOpen,
             '-rotate-45': isOpen,
@@ -64,14 +64,14 @@ watchEffect(() => {
           <span
             class="block size-full bg-current origin-left"
             :class="{
-              'animate-[var(--accordion-wing-leave)]': !isOpen,
-              'animate-[var(--accordion-wing-enter)]': isOpen,
+              'animate-(--accordion-wing-leave)': !isOpen,
+              'animate-(--accordion-wing-enter)': isOpen,
             }"
           />
         </span>
 
         <span
-          class="absolute top-0 right-0 w-3/5 h-[1px] transition-[rotate] duration-500 ease-inOutQuart"
+          class="absolute top-0 right-0 w-[60%] h-px transition-[rotate] duration-500 ease-inOutQuart"
           :class="{
             '-rotate-45': !isOpen,
             'rotate-45': isOpen,
@@ -80,8 +80,8 @@ watchEffect(() => {
           <span
             class="block size-full bg-current origin-right"
             :class="{
-              'animate-[var(--accordion-wing-leave)]': !isOpen,
-              'animate-[var(--accordion-wing-enter)]': isOpen,
+              'animate-(--accordion-wing-leave)': !isOpen,
+              'animate-(--accordion-wing-enter)': isOpen,
             }"
           />
         </span>
@@ -101,7 +101,7 @@ watchEffect(() => {
   </div>
 </template>
 
-<style lang="postcss" scoped>
+<style lang="postcss">
 .app-footer-accordion {
   --accordion-scale: 0.9 1;
   --accordion-wing-leave: wing-leave 0.5s var(--ease-inOutQuart) forwards;

@@ -1,7 +1,7 @@
 @layer theme {
   html {
-    color: var(--color-white);
-    background-color: var(--color-offblack);
+    color: var(--color-offblack);
+    background-color: var(--color-white);
   }
 
   body {
