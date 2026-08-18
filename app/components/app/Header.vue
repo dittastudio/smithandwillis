@@ -97,13 +97,24 @@ const classesHeader = computed(() => [
 <template>
   <div
     :class="classesHeader"
-    class="app-header h-[var(--app-header-height)]"
+    class="app-header h-(--app-header-height)"
     @mouseenter="handleMouseEnter"
   >
-    <div class="app-header__wrapper wrapper py-8 md:py-10 h-[inherit] max-md:flex max-md:items-center max-md:justify-center">
+    <div
+      class="
+        app-header__wrapper
+        wrapper
+        py-8
+        md:py-10
+        h-[inherit]
+        max-md:flex
+        max-md:items-center
+        max-md:justify-center
+      "
+    >
       <button
         type="button"
-        class="absolute top-0 left-0 px-[var(--app-outer-gutter)] py-8 md:hidden active:opacity-70 transition-opacity duration-300 ease-out pointer-events-auto"
+        class="absolute top-0 left-0 px-(--app-outer-gutter) py-8 md:hidden active:opacity-70 transition-opacity duration-300 ease-out pointer-events-auto"
         @click="toggleNavigation"
       >
         <UiBurger />
@@ -126,11 +137,11 @@ const classesHeader = computed(() => [
         >
           <IconLogo
             class="
-              w-[174px]
-              h-[13px]
+              w-43.5
+              h-3.25
               mx-auto
-              lg:w-[232px]
-              lg:h-[17px]
+              lg:w-58
+              lg:h-4.25
               md:relative
               md:left-[1.5%]
             "
@@ -280,7 +291,8 @@ const classesHeader = computed(() => [
 .app-header {
   color: var(--color-white);
 
-  html:not(:has([data-component="hero"])) &:not(.app-header--has-menu, .app-header--has-scrolled) {
+  html:not(:has([data-component="hero"])) &,
+  &.app-header--has-menu {
     color: var(--color-offblack);
   }
 

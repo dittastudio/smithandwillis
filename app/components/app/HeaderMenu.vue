@@ -22,12 +22,12 @@ const classesHeaderProse = '[&_p_a]:italic [&_p_a]:transition-opacity [&_p_a]:du
       max-md:inset-0
       max-md:min-h-dvh
       max-md:-z-1
-      max-md:bg-offblack/90
+      max-md:bg-white/90
       max-md:backdrop-blur-md
-      max-md:text-white
-      max-md:pt-[calc(var(--app-header-height)_+_--spacing(6))]
-      max-md:pb-[var(--app-outer-gutter)]
-      max-md:px-[var(--app-outer-gutter)]
+      max-md:text-offblack
+      max-md:pt-[calc(var(--app-header-height)+(--spacing(6)))]
+      max-md:pb-(--app-outer-gutter)
+      max-md:px-(--app-outer-gutter)
       max-md:overflow-y-auto
       max-md:overscroll-contain
       max-md:transition-[opacity,visibility]
