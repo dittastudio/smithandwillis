@@ -23,7 +23,7 @@ type Blocks = BlockCareers
 
 const { content } = defineProps<Props>()
 
-const hasColourProperties = (block: Blocks): block is BlockSplit | BlockText => ['block_text', 'block_split'].includes(block.component)
+const hasColourProperties = (block: Blocks): block is BlockSplit | BlockText | BlockCareers => ['block_text', 'block_split', 'block_careers'].includes(block.component)
 
 const checkBackgroundMatchesPrevBackground = (index: number) => {
   const current = content?.blocks?.[index]
@@ -49,7 +49,7 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
 </script>
 
 <template>
-  <div class="-mt-[var(--app-header-height)]">
+  <div class="-mt-(--app-header-height)">
     <section
       v-if="content.hero?.length"
       data-component="hero"
