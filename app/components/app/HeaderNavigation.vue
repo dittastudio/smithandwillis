@@ -26,17 +26,20 @@ const { items } = defineProps<Props>()
         uppercase
       "
     >
-      <li
+      <template
         v-for="item in items"
         :key="item._uid"
-        :class="[{
-          'max-md:hidden': item.link.linktype === 'url',
-        }]"
       >
-        <StoryblokLink
-          v-if="item.link.cached_url"
-          :item="item.link"
-          class="
+        <li
+          v-if="item.link"
+          :class="[{
+            'max-md:hidden': item.hide_on_mobile,
+          }]"
+        >
+          <StoryblokLink
+            v-if="item.link?.cached_url"
+            :item="item.link"
+            class="
             block
             py-3
             md:p-4
@@ -50,11 +53,12 @@ const { items } = defineProps<Props>()
             [&.router-link-active]:text-orange-soft
             [&.router-link-exact-active]:text-orange-soft
           "
-          @click="scrollToWithEasing(item.link?.url, 1000, true)"
-        >
-          {{ item.title }}
-        </StoryblokLink>
-      </li>
+            @click="scrollToWithEasing(item.link?.url, 1000, true)"
+          >
+            {{ item.title }}
+          </StoryblokLink>
+        </li>
+      </template>
     </ul>
   </nav>
 </template>
