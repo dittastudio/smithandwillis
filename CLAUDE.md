@@ -15,7 +15,7 @@ npm run build        # nuxt build
 npm run generate     # nuxt generate (static)
 npm run lint         # eslint .
 npm run lint:fix     # eslint . --fix
-npm run sb:components  # Pull component schemas from Storyblok space 332344
+npm run sb:components  # Pull component schemas from Storyblok space 294626585753511
 npm run sb:types       # Regenerate TS types from Storyblok schema
 npm run nuke         # Delete .output, dist, .nuxt, node_modules, package-lock.json
 ```
@@ -46,7 +46,7 @@ Tailwind CSS v4 via `@tailwindcss/vite` (not PostCSS). All design tokens are def
 Typography uses named utility classes from `app/assets/css/typography.css` (e.g. `type-serif-large-caps`, `type-serif-medium`) — prefer these over ad-hoc Tailwind text classes. Use `twMerge` from `app/utils/twMerge.ts` (extended config) when conditionally merging Tailwind classes.
 
 ### Types
-CMS types are auto-generated at `.storyblok/types/332344/storyblok-components.d.ts` — import from there for all Storyblok content shapes. Global app types live in `types/app.d.ts` (`TAspectRatios`, `ImageDimensions`, `Theme`).
+CMS types are auto-generated at `.storyblok/types/294626585753511/storyblok-components.d.ts` — import from there for all Storyblok content shapes. Global app types live in `types/app.d.ts` (`TAspectRatios`, `ImageDimensions`, `Theme`).
 
 ### Key utilities (all auto-imported)
 - `storyblokImage()` — builds optimised Storyblok image URLs via `@nuxt/image`
