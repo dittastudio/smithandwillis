@@ -1,6 +1,10 @@
 import type { ImageModifiers } from '@nuxt/image'
 import type { LocationQuery } from 'vue-router'
+import type { GridImage, GridVideo } from '#storyblok-components'
 import type { StoryblokRichtext } from '#storyblok-types'
+
+const isGridImageComponent = (media: GridImage | GridVideo): media is GridImage => media.component === 'grid_image'
+const isGridVideoComponent = (media: GridImage | GridVideo): media is GridVideo => media.component === 'grid_video'
 
 const storyblokEditor = (search: LocationQuery) => '_storyblok' in search
 
@@ -75,6 +79,8 @@ const storyblokImageDimensions = (
 }
 
 export {
+  isGridImageComponent,
+  isGridVideoComponent,
   storyblokAssetType,
   storyblokEditor,
   storyblokImage,
