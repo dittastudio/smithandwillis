@@ -12,9 +12,12 @@ const { block } = defineProps<Props>()
   <div
     v-editable="block"
     data-component="hero-image"
-    class="relative h-screen bg-offblack text-white"
+    class="relative overflow-hidden isolate h-svh bg-offblack text-white"
   >
-    <HeroCover class="absolute inset-0 z-100" />
+    <HeroCover
+      v-if="block.show_logo"
+      class="absolute inset-0 z-1"
+    />
 
     <HeroScrollDown>
       <UiParallax>
