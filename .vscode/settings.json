@@ -1,6 +1,5 @@
 {
   "workbench.editorAssociations": { "*.svg": "default" },
-  "eslint.useFlatConfig": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "js/ts.suggest.autoImports": false,
   "files.associations": {
@@ -44,5 +43,8 @@
   },
   "[tailwindcss]": {
     "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   }
 }
