@@ -1,23 +1,25 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import IconArrowExternal from '@/assets/icons/arrow-external.svg'
 import IconArrowSmall from '@/assets/icons/arrow-small.svg'
 
 interface Props {
   isExternal: boolean
+  as?: 'span' | 'div'
 }
 
-const { isExternal } = defineProps<Props>()
+const { isExternal, as = 'span' } = defineProps<Props>()
 </script>
 
 <template>
-  <span
+  <component
+    :is="as || 'span'"
     class="
       inline-flex
       items-center
       gap-2
-      [a_&]:transition-opacity
-      [a_&]:duration-300
-      [a_&]:ease-out
+      in-[a]:transition-opacity
+      in-[a]:duration-300
+      in-[a]:ease-out
       [a:hover_&]:opacity-70
     "
   >
@@ -27,9 +29,9 @@ const { isExternal } = defineProps<Props>()
       v-if="isExternal"
       class="
         size-2.5
-        [a_&]:transition-transform
-        [a_&]:duration-300
-        [a_&]:ease-out
+        in-[a]:transition-transform
+        in-[a]:duration-300
+        in-[a]:ease-out
         [a:hover_&]:translate-x-0.5
         [a:hover_&]:-translate-y-0.5
       "
@@ -40,11 +42,11 @@ const { isExternal } = defineProps<Props>()
       class="
         w-1.75
         h-3
-        [a_&]:transition-transform
-        [a_&]:duration-300
-        [a_&]:ease-out
+        in-[a]:transition-transform
+        in-[a]:duration-300
+        in-[a]:ease-out
         [a:hover_&]:translate-x-0.5
       "
     />
-  </span>
+  </component>
 </template>

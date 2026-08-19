@@ -104,8 +104,7 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
 @reference "@/assets/css/app.css";
 
 .content-blocks__item:not(
-  .content-blocks__item--block_image,
-  .content-blocks__item--block_video,
+  .content-blocks__item--block_media_grid,
   .content-blocks__item--block_split,
   .content-blocks__item--block_carousel
 ) {
