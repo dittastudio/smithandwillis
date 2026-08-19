@@ -9,9 +9,6 @@ const { block } = defineProps<Props>()
 
 const ratioMobile = computed(() => ratioDimensions(block.ratio_mobile))
 const ratioDesktop = computed(() => ratioDimensions(block.ratio_desktop))
-
-// Storyblok omits `bloks` fields entirely when they are empty, so `items` can be
-// undefined here even though the schema marks it required.
 const items = computed(() => block.items ?? [])
 </script>
 
