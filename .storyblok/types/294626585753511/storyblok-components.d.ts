@@ -16,6 +16,8 @@ export interface BlockCareers {
 export interface BlockCarousel {
   slides: (Image | Video)[];
   autoplay?: boolean;
+  ratio_mobile: number | string;
+  ratio_desktop: number | string;
   component: "block_carousel";
   _uid: string;
   _editable?: string | undefined;
