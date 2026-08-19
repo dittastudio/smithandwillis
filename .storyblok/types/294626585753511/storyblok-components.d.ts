@@ -19,6 +19,7 @@ export interface BlockCarousel {
   autoplay?: boolean;
   ratio_mobile: number | string;
   ratio_desktop: number | string;
+  header_color?: number | string;
   component: "block_carousel";
   _uid: string;
   _editable?: string | undefined;
@@ -64,13 +65,14 @@ export interface BlockSplit {
 }
 
 export interface BlockText {
+  header_color?: number | string;
+  background_color?: number | string;
+  text_color?: number | string;
   text: StoryblokRichtext;
   text_alignment: "left" | "center" | "right";
   text_placement: "left" | "center" | "right";
   link_title?: string;
   link?: Exclude<StoryblokMultilink, {linktype?: "email"} | {linktype?: "asset"}>;
-  background_color?: number | string;
-  text_color?: number | string;
   component: "block_text";
   _uid: string;
   _editable?: string | undefined;

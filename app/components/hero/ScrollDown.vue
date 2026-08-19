@@ -47,10 +47,6 @@ onMounted(async () => {
           size-full
           pt-30
           pb-10
-          transition-opacity
-          duration-300
-          ease-out
-          hover:opacity-70
         "
         @click="scrollToWithEasing('#ui-scroll-down-anchor', 1000)"
       >

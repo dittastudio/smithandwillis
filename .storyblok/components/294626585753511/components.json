@@ -106,7 +106,7 @@
     "display_name": "Carousel",
     "description": "Carousel of images and videos",
     "created_at": "2026-08-18T14:24:33.502Z",
-    "updated_at": "2026-08-19T16:28:21.508Z",
+    "updated_at": "2026-08-19T16:56:49.257Z",
     "id": 210425747471838,
     "schema": {
       "slides": {
@@ -123,6 +123,15 @@
         "minimum": 2,
         "required": true,
         "component_denylist": []
+      },
+      "tab-2e8641d0-d0ba-4621-a144-b8fd99a92fba": {
+        "display_name": "Theme",
+        "keys": [
+          "header_color"
+        ],
+        "pos": 0,
+        "type": "tab",
+        "id": "LoZB0NC6RiGhRLj9makvug"
       },
       "autoplay": {
         "type": "boolean",
@@ -149,6 +158,16 @@
         "datasource_slug": "ratio",
         "default_value": "16:9",
         "required": true
+      },
+      "header_color": {
+        "type": "option",
+        "pos": 5,
+        "display_name": "Header Colour",
+        "use_uuid": true,
+        "source": "internal",
+        "default_value": "light",
+        "id": "Kk18KHSxQaCcyME1led4Xg",
+        "datasource_slug": "header-theme"
       }
     },
     "image": null,
@@ -472,12 +491,40 @@
     "display_name": "Text",
     "description": "",
     "created_at": "2026-08-18T14:24:33.454Z",
-    "updated_at": "2026-08-18T17:32:42.821Z",
+    "updated_at": "2026-08-19T16:55:45.253Z",
     "id": 210425747275227,
     "schema": {
+      "header_color": {
+        "type": "option",
+        "pos": 0,
+        "use_uuid": true,
+        "display_name": "Header Colour",
+        "source": "internal",
+        "datasource_slug": "header-theme",
+        "default_value": "dark",
+        "id": "3DIMJwAmQNSWiEMMmQHHyA"
+      },
+      "background_color": {
+        "type": "option",
+        "pos": 1,
+        "use_uuid": true,
+        "display_name": "Background Colour",
+        "id": "IVgMrRA_QtGQlNel6R1F_Q",
+        "source": "internal",
+        "datasource_slug": "colours"
+      },
+      "text_color": {
+        "type": "option",
+        "pos": 2,
+        "use_uuid": true,
+        "display_name": "Text Colour",
+        "id": "eoh4jqf7T8moOFEvXLh6gQ",
+        "source": "internal",
+        "datasource_slug": "colours"
+      },
       "text": {
         "type": "richtext",
-        "pos": 0,
+        "pos": 3,
         "required": true,
         "customize_toolbar": true,
         "toolbar": [
@@ -503,7 +550,7 @@
       },
       "text_alignment": {
         "type": "option",
-        "pos": 1,
+        "pos": 4,
         "use_uuid": true,
         "required": true,
         "options": [
@@ -529,7 +576,7 @@
       },
       "text_placement": {
         "type": "option",
-        "pos": 2,
+        "pos": 5,
         "use_uuid": true,
         "id": "LZ0xLjOaQgWhyQpgmKObbg",
         "required": true,
@@ -555,39 +602,22 @@
       },
       "link_title": {
         "type": "text",
-        "pos": 3,
+        "pos": 6,
         "id": "fwUhwqMlT-OQTFE5koNOkQ"
       },
       "link": {
         "type": "multilink",
-        "pos": 4,
+        "pos": 7,
         "id": "t4XO_BZbRcuGbKUU_BkD3w"
-      },
-      "background_color": {
-        "type": "option",
-        "pos": 5,
-        "use_uuid": true,
-        "display_name": "Background Colour",
-        "id": "IVgMrRA_QtGQlNel6R1F_Q",
-        "source": "internal",
-        "datasource_slug": "colours"
-      },
-      "text_color": {
-        "type": "option",
-        "pos": 6,
-        "use_uuid": true,
-        "display_name": "Text Colour",
-        "id": "eoh4jqf7T8moOFEvXLh6gQ",
-        "source": "internal",
-        "datasource_slug": "colours"
       },
       "tab-f7cf244b-f9ae-4e91-9e50-e13f00170f60": {
         "display_name": "Theme",
         "keys": [
           "background_color",
-          "text_color"
+          "text_color",
+          "header_color"
         ],
-        "pos": 7,
+        "pos": 8,
         "type": "tab",
         "id": "988kS_muTpGeUOE_ABcPYA"
       }
