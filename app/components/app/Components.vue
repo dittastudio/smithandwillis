@@ -2,10 +2,9 @@
 import type {
   BlockCareers,
   BlockCarousel,
-  BlockImage,
+  BlockMediaGrid,
   BlockSplit,
   BlockText,
-  BlockVideo,
   Page,
 } from '#storyblok-components'
 import type { Colours } from '@/utils/maps'
@@ -16,10 +15,9 @@ interface Props {
 
 type Blocks = BlockCareers
   | BlockCarousel
-  | BlockImage
+  | BlockMediaGrid
   | BlockSplit
   | BlockText
-  | BlockVideo
 
 const { content } = defineProps<Props>()
 
@@ -84,8 +82,8 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
         :block="block"
       />
 
-      <BlockImage
-        v-else-if="block.component === 'block_image'"
+      <BlockMediaGrid
+        v-else-if="block.component === 'block_media_grid'"
         :block="block"
       />
 
@@ -98,13 +96,6 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
         v-else-if="block.component === 'block_text'"
         :block="block"
       />
-
-      <BlockVideo
-        v-else-if="block.component === 'block_video'"
-        :block="block"
-      />
-
-      <!-- <Screen :log="block" /> -->
     </section>
   </div>
 </template>
