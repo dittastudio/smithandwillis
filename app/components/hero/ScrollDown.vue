@@ -50,7 +50,7 @@ onMounted(async () => {
         "
         @click="scrollToWithEasing('#ui-scroll-down-anchor', 1000)"
       >
-        <IconArrowLarge class="w-[16px] h-[18px] mx-auto animate-bounce" />
+        <IconArrowLarge class="w-4 h-4.5 mx-auto animate-bounce" />
 
         <span class="sr-only">
           Scroll

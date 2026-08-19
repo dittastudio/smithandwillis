@@ -17,7 +17,6 @@ const classesHeaderProse = '[&_p_a]:italic [&_p_a]:transition-opacity [&_p_a]:du
 <template>
   <div
     class="
-      app-header-menu
       max-md:absolute
       max-md:inset-0
       max-md:min-h-dvh
@@ -35,7 +34,7 @@ const classesHeaderProse = '[&_p_a]:italic [&_p_a]:transition-opacity [&_p_a]:du
     "
     :class="{
       'max-md:opacity-0 max-md:invisible': !menuOpen,
-      'app-header-menu--is-open max-md:opacity-100 max-md:visible': menuOpen,
+      'max-md:opacity-100 max-md:visible': menuOpen,
     }"
   >
     <div
@@ -95,11 +94,3 @@ const classesHeaderProse = '[&_p_a]:italic [&_p_a]:transition-opacity [&_p_a]:du
     </div>
   </div>
 </template>
-
-<style scoped>
-.app-header-menu {
-  :global(html:has(&.app-header-menu--is-open)) {
-    overflow: hidden;
-  }
-}
-</style>

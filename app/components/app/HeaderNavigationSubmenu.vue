@@ -18,10 +18,9 @@ const emit = defineEmits<{
   <div
     class="
       absolute
-      top-0
-      left-0
+      inset-0
       w-full
-      h-svh
+      h-dvh
     "
     :class="{
       'pointer-events-none': !isOpen,
@@ -54,12 +53,16 @@ const emit = defineEmits<{
         ml-0
         h-full
         wrapper
+        py-5
+        md:py-8
       bg-white
       text-offblack
         shadow-md
         transition-transform
         duration-300
         ease-outQuart
+        overflow-y-auto
+        overscroll-contain
       "
       :class="{
         'translate-x-[-120%]': !isOpen,
@@ -70,9 +73,9 @@ const emit = defineEmits<{
         type="button"
         class="
           block
-          pt-9
+          pt-4
           pb-15
-          md:pt-11
+          md:pt-3
           md:px-4
           md:-mx-4
           lg:px-6

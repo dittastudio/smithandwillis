@@ -77,15 +77,18 @@ onUnmounted(() => {
 
 const isScreenMd = useAtMedia(getMediaQuery('md'))
 
-watchEffect(() => {
-  if (import.meta.client && isScreenMd.value) {
+watch(isScreenMd, (matches) => {
+  if (matches) {
     menuOpen.value = false
   }
+
+  submenuOpen.value = null
 })
 
 const classesHeader = computed(() => [
   {
     'app-header--has-menu': menuOpen.value,
+    'app-header--has-submenu': submenuOpen.value !== null,
     'app-header--has-scrolled': hasScrolled.value && !menuOpen.value,
     'app-header--has-scrolled-up': hasScrolledUp.value && !menuOpen.value,
     'app-header--has-scrolled-down': hasScrolledDown.value && !menuOpen.value,
@@ -266,7 +269,7 @@ const classesHeader = computed(() => [
     translate 0s 0s,
     opacity 1s var(--ease-out);
 
-  &.app-header--has-scrolled-down {
+  &:not(.app-header--has-submenu).app-header--has-scrolled-down {
     opacity: 0;
     translate: 0 --spacing(-3) 0;
 
@@ -286,10 +289,9 @@ const classesHeader = computed(() => [
     color: var(--color-offblack);
   }
 
-  /* @media (hover: hover) {
-    html:not(:has([data-component="hero"])) &:not(.app-header--has-scrolled):hover::before {
-      opacity: 0.6;
-    }
-  } */
+  html:has(&.app-header--has-menu),
+  html:has(&.app-header--has-submenu) {
+    overflow: hidden;
+  }
 }
 </style>
