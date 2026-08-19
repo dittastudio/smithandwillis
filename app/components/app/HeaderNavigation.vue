@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { Link, LinkGroup } from '#storyblok-components'
+import IconArrowLarge from '@/assets/icons/arrow-large.svg'
 
 type NavItem = Link | LinkGroup
 
@@ -11,6 +12,16 @@ const { items } = defineProps<Props>()
 
 const isLink = (item: NavItem): item is Link => item.component === 'link'
 const isLinkGroup = (item: NavItem): item is LinkGroup => item.component === 'link_group'
+
+const submenuOpen = useState<string | null>('submenuOpen')
+
+const openSubmenu = (uid: string) => {
+  submenuOpen.value = uid
+}
+
+const closeSubmenu = () => {
+  submenuOpen.value = null
+}
 </script>
 
 <template>
@@ -78,44 +89,90 @@ const isLinkGroup = (item: NavItem): item is LinkGroup => item.component === 'li
               ease-out
               hover:text-orange-soft
             "
+            @click="openSubmenu(item._uid)"
           >
             {{ item.title }}
           </button>
 
           <div
-            v-if="false"
             class="
               absolute
               top-0
               left-0
               w-full
-              md:max-w-100
               h-svh
+            "
+            :class="{
+              'pointer-events-none': submenuOpen !== item._uid,
+              'pointer-events-auto': submenuOpen === item._uid,
+            }"
+          >
+            <div
+              class="
+                absolute
+                inset-0
+                bg-white/20
+                backdrop-blur-lg
+                transition-opacity
+                duration-600
+                ease-out
+              "
+              :class="{
+                'opacity-0': submenuOpen !== item._uid,
+                'opacity-100': submenuOpen === item._uid,
+              }"
+              @click="closeSubmenu"
+            />
+
+            <div
+              class="
+                flex
+                flex-col
+                w-full
+                md:max-w-100
+                ml-0
+                h-full
+                wrapper
               bg-white
               text-offblack
-              wrapper
-              pt-20
-            "
-          >
-            <!-- <button
-              type="button"
-              class="
-
+                border-r
+                border-offblack/5
+                transition-transform
+                duration-300
+                ease-outQuart
               "
-              @click="$emit('back')"
+              :class="{
+                '-translate-x-full': submenuOpen !== item._uid,
+                'translate-x-0': submenuOpen === item._uid,
+              }"
             >
-              <IconClose class="w-6 h-6" />
-            </button> -->
-
-            <ul>
-              <li
-                v-for="link in item.links"
-                :key="link._uid"
+              <button
+                type="button"
+                class="
+                  block
+                  pt-9
+                  pb-10
+                  md:pt-11
+                  md:pb-10
+                  md:px-4
+                  md:-mx-4
+                  lg:px-6
+                  lg:-mx-6
+                "
+                @click="closeSubmenu"
               >
-                <StoryblokLink
-                  v-if="link.link?.cached_url"
-                  :item="link.link"
-                  class="
+                <IconArrowLarge class="w-4 h-4 rotate-90 pointer-events-none" />
+              </button>
+
+              <ul>
+                <li
+                  v-for="link in item.links"
+                  :key="link._uid"
+                >
+                  <StoryblokLink
+                    v-if="link.link?.cached_url"
+                    :item="link.link"
+                    class="
                   block
                   py-3
                   md:p-4
@@ -129,12 +186,13 @@ const isLinkGroup = (item: NavItem): item is LinkGroup => item.component === 'li
                   [&.router-link-active]:text-orange-soft
                   [&.router-link-exact-active]:text-orange-soft
                 "
-                  @click="scrollToWithEasing(link.link?.url, 1000, true)"
-                >
-                  {{ link.title }}
-                </StoryblokLink>
-              </li>
-            </ul>
+                    @click="scrollToWithEasing(link.link?.url, 1000, true)"
+                  >
+                    {{ link.title }}
+                  </StoryblokLink>
+                </li>
+              </ul>
+            </div>
           </div>
         </li>
       </template>

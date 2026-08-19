@@ -15,6 +15,7 @@ interface Props {
 const { primaryNavigation, secondaryNavigation, studioTitle, studio, contactTitle, contact } = defineProps<Props>()
 
 const menuOpen = useState<boolean>('menuOpen')
+const submenuOpen = useState<string | null>('submenuOpen')
 const ready = ref(false)
 
 const toggleNavigation = () => {
@@ -114,7 +115,8 @@ const classesHeader = computed(() => [
     >
       <button
         type="button"
-        class="absolute top-0 left-0 px-(--app-outer-gutter) py-8 md:hidden active:opacity-70 transition-opacity duration-300 ease-out pointer-events-auto"
+        class="absolute top-0 left-0 px-(--app-outer-gutter) py-8 md:hidden active:opacity-70 transition-opacity duration-300 ease-out"
+        :class="[submenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto delay-150']"
         @click="toggleNavigation"
       >
         <UiBurger />
