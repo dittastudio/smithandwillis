@@ -172,8 +172,7 @@ const classesHeader = computed(() => [
 @reference "@/assets/css/app.css";
 
 .app-header {
-  &::before,
-  &::after {
+  &::before {
     content: '';
     position: absolute;
     top: 0;
@@ -186,33 +185,6 @@ const classesHeader = computed(() => [
   }
 
   &::before {
-    --app-header-gradient-color: var(--color-rich-brown);
-
-    background-image:
-      linear-gradient(
-        to bottom,
-        --alpha(var(--app-header-gradient-color) / 100%) 0%,
-        --alpha(var(--app-header-gradient-color) / 98.7%) 8.1%,
-        --alpha(var(--app-header-gradient-color) / 95.1%) 15.5%,
-        --alpha(var(--app-header-gradient-color) / 89.6%) 22.5%,
-        --alpha(var(--app-header-gradient-color) / 82.5%) 29%,
-        --alpha(var(--app-header-gradient-color) / 74.1%) 35.3%,
-        --alpha(var(--app-header-gradient-color) / 64.8%) 41.2%,
-        --alpha(var(--app-header-gradient-color) / 55%) 47.1%,
-        --alpha(var(--app-header-gradient-color) / 45%) 52.9%,
-        --alpha(var(--app-header-gradient-color) / 35.2%) 58.8%,
-        --alpha(var(--app-header-gradient-color) / 25.9%) 64.7%,
-        --alpha(var(--app-header-gradient-color) / 17.5%) 71%,
-        --alpha(var(--app-header-gradient-color) / 10.4%) 77.5%,
-        --alpha(var(--app-header-gradient-color) / 4.9%) 84.5%,
-        --alpha(var(--app-header-gradient-color) / 1.3%) 91.9%,
-        --alpha(var(--app-header-gradient-color) / 0%) 100%
-      )
-    ;
-    opacity: 0;
-  }
-
-  &::after {
     --app-header-gradient-color: var(--color-offblack);
 
     background-image:
@@ -236,30 +208,19 @@ const classesHeader = computed(() => [
         --alpha(var(--app-header-gradient-color) / 0%) 100%
       )
     ;
-    opacity: 0.6;
+    opacity: 0.15;
   }
 
   &.app-header--has-scrolled::before,
   &.app-header--has-menu::before {
-    opacity: 0.6;
+    opacity: 0.3;
   }
 
   @media (hover: hover) {
-    &.app-header--has-scrolled:hover::before {
-      opacity: 0.8;
+    &:hover::before {
+      opacity: 0.5;
       height: 300%;
     }
-  }
-
-  @media (hover: hover) {
-    &:not(.app-header--has-scrolled):hover::after {
-      opacity: 0.8;
-      height: 300%;
-    }
-  }
-
-  &.app-header--has-scrolled::after {
-    opacity: 0;
   }
 
   &.app-header--has-scrolled-down::before {
@@ -290,25 +251,14 @@ const classesHeader = computed(() => [
 .app-header {
   color: var(--color-white);
 
-  /* html:not(:has([data-component="hero"])) &, */
   &.app-header--has-menu {
     color: var(--color-offblack);
   }
 
-  @media (hover: hover) {
+  /* @media (hover: hover) {
     html:not(:has([data-component="hero"])) &:not(.app-header--has-scrolled):hover::before {
-      opacity: 0;
+      opacity: 0.6;
     }
-  }
-
-  html:not(:has([data-component="hero"])) &:not(.app-header--has-scrolled)::after {
-    opacity: 0;
-  }
-
-  @media (hover: hover) {
-    html:not(:has([data-component="hero"])) &:not(.app-header--has-scrolled):hover::after {
-      opacity: 0;
-    }
-  }
+  } */
 }
 </style>

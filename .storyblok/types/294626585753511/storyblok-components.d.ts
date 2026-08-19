@@ -77,7 +77,6 @@ export interface GridImage {
   image_desktop: StoryblokAsset;
   title?: string;
   sub_title?: string;
-  link_title?: string;
   link?: Exclude<StoryblokMultilink, {linktype?: "email"} | {linktype?: "asset"}>;
   component: "grid_image";
   _uid: string;
@@ -89,7 +88,6 @@ export interface GridVideo {
   video_desktop: StoryblokAsset;
   title?: string;
   sub_title?: string;
-  link_title?: string;
   link?: Exclude<StoryblokMultilink, {linktype?: "email"} | {linktype?: "asset"}>;
   component: "grid_video";
   _uid: string;
