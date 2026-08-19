@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { Link, LinkGroup } from '#storyblok-components'
-import IconArrowLarge from '@/assets/icons/arrow-large.svg'
 
 type NavItem = Link | LinkGroup
 
@@ -22,6 +21,8 @@ const openSubmenu = (uid: string) => {
 const closeSubmenu = () => {
   submenuOpen.value = null
 }
+
+const classesNavItem = 'text-15 md:text-13 lg:text-14 leading-6 tracking-xl uppercase'
 </script>
 
 <template>
@@ -34,12 +35,6 @@ const closeSubmenu = () => {
         md:items-center
         md:gap-8
         lg:gap-12
-        text-15
-        md:text-13
-        lg:text-14
-        leading-6
-        tracking-xl
-        uppercase
       "
     >
       <template
@@ -55,19 +50,20 @@ const closeSubmenu = () => {
           <StoryblokLink
             :item="item.link"
             class="
-            block
-            py-3
-            md:p-4
-            md:-m-4
-            lg:p-6
-            lg:-m-6
-            transition-colors
-            duration-300
-            ease-out
-            hover:text-orange-soft
-            [&.router-link-active]:text-orange-soft
-            [&.router-link-exact-active]:text-orange-soft
-          "
+              block
+              py-3
+              md:p-4
+              md:-m-4
+              lg:p-6
+              lg:-m-6
+              transition-colors
+              duration-300
+              ease-out
+              hover:text-orange-soft
+              [&.router-link-active]:text-orange-soft
+              [&.router-link-exact-active]:text-orange-soft
+            "
+            :class="classesNavItem"
             @click="scrollToWithEasing(item.link?.url, 1000, true)"
           >
             {{ item.title }}
@@ -89,111 +85,17 @@ const closeSubmenu = () => {
               ease-out
               hover:text-orange-soft
             "
+            :class="classesNavItem"
             @click="openSubmenu(item._uid)"
           >
             {{ item.title }}
           </button>
 
-          <div
-            class="
-              absolute
-              top-0
-              left-0
-              w-full
-              h-svh
-            "
-            :class="{
-              'pointer-events-none': submenuOpen !== item._uid,
-              'pointer-events-auto': submenuOpen === item._uid,
-            }"
-          >
-            <div
-              class="
-                absolute
-                inset-0
-                bg-white/20
-                backdrop-blur-lg
-                transition-opacity
-                duration-600
-                ease-out
-              "
-              :class="{
-                'opacity-0': submenuOpen !== item._uid,
-                'opacity-100': submenuOpen === item._uid,
-              }"
-              @click="closeSubmenu"
-            />
-
-            <div
-              class="
-                flex
-                flex-col
-                w-full
-                md:max-w-100
-                ml-0
-                h-full
-                wrapper
-              bg-white
-              text-offblack
-                border-r
-                border-offblack/5
-                transition-transform
-                duration-300
-                ease-outQuart
-              "
-              :class="{
-                '-translate-x-full': submenuOpen !== item._uid,
-                'translate-x-0': submenuOpen === item._uid,
-              }"
-            >
-              <button
-                type="button"
-                class="
-                  block
-                  pt-9
-                  pb-10
-                  md:pt-11
-                  md:pb-10
-                  md:px-4
-                  md:-mx-4
-                  lg:px-6
-                  lg:-mx-6
-                "
-                @click="closeSubmenu"
-              >
-                <IconArrowLarge class="w-4 h-4 rotate-90 pointer-events-none" />
-              </button>
-
-              <ul>
-                <li
-                  v-for="link in item.links"
-                  :key="link._uid"
-                >
-                  <StoryblokLink
-                    v-if="link.link?.cached_url"
-                    :item="link.link"
-                    class="
-                  block
-                  py-3
-                  md:p-4
-                  md:-m-4
-                  lg:p-6
-                  lg:-m-6
-                  transition-colors
-                  duration-300
-                  ease-out
-                  hover:text-orange-soft
-                  [&.router-link-active]:text-orange-soft
-                  [&.router-link-exact-active]:text-orange-soft
-                "
-                    @click="scrollToWithEasing(link.link?.url, 1000, true)"
-                  >
-                    {{ link.title }}
-                  </StoryblokLink>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <AppHeaderNavigationSubmenu
+            :item="item"
+            :is-open="submenuOpen === item._uid"
+            @close="closeSubmenu"
+          />
         </li>
       </template>
     </ul>

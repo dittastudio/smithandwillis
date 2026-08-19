@@ -824,7 +824,7 @@
     "display_name": "Link",
     "description": "",
     "created_at": "2026-08-18T14:24:33.327Z",
-    "updated_at": "2026-08-18T17:28:30.887Z",
+    "updated_at": "2026-08-19T12:37:59.850Z",
     "id": 210425746755029,
     "schema": {
       "title": {
@@ -834,9 +834,14 @@
         "id": "O5lQIeRAQDKYdZl7qVg-ZQ",
         "display_name": "Title"
       },
+      "subtitle": {
+        "type": "text",
+        "pos": 1,
+        "id": "JSCQJxdrThyU4uiHm46Jlw"
+      },
       "link": {
         "type": "multilink",
-        "pos": 1,
+        "pos": 2,
         "required": true,
         "allow_target_blank": true,
         "show_anchor": true,
@@ -850,7 +855,7 @@
       },
       "hide_on_mobile": {
         "type": "boolean",
-        "pos": 2,
+        "pos": 3,
         "id": "XT_6CJ0mSgGSpBhywYujCg"
       }
     },

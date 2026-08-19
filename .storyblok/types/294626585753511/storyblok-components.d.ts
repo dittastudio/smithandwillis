@@ -125,6 +125,7 @@ export interface Job {
 
 export interface Link {
   title: string;
+  subtitle?: string;
   link: Exclude<StoryblokMultilink, {linktype?: "asset"}>;
   hide_on_mobile?: boolean;
   component: "link";

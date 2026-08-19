@@ -23,9 +23,9 @@ const menuOpen = useState<boolean>('menuOpen', () => false)
 const submenuOpen = useState<string | null>('submenuOpen', () => null)
 
 watch(() => route.fullPath, async () => {
+  submenuOpen.value = null
   await wait(500)
   menuOpen.value = false
-  submenuOpen.value = null
 })
 
 watch(menuOpen, (isOpen) => {
