@@ -6,42 +6,47 @@ interface Props {
 }
 
 const { block } = defineProps<Props>()
+
+const placementClasses: Record<BlockText['text_placement'], string> = {
+  left: 'items-start',
+  center: 'items-center',
+  right: 'items-end',
+}
+
+const alignmentClasses: Record<BlockText['text_alignment'], string> = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right',
+}
 </script>
 
 <template>
   <div
     v-editable="block"
-    class="wrapper md:text-center flex flex-col items-start md:items-center gap-8 md:gap-10"
+    class="wrapper flex flex-col"
+    :class="[
+      placementClasses[block.text_placement],
+      alignmentClasses[block.text_alignment],
+    ]"
   >
-    <h2
-      v-if="block.headline"
-      class="type-serif-large-caps text-balance"
-    >
-      {{ block.headline }}
-    </h2>
-
     <div
       v-if="storyblokRichTextContent(block.text)"
-      class="prose"
-      :class="[{
-        'prose-medium': block.text_size === 'medium',
-        'prose-large': block.text_size === 'large',
-      }]"
+      class="prose prose-p:type-serif-large prose-h1:type-serif-large-caps prose-h4:type-sans-medium-caps"
+      :class="{
+        'w-3/4 md:w-1/2 md:pl-[calc(var(--app-inner-gutter)*0.5)]': block.text_placement === 'right' && block.text_alignment === 'left',
+      }"
     >
       <StoryblokText :html="block.text" />
     </div>
 
-    <template v-for="item in block.link">
-      <StoryblokLink
-        v-if="item.link.cached_url"
-        :key="item._uid"
-        :item="item.link"
-        class="p-4 -m-4 type-serif-small-caps"
-      >
-        <UiTextLink :is-external="item.link.linktype === 'url'">
-          {{ item.title }}
-        </UiTextLink>
-      </StoryblokLink>
-    </template>
+    <StoryblokLink
+      v-if="block.link?.cached_url"
+      :item="block.link"
+      class="p-4 -m-4 type-serif-small-caps"
+    >
+      <UiTextLink :is-external="block.link.linktype === 'url'">
+        {{ block.link_title }}
+      </UiTextLink>
+    </StoryblokLink>
   </div>
 </template>

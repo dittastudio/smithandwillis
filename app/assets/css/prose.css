@@ -1,13 +1,21 @@
 @utility prose {
-  h1, h2, h3, h4, h5, h6, p, ul, ol {
+  & :where(h1, h2, h3, h4, h5, h6):has(+ :where(p, ul, ol)) {
+    margin-bottom: 0.6lh;
+  }
+
+  & :where(p + p) {
+    margin-top: 1lh;
+  }
+
+  /* h1, h2, h3, h4, h5, h6, p, ul, ol {
     max-width: 60ch;
 
     @variant md {
       margin-inline: auto;
     }
-  }
+  } */
 
-  h1, h2, h3, h4, h5, h6 {
+  /* h1, h2, h3, h4, h5, h6 {
     letter-spacing: var(--tracking-xl);
     text-transform: uppercase;
     text-wrap: balance;
@@ -31,9 +39,9 @@
       font-size: var(--text-16);
       line-height: calc(24 / 16);
     }
-  }
+  } */
 
-  p, ul, ol {
+  /* p, ul, ol {
     font-family: var(--font-serif);
     font-size: var(--text-16);
     line-height: calc(24 / 16);
@@ -42,9 +50,9 @@
     @variant md {
       font-size: var(--text-18);
     }
-  }
+  } */
 
-  & * + :is(h1, h2, h3, h4, h5, h6) {
+  /* & * + :is(h1, h2, h3, h4, h5, h6) {
     margin-block-start: 5em;
     margin-block-start: 5lh;
   }
@@ -57,7 +65,7 @@
   & p + p {
     margin-block-start: 1em;
     margin-block-start: 1lh;
-  }
+  } */
 
   & ul,
   & ol {
@@ -136,6 +144,54 @@
   }
 }
 
+@custom-variant prose-headings {
+  & :where(h1, h2, h3, h4, h5, h6) {
+    @slot;
+  }
+}
+
+@custom-variant prose-h1 {
+  & :where(h1) {
+    @slot;
+  }
+}
+
+@custom-variant prose-h2 {
+  & :where(h2) {
+    @slot;
+  }
+}
+
+@custom-variant prose-h3 {
+  & :where(h3) {
+    @slot;
+  }
+}
+
+@custom-variant prose-h4 {
+  & :where(h4) {
+    @slot;
+  }
+}
+
+@custom-variant prose-h5 {
+  & :where(h5) {
+    @slot;
+  }
+}
+
+@custom-variant prose-h6 {
+  & :where(h6) {
+    @slot;
+  }
+}
+
+@custom-variant prose-p {
+  & :where(p) {
+    @slot;
+  }
+}
+/*
 @utility prose-medium {
   p {
     font-size: var(--text-20);
@@ -149,10 +205,10 @@
 @utility prose-large {
   p {
     font-family: var(--font-serif);
-    font-size: clamp(1.25rem, 1.0739rem + 0.7512vw, 1.75rem); /* 20px - 28px */
+    font-size: clamp(1.25rem, 1.0739rem + 0.7512vw, 1.75rem);
     line-height: 1.33;
     letter-spacing: 0.01em;
     max-width: 30em;
     text-wrap: balance;
   }
-}
+} */

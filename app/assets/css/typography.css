@@ -1,100 +1,105 @@
-@layer base {
-  /* Sans-serif */
-  .type-sans-medium,
-  .type-sans-medium-caps {
-    font-size: var(--text-15);
-    line-height: calc(24 / 15);
-    letter-spacing: var(--tracking-md);
+/* Sans-serif */
+@utility type-sans-medium {
+  font-size: var(--text-15);
+  line-height: calc(24 / 15);
+  letter-spacing: var(--tracking-md);
 
-    @variant md {
-      font-size: var(--text-16);
-      line-height: calc(24 / 16);
-    }
-  }
-
-  .type-sans-medium-caps {
-    letter-spacing: var(--tracking-xl);
-    text-transform: uppercase;
-  }
-
-  /* Serif */
-  .type-serif-medium {
-    font-family: var(--font-serif);
-    font-size: var(--text-15);
-    line-height: calc(24 / 16);
-
-    @variant md {
-      font-size: var(--text-16);
-    }
-  }
-
-  .type-serif-large {
-    font-family: var(--font-serif);
+  @variant md {
     font-size: var(--text-16);
     line-height: calc(24 / 16);
-
-    @variant md {
-      font-size: var(--text-18);
-    }
   }
+}
 
-  .type-serif-large-caps {
-    font-family: var(--font-serif);
+@utility type-sans-medium-caps {
+  font-size: var(--text-15);
+  line-height: calc(24 / 15);
+  letter-spacing: var(--tracking-xl);
+  text-transform: uppercase;
+
+  @variant md {
     font-size: var(--text-16);
     line-height: calc(24 / 16);
-    letter-spacing: var(--tracking-lg);
-    font-kerning: normal;
-    text-transform: uppercase;
-
-    @variant md {
-      font-size: var(--text-18);
-      line-height: calc(26 / 18);
-    }
   }
+}
 
-  .type-serif-medium-caps {
-    font-family: var(--font-serif);
-    font-size: var(--text-15);
-    line-height: calc(24 / 15);
-    letter-spacing: var(--tracking-lg);
-    font-kerning: normal;
-    text-transform: uppercase;
 
-    @variant md {
-      font-size: var(--text-16);
-      line-height: calc(24 / 16);
-    }
+/* Serif */
+@utility type-serif-medium {
+  font-family: var(--font-serif);
+  font-size: var(--text-15);
+  line-height: calc(24 / 16);
+
+  @variant md {
+    font-size: var(--text-16);
   }
+}
 
-  .type-serif-small-caps {
-    font-family: var(--font-serif);
+@utility type-serif-large {
+  font-family: var(--font-serif);
+  font-size: var(--text-16);
+  line-height: calc(24 / 16);
+
+  @variant md {
+    font-size: var(--text-18);
+  }
+}
+
+@utility type-serif-large-caps {
+  font-family: var(--font-serif);
+  font-size: var(--text-16);
+  line-height: calc(24 / 16);
+  letter-spacing: var(--tracking-lg);
+  font-kerning: normal;
+  text-transform: uppercase;
+
+  @variant md {
+    font-size: var(--text-18);
+    line-height: calc(26 / 18);
+  }
+}
+
+@utility type-serif-medium-caps {
+  font-family: var(--font-serif);
+  font-size: var(--text-15);
+  line-height: calc(24 / 15);
+  letter-spacing: var(--tracking-lg);
+  font-kerning: normal;
+  text-transform: uppercase;
+
+  @variant md {
+    font-size: var(--text-16);
+    line-height: calc(24 / 16);
+  }
+}
+
+@utility type-serif-small-caps {
+  font-family: var(--font-serif);
+  font-size: var(--text-13);
+  line-height: calc(22 / 13);
+  letter-spacing: var(--tracking-lg);
+  text-transform: uppercase;
+
+  @variant md {
+    font-size: var(--text-14);
+    line-height: calc(22 / 14);
+  }
+}
+
+@utility type-serif-xsmall-caps {
+  font-family: var(--font-serif);
+  font-size: var(--text-12);
+  line-height: calc(22 / 12);
+  letter-spacing: var(--tracking-lg);
+  text-transform: uppercase;
+
+  @variant md {
     font-size: var(--text-13);
     line-height: calc(22 / 13);
-    letter-spacing: var(--tracking-lg);
-    text-transform: uppercase;
-
-    @variant md {
-      font-size: var(--text-14);
-      line-height: calc(22 / 14);
-    }
   }
+}
 
-  .type-serif-xsmall-caps {
-    font-family: var(--font-serif);
-    font-size: var(--text-12);
-    line-height: calc(22 / 12);
-    letter-spacing: var(--tracking-lg);
-    text-transform: uppercase;
-
-    @variant md {
-      font-size: var(--text-13);
-      line-height: calc(22 / 13);
-    }
-  }
-
-  .type-inherit {
-    font: inherit;
-    letter-spacing: inherit;
-    text-transform: inherit;
-  }
+@utility type-inherit {
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
 }
