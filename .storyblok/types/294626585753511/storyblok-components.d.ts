@@ -21,6 +21,15 @@ export interface BlockCarousel {
   _editable?: string | undefined;
 }
 
+export interface BlockHero {
+  items: (Image | Video)[];
+  autoplay?: boolean;
+  show_logo?: boolean;
+  component: "block_hero";
+  _uid: string;
+  _editable?: string | undefined;
+}
+
 export interface BlockMediaGrid {
   items: (GridImage | GridVideo)[];
   ratio_mobile: number | string;
@@ -77,7 +86,6 @@ export interface GridImage {
   image_desktop: StoryblokAsset;
   title?: string;
   sub_title?: string;
-  link_title?: string;
   link?: Exclude<StoryblokMultilink, {linktype?: "email"} | {linktype?: "asset"}>;
   component: "grid_image";
   _uid: string;
@@ -89,18 +97,8 @@ export interface GridVideo {
   video_desktop: StoryblokAsset;
   title?: string;
   sub_title?: string;
-  link_title?: string;
   link?: Exclude<StoryblokMultilink, {linktype?: "email"} | {linktype?: "asset"}>;
   component: "grid_video";
-  _uid: string;
-  _editable?: string | undefined;
-}
-
-export interface Hero {
-  items: (Image | Video)[];
-  autoplay?: boolean;
-  show_logo?: boolean;
-  component: "hero";
   _uid: string;
   _editable?: string | undefined;
 }
@@ -125,6 +123,7 @@ export interface Job {
 
 export interface Link {
   title: string;
+  subtitle?: string;
   link: Exclude<StoryblokMultilink, {linktype?: "asset"}>;
   hide_on_mobile?: boolean;
   component: "link";
@@ -141,8 +140,7 @@ export interface LinkGroup {
 }
 
 export interface Page {
-  hero?: Hero[];
-  blocks?: (BlockCareers | BlockCarousel | BlockMediaGrid | BlockSplit | BlockText)[];
+  blocks?: (BlockCareers | BlockCarousel | BlockHero | BlockMediaGrid | BlockSplit | BlockText)[];
   seo_title: string;
   seo_description: string;
   seo_image: StoryblokAsset;
