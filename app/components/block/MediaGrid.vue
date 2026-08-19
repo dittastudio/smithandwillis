@@ -9,18 +9,22 @@ const { block } = defineProps<Props>()
 
 const ratioMobile = computed(() => ratioDimensions(block.ratio_mobile))
 const ratioDesktop = computed(() => ratioDimensions(block.ratio_desktop))
+
+// Storyblok omits `bloks` fields entirely when they are empty, so `items` can be
+// undefined here even though the schema marks it required.
+const items = computed(() => block.items ?? [])
 </script>
 
 <template>
   <ul
     v-editable="block"
-    :class="['grid grid-cols-1 gap-2.5', {
-      'md:grid-cols-2': block.items.length === 2,
-      'md:grid-cols-3': block.items.length === 3,
+    :class="['grid grid-cols-1 gap-1', {
+      'md:grid-cols-2': items.length === 2,
+      'md:grid-cols-3': items.length === 3,
     }]"
   >
     <li
-      v-for="item in block.items"
+      v-for="item in items"
       :key="item._uid"
     >
       <figure class="relative size-full">
@@ -91,7 +95,7 @@ const ratioDesktop = computed(() => ratioDimensions(block.ratio_desktop))
           class="absolute inset-0 flex flex-col items-start justify-end contain-layout contain-paint text-white"
         >
           <div class="sticky bottom-0">
-            <div class="block-image__gradient p-(--app-outer-gutter)">
+            <div class="gradient p-(--app-outer-gutter)">
               <StoryblokLink
                 v-if="item.link?.cached_url"
                 :item="item.link"
@@ -130,3 +134,24 @@ const ratioDesktop = computed(() => ratioDimensions(block.ratio_desktop))
     </li>
   </ul>
 </template>
+
+<style scoped>
+@reference "@/assets/css/app.css";
+
+.gradient {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * var(--app-outer-gutter));
+    right: -50vw;
+    bottom: 0;
+    opacity: 0.5;
+    height: 300%;
+    background-image: radial-gradient(ellipse at 0% 100%, --alpha(var(--color-black) / 100%) 0%, --alpha(var(--color-black) / 0%) 60%);
+    z-index: -1;
+    pointer-events: none;
+  }
+}
+</style>

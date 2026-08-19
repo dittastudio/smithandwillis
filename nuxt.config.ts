@@ -4,9 +4,32 @@ import svgLoader from 'vite-svg-loader'
 
 export default defineNuxtConfig({
   modules: [
-    '@nuxt/eslint',
-    '@nuxt/image',
-    '@nuxtjs/sitemap',
+    ['@nuxt/eslint', {
+      config: {
+        standalone: false,
+        stylistic: true,
+        autoInit: false,
+      },
+    }],
+    ['@nuxt/image', {
+      provider: 'storyblok',
+      storyblok: {
+        baseURL: 'https://a2.storyblok.com',
+      },
+      domains: ['storyblok.com', 'smithandwillis.london'],
+      quality: 80,
+      screens: {
+        '2xs': 375,
+        'xs': 480,
+        'sm': 600,
+        'md': 800,
+        'lg': 1200,
+        'xl': 1440,
+        '2xl': 1800,
+      },
+    }],
+    '@nuxtjs/seo',
+    'nuxt-ai-ready',
     [
       '@storyblok/nuxt',
       {
@@ -33,9 +56,6 @@ export default defineNuxtConfig({
         { 'http-equiv': 'content-language', 'content': 'en-GB' },
       ],
       link: [
-        { rel: 'icon', href: '/favicon.ico?v=1', sizes: '32x32' },
-        { rel: 'icon', href: '/favicon.svg?v=1', type: 'image/svg+xml' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
         { rel: 'manifest', href: '/site.webmanifest' },
         { rel: 'preload', type: 'font/woff2', href: '/fonts/SeasonSans-Regular.woff2', as: 'font', crossorigin: '' },
         { rel: 'preload', type: 'font/woff2', href: '/fonts/tiempos-text-regular.woff2', as: 'font', crossorigin: '' },
@@ -76,6 +96,10 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
       routes: ['/'],
+      autoSubfolderIndex: false,
+      ignore: [
+        route => route.includes('?'),
+      ],
     },
   },
   vite: {
@@ -97,31 +121,11 @@ export default defineNuxtConfig({
       'postcss-nested': {},
     },
   },
-  eslint: {
-    config: {
-      standalone: false,
-      stylistic: true,
-      autoInit: false,
-    },
-  },
-  image: {
-    provider: 'storyblok',
-    storyblok: {
-      baseURL: 'https://a2.storyblok.com',
-    },
-    domains: ['storyblok.com', 'smithandwillis.london'],
-    quality: 80,
-    screens: {
-      '2xs': 375,
-      'xs': 480,
-      'sm': 600,
-      'md': 800,
-      'lg': 1200,
-      'xl': 1440,
-      '2xl': 1800,
-    },
+  ogImage: {
+    enabled: false,
   },
   sitemap: {
+    excludeAppSources: true,
     sources: ['/api/sitemap'],
   },
 })

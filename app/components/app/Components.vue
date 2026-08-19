@@ -2,6 +2,7 @@
 import type {
   BlockCareers,
   BlockCarousel,
+  BlockHero,
   BlockMediaGrid,
   BlockSplit,
   BlockText,
@@ -15,6 +16,7 @@ interface Props {
 
 type Blocks = BlockCareers
   | BlockCarousel
+  | BlockHero
   | BlockMediaGrid
   | BlockSplit
   | BlockText
@@ -49,21 +51,6 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
 <template>
   <div class="-mt-(--app-header-height)">
     <section
-      v-if="content.hero?.length"
-      data-component="hero"
-    >
-      <template
-        v-for="hero in content.hero"
-        :key="hero._uid"
-      >
-        <Hero
-          v-if="hero.component === 'hero'"
-          :block="hero"
-        />
-      </template>
-    </section>
-
-    <section
       v-for="(block, index) in content.blocks"
       :key="block._uid"
       class="content-blocks__item"
@@ -79,6 +66,11 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
 
       <BlockCarousel
         v-else-if="block.component === 'block_carousel'"
+        :block="block"
+      />
+
+      <BlockHero
+        v-else-if="block.component === 'block_hero'"
         :block="block"
       />
 
@@ -103,7 +95,7 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
 <style scoped>
 @reference "@/assets/css/app.css";
 
-.content-blocks__item:not(
+/* .content-blocks__item:not(
   .content-blocks__item--block_media_grid,
   .content-blocks__item--block_split,
   .content-blocks__item--block_carousel
@@ -113,11 +105,11 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
   @variant md {
     padding-block: --spacing(40);
   }
-}
+} */
 
-.content-blocks__item:not([class*="bg-"]) + .content-blocks__item.bg-offblack,
+/* .content-blocks__item:not([class*="bg-"]) + .content-blocks__item.bg-offblack,
 .content-blocks__item.bg-offblack + .content-blocks__item:not([class*="bg-"]),
 .content-blocks__item--same-background {
   padding-block-start: 0;
-}
+} */
 </style>

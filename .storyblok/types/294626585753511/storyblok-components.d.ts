@@ -21,6 +21,15 @@ export interface BlockCarousel {
   _editable?: string | undefined;
 }
 
+export interface BlockHero {
+  items: (Image | Video)[];
+  autoplay?: boolean;
+  show_logo?: boolean;
+  component: "block_hero";
+  _uid: string;
+  _editable?: string | undefined;
+}
+
 export interface BlockMediaGrid {
   items: (GridImage | GridVideo)[];
   ratio_mobile: number | string;
@@ -94,15 +103,6 @@ export interface GridVideo {
   _editable?: string | undefined;
 }
 
-export interface Hero {
-  items: (Image | Video)[];
-  autoplay?: boolean;
-  show_logo?: boolean;
-  component: "hero";
-  _uid: string;
-  _editable?: string | undefined;
-}
-
 export interface Image {
   image_mobile?: StoryblokAsset;
   image_desktop: StoryblokAsset;
@@ -140,8 +140,7 @@ export interface LinkGroup {
 }
 
 export interface Page {
-  hero?: Hero[];
-  blocks?: (BlockCareers | BlockCarousel | BlockMediaGrid | BlockSplit | BlockText)[];
+  blocks?: (BlockCareers | BlockCarousel | BlockHero | BlockMediaGrid | BlockSplit | BlockText)[];
   seo_title: string;
   seo_description: string;
   seo_image: StoryblokAsset;

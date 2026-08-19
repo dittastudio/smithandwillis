@@ -137,6 +137,58 @@
     "metadata": {}
   },
   {
+    "name": "block_hero",
+    "display_name": "Hero",
+    "description": "Hero of images and videos",
+    "created_at": "2026-08-18T16:57:29.278Z",
+    "updated_at": "2026-08-19T15:21:33.536Z",
+    "id": 210463331447369,
+    "schema": {
+      "items": {
+        "type": "bloks",
+        "pos": 0,
+        "restrict_type": "",
+        "restrict_components": true,
+        "component_whitelist": [
+          "image",
+          "video"
+        ],
+        "id": "UBTBxWtZR9Su0TBjO3koJA",
+        "display_name": "",
+        "required": true,
+        "component_denylist": []
+      },
+      "autoplay": {
+        "type": "boolean",
+        "pos": 1,
+        "inline_label": true,
+        "id": "YDQtVgaBSz6iJjyUwG9V7A"
+      },
+      "show_logo": {
+        "type": "boolean",
+        "pos": 2,
+        "default_value": false,
+        "inline_label": true,
+        "id": "bp35Lt7XSViyHS1yQ2GlgQ"
+      }
+    },
+    "image": null,
+    "preview_field": null,
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Hero",
+    "component_group_uuid": "8aee4235-990a-4a59-ad5f-6d9f73a67be5",
+    "color": "var(--sb-color-accent-background-papaya-whip)",
+    "icon": "image",
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
     "name": "block_media_grid",
     "display_name": "Media Grid",
     "description": "Display a grid of images and videos",
@@ -655,58 +707,6 @@
     "metadata": {}
   },
   {
-    "name": "hero",
-    "display_name": "Hero",
-    "description": "Hero of images and videos",
-    "created_at": "2026-08-18T16:57:29.278Z",
-    "updated_at": "2026-08-18T20:33:21.549Z",
-    "id": 210463331447369,
-    "schema": {
-      "items": {
-        "type": "bloks",
-        "pos": 0,
-        "restrict_type": "",
-        "restrict_components": true,
-        "component_whitelist": [
-          "image",
-          "video"
-        ],
-        "id": "UBTBxWtZR9Su0TBjO3koJA",
-        "display_name": "",
-        "required": true,
-        "component_denylist": []
-      },
-      "autoplay": {
-        "type": "boolean",
-        "pos": 1,
-        "inline_label": true,
-        "id": "YDQtVgaBSz6iJjyUwG9V7A"
-      },
-      "show_logo": {
-        "type": "boolean",
-        "pos": 2,
-        "default_value": false,
-        "inline_label": true,
-        "id": "bp35Lt7XSViyHS1yQ2GlgQ"
-      }
-    },
-    "image": null,
-    "preview_field": null,
-    "is_root": false,
-    "preview_tmpl": null,
-    "is_nestable": true,
-    "all_presets": [],
-    "preset_id": null,
-    "real_name": "Hero",
-    "component_group_uuid": "1c67fbaf-ea34-47a0-bd3a-10b0d557d1a7",
-    "color": "var(--sb-color-accent-background-papaya-whip)",
-    "icon": "image",
-    "internal_tags_list": [],
-    "internal_tag_ids": [],
-    "content_type_asset_preview": null,
-    "metadata": {}
-  },
-  {
     "name": "image",
     "display_name": null,
     "description": "Set a mobile and desktop image",
@@ -914,23 +914,9 @@
     "display_name": null,
     "description": null,
     "created_at": "2026-08-18T14:24:33.571Z",
-    "updated_at": "2026-08-18T17:00:49.922Z",
+    "updated_at": "2026-08-19T15:20:52.829Z",
     "id": 210425747754464,
     "schema": {
-      "hero": {
-        "type": "bloks",
-        "pos": 0,
-        "restrict_type": "groups",
-        "restrict_components": true,
-        "maximum": 1,
-        "id": "jdJbHHe3SzqWvZHYf6HkXw",
-        "component_group_whitelist": [
-          "1c67fbaf-ea34-47a0-bd3a-10b0d557d1a7"
-        ],
-        "component_group_denylist": [],
-        "component_tag_whitelist": [],
-        "component_tag_denylist": []
-      },
       "blocks": {
         "type": "bloks",
         "pos": 1,
