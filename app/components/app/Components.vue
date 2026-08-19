@@ -122,6 +122,10 @@ const getHeaderColor = (block: Blocks): 'light' | 'dark' => {
   }
 }
 
+.content-blocks__item--block_media_grid + .content-blocks__item--block_media_grid {
+  padding-block-start: --spacing(1);
+}
+
 /* .content-blocks__item:not([class*="bg-"]) + .content-blocks__item.bg-offblack,
 .content-blocks__item.bg-offblack + .content-blocks__item:not([class*="bg-"]),
 .content-blocks__item--same-background {
