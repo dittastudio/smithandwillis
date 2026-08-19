@@ -2,11 +2,16 @@
   "workbench.editorAssociations": { "*.svg": "default" },
   "eslint.useFlatConfig": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "typescript.suggest.autoImports": false,
-  "javascript.suggest.autoImports": false,
+  "js/ts.suggest.autoImports": false,
   "files.associations": {
     "*.css": "tailwindcss"
   },
+
+  // Tailwind v4 at-rules (@reference, @apply, @theme...) are unknown to
+  // VS Code's built-in CSS validator, incl. inside <style> blocks in .vue files
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
 
   // Disable the default formatter, use eslint instead
   "prettier.enable": false,
