@@ -34,7 +34,7 @@ const assetType = computed(() => storyblokAssetType(block.media?.filename || '')
 
     <figcaption
       v-if="block.title || block.sub_title"
-      class="absolute inset-0 flex flex-col items-start justify-end contain-layout contain-paint"
+      class="absolute inset-0 flex flex-col items-start justify-end contain-layout contain-paint text-white"
     >
       <div class="sticky bottom-0">
         <div class="block-image__gradient p-(--app-outer-gutter)">

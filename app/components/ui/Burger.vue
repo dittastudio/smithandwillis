@@ -40,8 +40,8 @@ const menuOpen = useState<boolean>('menuOpen')
   &::after {
     --trans-out-open: 0.5s var(--ease-outExpo) 0.5s;
     --trans-in-open: 0.5s var(--ease-inExpo);
-    --trans-out-close: 0.25s var(--ease-out) 0.25s;
-    --trans-in-close: 0.25s var(--ease-inExpo);
+    --trans-out-close: 0.15s var(--ease-out) 0.15s;
+    --trans-in-close: 0.15s var(--ease-inExpo);
 
     content: '';
 
