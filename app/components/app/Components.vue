@@ -55,13 +55,17 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
       data-component="hero"
       class="relative overflow-hidden"
     >
-      <HeroCover class="absolute inset-0 z-100" />
+      <!-- <HeroCover class="absolute inset-0 z-100" /> -->
 
       <template
         v-for="hero in content.hero"
         :key="hero._uid"
       >
-        <HeroImage
+        <Hero
+          v-if="hero.component === 'hero'"
+          :block="hero"
+        />
+        <!-- <HeroImage
           v-if="hero.component === 'hero_image'"
           :block="hero"
         />
@@ -69,7 +73,7 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
         <HeroCarousel
           v-else-if="hero.component === 'hero_carousel'"
           :block="hero"
-        />
+        /> -->
       </template>
     </section>
 

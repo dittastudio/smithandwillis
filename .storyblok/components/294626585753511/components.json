@@ -669,10 +669,10 @@
     "display_name": "Hero",
     "description": "Hero of images and videos",
     "created_at": "2026-08-18T16:57:29.278Z",
-    "updated_at": "2026-08-18T17:03:08.789Z",
+    "updated_at": "2026-08-18T20:33:21.549Z",
     "id": 210463331447369,
     "schema": {
-      "Items": {
+      "items": {
         "type": "bloks",
         "pos": 0,
         "restrict_type": "",

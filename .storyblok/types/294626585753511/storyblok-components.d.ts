@@ -97,7 +97,7 @@ export interface GridVideo {
 }
 
 export interface Hero {
-  Items: (Image | Video)[];
+  items: (Image | Video)[];
   autoplay?: boolean;
   show_logo?: boolean;
   component: "hero";
