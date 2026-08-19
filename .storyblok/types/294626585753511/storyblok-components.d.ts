@@ -3,10 +3,11 @@
 import type { ISbStoryData } from '@storyblok/js';
 import type { StoryblokAsset, StoryblokMultilink, StoryblokRichtext } from '../storyblok.d.ts';
 export interface BlockCareers {
+  header_color?: number | string;
   background_color: number | string;
+  text_color: number | string;
   headline?: string;
   jobs: (ISbStoryData<Job> | string)[];
-  text_color: number | string;
   anchor_id?: string;
   component: "block_careers";
   _uid: string;
@@ -16,6 +17,8 @@ export interface BlockCareers {
 export interface BlockCarousel {
   slides: (Image | Video)[];
   autoplay?: boolean;
+  ratio_mobile: number | string;
+  ratio_desktop: number | string;
   component: "block_carousel";
   _uid: string;
   _editable?: string | undefined;
@@ -25,6 +28,7 @@ export interface BlockHero {
   items: (Image | Video)[];
   autoplay?: boolean;
   show_logo?: boolean;
+  header_color?: number | string;
   component: "block_hero";
   _uid: string;
   _editable?: string | undefined;
@@ -34,6 +38,7 @@ export interface BlockMediaGrid {
   items: (GridImage | GridVideo)[];
   ratio_mobile: number | string;
   ratio_desktop: number | string;
+  header_color?: number | string;
   component: "block_media_grid";
   _uid: string;
   _editable?: string | undefined;

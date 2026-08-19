@@ -16,6 +16,7 @@ const { primaryNavigation, secondaryNavigation, studioTitle, studio, contactTitl
 
 const menuOpen = useState<boolean>('menuOpen')
 const submenuOpen = useState<string | null>('submenuOpen')
+const theme = useState<'light' | 'dark'>('theme', () => 'dark')
 const ready = ref(false)
 
 const toggleNavigation = () => {
@@ -88,6 +89,7 @@ const classesHeader = computed(() => [
     'app-header--has-scrolled': hasScrolled.value && !menuOpen.value,
     'app-header--has-scrolled-up': hasScrolledUp.value && !menuOpen.value,
     'app-header--has-scrolled-down': hasScrolledDown.value && !menuOpen.value,
+    [`app-header--theme-${theme.value}`]: !menuOpen.value,
   },
 ])
 </script>
@@ -172,7 +174,8 @@ const classesHeader = computed(() => [
 @reference "@/assets/css/app.css";
 
 .app-header {
-  &::before {
+  &::before,
+  &::after {
     content: '';
     position: absolute;
     top: 0;
@@ -182,10 +185,6 @@ const classesHeader = computed(() => [
     z-index: -1;
     transition: opacity 1s var(--ease-out), height 1s var(--ease-out);
     pointer-events: none;
-  }
-
-  &::before {
-    --app-header-gradient-color: var(--color-offblack);
 
     background-image:
       linear-gradient(
@@ -208,22 +207,53 @@ const classesHeader = computed(() => [
         --alpha(var(--app-header-gradient-color) / 0%) 100%
       )
     ;
+  }
+
+  &::before {
+    --app-header-gradient-color: var(--color-offblack);
+
     opacity: 0.15;
   }
 
-  &.app-header--has-scrolled::before,
-  &.app-header--has-menu::before {
+  &::after {
+    --app-header-gradient-color: var(--color-white);
+
+    opacity: 0;
+  }
+
+  &.app-header--theme-dark::after {
+    opacity: 0.15;
+  }
+
+  &:not(.app-header--theme-dark)::after,
+  &.app-header--theme-dark::before {
+    opacity: 0;
+  }
+
+  &:not(.app-header--theme-dark).app-header--has-scrolled::before,
+  &:not(.app-header--theme-dark).app-header--has-menu::before {
+    opacity: 0.3;
+  }
+
+  &.app-header--theme-dark.app-header--has-scrolled::after,
+  &.app-header--theme-dark.app-header--has-menu::after {
     opacity: 0.3;
   }
 
   @media (hover: hover) {
-    &:hover::before {
+    &:not(.app-header--theme-dark):hover::before {
+      opacity: 0.5;
+      height: 300%;
+    }
+
+    &.app-header--theme-dark:hover::after {
       opacity: 0.5;
       height: 300%;
     }
   }
 
-  &.app-header--has-scrolled-down::before {
+  &.app-header--has-scrolled-down::before,
+  &.app-header--has-scrolled-down::after {
     opacity: 0;
     transition: opacity 0.5s var(--ease-inOutQuart), height 0.5s var(--ease-inOutQuart);
   }
@@ -251,7 +281,8 @@ const classesHeader = computed(() => [
 .app-header {
   color: var(--color-white);
 
-  &.app-header--has-menu {
+  &.app-header--has-menu,
+  &.app-header--theme-dark {
     color: var(--color-offblack);
   }
 

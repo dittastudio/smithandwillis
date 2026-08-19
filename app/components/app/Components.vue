@@ -9,6 +9,7 @@ import type {
   Page,
 } from '#storyblok-components'
 import type { Colours } from '@/utils/maps'
+import { backgroundTheme } from '@/utils/maps'
 
 interface Props {
   content: Page
@@ -46,18 +47,31 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
       checkBackgroundMatchesPrevBackground(index) ? 'content-blocks__item--same-background' : '',
     ]
   : []
+
+const getHeaderColor = (block: Blocks): 'light' | 'dark' => {
+  if ('header_color' in block && block.header_color) {
+    return block.header_color as 'light' | 'dark'
+  }
+
+  if ('background_color' in block) {
+    return backgroundTheme[block.background_color as Colours || 'warmgrey']
+  }
+  return 'light'
+}
 </script>
 
 <template>
   <div class="-mt-(--app-header-height)">
-    <section
+    <UiTheme
       v-for="(block, index) in content.blocks"
       :key="block._uid"
+      tag="section"
       class="content-blocks__item"
       :class="[
         `content-blocks__item--${block.component}`,
         ...setColourProperties(block, index),
       ]"
+      :theme="getHeaderColor(block)"
     >
       <BlockCareers
         v-if="block.component === 'block_careers'"
@@ -88,14 +102,15 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
         v-else-if="block.component === 'block_text'"
         :block="block"
       />
-    </section>
+    </UiTheme>
   </div>
 </template>
 
 <style scoped>
 @reference "@/assets/css/app.css";
 
-/* .content-blocks__item:not(
+.content-blocks__item:not(
+  .content-blocks__item--block_hero,
   .content-blocks__item--block_media_grid,
   .content-blocks__item--block_split,
   .content-blocks__item--block_carousel
@@ -105,7 +120,7 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
   @variant md {
     padding-block: --spacing(40);
   }
-} */
+}
 
 /* .content-blocks__item:not([class*="bg-"]) + .content-blocks__item.bg-offblack,
 .content-blocks__item.bg-offblack + .content-blocks__item:not([class*="bg-"]),

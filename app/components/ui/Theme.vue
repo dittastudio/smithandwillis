@@ -7,7 +7,7 @@ interface Props {
 
 const { tag = 'section', theme, id } = defineProps<Props>()
 
-// const appStore = useAppStore()
+const sharedTheme = useState<'light' | 'dark'>('theme', () => 'dark')
 const el = useTemplateRef<HTMLElement>('el')
 
 onMounted(() => {
@@ -21,7 +21,7 @@ onMounted(() => {
   const observer = new IntersectionObserver(
     ([entry]) => {
       if (entry?.isIntersecting) {
-        // appStore.setTheme(theme)
+        sharedTheme.value = theme
       }
     },
     { rootMargin, threshold: 0 },
@@ -37,7 +37,6 @@ onMounted(() => {
     :is="tag"
     :id="id"
     ref="el"
-    :class="theme ? themeClasses[theme] : ''"
   >
     <slot />
   </component>

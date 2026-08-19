@@ -4,22 +4,22 @@
     "display_name": "Careers",
     "description": "",
     "created_at": "2026-08-18T14:24:33.468Z",
-    "updated_at": "2026-08-18T17:34:29.528Z",
+    "updated_at": "2026-08-19T16:47:15.295Z",
     "id": 210425747332572,
     "schema": {
-      "tab-74bcc446-f685-4646-9287-4543555b7ba7": {
-        "display_name": "Anchor",
-        "keys": [
-          "anchor_id"
-        ],
+      "header_color": {
+        "type": "option",
         "pos": 0,
-        "type": "tab",
-        "id": "dLzERvaFRkaSh0VDVVt7pw",
-        "name": "tab-74bcc446-f685-4646-9287-4543555b7ba7"
+        "use_uuid": true,
+        "source": "internal",
+        "datasource_slug": "header-theme",
+        "id": "LitaYbU4TjqJKg2dqQw5Mw",
+        "default_value": "light",
+        "display_name": "Header Colour"
       },
       "background_color": {
         "type": "option",
-        "pos": 0,
+        "pos": 1,
         "use_uuid": true,
         "display_name": "Background Colour",
         "id": "IVgMrRA_QtGQlNel6R1F_Q",
@@ -27,25 +27,46 @@
         "datasource_slug": "colours",
         "required": true
       },
+      "text_color": {
+        "type": "option",
+        "pos": 2,
+        "use_uuid": true,
+        "display_name": "Text Colour",
+        "id": "eoh4jqf7T8moOFEvXLh6gQ",
+        "source": "internal",
+        "datasource_slug": "colours",
+        "required": true
+      },
+      "tab-74bcc446-f685-4646-9287-4543555b7ba7": {
+        "display_name": "Anchor",
+        "keys": [
+          "anchor_id"
+        ],
+        "pos": 3,
+        "type": "tab",
+        "id": "dLzERvaFRkaSh0VDVVt7pw",
+        "name": "tab-74bcc446-f685-4646-9287-4543555b7ba7"
+      },
       "tab-33009c7a-1a66-4a4b-b632-d96b04681d83": {
         "display_name": "Theme",
         "keys": [
           "text_color",
-          "background_color"
+          "background_color",
+          "header_color"
         ],
-        "pos": 1,
+        "pos": 4,
         "type": "tab",
         "id": "MwCcehpmSku2MtlrBGgdgw",
         "name": "tab-33009c7a-1a66-4a4b-b632-d96b04681d83"
       },
       "headline": {
         "type": "text",
-        "pos": 1,
+        "pos": 5,
         "id": "_Buzz3b8SS2fgHP5qecaMA"
       },
       "jobs": {
         "type": "options",
-        "pos": 2,
+        "pos": 6,
         "required": true,
         "source": "internal_stories",
         "filter_content_type": [
@@ -56,19 +77,9 @@
         "description": "Select the jobs you wish to display.",
         "id": "na0zpdHxQjWZD49ZZtATuA"
       },
-      "text_color": {
-        "type": "option",
-        "pos": 3,
-        "use_uuid": true,
-        "display_name": "Text Colour",
-        "id": "eoh4jqf7T8moOFEvXLh6gQ",
-        "source": "internal",
-        "datasource_slug": "colours",
-        "required": true
-      },
       "anchor_id": {
         "type": "text",
-        "pos": 5,
+        "pos": 7,
         "description": "Make sure this ID matches the one added with a link.\n\nOtherwise this anchor is what you can add to directly link to a section in the page. i.e. https://site.com/page#anchorID",
         "id": "K1UGEzRYQYSexG-pFoRXxw",
         "display_name": "Anchor ID"
@@ -95,7 +106,7 @@
     "display_name": "Carousel",
     "description": "Carousel of images and videos",
     "created_at": "2026-08-18T14:24:33.502Z",
-    "updated_at": "2026-08-18T16:58:44.423Z",
+    "updated_at": "2026-08-19T16:28:21.508Z",
     "id": 210425747471838,
     "schema": {
       "slides": {
@@ -118,6 +129,26 @@
         "pos": 1,
         "inline_label": true,
         "id": "YDQtVgaBSz6iJjyUwG9V7A"
+      },
+      "ratio_mobile": {
+        "type": "option",
+        "pos": 2,
+        "use_uuid": true,
+        "source": "internal",
+        "datasource_slug": "ratio",
+        "default_value": "16:9",
+        "id": "S-op-I7FQmSzzbgIL41ScA",
+        "required": true
+      },
+      "ratio_desktop": {
+        "type": "option",
+        "pos": 3,
+        "use_uuid": true,
+        "id": "fMtM0BC8QaahOGnIDupAkQ",
+        "source": "internal",
+        "datasource_slug": "ratio",
+        "default_value": "16:9",
+        "required": true
       }
     },
     "image": null,
@@ -141,7 +172,7 @@
     "display_name": "Hero",
     "description": "Hero of images and videos",
     "created_at": "2026-08-18T16:57:29.278Z",
-    "updated_at": "2026-08-19T15:21:33.536Z",
+    "updated_at": "2026-08-19T16:47:32.743Z",
     "id": 210463331447369,
     "schema": {
       "items": {
@@ -158,18 +189,37 @@
         "required": true,
         "component_denylist": []
       },
+      "tab-647f90df-c3ea-4465-b142-6223f927641e": {
+        "display_name": "Theme",
+        "keys": [
+          "header_color"
+        ],
+        "pos": 1,
+        "type": "tab",
+        "id": "ZH-Q38PqRGWxQmIj-SdkHg"
+      },
       "autoplay": {
         "type": "boolean",
-        "pos": 1,
+        "pos": 2,
         "inline_label": true,
         "id": "YDQtVgaBSz6iJjyUwG9V7A"
       },
       "show_logo": {
         "type": "boolean",
-        "pos": 2,
+        "pos": 3,
         "default_value": false,
         "inline_label": true,
         "id": "bp35Lt7XSViyHS1yQ2GlgQ"
+      },
+      "header_color": {
+        "type": "option",
+        "pos": 4,
+        "use_uuid": true,
+        "source": "internal",
+        "datasource_slug": "header-theme",
+        "default_value": "light",
+        "id": "EfUEDq4YQveEIpOwvHOpYw",
+        "display_name": "Header Colour"
       }
     },
     "image": null,
@@ -193,7 +243,7 @@
     "display_name": "Media Grid",
     "description": "Display a grid of images and videos",
     "created_at": "2026-08-18T14:24:33.440Z",
-    "updated_at": "2026-08-18T16:52:08.241Z",
+    "updated_at": "2026-08-19T16:48:01.574Z",
     "id": 210425747217882,
     "schema": {
       "items": {
@@ -210,6 +260,15 @@
         "maximum": 3,
         "minimum": 1,
         "required": true
+      },
+      "tab-469c5886-7915-494f-bb1f-2b2b5d4b33d9": {
+        "display_name": "Theme",
+        "keys": [
+          "header_color"
+        ],
+        "pos": 0,
+        "type": "tab",
+        "id": "RpxYhnkVSU-7HysrXUsz2Q"
       },
       "ratio_mobile": {
         "type": "option",
@@ -234,6 +293,14 @@
         "default_value": "16:9",
         "required": true,
         "description": ""
+      },
+      "header_color": {
+        "type": "option",
+        "pos": 4,
+        "use_uuid": true,
+        "source": "internal",
+        "default_value": "light",
+        "id": "mf-0DhQAQpStIksq-8FMxQ"
       }
     },
     "image": null,

@@ -50,4 +50,20 @@ const ratios: Record<string, string> = {
   'md-1:1': 'md:aspect-[1/1]',
 } as const
 
-export { colourBackground, type Colours, colourText, colourTextMd, ratios }
+const themeClasses: Record<'light' | 'dark', string> = {
+  light: 'bg-white text-offblack',
+  dark: 'bg-offblack text-white',
+} as const
+
+const backgroundTheme: Record<Colours, 'light' | 'dark'> = {
+  current: 'light',
+  white: 'light',
+  offwhite: 'light',
+  warmgrey: 'light',
+  orange: 'light',
+  black: 'dark',
+  offblack: 'dark',
+  richbrown: 'dark',
+} as const
+
+export { backgroundTheme, colourBackground, type Colours, colourText, colourTextMd, ratios, themeClasses }
