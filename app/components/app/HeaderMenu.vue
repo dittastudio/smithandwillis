@@ -21,7 +21,6 @@ const classesHeaderProse = '[&_p_a]:italic [&_p_a]:transition-opacity [&_p_a]:du
       max-md:absolute
       max-md:inset-0
       max-md:min-h-dvh
-      max-md:-z-1
       max-md:bg-white/90
       max-md:backdrop-blur-md
       max-md:text-offblack

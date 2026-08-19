@@ -112,14 +112,14 @@ const classesHeader = computed(() => [
     >
       <button
         type="button"
-        class="absolute top-0 left-0 px-(--app-outer-gutter) py-8 md:hidden active:opacity-70 transition-opacity duration-300 ease-out"
+        class="absolute top-0 left-0 z-1 px-(--app-outer-gutter) py-8 md:hidden active:opacity-70 transition-opacity duration-300 ease-out"
         :class="[submenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto delay-150']"
         @click="toggleNavigation"
       >
         <UiBurger />
       </button>
 
-      <div class="absolute top-0 inset-x-0 w-full h-full flex items-center justify-center pointer-events-none">
+      <div class="absolute top-0 inset-x-0 z-1 w-full h-full flex items-center justify-center pointer-events-none">
         <NuxtLink
           to="/"
           class="
@@ -290,7 +290,7 @@ const classesHeader = computed(() => [
 .app-header {
   color: var(--color-white);
 
-  html:not(:has([data-component="hero"])) &,
+  /* html:not(:has([data-component="hero"])) &, */
   &.app-header--has-menu {
     color: var(--color-offblack);
   }

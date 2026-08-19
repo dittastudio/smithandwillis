@@ -56,14 +56,13 @@ const emit = defineEmits<{
         wrapper
       bg-white
       text-offblack
-        border-r
-        border-offblack/5
+        shadow-md
         transition-transform
         duration-300
         ease-outQuart
       "
       :class="{
-        '-translate-x-full': !isOpen,
+        'translate-x-[-120%]': !isOpen,
         'translate-x-0': isOpen,
       }"
     >
@@ -107,16 +106,15 @@ const emit = defineEmits<{
             "
             @click="scrollToWithEasing(link.link?.url, 1000, true)"
           >
-            <h4
-              v-if="link.title"
-              class="type-serif-medium-caps flex items-center gap-2"
-            >
-              {{ link.title }}
-            </h4>
+            <UiTextLink :is-external="link.link.linktype === 'url'">
+              <h4 class="type-serif-medium-caps flex items-center gap-2">
+                {{ link.title }}
+              </h4>
+            </UiTextLink>
 
             <p
               v-if="link.subtitle"
-              class="type-serif-medium italic opacity-60"
+              class="type-serif-medium italic opacity-70"
             >
               {{ link.subtitle }}
             </p>
