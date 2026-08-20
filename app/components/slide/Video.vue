@@ -18,9 +18,9 @@ const poster = storyblokImage(block.poster?.filename, {
     <MediaVideo
       v-if="block.video_mobile?.filename"
       :class="[
+        'size-full object-cover',
         { 'md:hidden': block.video_desktop?.filename },
       ]"
-      class="w-full h-full object-cover"
       :sources="[
         { src: block.video_mobile.filename },
       ]"
@@ -35,9 +35,9 @@ const poster = storyblokImage(block.poster?.filename, {
     <MediaVideo
       v-if="block.video_desktop?.filename"
       :class="[
+        'size-full object-cover',
         { 'hidden md:block': block.video_mobile?.filename },
       ]"
-      class="w-full h-full object-cover"
       :sources="[
         { src: block.video_desktop.filename },
       ]"

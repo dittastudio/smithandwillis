@@ -59,7 +59,6 @@ const { block } = defineProps<Props>()
                 'size-full object-cover',
                 { 'md:hidden': item.video_desktop?.filename },
               ]"
-              class="size-full object-cover"
               :sources="[
                 { src: item.video_mobile.filename },
               ]"
@@ -76,7 +75,6 @@ const { block } = defineProps<Props>()
                 'size-full object-cover',
                 { 'hidden md:block': item.video_mobile?.filename },
               ]"
-              class="size-full object-cover"
               :sources="[
                 { src: item.video_desktop.filename },
               ]"

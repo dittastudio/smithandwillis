@@ -11,6 +11,9 @@ const { block } = defineProps<Props>()
 
 const ratioMobile = computed(() => ratioDimensions(block.ratio_mobile))
 const ratioDesktop = computed(() => ratioDimensions(block.ratio_desktop))
+const ratioMobileClass = computed(() => ratios[block.ratio_mobile] ?? '')
+const ratioDesktopClass = computed(() => ratios[`md-${block.ratio_desktop}`] ?? '')
+
 const items = computed(() => block.items ?? [])
 </script>
 
@@ -45,8 +48,8 @@ const items = computed(() => block.items ?? [])
           />
 
           <NuxtImg
+            :class="['size-full object-cover', ratioMobileClass, ratioDesktopClass]"
             srcset=""
-            class="size-full object-cover"
             :src="item.image_desktop.filename"
             :alt="item.image_mobile?.alt || item.image_desktop.alt || 'Smith & Willis'"
             loading="lazy"
@@ -58,9 +61,9 @@ const items = computed(() => block.items ?? [])
             v-if="item.video_mobile?.filename"
             :class="[
               'size-full object-cover',
+              ratioMobileClass, ratioDesktopClass,
               { 'md:hidden': item.video_desktop?.filename },
             ]"
-            class="size-full object-cover"
             :sources="[
               { src: item.video_mobile.filename },
             ]"
@@ -75,9 +78,9 @@ const items = computed(() => block.items ?? [])
             v-if="item.video_desktop?.filename"
             :class="[
               'size-full object-cover',
+              ratioMobileClass, ratioDesktopClass,
               { 'hidden md:block': item.video_mobile?.filename },
             ]"
-            class="size-full object-cover"
             :sources="[
               { src: item.video_desktop.filename },
             ]"

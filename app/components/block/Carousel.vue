@@ -12,6 +12,9 @@ const { block } = defineProps<Props>()
 
 const ratioMobile = computed(() => ratioDimensions(block.ratio_mobile))
 const ratioDesktop = computed(() => ratioDimensions(block.ratio_desktop))
+const ratioMobileClass = computed(() => ratios[block.ratio_mobile] ?? '')
+const ratioDesktopClass = computed(() => ratios[`md-${block.ratio_desktop}`] ?? '')
+
 const carouselRef = useTemplateRef<Carousel>('carouselRef')
 
 const previous = () => carouselRef.value?.previous()
@@ -50,7 +53,7 @@ const next = () => carouselRef.value?.next()
 
           <NuxtImg
             srcset=""
-            class="size-full object-cover"
+            :class="['size-full object-cover', ratioMobileClass, ratioDesktopClass]"
             :src="item.image_desktop.filename"
             :alt="item.image_mobile?.alt || item.image_desktop.alt || 'Smith & Willis'"
             loading="lazy"
@@ -62,9 +65,9 @@ const next = () => carouselRef.value?.next()
             v-if="item.video_mobile?.filename"
             :class="[
               'size-full object-cover',
+              ratioMobileClass, ratioDesktopClass,
               { 'md:hidden': item.video_desktop?.filename },
             ]"
-            class="size-full object-cover"
             :sources="[
               { src: item.video_mobile.filename },
             ]"
@@ -79,9 +82,9 @@ const next = () => carouselRef.value?.next()
             v-if="item.video_desktop?.filename"
             :class="[
               'size-full object-cover',
+              ratioMobileClass, ratioDesktopClass,
               { 'hidden md:block': item.video_mobile?.filename },
             ]"
-            class="size-full object-cover"
             :sources="[
               { src: item.video_desktop.filename },
             ]"
