@@ -5,11 +5,11 @@ import type {
   BlockHero,
   BlockMediaGrid,
   BlockSplit,
+  BlockStatement,
   BlockText,
   Page,
 } from '#storyblok-components'
 import type { Colours } from '@/utils/maps'
-// import { backgroundTheme } from '@/utils/maps'
 
 interface Props {
   content: Page
@@ -20,6 +20,7 @@ type Blocks = BlockCareers
   | BlockHero
   | BlockMediaGrid
   | BlockSplit
+  | BlockStatement
   | BlockText
 
 const { content } = defineProps<Props>()
@@ -49,18 +50,6 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
   : []
 
 const isSingleItemMediaGrid = (block: Blocks) => block.component === 'block_media_grid' && (block.items?.length ?? 0) === 1
-
-// const getHeaderColor = (block: Blocks): 'light' | 'dark' => {
-//   // if ('header_color' in block && block.header_color) {
-//   //   return block.header_color as 'light' | 'dark'
-//   // }
-
-//   // if ('background_color' in block) {
-//   //   return backgroundTheme[block.background_color as Colours || 'warmgrey']
-//   // }
-
-//   return 'light'
-// }
 </script>
 
 <template>
@@ -106,6 +95,11 @@ const isSingleItemMediaGrid = (block: Blocks) => block.component === 'block_medi
         v-else-if="block.component === 'block_text'"
         :block="block"
       />
+
+      <BlockStatement
+        v-else-if="block.component === 'block_statement'"
+        :block="block"
+      />
     </UiTheme>
   </div>
 </template>
@@ -131,9 +125,7 @@ const isSingleItemMediaGrid = (block: Blocks) => block.component === 'block_medi
   padding-block-start: 0;
 }
 
-/* .content-blocks__item:not([class*="bg-"]) + .content-blocks__item.bg-offblack,
-.content-blocks__item.bg-offblack + .content-blocks__item:not([class*="bg-"]),
-.content-blocks__item--same-background {
+.content-blocks__item.content-blocks__item--same-background {
   padding-block-start: 0;
-} */
+}
 </style>

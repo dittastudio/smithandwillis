@@ -498,11 +498,199 @@
     "metadata": {}
   },
   {
+    "name": "block_statement",
+    "display_name": "Statement",
+    "description": "",
+    "created_at": "2026-08-20T12:53:58.300Z",
+    "updated_at": "2026-08-20T14:02:47.394Z",
+    "id": 211111273682128,
+    "schema": {
+      "text": {
+        "type": "richtext",
+        "pos": 0,
+        "required": true,
+        "customize_toolbar": true,
+        "toolbar": [
+          "italic",
+          "link",
+          "bold",
+          "unset",
+          "paragraph"
+        ],
+        "allow_target_blank": true,
+        "id": "ZvHvPF-RSbedrx1PuHzeYQ",
+        "style_options": [],
+        "description": "If pasting text from another application, make sure to select the text and use the \"unset formatting\" button to remove unwanted styles."
+      },
+      "text_size": {
+        "type": "custom",
+        "pos": 1,
+        "field_type": "storyblok-slider",
+        "options": [
+          {
+            "name": "marks",
+            "value": "[1,2,3,4,5]",
+            "_uid": "507eb36a-797a-4126-b7d8-88be8237868d"
+          },
+          {
+            "name": "defaultValue",
+            "value": "3",
+            "_uid": "43dad6f0-0423-4056-a845-d7b54edbf220"
+          },
+          {
+            "name": "minValue",
+            "value": "1",
+            "_uid": "6abcb130-21bf-4730-805b-083431fda05c"
+          },
+          {
+            "name": "maxValue",
+            "value": "5",
+            "_uid": "c889e0da-edbe-46c5-96f1-69b9eb6ea946"
+          },
+          {
+            "name": "stepSize",
+            "value": "1",
+            "_uid": "280e691a-a460-4e01-ba9c-4334ebce7848"
+          },
+          {
+            "name": "minimumSignificantDigits",
+            "value": "",
+            "_uid": "1ab172d2-d748-4d30-a10a-5aa8a40ccc9d"
+          },
+          {
+            "name": "maximumSignificantDigits",
+            "value": "",
+            "_uid": "23437c13-7540-40e7-858c-ec65ee0210f8"
+          },
+          {
+            "name": "style",
+            "value": "",
+            "_uid": "52ed7db2-2d26-4e5c-a8a9-bbed958520ae"
+          },
+          {
+            "name": "unit",
+            "value": "",
+            "_uid": "e092dc60-2004-4240-9815-0d546a953a3c"
+          }
+        ],
+        "id": "J_ta5aFsSxCLHU_UBsPjGg"
+      },
+      "text_alignment": {
+        "type": "option",
+        "pos": 2,
+        "use_uuid": true,
+        "required": true,
+        "options": [
+          {
+            "_uid": "c55cec06-76c1-40b4-8a06-43fcb392e27a",
+            "name": "Left",
+            "value": "left"
+          },
+          {
+            "_uid": "64c8e3c8-e0f2-407e-a28d-2c22262fc10f",
+            "value": "center",
+            "name": "Center"
+          },
+          {
+            "_uid": "601c68b8-5c00-49f8-9fe1-d3a45c742a62",
+            "value": "right",
+            "name": "Right"
+          }
+        ],
+        "exclude_empty_option": true,
+        "default_value": "center",
+        "id": "Q8U5YBL8S5-6H45ATFNqUQ"
+      },
+      "text_placement": {
+        "type": "option",
+        "pos": 3,
+        "use_uuid": true,
+        "id": "LZ0xLjOaQgWhyQpgmKObbg",
+        "required": true,
+        "options": [
+          {
+            "_uid": "e6b8ebdb-9ccf-4b46-94f3-cbd8228f1876",
+            "name": "Left",
+            "value": "left"
+          },
+          {
+            "_uid": "57b95c0c-b5c6-46c3-9a96-ae33449c8649",
+            "value": "center",
+            "name": "Center"
+          },
+          {
+            "_uid": "62eb7cda-c28c-4ed8-80f2-4bd72438b503",
+            "value": "right",
+            "name": "Right"
+          }
+        ],
+        "exclude_empty_option": true,
+        "default_value": "center"
+      },
+      "header_color": {
+        "type": "option",
+        "pos": 4,
+        "use_uuid": true,
+        "display_name": "Header Colour",
+        "source": "internal",
+        "datasource_slug": "header-theme",
+        "default_value": "dark",
+        "id": "3DIMJwAmQNSWiEMMmQHHyA"
+      },
+      "background_color": {
+        "type": "option",
+        "pos": 5,
+        "use_uuid": true,
+        "display_name": "Background Colour",
+        "id": "IVgMrRA_QtGQlNel6R1F_Q",
+        "source": "internal",
+        "datasource_slug": "colours",
+        "default_value": "white"
+      },
+      "text_color": {
+        "type": "option",
+        "pos": 6,
+        "use_uuid": true,
+        "display_name": "Text Colour",
+        "id": "eoh4jqf7T8moOFEvXLh6gQ",
+        "source": "internal",
+        "datasource_slug": "colours",
+        "default_value": "offblack"
+      },
+      "tab-f7cf244b-f9ae-4e91-9e50-e13f00170f60": {
+        "display_name": "Theme",
+        "keys": [
+          "background_color",
+          "text_color",
+          "header_color"
+        ],
+        "pos": 7,
+        "type": "tab",
+        "id": "988kS_muTpGeUOE_ABcPYA"
+      }
+    },
+    "image": null,
+    "preview_field": "text",
+    "is_root": false,
+    "preview_tmpl": null,
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Statement",
+    "component_group_uuid": "8aee4235-990a-4a59-ad5f-6d9f73a67be5",
+    "color": "var(--sb-color-accent-background-light-red)",
+    "icon": "align-left",
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
     "name": "block_text",
     "display_name": "Text",
     "description": "",
     "created_at": "2026-08-18T14:24:33.454Z",
-    "updated_at": "2026-08-20T12:03:43.529Z",
+    "updated_at": "2026-08-20T13:35:41.498Z",
     "id": 210425747275227,
     "schema": {
       "text": {
@@ -522,7 +710,6 @@
           "h6",
           "olist",
           "paragraph",
-          "color",
           "h1",
           "h2"
         ],
@@ -530,59 +717,6 @@
         "id": "ZvHvPF-RSbedrx1PuHzeYQ",
         "style_options": [],
         "description": "If pasting text from another application, make sure to select the text and use the \"unset formatting\" button to remove unwanted styles."
-      },
-      "body_text_size": {
-        "type": "custom",
-        "pos": 1,
-        "field_type": "storyblok-slider",
-        "options": [
-          {
-            "name": "marks",
-            "value": "[1,2,3,4,5]",
-            "_uid": "73a1b9ee-b2e0-42dd-8209-5a220b328cc3"
-          },
-          {
-            "name": "defaultValue",
-            "value": "1",
-            "_uid": "0b2bd85f-37c1-4fcd-96a0-c0559dc9fc9d"
-          },
-          {
-            "name": "minValue",
-            "value": "1",
-            "_uid": "647b6433-1ad5-4fb3-8089-49feccac8c31"
-          },
-          {
-            "name": "maxValue",
-            "value": "5",
-            "_uid": "8a3d72bc-26a7-4daf-bb35-f4b793ca7eff"
-          },
-          {
-            "name": "stepSize",
-            "value": "0.1",
-            "_uid": "101483f2-86c0-4aa0-9b9a-b333f08020f9"
-          },
-          {
-            "name": "minimumSignificantDigits",
-            "value": "",
-            "_uid": "c6c8791b-d431-4db6-a685-6e5b4a775268"
-          },
-          {
-            "name": "maximumSignificantDigits",
-            "value": "",
-            "_uid": "b293c471-54e5-4ce3-b40d-e50798db9898"
-          },
-          {
-            "name": "style",
-            "value": "",
-            "_uid": "54dd6085-ec4f-4c13-aab4-9dfb839cffe3"
-          },
-          {
-            "name": "unit",
-            "value": "",
-            "_uid": "43c96f5b-74e6-44ae-ae4a-9b8c56b26adc"
-          }
-        ],
-        "id": "M7arqGQdQn6LJRrcmB6OXA"
       },
       "text_alignment": {
         "type": "option",
@@ -645,7 +779,8 @@
         "type": "multilink",
         "pos": 5,
         "id": "t4XO_BZbRcuGbKUU_BkD3w",
-        "email_link_type": true
+        "email_link_type": true,
+        "allow_target_blank": true
       },
       "header_color": {
         "type": "option",

@@ -65,9 +65,21 @@ export interface BlockSplit {
   _editable?: string | undefined;
 }
 
+export interface BlockStatement {
+  text: StoryblokRichtext;
+  text_size?: unknown;
+  text_alignment: "left" | "center" | "right";
+  text_placement: "left" | "center" | "right";
+  header_color?: number | string;
+  background_color?: number | string;
+  text_color?: number | string;
+  component: "block_statement";
+  _uid: string;
+  _editable?: string | undefined;
+}
+
 export interface BlockText {
   text: StoryblokRichtext;
-  body_text_size?: unknown;
   text_alignment: "left" | "center" | "right";
   text_placement: "left" | "center" | "right";
   link_title?: string;
@@ -149,7 +161,7 @@ export interface LinkGroup {
 }
 
 export interface Page {
-  blocks?: (BlockCareers | BlockCarousel | BlockHero | BlockMediaGrid | BlockSplit | BlockText)[];
+  blocks?: (BlockCareers | BlockCarousel | BlockHero | BlockMediaGrid | BlockSplit | BlockStatement | BlockText)[];
   seo_title: string;
   seo_description: string;
   seo_image: StoryblokAsset;

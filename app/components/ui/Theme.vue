@@ -5,6 +5,7 @@ import type {
   BlockHero,
   BlockMediaGrid,
   BlockSplit,
+  BlockStatement,
   BlockText,
 } from '#storyblok-components'
 
@@ -14,6 +15,7 @@ type Blocks = BlockCareers
   | BlockMediaGrid
   | BlockSplit
   | BlockText
+  | BlockStatement
 
 interface Props {
   tag?: string

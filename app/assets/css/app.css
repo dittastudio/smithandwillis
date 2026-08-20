@@ -86,6 +86,14 @@
     --app-outer-gutter: clamp(24px, 12.5714px + 3.5714vw, 64px);
     --app-header-height: 88px;
 
+    --fluid-min-width: 375;
+    --fluid-max-width: 1440;
+    --fluid-screen: 100vw;
+    --fluid-bp: calc(
+      (var(--fluid-screen) - var(--fluid-min-width) / 16 * 1rem) /
+        (var(--fluid-max-width) - var(--fluid-min-width))
+    );
+
     @variant md {
       --app-inner-gutter: --spacing(6);
       --app-header-height: 104px;
