@@ -119,12 +119,12 @@ onKeyStroke('ArrowRight', (e: KeyboardEvent) => {
   <div class="relative w-full h-[inherit]">
     <div
       ref="container"
-      class="ui-carousel-fade__slider relative w-full h-[inherit] flex touch-pan-y select-none overflow-hidden"
+      class="ui-carousel__slider relative w-full h-[inherit] flex touch-pan-y select-none overflow-hidden"
     >
       <div
         v-for="(item, index) in items"
         :key="index"
-        class="ui-carousel-fade__slide shrink-0 w-full"
+        class="ui-carousel__slide shrink-0 w-full"
         :class="[
           opacities[index] === 1 ? 'pointer-events-auto' : 'pointer-events-none',
         ]"
@@ -144,12 +144,12 @@ onKeyStroke('ArrowRight', (e: KeyboardEvent) => {
 <style scoped>
 @reference "@/assets/css/app.css";
 
-.ui-carousel-fade__slider {
+.ui-carousel__slider {
   display: grid;
   grid-template-areas: "stack";
 }
 
-.ui-carousel-fade__slide {
+.ui-carousel__slide {
   grid-area: stack;
 }
 </style>

@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import type { BlockCarousel } from '#storyblok-components'
 import type { Carousel } from '@/components/ui/Carousel.vue'
+import IconChevronLeft from '@/assets/icons/chevron-left.svg'
+import IconChevronRight from '@/assets/icons/chevron-right.svg'
 
 interface Props {
   block: BlockCarousel
@@ -10,17 +12,23 @@ const { block } = defineProps<Props>()
 
 const ratioMobile = computed(() => ratioDimensions(block.ratio_mobile))
 const ratioDesktop = computed(() => ratioDimensions(block.ratio_desktop))
-const carouselRef = useTemplateRef<Carousel>('carouselFade')
+const carouselRef = useTemplateRef<Carousel>('carouselRef')
+
+const previous = () => carouselRef.value?.previous()
+const next = () => carouselRef.value?.next()
 </script>
 
 <template>
-  <div v-editable="block">
+  <div
+    v-editable="block"
+    class="relative w-full h-full"
+  >
     <UiCarousel
       ref="carouselRef"
       :items="block.slides"
-      :options="{ loop: Boolean(block.autoplay) }"
+      :options="{ loop: true }"
       :autoplay-interval="5000"
-      autoplay
+      :autoplay="Boolean(block.autoplay)"
     >
       <template #item="{ item }">
         <picture v-if="isImageComponent(item) && item.image_desktop?.filename">
@@ -86,5 +94,25 @@ const carouselRef = useTemplateRef<Carousel>('carouselFade')
         </template>
       </template>
     </UiCarousel>
+
+    <button
+      type="button"
+      class="absolute top-1/2 left-0 -translate-y-1/2 z-10 p-(--app-outer-gutter) filter-shadow-light"
+      @click="previous"
+    >
+      <IconChevronLeft class="size-6 text-white" />
+
+      <span class="sr-only">Previous</span>
+    </button>
+
+    <button
+      type="button"
+      class="absolute top-1/2 right-0 -translate-y-1/2 z-10 p-(--app-outer-gutter) filter-shadow-light"
+      @click="next"
+    >
+      <IconChevronRight class="size-6 text-white" />
+
+      <span class="sr-only">Next</span>
+    </button>
   </div>
 </template>
