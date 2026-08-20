@@ -27,7 +27,6 @@ export interface BlockCarousel {
 
 export interface BlockHero {
   items: (Image | Video)[];
-  autoplay?: boolean;
   show_logo?: boolean;
   header_color?: number | string;
   component: "block_hero";
