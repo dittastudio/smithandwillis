@@ -48,6 +48,8 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
     ]
   : []
 
+const isSingleItemMediaGrid = (block: Blocks) => block.component === 'block_media_grid' && (block.items?.length ?? 0) === 1
+
 const getHeaderColor = (block: Blocks): 'light' | 'dark' => {
   if ('header_color' in block && block.header_color) {
     return block.header_color as 'light' | 'dark'
@@ -70,6 +72,7 @@ const getHeaderColor = (block: Blocks): 'light' | 'dark' => {
       :class="[
         `content-blocks__item--${block.component}`,
         ...setColourProperties(block, index),
+        isSingleItemMediaGrid(block) ? 'content-blocks__item--single-media-grid' : '',
       ]"
       :theme="getHeaderColor(block)"
     >
@@ -115,15 +118,16 @@ const getHeaderColor = (block: Blocks): 'light' | 'dark' => {
   .content-blocks__item--block_split,
   .content-blocks__item--block_carousel
 ) {
-  padding-block: --spacing(30);
-
-  @variant md {
-    padding-block: --spacing(40);
-  }
+  padding-block: clamp(150px, 110.5263px + 10.5263vw, 300px);
 }
 
-.content-blocks__item--block_media_grid + .content-blocks__item--block_media_grid {
+.content-blocks__item--block_media_grid + .content-blocks__item--block_media_grid,
+.content-blocks__item--block_media_grid + .content-blocks__item--block_carousel {
   padding-block-start: --spacing(1);
+}
+
+.content-blocks__item--single-media-grid + .content-blocks__item--single-media-grid {
+  padding-block-start: 0;
 }
 
 /* .content-blocks__item:not([class*="bg-"]) + .content-blocks__item.bg-offblack,
