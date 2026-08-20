@@ -4,7 +4,19 @@
       <slot name="header" />
     </header>
 
-    <main class="relative z-1 min-h-screen bg-white">
+    <main
+      class="
+      relative
+      z-1
+      min-h-screen
+       bg-white
+       before:absolute
+       before:top-full
+       before:w-full
+       before:h-px
+       before:bg-offblack/10
+      "
+    >
       <slot name="main" />
     </main>
 
