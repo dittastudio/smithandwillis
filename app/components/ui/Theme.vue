@@ -1,17 +1,35 @@
 <script lang="ts" setup>
+import type {
+  BlockCareers,
+  BlockCarousel,
+  BlockHero,
+  BlockMediaGrid,
+  BlockSplit,
+  BlockStatement,
+  BlockText,
+} from '#storyblok-components'
+
+type Blocks = BlockCareers
+  | BlockCarousel
+  | BlockHero
+  | BlockMediaGrid
+  | BlockSplit
+  | BlockText
+  | BlockStatement
+
 interface Props {
   tag?: string
-  theme?: 'light' | 'dark'
+  block: Blocks
   id?: string
 }
 
-const { tag = 'section', theme, id } = defineProps<Props>()
+const { tag = 'section', block, id } = defineProps<Props>()
 
-const sharedTheme = useState<'light' | 'dark'>('theme', () => 'dark')
+const sharedTheme = useState<'light' | 'dark'>('theme', () => 'light')
 const el = useTemplateRef<HTMLElement>('el')
 
 onMounted(() => {
-  if (!theme || !el.value) {
+  if (!block.header_color || !el.value) {
     return
   }
 
@@ -21,7 +39,7 @@ onMounted(() => {
   const observer = new IntersectionObserver(
     ([entry]) => {
       if (entry?.isIntersecting) {
-        sharedTheme.value = theme
+        sharedTheme.value = block.header_color as 'light' | 'dark'
       }
     },
     { rootMargin, threshold: 0 },

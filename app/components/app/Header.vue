@@ -16,7 +16,7 @@ const { primaryNavigation, secondaryNavigation, studioTitle, studio, contactTitl
 
 const menuOpen = useState<boolean>('menuOpen')
 const submenuOpen = useState<string | null>('submenuOpen')
-const theme = useState<'light' | 'dark'>('theme', () => 'dark')
+const theme = useState<'light' | 'dark'>('theme', () => 'light')
 const ready = ref(false)
 
 const toggleNavigation = () => {

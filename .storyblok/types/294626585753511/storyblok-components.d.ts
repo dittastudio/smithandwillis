@@ -27,7 +27,6 @@ export interface BlockCarousel {
 
 export interface BlockHero {
   items: (Image | Video)[];
-  autoplay?: boolean;
   show_logo?: boolean;
   header_color?: number | string;
   component: "block_hero";
@@ -65,15 +64,28 @@ export interface BlockSplit {
   _editable?: string | undefined;
 }
 
-export interface BlockText {
+export interface BlockStatement {
+  text: StoryblokRichtext;
+  text_size?: unknown;
+  text_alignment: "left" | "center" | "right";
+  text_placement: "left" | "center" | "right";
   header_color?: number | string;
   background_color?: number | string;
   text_color?: number | string;
+  component: "block_statement";
+  _uid: string;
+  _editable?: string | undefined;
+}
+
+export interface BlockText {
   text: StoryblokRichtext;
   text_alignment: "left" | "center" | "right";
   text_placement: "left" | "center" | "right";
   link_title?: string;
   link?: Exclude<StoryblokMultilink, {linktype?: "asset"}>;
+  header_color?: number | string;
+  background_color?: number | string;
+  text_color?: number | string;
   component: "block_text";
   _uid: string;
   _editable?: string | undefined;
@@ -148,7 +160,7 @@ export interface LinkGroup {
 }
 
 export interface Page {
-  blocks?: (BlockCareers | BlockCarousel | BlockHero | BlockMediaGrid | BlockSplit | BlockText)[];
+  blocks?: (BlockCareers | BlockCarousel | BlockHero | BlockMediaGrid | BlockSplit | BlockStatement | BlockText)[];
   seo_title: string;
   seo_description: string;
   seo_image: StoryblokAsset;
