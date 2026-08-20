@@ -23,6 +23,8 @@ const isPlaceRightAndAlignLeft = computed(() => {
   return block.text_placement === 'right' && block.text_alignment === 'left'
 })
 
+type StatementFontSize = keyof typeof statementFontSizes
+
 const statementFontSizes: Record<'1' | '2' | '3' | '4' | '5', { min: number, max: number }> = {
   1: { min: 16, max: 18 },
   2: { min: 19, max: 26 },
@@ -30,6 +32,12 @@ const statementFontSizes: Record<'1' | '2' | '3' | '4' | '5', { min: number, max
   4: { min: 24, max: 42 },
   5: { min: 28, max: 50 },
 }
+
+const statementFontSize = computed(() => {
+  const { value } = block.text_size as { value: StatementFontSize }
+
+  return statementFontSizes[value]
+})
 </script>
 
 <template>
@@ -57,8 +65,8 @@ const statementFontSizes: Record<'1' | '2' | '3' | '4' | '5', { min: number, max
           prose-p:text-balance
         "
         :style="{
-          '--fluid-min': statementFontSizes[block.text_size.value].min,
-          '--fluid-max': statementFontSizes[block.text_size.value].max,
+          '--fluid-min': statementFontSize.min,
+          '--fluid-max': statementFontSize.max,
         }"
       >
         <StoryblokText :html="block.text" />
