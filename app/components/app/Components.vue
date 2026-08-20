@@ -9,7 +9,7 @@ import type {
   Page,
 } from '#storyblok-components'
 import type { Colours } from '@/utils/maps'
-import { backgroundTheme } from '@/utils/maps'
+// import { backgroundTheme } from '@/utils/maps'
 
 interface Props {
   content: Page
@@ -50,16 +50,17 @@ const setColourProperties = (block: Blocks, index: number) => hasColourPropertie
 
 const isSingleItemMediaGrid = (block: Blocks) => block.component === 'block_media_grid' && (block.items?.length ?? 0) === 1
 
-const getHeaderColor = (block: Blocks): 'light' | 'dark' => {
-  if ('header_color' in block && block.header_color) {
-    return block.header_color as 'light' | 'dark'
-  }
+// const getHeaderColor = (block: Blocks): 'light' | 'dark' => {
+//   // if ('header_color' in block && block.header_color) {
+//   //   return block.header_color as 'light' | 'dark'
+//   // }
 
-  if ('background_color' in block) {
-    return backgroundTheme[block.background_color as Colours || 'warmgrey']
-  }
-  return 'light'
-}
+//   // if ('background_color' in block) {
+//   //   return backgroundTheme[block.background_color as Colours || 'warmgrey']
+//   // }
+
+//   return 'light'
+// }
 </script>
 
 <template>
@@ -74,7 +75,7 @@ const getHeaderColor = (block: Blocks): 'light' | 'dark' => {
         ...setColourProperties(block, index),
         isSingleItemMediaGrid(block) ? 'content-blocks__item--single-media-grid' : '',
       ]"
-      :theme="getHeaderColor(block)"
+      :block="block"
     >
       <BlockCareers
         v-if="block.component === 'block_careers'"
