@@ -49,7 +49,7 @@
     "better-sqlite3": "^13.0.3",
     "del-cli": "^7.0.0",
     "eslint": "^10.8.1",
-    "nuxt-ai-ready": "^1.8.0",
+    "nuxt-ai-ready": "^2.0.0",
     "nuxt-og-image": "^6.7.8",
     "storyblok": "4.22.0",
     "typescript": "^6.0.3",
