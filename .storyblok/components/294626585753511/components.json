@@ -191,7 +191,7 @@
     "display_name": "Hero",
     "description": "Hero of images and videos",
     "created_at": "2026-08-18T16:57:29.278Z",
-    "updated_at": "2026-08-19T16:47:32.743Z",
+    "updated_at": "2026-08-20T08:32:00.539Z",
     "id": 210463331447369,
     "schema": {
       "items": {
@@ -244,7 +244,7 @@
     "image": null,
     "preview_field": null,
     "is_root": false,
-    "preview_tmpl": null,
+    "preview_tmpl": "<ul class=\"flex sb-group-button--has-spaces\">\n  {{@each(it.items) =&gt; item, index}}\n    <li>\n      {{@if(item.image_desktop.filename)}}\n        {{@image(item.image_desktop.filename)/}}\n      {{/if}}\n    </li>\n  {{/each}}\n</ul>",
     "is_nestable": true,
     "all_presets": [],
     "preset_id": null,
@@ -262,7 +262,7 @@
     "display_name": "Media Grid",
     "description": "Display a grid of images and videos",
     "created_at": "2026-08-18T14:24:33.440Z",
-    "updated_at": "2026-08-20T08:02:31.070Z",
+    "updated_at": "2026-08-20T08:27:32.232Z",
     "id": 210425747217882,
     "schema": {
       "items": {
@@ -325,7 +325,7 @@
     "image": null,
     "preview_field": "media",
     "is_root": false,
-    "preview_tmpl": "{{@each(it.items) =&gt; item, index}}\n  <div class=\"field-type-bloks__title\">{{item.title}}</div>\n  <div>{{item.subtitle}}</div>\n  {{@image(item.image_desktop.filename)/}}\n{{/each}}",
+    "preview_tmpl": "<ul class=\"flex sb-group-button--has-spaces\">\n  {{@each(it.items) =&gt; item, index}}\n    <li>\n      {{@if(item.image_desktop.filename)}}\n        {{@image(item.image_desktop.filename)/}}\n      {{/if}}\n\n      <div>\n        {{@if(item.title)}}\n          <div><strong>{{item.title}}</strong></div>\n        {{/if}}\n\n        {{@if(item.subtitle)}}\n          <div>{{item.subtitle}}</div>\n        {{/if}}\n      </div>\n    </li>\n  {{/each}}\n</ul>",
     "is_nestable": true,
     "all_presets": [],
     "preset_id": null,
@@ -343,12 +343,39 @@
     "display_name": "Split",
     "description": "",
     "created_at": "2026-08-18T14:24:33.484Z",
-    "updated_at": "2026-08-20T07:09:23.484Z",
+    "updated_at": "2026-08-20T10:06:34.999Z",
     "id": 210425747398109,
     "schema": {
+      "header_color": {
+        "type": "option",
+        "pos": 0,
+        "use_uuid": true,
+        "source": "internal",
+        "datasource_slug": "header-theme",
+        "default_value": "light",
+        "id": "KA87waimTumznWYQNkma_g"
+      },
+      "background_color": {
+        "type": "option",
+        "pos": 1,
+        "use_uuid": true,
+        "display_name": "Background Colour",
+        "id": "IVgMrRA_QtGQlNel6R1F_Q",
+        "source": "internal",
+        "datasource_slug": "colours"
+      },
+      "text_color": {
+        "type": "option",
+        "pos": 2,
+        "use_uuid": true,
+        "display_name": "Text Colour",
+        "id": "eoh4jqf7T8moOFEvXLh6gQ",
+        "source": "internal",
+        "datasource_slug": "colours"
+      },
       "content": {
         "type": "bloks",
-        "pos": 0,
+        "pos": 3,
         "maximum": 1,
         "restrict_type": "",
         "restrict_components": true,
@@ -360,7 +387,7 @@
       },
       "ratio_mobile": {
         "type": "option",
-        "pos": 1,
+        "pos": 4,
         "use_uuid": true,
         "source": "internal",
         "datasource_slug": "ratio",
@@ -369,7 +396,7 @@
       },
       "ratio_desktop": {
         "type": "option",
-        "pos": 2,
+        "pos": 5,
         "use_uuid": true,
         "source": "internal",
         "datasource_slug": "ratio",
@@ -378,17 +405,17 @@
       },
       "michelin_star": {
         "type": "boolean",
-        "pos": 3,
+        "pos": 6,
         "id": "vY6FEXpcSjCJs3TIXfi6lQ"
       },
       "headline": {
         "type": "text",
-        "pos": 4,
+        "pos": 7,
         "id": "_Buzz3b8SS2fgHP5qecaMA"
       },
       "text": {
         "type": "richtext",
-        "pos": 5,
+        "pos": 8,
         "required": true,
         "customize_toolbar": true,
         "toolbar": [
@@ -404,50 +431,32 @@
       },
       "link_title": {
         "type": "text",
-        "pos": 6,
+        "pos": 9,
         "id": "Oox4xtlPSpijDtvBY9hPBg"
       },
       "link": {
         "type": "multilink",
-        "pos": 7,
+        "pos": 10,
         "id": "HleM5OrmREu_nIKmvLSRJg",
         "email_link_type": true
       },
       "reverse": {
         "type": "boolean",
-        "pos": 8,
+        "pos": 11,
         "id": "6SeQcuxJQMSBCDVoA8CIjA",
         "default_value": true
       },
       "reverse_desktop": {
         "type": "boolean",
-        "pos": 9,
+        "pos": 12,
         "id": "ZlQ_ZapQSM6T2TaWleM5SA"
-      },
-      "background_color": {
-        "type": "option",
-        "pos": 10,
-        "use_uuid": true,
-        "display_name": "Background Colour",
-        "id": "IVgMrRA_QtGQlNel6R1F_Q",
-        "source": "internal",
-        "datasource_slug": "colours"
-      },
-      "text_color": {
-        "type": "option",
-        "pos": 11,
-        "use_uuid": true,
-        "display_name": "Text Colour",
-        "id": "eoh4jqf7T8moOFEvXLh6gQ",
-        "source": "internal",
-        "datasource_slug": "colours"
       },
       "tab-2cbbaf52-ab4b-4ff1-bea4-5e0516282466": {
         "display_name": "Anchor",
         "keys": [
           "anchor_id"
         ],
-        "pos": 12,
+        "pos": 13,
         "type": "tab",
         "id": "LLuvUqtLT_G-pF4FFigkZg",
         "name": "tab-2cbbaf52-ab4b-4ff1-bea4-5e0516282466"
@@ -456,16 +465,17 @@
         "display_name": "Theme",
         "keys": [
           "background_color",
-          "text_color"
+          "text_color",
+          "header_color"
         ],
-        "pos": 13,
+        "pos": 14,
         "type": "tab",
         "id": "2IVngikvRtqpcnGN5EK6tw",
         "name": "tab-d8856782-292f-46da-a972-718de442bab7"
       },
       "anchor_id": {
         "type": "text",
-        "pos": 14,
+        "pos": 15,
         "display_name": "Anchor ID",
         "id": "nzkwFIAdS-urM-G0jDbigQ",
         "description": "Make sure this ID matches the one added with a link.\n\nOtherwise this anchor is what you can add to directly link to a section in the page. i.e. https://site.com/page#anchorID"
@@ -492,7 +502,7 @@
     "display_name": "Text",
     "description": "",
     "created_at": "2026-08-18T14:24:33.454Z",
-    "updated_at": "2026-08-20T07:08:53.633Z",
+    "updated_at": "2026-08-20T08:36:31.335Z",
     "id": 210425747275227,
     "schema": {
       "header_color": {
@@ -512,7 +522,8 @@
         "display_name": "Background Colour",
         "id": "IVgMrRA_QtGQlNel6R1F_Q",
         "source": "internal",
-        "datasource_slug": "colours"
+        "datasource_slug": "colours",
+        "default_value": "white"
       },
       "text_color": {
         "type": "option",
@@ -521,7 +532,8 @@
         "display_name": "Text Colour",
         "id": "eoh4jqf7T8moOFEvXLh6gQ",
         "source": "internal",
-        "datasource_slug": "colours"
+        "datasource_slug": "colours",
+        "default_value": "offblack"
       },
       "text": {
         "type": "richtext",
@@ -696,7 +708,7 @@
     "display_name": "Image",
     "description": "Set a mobile and desktop image",
     "created_at": "2026-08-18T16:17:58.357Z",
-    "updated_at": "2026-08-20T08:04:35.250Z",
+    "updated_at": "2026-08-20T08:15:46.738Z",
     "id": 210453620154849,
     "schema": {
       "image_mobile": {
@@ -736,7 +748,7 @@
     "image": null,
     "preview_field": null,
     "is_root": false,
-    "preview_tmpl": "{{@image(it.image_desktop.filename)/}}",
+    "preview_tmpl": "{{@image(it.image_desktop.filename)/}}\n\n{{@if(it.title)}}\n    <div><strong>{{it.title}}</strong></div>\n{{/if}}\n\n{{@if(it.subtitle)}}\n    <div>{{it.subtitle}}</div>\n{{/if}}",
     "is_nestable": true,
     "all_presets": [],
     "preset_id": null,
@@ -811,7 +823,7 @@
     "display_name": null,
     "description": "Set a mobile and desktop image",
     "created_at": "2026-08-18T16:00:56.977Z",
-    "updated_at": "2026-08-18T16:06:34.554Z",
+    "updated_at": "2026-08-20T08:30:05.840Z",
     "id": 210449436582187,
     "schema": {
       "image_mobile": {
@@ -835,7 +847,7 @@
     "image": null,
     "preview_field": null,
     "is_root": false,
-    "preview_tmpl": null,
+    "preview_tmpl": "{{@image(it.image_desktop.filename)/}}",
     "is_nestable": true,
     "all_presets": [],
     "preset_id": null,

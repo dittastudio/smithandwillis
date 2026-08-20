@@ -13,8 +13,8 @@ const { scrollMarginTop } = useCentreAnchor(scrollAnchor, 100)
 
 const ratios = {
   mobile: {
-    x: ratioDimensions(block.ratio || '').width,
-    y: ratioDimensions(block.ratio || '').height,
+    x: ratioDimensions(block.ratio_mobile || '').width,
+    y: ratioDimensions(block.ratio_mobile || '').height,
   },
   desktop: {
     x: ratioDimensions(block.ratio_desktop || '').width,
@@ -32,7 +32,7 @@ const ratios = {
       block.reverse_desktop ? 'md:flex-row-reverse' : 'md:flex-row',
     ]"
   >
-    <div class="w-full md:w-1/2 md:self-stretch md:[&>*]:h-full bg-offblack">
+    <div class="w-full md:w-1/2 md:self-stretch md:*:h-full bg-offblack">
       <template
         v-if="block.content?.[0]"
       >
@@ -40,7 +40,7 @@ const ratios = {
           v-if="block.content[0].component === 'split_media' && block.content[0]?.media"
           :asset="block.content[0].media"
           :desktop-asset="block.content[0].media"
-          :ratio="block.ratio"
+          :ratio="block.ratio_mobile"
           :desktop-ratio="block.ratio_desktop"
           sizes="
             2xs:100vw
@@ -122,7 +122,12 @@ const ratios = {
 
       <div
         v-if="storyblokRichTextContent(block.text)"
-        class="prose"
+        class="
+          prose
+          prose-p:type-serif-large
+          prose-p:max-w-[60ch]
+          prose-p:text-pretty
+        "
       >
         <StoryblokText :html="block.text" />
       </div>
@@ -133,7 +138,7 @@ const ratios = {
         class="p-4 -m-4 type-serif-large italic"
       >
         <UiTextLink :is-external="block.link.linktype !== 'story'">
-          {{ block.link.title }}
+          {{ block.link_title }}
         </UiTextLink>
       </StoryblokLink>
     </div>

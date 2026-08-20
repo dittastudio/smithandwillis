@@ -46,6 +46,9 @@ export interface BlockMediaGrid {
 }
 
 export interface BlockSplit {
+  header_color?: number | string;
+  background_color?: number | string;
+  text_color?: number | string;
   content?: (SplitCarousel | SplitMedia)[];
   ratio_mobile?: number | string;
   ratio_desktop?: number | string;
@@ -56,8 +59,6 @@ export interface BlockSplit {
   link?: Exclude<StoryblokMultilink, {linktype?: "asset"}>;
   reverse?: boolean;
   reverse_desktop?: boolean;
-  background_color?: number | string;
-  text_color?: number | string;
   anchor_id?: string;
   component: "block_split";
   _uid: string;

@@ -35,7 +35,7 @@ onMounted(async () => {
       :style="stylesOut"
     >
       <IconLogoMark
-        class="w-[9.75vw] min-w-25 max-w-40 h-auto transition-transform duration-1000 ease-outQuart scale-100"
+        class="w-22 lg:w-30 h-auto transition-transform duration-1000 ease-outQuart scale-100"
         :class="{
           'scale-105 -rotate-3': !ready,
         }"
