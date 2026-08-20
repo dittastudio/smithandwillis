@@ -215,7 +215,7 @@ const classesHeader = computed(() => [
   &::before {
     --app-header-gradient-color: var(--color-offblack);
 
-    opacity: 0.15;
+    opacity: 0.3;
   }
 
   &::after {
@@ -235,7 +235,7 @@ const classesHeader = computed(() => [
 
   &:not(.app-header--theme-dark).app-header--has-scrolled::before,
   &:not(.app-header--theme-dark).app-header--has-menu::before {
-    opacity: 0.3;
+    opacity: 0.6;
   }
 
   &.app-header--theme-dark.app-header--has-scrolled::after,
