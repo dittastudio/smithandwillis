@@ -215,17 +215,13 @@ const classesHeader = computed(() => [
   &::before {
     --app-header-gradient-color: var(--color-offblack);
 
-    opacity: 0.15;
+    opacity: 0.5;
   }
 
   &::after {
     --app-header-gradient-color: var(--color-white);
 
     opacity: 0;
-  }
-
-  &.app-header--theme-dark::after {
-    opacity: 0.15;
   }
 
   &:not(.app-header--theme-dark)::after,
@@ -235,22 +231,22 @@ const classesHeader = computed(() => [
 
   &:not(.app-header--theme-dark).app-header--has-scrolled::before,
   &:not(.app-header--theme-dark).app-header--has-menu::before {
-    opacity: 0.3;
+    opacity: 0.5;
   }
 
   &.app-header--theme-dark.app-header--has-scrolled::after,
   &.app-header--theme-dark.app-header--has-menu::after {
-    opacity: 0.3;
+    opacity: 0.5;
   }
 
   @media (hover: hover) {
     &:not(.app-header--theme-dark):hover::before {
-      opacity: 0.5;
+      opacity: 0.75;
       height: 300%;
     }
 
     &.app-header--theme-dark:hover::after {
-      opacity: 0.5;
+      opacity: 1;
       height: 300%;
     }
   }

@@ -57,7 +57,8 @@ const emit = defineEmits<{
         md:py-8
       bg-white
       text-offblack
-        shadow-md
+        md:border-r
+        md:border-offblack/10
         transition-transform
         duration-300
         ease-outQuart
@@ -86,7 +87,13 @@ const emit = defineEmits<{
         <IconArrowLarge class="w-4 h-4 rotate-90 pointer-events-none" />
       </button>
 
-      <ul>
+      <ul
+        class="transition-opacity ease-out"
+        :class="{
+          'opacity-0 duration-50': !isOpen,
+          'opacity-100 duration-1000 delay-150': isOpen,
+        }"
+      >
         <li
           v-for="link in item.links"
           :key="link._uid"
