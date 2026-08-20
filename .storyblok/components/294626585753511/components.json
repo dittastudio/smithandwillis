@@ -262,7 +262,7 @@
     "display_name": "Media Grid",
     "description": "Display a grid of images and videos",
     "created_at": "2026-08-18T14:24:33.440Z",
-    "updated_at": "2026-08-20T08:27:32.232Z",
+    "updated_at": "2026-08-20T10:32:24.396Z",
     "id": 210425747217882,
     "schema": {
       "items": {
@@ -325,7 +325,7 @@
     "image": null,
     "preview_field": "media",
     "is_root": false,
-    "preview_tmpl": "<ul class=\"flex sb-group-button--has-spaces\">\n  {{@each(it.items) =&gt; item, index}}\n    <li>\n      {{@if(item.image_desktop.filename)}}\n        {{@image(item.image_desktop.filename)/}}\n      {{/if}}\n\n      <div>\n        {{@if(item.title)}}\n          <div><strong>{{item.title}}</strong></div>\n        {{/if}}\n\n        {{@if(item.subtitle)}}\n          <div>{{item.subtitle}}</div>\n        {{/if}}\n      </div>\n    </li>\n  {{/each}}\n</ul>",
+    "preview_tmpl": "<ul class=\"flex sb-group-button--has-spaces\">\n  {{@each(it.items) =&gt; item, index}}\n    <li>\n      {{@if(item.component == \"grid_image\")}}\n        {{@if(item.image_desktop)}}\n          {{@if(item.image_desktop.filename)}}\n            {{@image(item.image_desktop.filename)/}}\n          {{/if}}\n        {{/if}}\n      {{/if}}\n\n      {{@if(item.component == \"grid_video\")}}\n           🎬 Video\n      {{/if}}\n\n      <div>\n        {{@if(item.title)}}\n          <div><strong>{{item.title}}</strong></div>\n        {{/if}}\n\n        {{@if(item.subtitle)}}\n          <div>{{item.subtitle}}</div>\n        {{/if}}\n      </div>\n    </li>\n  {{/each}}\n</ul>",
     "is_nestable": true,
     "all_presets": [],
     "preset_id": null,

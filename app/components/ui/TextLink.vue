@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import IconArrowExternal from '@/assets/icons/arrow-external.svg'
-import IconArrowSmall from '@/assets/icons/arrow-small.svg'
+import IconChevronRight from '@/assets/icons/chevron-right.svg'
 
 interface Props {
   isExternal: boolean
@@ -37,7 +37,7 @@ const { isExternal, as = 'span' } = defineProps<Props>()
       "
     />
 
-    <IconArrowSmall
+    <IconChevronRight
       v-else
       class="
         w-1.75
