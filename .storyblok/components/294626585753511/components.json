@@ -262,7 +262,7 @@
     "display_name": "Media Grid",
     "description": "Display a grid of images and videos",
     "created_at": "2026-08-18T14:24:33.440Z",
-    "updated_at": "2026-08-19T16:48:01.574Z",
+    "updated_at": "2026-08-20T08:02:31.070Z",
     "id": 210425747217882,
     "schema": {
       "items": {
@@ -325,7 +325,7 @@
     "image": null,
     "preview_field": "media",
     "is_root": false,
-    "preview_tmpl": "{{@image(it.media.filename)/}}",
+    "preview_tmpl": "{{@each(it.items) =&gt; item, index}}\n  <div class=\"field-type-bloks__title\">{{item.title}}</div>\n  <div>{{item.subtitle}}</div>\n  {{@image(item.image_desktop.filename)/}}\n{{/each}}",
     "is_nestable": true,
     "all_presets": [],
     "preset_id": null,
@@ -343,7 +343,7 @@
     "display_name": "Split",
     "description": "",
     "created_at": "2026-08-18T14:24:33.484Z",
-    "updated_at": "2026-08-18T17:33:03.631Z",
+    "updated_at": "2026-08-20T07:09:23.484Z",
     "id": 210425747398109,
     "schema": {
       "content": {
@@ -410,7 +410,8 @@
       "link": {
         "type": "multilink",
         "pos": 7,
-        "id": "HleM5OrmREu_nIKmvLSRJg"
+        "id": "HleM5OrmREu_nIKmvLSRJg",
+        "email_link_type": true
       },
       "reverse": {
         "type": "boolean",
@@ -491,7 +492,7 @@
     "display_name": "Text",
     "description": "",
     "created_at": "2026-08-18T14:24:33.454Z",
-    "updated_at": "2026-08-19T16:55:45.253Z",
+    "updated_at": "2026-08-20T07:08:53.633Z",
     "id": 210425747275227,
     "schema": {
       "header_color": {
@@ -608,7 +609,8 @@
       "link": {
         "type": "multilink",
         "pos": 7,
-        "id": "t4XO_BZbRcuGbKUU_BkD3w"
+        "id": "t4XO_BZbRcuGbKUU_BkD3w",
+        "email_link_type": true
       },
       "tab-f7cf244b-f9ae-4e91-9e50-e13f00170f60": {
         "display_name": "Theme",
@@ -694,7 +696,7 @@
     "display_name": "Image",
     "description": "Set a mobile and desktop image",
     "created_at": "2026-08-18T16:17:58.357Z",
-    "updated_at": "2026-08-19T13:57:59.440Z",
+    "updated_at": "2026-08-20T08:04:35.250Z",
     "id": 210453620154849,
     "schema": {
       "image_mobile": {
@@ -719,21 +721,22 @@
         "pos": 2,
         "id": "0O12qmTvTYCgbfLMe6yeEw"
       },
-      "sub_title": {
+      "subtitle": {
         "type": "text",
         "pos": 3,
-        "id": "pHuQXQVxRWSb_PFfiBIwhQ"
+        "id": "pHuQXQVxRWSb_PFfiBIwhQ",
+        "display_name": "Subtitle"
       },
       "link": {
         "type": "multilink",
-        "pos": 5,
+        "pos": 4,
         "id": "NgqYspLsTE-CiJLept3wbQ"
       }
     },
     "image": null,
     "preview_field": null,
     "is_root": false,
-    "preview_tmpl": null,
+    "preview_tmpl": "{{@image(it.image_desktop.filename)/}}",
     "is_nestable": true,
     "all_presets": [],
     "preset_id": null,
@@ -751,7 +754,7 @@
     "display_name": "Video",
     "description": "Set a mobile and desktop video",
     "created_at": "2026-08-18T16:39:47.546Z",
-    "updated_at": "2026-08-19T13:57:36.775Z",
+    "updated_at": "2026-08-20T08:05:46.793Z",
     "id": 210458982593069,
     "schema": {
       "video_mobile": {
@@ -776,14 +779,14 @@
         "pos": 2,
         "id": "0O12qmTvTYCgbfLMe6yeEw"
       },
-      "sub_title": {
+      "subtitle": {
         "type": "text",
         "pos": 3,
         "id": "pHuQXQVxRWSb_PFfiBIwhQ"
       },
       "link": {
         "type": "multilink",
-        "pos": 5,
+        "pos": 4,
         "id": "NgqYspLsTE-CiJLept3wbQ"
       }
     },

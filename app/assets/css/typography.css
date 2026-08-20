@@ -24,16 +24,6 @@
 
 
 /* Serif */
-@utility type-serif-medium {
-  font-family: var(--font-serif);
-  font-size: var(--text-15);
-  line-height: calc(24 / 16);
-
-  @variant md {
-    font-size: var(--text-16);
-  }
-}
-
 @utility type-serif-large {
   font-family: var(--font-serif);
   font-size: var(--text-16);
@@ -55,6 +45,16 @@
   @variant md {
     font-size: var(--text-18);
     line-height: calc(26 / 18);
+  }
+}
+
+@utility type-serif-medium {
+  font-family: var(--font-serif);
+  font-size: var(--text-15);
+  line-height: calc(24 / 16);
+
+  @variant md {
+    font-size: var(--text-16);
   }
 }
 

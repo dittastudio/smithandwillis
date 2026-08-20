@@ -53,7 +53,7 @@ export interface BlockSplit {
   headline?: string;
   text: StoryblokRichtext;
   link_title?: string;
-  link?: Exclude<StoryblokMultilink, {linktype?: "email"} | {linktype?: "asset"}>;
+  link?: Exclude<StoryblokMultilink, {linktype?: "asset"}>;
   reverse?: boolean;
   reverse_desktop?: boolean;
   background_color?: number | string;
@@ -72,7 +72,7 @@ export interface BlockText {
   text_alignment: "left" | "center" | "right";
   text_placement: "left" | "center" | "right";
   link_title?: string;
-  link?: Exclude<StoryblokMultilink, {linktype?: "email"} | {linktype?: "asset"}>;
+  link?: Exclude<StoryblokMultilink, {linktype?: "asset"}>;
   component: "block_text";
   _uid: string;
   _editable?: string | undefined;
@@ -92,7 +92,7 @@ export interface GridImage {
   image_mobile?: StoryblokAsset;
   image_desktop: StoryblokAsset;
   title?: string;
-  sub_title?: string;
+  subtitle?: string;
   link?: Exclude<StoryblokMultilink, {linktype?: "email"} | {linktype?: "asset"}>;
   component: "grid_image";
   _uid: string;
@@ -103,7 +103,7 @@ export interface GridVideo {
   video_mobile?: StoryblokAsset;
   video_desktop: StoryblokAsset;
   title?: string;
-  sub_title?: string;
+  subtitle?: string;
   link?: Exclude<StoryblokMultilink, {linktype?: "email"} | {linktype?: "asset"}>;
   component: "grid_video";
   _uid: string;

@@ -103,7 +103,7 @@ const ratios = {
         max-md:border-warm-grey/20
       "
       :class="{
-        'md:pl-[calc(var(--app-outer-gutter)_+_--spacing(4))] 2xl:pr-[calc(var(--app-outer-gutter)_+_--spacing(4))]': !block.reverse_desktop,
+        'md:pl-[calc(var(--app-outer-gutter)+(--spacing(4)))] 2xl:pr-[calc(var(--app-outer-gutter)+(--spacing(4)))]': !block.reverse_desktop,
         'pt-20 pb-12': block.reverse,
         'pb-20 pt-12': !block.reverse,
       }"
@@ -127,18 +127,15 @@ const ratios = {
         <StoryblokText :html="block.text" />
       </div>
 
-      <template v-for="item in block.link">
-        <StoryblokLink
-          v-if="item.link.cached_url"
-          :key="item._uid"
-          :item="item.link"
-          class="p-4 -m-4 type-serif-large italic"
-        >
-          <UiTextLink :is-external="item.link.linktype === 'url' || item.link.linktype === 'email'">
-            {{ item.title }}
-          </UiTextLink>
-        </StoryblokLink>
-      </template>
+      <StoryblokLink
+        v-if="block.link?.cached_url"
+        :item="block.link"
+        class="p-4 -m-4 type-serif-large italic"
+      >
+        <UiTextLink :is-external="block.link.linktype !== 'story'">
+          {{ block.link.title }}
+        </UiTextLink>
+      </StoryblokLink>
     </div>
   </div>
 </template>

@@ -88,7 +88,7 @@ const items = computed(() => block.items ?? [])
         </template>
 
         <figcaption
-          v-if="item.title || item.sub_title"
+          v-if="item.title || item.subtitle"
           class="absolute inset-0 flex flex-col items-start justify-end contain-layout contain-paint text-white"
         >
           <div class="sticky bottom-0">
@@ -108,7 +108,7 @@ const items = computed(() => block.items ?? [])
                 </UiTextLink>
 
                 <p class="opacity-80 type-serif-medium transition-opacity duration-300 ease-out [a:hover_&]:opacity-70 italic">
-                  {{ item.sub_title }}
+                  {{ item.subtitle }}
                 </p>
               </StoryblokLink>
 
@@ -121,7 +121,7 @@ const items = computed(() => block.items ?? [])
                 </h4>
 
                 <p class="opacity-80 type-serif-medium italic">
-                  {{ item.sub_title }}
+                  {{ item.subtitle }}
                 </p>
               </div>
             </div>

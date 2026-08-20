@@ -10,7 +10,7 @@ const { block } = defineProps<Props>()
 const placementClasses: Record<BlockText['text_placement'], string> = {
   left: 'items-start',
   center: 'items-center',
-  right: 'items-end',
+  right: 'md:items-end',
 }
 
 const alignmentClasses: Record<BlockText['text_alignment'], string> = {
@@ -18,6 +18,10 @@ const alignmentClasses: Record<BlockText['text_alignment'], string> = {
   center: 'text-center',
   right: 'text-right',
 }
+
+const isPlaceRightAndAlignLeft = computed(() => {
+  return block.text_placement === 'right' && block.text_alignment === 'left'
+})
 </script>
 
 <template>
@@ -30,23 +34,36 @@ const alignmentClasses: Record<BlockText['text_alignment'], string> = {
     ]"
   >
     <div
-      v-if="storyblokRichTextContent(block.text)"
-      class="prose prose-p:type-serif-large prose-h1:type-serif-large-caps prose-h4:type-sans-medium-caps"
+      class="flex flex-col gap-y-8 md:gap-y-10"
       :class="{
-        'w-3/4 md:w-1/2 md:pl-[calc(var(--app-inner-gutter)*0.5)]': block.text_placement === 'right' && block.text_alignment === 'left',
+        'md:w-1/2 md:pl-[calc(var(--app-inner-gutter)*0.5)]': isPlaceRightAndAlignLeft,
       }"
     >
-      <StoryblokText :html="block.text" />
-    </div>
+      <div
+        v-if="storyblokRichTextContent(block.text)"
+        class="
+          prose
+          prose-p:type-serif-large
+          prose-p:max-w-[60ch]
+          prose-p:text-pretty
+          prose-headings:text-balance
+          prose-h1:type-serif-large-caps
+          prose-h2:type-serif-large-caps
+          prose-h4:type-sans-medium-caps
+        "
+      >
+        <StoryblokText :html="block.text" />
+      </div>
 
-    <StoryblokLink
-      v-if="block.link?.cached_url"
-      :item="block.link"
-      class="p-4 -m-4 type-serif-small-caps"
-    >
-      <UiTextLink :is-external="block.link.linktype === 'url'">
-        {{ block.link_title }}
-      </UiTextLink>
-    </StoryblokLink>
+      <StoryblokLink
+        v-if="block.link?.cached_url"
+        :item="block.link"
+        class="p-4 -m-4 type-serif-large italic"
+      >
+        <UiTextLink :is-external="block.link.linktype === 'url'">
+          {{ block.link_title }}
+        </UiTextLink>
+      </StoryblokLink>
+    </div>
   </div>
 </template>
