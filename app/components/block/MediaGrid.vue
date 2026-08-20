@@ -12,6 +12,17 @@ const { block } = defineProps<Props>()
 const ratioMobile = computed(() => ratioDimensions(block.ratio_mobile))
 const ratioDesktop = computed(() => ratioDimensions(block.ratio_desktop))
 const items = computed(() => block.items ?? [])
+
+const sizesDesktop = computed(() => {
+  switch (items.value.length) {
+    case 2:
+      return 'sm:100vw md:50vw lg:50vw'
+    case 3:
+      return 'sm:100vw md:33.33vw lg:33.33vw'
+    default:
+      return 'sm:100vw md:100vw lg:100vw'
+  }
+})
 </script>
 
 <template>
@@ -33,7 +44,7 @@ const items = computed(() => block.items ?? [])
             :width="ratioDesktop.width"
             :height="ratioDesktop.height"
             :src="item.image_desktop.filename"
-            sizes="sm:100vw md:100vw lg:100vw"
+            :sizes="sizesDesktop"
           />
 
           <MediaSource
