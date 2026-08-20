@@ -1,75 +1,7 @@
 @utility prose {
-  & :where(h1, h2, h3, h4, h5, h6):has(+ :where(p, ul, ol)) {
-    margin-bottom: --spacing(8);
-
-    @variant md {
-      margin-bottom: --spacing(10);
-    }
-  }
-
   & :where(p + p) {
     margin-top: 1lh;
   }
-
-  /* h1, h2, h3, h4, h5, h6, p, ul, ol {
-    max-width: 60ch;
-
-    @variant md {
-      margin-inline: auto;
-    }
-  } */
-
-  /* h1, h2, h3, h4, h5, h6 {
-    letter-spacing: var(--tracking-xl);
-    text-transform: uppercase;
-    text-wrap: balance;
-  }
-
-  h1, h2 {
-    font-size: var(--text-16);
-    line-height: calc(24 / 16);
-
-    @variant md {
-      font-size: var(--text-18);
-      line-height: calc(26 / 18);
-    }
-  }
-
-  h3, h4, h5, h6 {
-    font-size: var(--text-15);
-    line-height: calc(24 / 15);
-
-    @variant md {
-      font-size: var(--text-16);
-      line-height: calc(24 / 16);
-    }
-  } */
-
-  /* p, ul, ol {
-    font-family: var(--font-serif);
-    font-size: var(--text-16);
-    line-height: calc(24 / 16);
-    text-wrap: pretty;
-
-    @variant md {
-      font-size: var(--text-18);
-    }
-  } */
-
-  /* & * + :is(h1, h2, h3, h4, h5, h6) {
-    margin-block-start: 5em;
-    margin-block-start: 5lh;
-  }
-
-  & :is(h1, h2, h3, h4, h5, h6):has(+ p) {
-    margin-block-end: 1.5em;
-    margin-block-end: 1.5lh;
-  }
-
-  & p + p {
-    margin-block-start: 1em;
-    margin-block-start: 1lh;
-  } */
 
   & ul,
   & ol {
@@ -150,6 +82,12 @@
 
 @custom-variant prose-headings {
   & :where(h1, h2, h3, h4, h5, h6) {
+    @slot;
+  }
+}
+
+@custom-variant prose-headings-before {
+  & :where(p, ul, ol) + :where(h1, h2, h3, h4, h5, h6) {
     @slot;
   }
 }

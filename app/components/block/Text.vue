@@ -47,9 +47,15 @@ const isPlaceRightAndAlignLeft = computed(() => {
           prose-p:max-w-[60ch]
           prose-p:text-pretty
           prose-headings:text-balance
+          prose-headings:mb-8
+          prose-headings:md:mb-10
+          prose-headings-before:mt-[4lh]
           prose-h1:type-serif-large-caps
           prose-h2:type-serif-large-caps
+          prose-h3:type-serif-large-caps
           prose-h4:type-sans-medium-caps
+          prose-h5:type-sans-medium-caps
+          prose-h6:type-sans-medium-caps
         "
       >
         <StoryblokText :html="block.text" />
