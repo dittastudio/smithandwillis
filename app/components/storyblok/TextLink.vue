@@ -1,9 +1,17 @@
 <script lang="ts" setup>
-import type { SbVueRichTextProps } from '@storyblok/vue'
+import type { SbVueRichTextProps, SbVueRichTextRenderContext } from '@storyblok/vue'
+
+interface Props {
+  type: 'link'
+  attrs?: SbVueRichTextProps['link']['attrs']
+  // eslint-disable-next-line vue/prop-name-casing
+  _key?: string
+  context?: SbVueRichTextRenderContext
+}
 
 defineOptions({ inheritAttrs: false })
 
-const { attrs } = defineProps<SbVueRichTextProps['link']>()
+const { attrs } = defineProps<Props>()
 
 const to = computed(() => {
   const { href, linktype } = attrs ?? {}

@@ -1,11 +1,10 @@
 <script lang="ts" setup>
-import type { StoryblokRichtext } from '#storyblok-types'
 import type { SbRichTextInput } from '@storyblok/richtext'
-import type { SbVueRichTextComponentMap } from '@storyblok/vue'
+import type { StoryblokRichTextDoc } from '#storyblok-types'
 import { StoryblokTextLink } from '#components'
 
 interface Props {
-  html?: StoryblokRichtext | undefined
+  html?: StoryblokRichTextDoc
 }
 
 const { html } = defineProps<Props>()
@@ -13,7 +12,7 @@ const { html } = defineProps<Props>()
 const render = useStoryblokRichText({
   components: {
     link: StoryblokTextLink,
-  } as SbVueRichTextComponentMap,
+  },
 })
 
 const richText = computed(() => (html ? () => render(html as SbRichTextInput) : null))
