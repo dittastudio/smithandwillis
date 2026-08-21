@@ -2,6 +2,8 @@ import { fileURLToPath } from 'node:url'
 import tailwindcss from '@tailwindcss/vite'
 import svgLoader from 'vite-svg-loader'
 
+const isSpa = process.env.NUXT_SPA === 'true'
+
 export default defineNuxtConfig({
   modules: [
     ['@nuxt/eslint', {
@@ -37,7 +39,7 @@ export default defineNuxtConfig({
       },
     ],
   ],
-  ssr: true,
+  ssr: !isSpa,
   devtools: { enabled: true },
   app: {
     pageTransition: { name: 'fade', mode: 'out-in' },
@@ -80,7 +82,9 @@ export default defineNuxtConfig({
     '#storyblok-types': fileURLToPath(new URL('./.storyblok/types/storyblok', import.meta.url)),
   },
   routeRules: {
-    '/**': { prerender: process.env.PRERENDER === 'true' },
+    '/**': {
+      prerender: !isSpa,
+    },
   },
   future: {
     compatibilityVersion: 4,
@@ -90,12 +94,9 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2025-04-13',
   nitro: {
-    experimental: {
-      openAPI: false,
-    },
     prerender: {
-      crawlLinks: true,
-      routes: ['/'],
+      crawlLinks: !isSpa,
+      routes: isSpa ? [] : ['/'],
       autoSubfolderIndex: false,
       ignore: [
         route => route.includes('?'),
