@@ -1,7 +1,7 @@
 import type { ImageModifiers } from '@nuxt/image'
 import type { LocationQuery } from 'vue-router'
 import type { GridImage, GridVideo, Image, Video } from '#storyblok-components'
-import type { StoryblokRichtext } from '#storyblok-types'
+import type { StoryblokMultilink, StoryblokRichTextDoc } from '#storyblok-types'
 
 const isGridImageComponent = (media: GridImage | GridVideo): media is GridImage => media.component === 'grid_image'
 const isGridVideoComponent = (media: GridImage | GridVideo): media is GridVideo => media.component === 'grid_video'
@@ -51,7 +51,7 @@ const storyblokImage = (
   return path
 }
 
-const storyblokRichTextContent = (richtext: StoryblokRichtext | undefined): boolean => Boolean(richtext?.content?.[0]?.content?.length)
+const storyblokRichTextContent = (richtext: StoryblokRichTextDoc | undefined): boolean => Boolean(richtext?.content?.[0]?.content?.length)
 
 const storyblokSlug = (path: string): string =>
   ['/', ''].includes(path) ? '/home' : path.replace(/\/+$/, '')
@@ -80,7 +80,23 @@ const storyblokImageDimensions = (
   return { width: Number(width), height: Number(height) }
 }
 
+const determineHref = (item: StoryblokMultilink) => {
+  switch (item.linktype) {
+    case 'story': {
+      const path = `/${item.cached_url}`.replace('/home', '/').trim()
+      return path === '/' ? path : path.replace(/\/$/, '')
+    }
+    case 'email': {
+      return `mailto:${item.email}`
+    }
+    default: {
+      return item.cached_url
+    }
+  }
+}
+
 export {
+  determineHref,
   isGridImageComponent,
   isGridVideoComponent,
   isImageComponent,

@@ -258,7 +258,7 @@
     "display_name": "Media Grid",
     "description": "Display a grid of images and videos",
     "created_at": "2026-08-18T14:24:33.440Z",
-    "updated_at": "2026-08-20T10:32:24.396Z",
+    "updated_at": "2026-08-20T15:28:12.975Z",
     "id": 210425747217882,
     "schema": {
       "items": {
@@ -315,7 +315,8 @@
         "use_uuid": true,
         "source": "internal",
         "default_value": "light",
-        "id": "mf-0DhQAQpStIksq-8FMxQ"
+        "id": "mf-0DhQAQpStIksq-8FMxQ",
+        "datasource_slug": "header-theme"
       }
     },
     "image": null,
