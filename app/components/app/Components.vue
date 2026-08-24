@@ -25,7 +25,7 @@ type Blocks = BlockCareers
 
 const { content } = defineProps<Props>()
 
-const hasColourProperties = (block: Blocks): block is BlockSplit | BlockText | BlockCareers => ['block_text', 'block_split', 'block_careers'].includes(block.component)
+const hasColourProperties = (block: Blocks): block is BlockCarousel | BlockSplit | BlockText | BlockCareers => ['block_carousel', 'block_text', 'block_split', 'block_careers'].includes(block.component)
 
 const checkBackgroundMatchesPrevBackground = (index: number) => {
   const current = content?.blocks?.[index]

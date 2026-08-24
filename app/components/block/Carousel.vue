@@ -103,7 +103,7 @@ const next = () => carouselRef.value?.next()
       class="absolute top-1/2 left-0 -translate-y-1/2 z-1 p-(--app-outer-gutter) filter-shadow-light group"
       @click="previous"
     >
-      <IconChevronLeft class="w-3.5 h-6 text-white opacity-80 transition-[opacity,translate] duration-200 ease-out group-hover:-translate-x-1 group-hover:opacity-100" />
+      <IconChevronLeft class="w-3.5 h-6 text-current opacity-80 transition-[opacity,translate] duration-200 ease-out group-hover:-translate-x-1 group-hover:opacity-100" />
 
       <span class="sr-only">Previous</span>
     </button>
@@ -113,7 +113,7 @@ const next = () => carouselRef.value?.next()
       class="absolute top-1/2 right-0 -translate-y-1/2 z-1 p-(--app-outer-gutter) filter-shadow-light group"
       @click="next"
     >
-      <IconChevronRight class="w-3.5 h-6 text-white opacity-80 transition-[opacity,translate] duration-200 ease-out group-hover:translate-x-1 group-hover:opacity-100" />
+      <IconChevronRight class="w-3.5 h-6 text-current opacity-80 transition-[opacity,translate] duration-200 ease-out group-hover:translate-x-1 group-hover:opacity-100" />
 
       <span class="sr-only">Next</span>
     </button>

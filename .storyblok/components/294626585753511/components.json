@@ -106,7 +106,7 @@
     "display_name": "Carousel",
     "description": "Carousel of images and videos",
     "created_at": "2026-08-18T14:24:33.502Z",
-    "updated_at": "2026-08-19T16:56:49.257Z",
+    "updated_at": "2026-08-24T12:40:32.638Z",
     "id": 210425747471838,
     "schema": {
       "slides": {
@@ -127,7 +127,9 @@
       "tab-2e8641d0-d0ba-4621-a144-b8fd99a92fba": {
         "display_name": "Theme",
         "keys": [
-          "header_color"
+          "header_color",
+          "background_color",
+          "text_color"
         ],
         "pos": 0,
         "type": "tab",
@@ -168,6 +170,24 @@
         "default_value": "light",
         "id": "Kk18KHSxQaCcyME1led4Xg",
         "datasource_slug": "header-theme"
+      },
+      "background_color": {
+        "type": "option",
+        "pos": 6,
+        "use_uuid": true,
+        "source": "internal",
+        "datasource_slug": "colours",
+        "id": "mMcJ9qqtQfm_ht7PSbJrBw",
+        "default_value": "offblack"
+      },
+      "text_color": {
+        "type": "option",
+        "pos": 7,
+        "use_uuid": true,
+        "source": "internal",
+        "datasource_slug": "colours",
+        "default_value": "white",
+        "id": "Wrvv3-1OTi-aMSCiEjesWQ"
       }
     },
     "image": null,
