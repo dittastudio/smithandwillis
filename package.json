@@ -48,7 +48,7 @@
     "@types/node": "^26.2.0",
     "better-sqlite3": "^13.0.3",
     "del-cli": "^7.0.0",
-    "eslint": "^10.9.0",
+    "eslint": "^10.9.1",
     "nuxt-ai-ready": "^2.0.1",
     "nuxt-og-image": "^6.7.8",
     "storyblok": "^4.22.2",
