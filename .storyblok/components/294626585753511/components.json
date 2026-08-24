@@ -890,10 +890,10 @@
   },
   {
     "name": "grid_image",
-    "display_name": "Image",
-    "description": "Set a mobile and desktop image",
+    "display_name": "Image Item",
+    "description": "Set a mobile & desktop image and optional link",
     "created_at": "2026-08-18T16:17:58.357Z",
-    "updated_at": "2026-08-20T08:15:46.738Z",
+    "updated_at": "2026-08-24T11:37:08.201Z",
     "id": 210453620154849,
     "schema": {
       "image_mobile": {
@@ -937,7 +937,7 @@
     "is_nestable": true,
     "all_presets": [],
     "preset_id": null,
-    "real_name": "Image",
+    "real_name": "Image Item",
     "component_group_uuid": "672f761d-0561-4a30-add5-a1f182cb3581",
     "color": "var(--sb-color-accent-background-green-cyan)",
     "icon": "image",
@@ -948,10 +948,10 @@
   },
   {
     "name": "grid_video",
-    "display_name": "Video",
-    "description": "Set a mobile and desktop video",
+    "display_name": "Video Item",
+    "description": "Set a mobile & desktop video and optional link",
     "created_at": "2026-08-18T16:39:47.546Z",
-    "updated_at": "2026-08-20T08:05:46.793Z",
+    "updated_at": "2026-08-24T11:38:37.950Z",
     "id": 210458982593069,
     "schema": {
       "video_mobile": {
@@ -994,7 +994,7 @@
     "is_nestable": true,
     "all_presets": [],
     "preset_id": null,
-    "real_name": "Video",
+    "real_name": "Video Item",
     "component_group_uuid": "672f761d-0561-4a30-add5-a1f182cb3581",
     "color": "var(--sb-color-accent-background-green-cyan)",
     "icon": "image",

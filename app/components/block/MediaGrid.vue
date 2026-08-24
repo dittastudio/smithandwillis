@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 import type { BlockMediaGrid } from '#storyblok-components'
-import StoryblokLink from '#components'
 
 interface Props {
   block: BlockMediaGrid
 }
 
 const { block } = defineProps<Props>()
+
+const StoryblokLink = resolveComponent('StoryblokLink')
 
 const ratioMobile = computed(() => ratioDimensions(block.ratio_mobile))
 const ratioDesktop = computed(() => ratioDimensions(block.ratio_desktop))
