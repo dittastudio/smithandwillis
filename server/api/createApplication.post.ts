@@ -111,7 +111,7 @@ export default defineEventHandler(async (event) => {
 
   const response = await resend.emails.send({
     from: 'Smith & Willis <careers@smithandwillis.london>',
-    to: 'michael@ditta.studio', // validated.recipient,
+    to: validated.recipient,
     subject: `New Application: ${validated.title}`,
     html: `
       <p><strong>Name:</strong> ${validated.name}</p>
