@@ -32,6 +32,9 @@ export default defineNuxtConfig({
     }],
     '@nuxtjs/seo',
     'nuxt-ai-ready',
+    ['nuxt-gtag', {
+      id: 'G-QPDWJKTYHH',
+    }],
     [
       '@storyblok/nuxt',
       {
