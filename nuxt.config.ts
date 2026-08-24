@@ -2,7 +2,7 @@ import { fileURLToPath } from 'node:url'
 import tailwindcss from '@tailwindcss/vite'
 import svgLoader from 'vite-svg-loader'
 
-const isSpa = process.env.NUXT_SPA === 'true'
+const isSpa = process.env.IS_SPA === 'true'
 
 export default defineNuxtConfig({
   modules: [
