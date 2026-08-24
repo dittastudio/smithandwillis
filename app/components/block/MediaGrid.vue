@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import type { BlockMediaGrid } from '#storyblok-components'
-import StoryblokLink from '@/components/storyblok/Link.vue'
-// https://vueuse.org/core/createReusableTemplate/
-// import { createReusableTemplate } from '@vueuse/core'
+import StoryblokLink from '#components'
 
 interface Props {
   block: BlockMediaGrid
