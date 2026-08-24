@@ -24,7 +24,7 @@ const next = () => carouselRef.value?.next()
 <template>
   <div
     v-editable="block"
-    class="relative w-full h-full"
+    class="relative size-full isolate"
   >
     <UiCarousel
       ref="carouselRef"
@@ -100,20 +100,20 @@ const next = () => carouselRef.value?.next()
 
     <button
       type="button"
-      class="absolute top-1/2 left-0 -translate-y-1/2 z-10 p-(--app-outer-gutter) filter-shadow-light"
+      class="absolute top-1/2 left-0 -translate-y-1/2 z-1 p-(--app-outer-gutter) filter-shadow-light group"
       @click="previous"
     >
-      <IconChevronLeft class="size-6 text-white" />
+      <IconChevronLeft class="w-3.5 h-6 text-white opacity-80 transition-[opacity,translate] duration-200 ease-out group-hover:-translate-x-1 group-hover:opacity-100" />
 
       <span class="sr-only">Previous</span>
     </button>
 
     <button
       type="button"
-      class="absolute top-1/2 right-0 -translate-y-1/2 z-10 p-(--app-outer-gutter) filter-shadow-light"
+      class="absolute top-1/2 right-0 -translate-y-1/2 z-1 p-(--app-outer-gutter) filter-shadow-light group"
       @click="next"
     >
-      <IconChevronRight class="size-6 text-white" />
+      <IconChevronRight class="w-3.5 h-6 text-white opacity-80 transition-[opacity,translate] duration-200 ease-out group-hover:translate-x-1 group-hover:opacity-100" />
 
       <span class="sr-only">Next</span>
     </button>
