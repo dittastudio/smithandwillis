@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { BlockMediaGrid } from '#storyblok-components'
+import StoryblokLink from '@/components/storyblok/Link.vue'
 // https://vueuse.org/core/createReusableTemplate/
 // import { createReusableTemplate } from '@vueuse/core'
 
@@ -40,110 +41,105 @@ const sizesDesktop = computed(() => {
       v-for="item in items"
       :key="item._uid"
     >
-      <figure class="relative size-full">
-        <picture v-if="isGridImageComponent(item) && item.image_desktop?.filename">
-          <MediaSource
-            :media="getMediaQuery('md')"
-            :width="ratioDesktop.width"
-            :height="ratioDesktop.height"
-            :src="item.image_desktop.filename"
-            :sizes="sizesDesktop"
-          />
+      <component
+        :is="item.link?.cached_url ? StoryblokLink : 'div'"
+        v-bind="item.link?.cached_url ? { item: item.link } : {}"
+        class="relative size-full block"
+      >
+        <figure class="relative size-full">
+          <picture v-if="isGridImageComponent(item) && item.image_desktop?.filename">
+            <MediaSource
+              :media="getMediaQuery('md')"
+              :width="ratioDesktop.width"
+              :height="ratioDesktop.height"
+              :src="item.image_desktop.filename"
+              :sizes="sizesDesktop"
+            />
 
-          <MediaSource
-            v-if="item.image_mobile?.filename || item.image_desktop?.filename"
-            :width="ratioMobile.width"
-            :height="ratioMobile.height"
-            :src="item.image_mobile?.filename || item.image_desktop.filename"
-            sizes="2xs:100vw xs:100vw sm:100vw"
-          />
+            <MediaSource
+              v-if="item.image_mobile?.filename || item.image_desktop?.filename"
+              :width="ratioMobile.width"
+              :height="ratioMobile.height"
+              :src="item.image_mobile?.filename || item.image_desktop.filename"
+              sizes="2xs:100vw xs:100vw sm:100vw"
+            />
 
-          <NuxtImg
-            :class="['size-full object-cover', ratioMobileClass, ratioDesktopClass]"
-            srcset=""
-            :src="item.image_desktop.filename"
-            :alt="item.image_mobile?.alt || item.image_desktop.alt || 'Smith & Willis'"
-            loading="lazy"
-          />
-        </picture>
+            <NuxtImg
+              :class="['size-full object-cover', ratioMobileClass, ratioDesktopClass]"
+              srcset=""
+              :src="item.image_desktop.filename"
+              :alt="item.image_mobile?.alt || item.image_desktop.alt || 'Smith & Willis'"
+              loading="lazy"
+            />
+          </picture>
 
-        <template v-else-if="isGridVideoComponent(item)">
-          <MediaVideo
-            v-if="item.video_mobile?.filename"
-            :class="[
-              'size-full object-cover',
-              ratioMobileClass, ratioDesktopClass,
-              { 'md:hidden': item.video_desktop?.filename },
-            ]"
-            :sources="[
-              { src: item.video_mobile.filename },
-            ]"
-            playsinline
-            autoplay
-            muted
-            loop
-            lazy
-          />
+          <template v-else-if="isGridVideoComponent(item)">
+            <MediaVideo
+              v-if="item.video_mobile?.filename"
+              :class="[
+                'size-full object-cover',
+                ratioMobileClass, ratioDesktopClass,
+                { 'md:hidden': item.video_desktop?.filename },
+              ]"
+              :sources="[
+                { src: item.video_mobile.filename },
+              ]"
+              playsinline
+              autoplay
+              muted
+              loop
+              lazy
+            />
 
-          <MediaVideo
-            v-if="item.video_desktop?.filename"
-            :class="[
-              'size-full object-cover',
-              ratioMobileClass, ratioDesktopClass,
-              { 'hidden md:block': item.video_mobile?.filename },
-            ]"
-            :sources="[
-              { src: item.video_desktop.filename },
-            ]"
-            playsinline
-            autoplay
-            muted
-            loop
-            lazy
-          />
-        </template>
+            <MediaVideo
+              v-if="item.video_desktop?.filename"
+              :class="[
+                'size-full object-cover',
+                ratioMobileClass, ratioDesktopClass,
+                { 'hidden md:block': item.video_mobile?.filename },
+              ]"
+              :sources="[
+                { src: item.video_desktop.filename },
+              ]"
+              playsinline
+              autoplay
+              muted
+              loop
+              lazy
+            />
+          </template>
 
-        <figcaption
-          v-if="item.title || item.subtitle"
-          class="absolute inset-0 flex flex-col items-start justify-end contain-layout contain-paint text-white"
-        >
-          <div class="sticky bottom-0">
-            <div class="gradient p-(--app-outer-gutter)">
-              <StoryblokLink
-                v-if="item.link?.cached_url"
-                :item="item.link"
-                class="block p-(--app-outer-gutter) -m-(--app-outer-gutter)"
-              >
+          <figcaption
+            v-if="item.title || item.subtitle"
+            class="absolute inset-0 flex flex-col items-start justify-end contain-layout contain-paint text-white"
+          >
+            <div class="sticky bottom-0">
+              <div class="gradient p-(--app-outer-gutter)">
                 <UiTextLink
+                  v-if="item.link?.cached_url"
                   as="div"
-                  :is-external="item.link.linktype === 'url'"
+                  :is-external="item.link.linktype !== 'story'"
                 >
                   <h4 class="type-serif-medium-caps flex items-center gap-2">
                     {{ item.title }}
                   </h4>
                 </UiTextLink>
 
-                <p class="opacity-80 type-serif-medium transition-opacity duration-300 ease-out [a:hover_&]:opacity-70 italic">
-                  {{ item.subtitle }}
-                </p>
-              </StoryblokLink>
-
-              <div
-                v-else
-                class="flex flex-col"
-              >
-                <h4 class="type-serif-medium-caps flex items-center gap-2">
+                <h4
+                  v-else
+                  class="type-serif-medium-caps flex items-center gap-2"
+                >
                   {{ item.title }}
                 </h4>
 
-                <p class="opacity-80 type-serif-medium italic">
+                <p class="opacity-80 type-serif-medium transition-opacity duration-300 ease-out [a:hover_&]:opacity-70 italic">
                   {{ item.subtitle }}
                 </p>
               </div>
             </div>
-          </div>
-        </figcaption>
-      </figure>
+          </figcaption>
+        </figure>
+      </component>
     </li>
   </ul>
 </template>
