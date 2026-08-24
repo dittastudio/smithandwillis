@@ -33,6 +33,23 @@ useIntersectionObserver(
   { rootMargin: '0px', threshold: 0, ...io },
 )
 
+// iOS Safari doesn't reliably re-run resource selection when `preload`/
+// `autoplay` are patched onto the element after mount (unlike Chromium),
+// so nudge it imperatively once ready. `flush: 'post'` runs this after the
+// reactive `videoAttrs` patch below has already been applied to the DOM.
+watch(
+  ready,
+  (isReady) => {
+    if (!isReady || !video.value) {
+      return
+    }
+
+    video.value.load()
+    video.value.play().catch(() => {})
+  },
+  { immediate: true, flush: 'post' },
+)
+
 defineOptions({
   inheritAttrs: false,
 })
