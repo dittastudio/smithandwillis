@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { Payload } from '@/components/form/Upload.vue'
 import { toTypedSchema } from '@vee-validate/zod'
-import { useField, useForm, useValidateForm } from 'vee-validate'
+import { useField, useForm, useResetForm, useValidateForm } from 'vee-validate'
 import { z } from 'zod'
 
 interface Props {
@@ -76,6 +76,7 @@ const { errors } = useForm({
 })
 
 const validate = useValidateForm()
+const resetForm = useResetForm()
 const { value: name } = useField<string>('name')
 const { value: email } = useField<string>('email')
 const { value: file, setValue: setFileValue } = useField<File | undefined>('file')
@@ -133,7 +134,7 @@ const onSubmit = async () => {
 
     status.value = {
       type: 'success',
-      message: 'Your application has been successfully made.',
+      message: `We'll review your application and get back to you as soon as possible.`,
     }
   }
   catch (error: any) {
@@ -146,14 +147,27 @@ const onSubmit = async () => {
     loading.value = false
   }
 }
+
+const reset = () => {
+  resetForm()
+  metadata.value = {}
+  loading.value = false
+  status.value = null
+}
 </script>
 
 <template>
   <div>
-    <div v-if="status && status.type === 'success'">
-      <p class="type-sans-medium">
-        Thanks for applying with us. We'll review your submission shortly.
+    <div v-if="status && status.type === 'success'" class="flex flex-col gap-4 items-start">
+      <p class="type-serif-medium">
+        Thanks for applying to work with us.
       </p>
+
+      <p v-if="status.message" class="type-sans-medium text-balance">
+        {{ status.message }}
+      </p>
+
+      <button type="button" class="cursor-pointer transition-opacity duration-300 ease-out hover:opacity-70 block type-serif-medium lowercase italic p-2 -m-2 md:p-3 md:-m-3" @click="reset">Back to form</button>
     </div>
 
     <template v-else>

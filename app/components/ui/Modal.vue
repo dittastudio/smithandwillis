@@ -13,7 +13,6 @@ interface Emits {
 }
 
 const emit = defineEmits<Emits>()
-
 const modal = useTemplateRef('modal')
 const modalOpen = ref(immediate)
 

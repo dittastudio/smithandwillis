@@ -150,7 +150,7 @@ watchEffect(() => {
           <template v-else>
             <ul
               :key="listKey"
-              class="group/list flex flex-col gap-x-[var(--app-inner-gutter)]"
+              class="group/list flex flex-col gap-x-(--app-inner-gutter)"
             >
               <li
                 v-for="job in jobs"
