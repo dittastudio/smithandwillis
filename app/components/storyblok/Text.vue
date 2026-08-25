@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { SbRichTextInput } from '@storyblok/richtext'
+import type { StoryblokRichTextInput  } from '@storyblok/richtext'
 import type { StoryblokRichTextDoc } from '#storyblok-types'
 import { StoryblokTextLink } from '#components'
 
@@ -15,7 +15,7 @@ const render = useStoryblokRichText({
   },
 })
 
-const richText = computed(() => (html ? () => render(html as SbRichTextInput) : null))
+const richText = computed(() => (html ? () => render(html as StoryblokRichTextInput ) : null))
 </script>
 
 <template>
