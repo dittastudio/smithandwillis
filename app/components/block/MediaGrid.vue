@@ -119,14 +119,14 @@ const sizesDesktop = computed(() => {
                   as="div"
                   :is-external="item.link.linktype !== 'story'"
                 >
-                  <h4 class="type-serif-medium-caps flex items-center gap-2">
+                  <h4 class="type-serif-medium-caps">
                     {{ item.title }}
                   </h4>
                 </UiTextLink>
 
                 <h4
                   v-else
-                  class="type-serif-medium-caps flex items-center gap-2"
+                  class="type-serif-medium-caps"
                 >
                   {{ item.title }}
                 </h4>

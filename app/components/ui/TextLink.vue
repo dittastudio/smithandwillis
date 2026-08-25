@@ -14,20 +14,23 @@ const { isExternal, as = 'span' } = defineProps<Props>()
   <component
     :is="as || 'span'"
     class="
-      inline-flex
-      items-center
-      gap-2
+      inline-block
       in-[a]:transition-opacity
       in-[a]:duration-300
       in-[a]:ease-out
       [a:hover_&]:opacity-70
+      text-pretty
     "
   >
-    <slot />
+    <span class="inline mr-2 *:inline">
+      <slot />
+    </span>
 
     <IconArrowExternal
       v-if="isExternal"
       class="
+        inline
+        align-baseline
         size-2.5
         in-[a]:transition-transform
         in-[a]:duration-300
@@ -40,6 +43,8 @@ const { isExternal, as = 'span' } = defineProps<Props>()
     <IconChevronRight
       v-else
       class="
+        inline
+        align-baseline
         w-1.75
         h-3
         in-[a]:transition-transform
