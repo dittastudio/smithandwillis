@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import type { SbVueRichTextProps, SbVueRichTextRenderContext } from '@storyblok/vue'
+import type { StoryblokVueRichTextProps, StoryblokVueRichTextRenderContext } from '@storyblok/vue'
 
 interface Props {
   type: 'link'
-  attrs?: SbVueRichTextProps['link']['attrs']
+  attrs: StoryblokVueRichTextProps['link']['attrs']
   // eslint-disable-next-line vue/prop-name-casing
   _key?: string
-  context?: SbVueRichTextRenderContext
+  context?: StoryblokVueRichTextRenderContext
 }
 
 defineOptions({ inheritAttrs: false })
