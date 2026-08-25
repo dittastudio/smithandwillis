@@ -24,7 +24,7 @@ const next = () => carouselRef.value?.next()
 <template>
   <div
     v-editable="block"
-    class="relative size-full isolate"
+    class="size-full isolate relative"
   >
     <UiCarousel
       ref="carouselRef"
@@ -53,7 +53,7 @@ const next = () => carouselRef.value?.next()
 
           <NuxtImg
             srcset=""
-            :class="['size-full object-cover', ratioMobileClass, ratioDesktopClass]"
+            class="size-full object-cover"
             :src="item.image_desktop.filename"
             :alt="item.image_mobile?.alt || item.image_desktop.alt || 'Smith & Willis'"
             loading="lazy"

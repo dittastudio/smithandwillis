@@ -69,15 +69,31 @@ const ratios = {
           :ratio-desktop-y="ratios.desktop.y"
         >
           <template #slide="{ slide }">
-            <template v-if="slide.component === 'slide_images'">
-              <SlideImages
-                :block="slide"
-                :ratio-x="ratios.mobile.x"
-                :ratio-y="ratios.mobile.y"
-                :ratio-desktop-x="ratios.desktop.x"
-                :ratio-desktop-y="ratios.desktop.y"
+            <picture v-if="isImageComponent(slide) && slide.image_desktop.filename">
+              <MediaSource
+                :media="getMediaQuery('md')"
+                :width="ratios.desktop.x"
+                :height="ratios.desktop.y"
+                :src="slide.image_desktop.filename"
+                sizes="sm:100vw md:100vw lg:100vw"
               />
-            </template>
+
+              <MediaSource
+                v-if="slide.image_mobile?.filename || slide.image_desktop?.filename"
+                :width="ratios.mobile.x"
+                :height="ratios.mobile.y"
+                :src="slide.image_mobile?.filename || slide.image_desktop.filename"
+                sizes="2xs:100vw xs:100vw sm:100vw"
+              />
+
+              <NuxtImg
+                srcset=""
+                class="size-full object-cover"
+                :src="slide.image_desktop.filename"
+                :alt="slide.image_mobile?.alt || slide.image_desktop.alt || 'Smith & Willis'"
+                loading="lazy"
+              />
+            </picture>
           </template>
         </UiCarouselFade>
       </template>
@@ -135,7 +151,7 @@ const ratios = {
       <StoryblokLink
         v-if="block.link?.cached_url"
         :item="block.link"
-        class="p-4 -m-4 type-serif-large italic"
+        class="type-serif-large p-4 -m-4 italic"
       >
         <UiTextLink :is-external="block.link.linktype !== 'story'">
           {{ block.link_title }}
