@@ -43,7 +43,7 @@ const [container, slider] = useKeenSlider({
   mode: 'snap',
   disabled: !enabled.value,
   defaultAnimation: {
-    duration: 500,
+    duration: 1000,
   },
   slides: items?.length || 0,
   detailsChanged: (slider) => {

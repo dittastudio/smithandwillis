@@ -12,11 +12,11 @@ const { block } = defineProps<Props>()
   <div
     v-editable="block"
     data-component="hero-image"
-    class="relative overflow-hidden isolate h-svh bg-offblack text-white"
+    class="isolate h-svh bg-offblack relative overflow-hidden text-white"
   >
     <HeroCover
       v-if="block.show_logo"
-      class="absolute inset-0 z-1"
+      class="z-1 absolute inset-0"
     />
 
     <HeroScrollDown>
@@ -35,7 +35,6 @@ const { block } = defineProps<Props>()
             />
 
             <MediaSource
-              v-if="item.image_mobile?.filename || item.image_desktop?.filename"
               :width="10"
               :height="16"
               :src="item.image_mobile?.filename || item.image_desktop.filename"

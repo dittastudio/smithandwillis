@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { LinkGroup } from '#storyblok-components'
-import IconArrowLarge from '@/assets/icons/arrow-large.svg'
+import IconArrowLeft from '@/assets/icons/arrow-large-left.svg'
 
 interface Props {
   item: LinkGroup
@@ -84,7 +84,7 @@ const emit = defineEmits<{
         "
         @click="emit('close')"
       >
-        <IconArrowLarge class="w-4 h-4 rotate-90 pointer-events-none" />
+        <IconArrowLeft class="w-4.5 h-4 pointer-events-none" />
       </button>
 
       <ul

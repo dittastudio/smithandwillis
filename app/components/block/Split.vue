@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import type { BlockSplit } from '#storyblok-components'
 import IconMichelinStar from '@/assets/icons/michelin-star.svg'
+import type { Carousel } from '@/components/ui/Carousel.vue'
+import IconArrowLeft from '@/assets/icons/arrow-large-left.svg'
+import IconArrowRight from '@/assets/icons/arrow-large-right.svg'
+
 
 interface Props {
   block: BlockSplit
@@ -11,16 +15,15 @@ const { block } = defineProps<Props>()
 const scrollAnchor = useTemplateRef('scrollAnchor')
 const { scrollMarginTop } = useCentreAnchor(scrollAnchor, 100)
 
-const ratios = {
-  mobile: {
-    x: ratioDimensions(block.ratio_mobile || '').width,
-    y: ratioDimensions(block.ratio_mobile || '').height,
-  },
-  desktop: {
-    x: ratioDimensions(block.ratio_desktop || '').width,
-    y: ratioDimensions(block.ratio_desktop || '').height,
-  },
-}
+const ratioMobile = computed(() => ratioDimensions(block.ratio_mobile))
+const ratioDesktop = computed(() => ratioDimensions(block.ratio_desktop))
+const ratioMobileClass = computed(() => ratios[block.ratio_mobile] ?? '')
+const ratioDesktopClass = computed(() => ratios[`md-${block.ratio_desktop}`] ?? '')
+
+const carouselRef = useTemplateRef<Carousel>('carouselRef')
+
+const previous = () => carouselRef.value?.previous()
+const next = () => carouselRef.value?.next()
 </script>
 
 <template>
@@ -36,66 +39,123 @@ const ratios = {
       <template
         v-if="block.content?.[0]"
       >
-        <MediaImageResponsive
-          v-if="block.content[0].component === 'split_media' && block.content[0]?.media"
-          :asset="block.content[0].media"
-          :desktop-asset="block.content[0].media"
-          :ratio="block.ratio_mobile"
-          :desktop-ratio="block.ratio_desktop"
-          sizes="
-            2xs:100vw
-            xs:100vw
-            sm:100vw
-          "
-          desktop-sizes="
-            md:50vw
-            lg:50vw
-          "
-        />
+        <picture v-if="block.content[0].component === 'image' && block.content[0].image_desktop.filename">
+          <MediaSource
+            :media="getMediaQuery('md')"
+            :width="ratioDesktop.width"
+            :height="ratioDesktop.height"
+            :src="block.content[0].image_desktop.filename"
+            sizes="sm:50vw md:50vw lg:50vw"
+          />
 
-        <UiCarouselFade
-          v-else-if="block.content[0].component === 'split_carousel'"
-          class="text-white"
-          :options="{
-            autoplay: block.content[0].autoplay || false,
-            autoplayDuration: Number(block.content[0].autoplay_duration),
-            navigation: true,
-            pagination: true,
-          }"
-          :slides="block.content[0].slides || []"
-          :ratio-x="ratios.mobile.x"
-          :ratio-y="ratios.mobile.y"
-          :ratio-desktop-x="ratios.desktop.x"
-          :ratio-desktop-y="ratios.desktop.y"
-        >
-          <template #slide="{ slide }">
-            <picture v-if="isImageComponent(slide) && slide.image_desktop.filename">
-              <MediaSource
-                :media="getMediaQuery('md')"
-                :width="ratios.desktop.x"
-                :height="ratios.desktop.y"
-                :src="slide.image_desktop.filename"
-                sizes="sm:100vw md:100vw lg:100vw"
-              />
+          <MediaSource
+            :width="ratioMobile.width || ratioDesktop.width"
+            :height="ratioMobile.height || ratioDesktop.height"
+            :src="block.content[0].image_mobile?.filename || block.content[0].image_desktop.filename"
+            sizes="2xs:100vw xs:100vw sm:100vw"
+          />
 
-              <MediaSource
-                v-if="slide.image_mobile?.filename || slide.image_desktop?.filename"
-                :width="ratios.mobile.x"
-                :height="ratios.mobile.y"
-                :src="slide.image_mobile?.filename || slide.image_desktop.filename"
-                sizes="2xs:100vw xs:100vw sm:100vw"
-              />
+          <NuxtImg
+            srcset=""
+            class="size-full object-cover"
+            :src="block.content[0].image_desktop.filename"
+            :alt="block.content[0].image_mobile?.alt || block.content[0].image_desktop.alt || 'Smith & Willis'"
+            loading="lazy"
+          />
+        </picture>
 
-              <NuxtImg
-                srcset=""
-                class="size-full object-cover"
-                :src="slide.image_desktop.filename"
-                :alt="slide.image_mobile?.alt || slide.image_desktop.alt || 'Smith & Willis'"
-                loading="lazy"
-              />
-            </picture>
-          </template>
-        </UiCarouselFade>
+        <div v-else-if="block.content[0].component === 'split_carousel'" class="relative overflow-hidden">
+          <UiCarousel
+            ref="carouselRef"
+            :items="block.content[0].slides"
+            :options="{ loop: true }"
+            :autoplay-interval="5000"
+            :autoplay="Boolean(block.content[0].autoplay)"
+          >
+            <template #item="{ item }">
+              <picture v-if="isImageComponent(item) && item.image_desktop?.filename">
+                <MediaSource
+                  :media="getMediaQuery('md')"
+                  :width="ratioDesktop.width"
+                  :height="ratioDesktop.height"
+                  :src="item.image_desktop.filename"
+                  sizes="sm:100vw md:100vw lg:100vw"
+                />
+
+                <MediaSource
+                  :width="ratioMobile.width || ratioDesktop.width"
+                  :height="ratioMobile.height || ratioDesktop.height"
+                  :src="item.image_mobile?.filename || item.image_desktop.filename"
+                  sizes="2xs:100vw xs:100vw sm:100vw"
+                />
+
+                <NuxtImg
+                  srcset=""
+                  class="size-full object-cover"
+                  :src="item.image_desktop.filename"
+                  :alt="item.image_mobile?.alt || item.image_desktop.alt || 'Smith & Willis'"
+                  loading="lazy"
+                />
+              </picture>
+            </template>
+          </UiCarousel>
+
+          <button
+            type="button"
+            class="absolute top-1/2 left-0 -translate-y-1/2 z-1 p-(--app-outer-gutter) filter-shadow-light group"
+            @click="previous"
+          >
+            <IconArrowLeft class="w-4.5 h-4 text-current opacity-80 transition-[opacity,translate] duration-200 ease-out group-hover:-translate-x-1 group-hover:opacity-100" />
+
+            <span class="sr-only">Previous</span>
+          </button>
+
+          <button
+            type="button"
+            class="absolute top-1/2 right-0 -translate-y-1/2 z-1 p-(--app-outer-gutter) filter-shadow-light group"
+            @click="next"
+          >
+            <IconArrowRight class="w-4.5 h-4 text-current opacity-80 transition-[opacity,translate] duration-200 ease-out group-hover:translate-x-1 group-hover:opacity-100" />
+
+            <span class="sr-only">Next</span>
+          </button>
+        </div>
+
+        <template v-else-if="block.content[0].component === 'video'">
+          <MediaVideo
+            v-if="block.content[0].video_mobile?.filename"
+            :class="[
+              'size-full object-cover',
+              ratioMobileClass, ratioDesktopClass,
+              { 'md:hidden': block.content[0].video_desktop?.filename },
+            ]"
+            :sources="[
+              { src: block.content[0].video_mobile.filename },
+            ]"
+            playsinline
+            autoplay
+            muted
+            loop
+            lazy
+          />
+
+          <MediaVideo
+            v-if="block.content[0].video_desktop?.filename"
+            :class="[
+              'size-full object-cover',
+              ratioMobileClass, ratioDesktopClass,
+              { 'hidden md:block': block.content[0].video_mobile?.filename },
+            ]"
+            :sources="[
+              { src: block.content[0].video_desktop.filename },
+            ]"
+            playsinline
+            autoplay
+            muted
+            loop
+            lazy
+          />
+        </template>
       </template>
     </div>
 

@@ -360,7 +360,7 @@
     "display_name": "Split",
     "description": "A block with split content left and right",
     "created_at": "2026-08-18T14:24:33.484Z",
-    "updated_at": "2026-08-25T15:25:11.736Z",
+    "updated_at": "2026-08-25T16:45:09.054Z",
     "id": 210425747398109,
     "schema": {
       "header_color": {
@@ -393,13 +393,13 @@
       "content": {
         "type": "bloks",
         "pos": 3,
-        "maximum": 1,
         "restrict_type": "",
         "restrict_components": true,
         "id": "x7qW3gKHTcmU-08wzTm3dA",
         "component_whitelist": [
-          "split_media",
-          "split_carousel"
+          "split_carousel",
+          "video",
+          "image"
         ],
         "component_denylist": []
       },
@@ -409,8 +409,9 @@
         "use_uuid": true,
         "source": "internal",
         "datasource_slug": "ratio",
-        "default_value": "4:5",
-        "id": "N3dYpkkqQomnsJ8FrDQu8Q"
+        "default_value": "1:1",
+        "id": "N3dYpkkqQomnsJ8FrDQu8Q",
+        "required": true
       },
       "ratio_desktop": {
         "type": "option",
@@ -419,7 +420,8 @@
         "source": "internal",
         "datasource_slug": "ratio",
         "id": "_gwNUPdyT5OtPVxmZ0laew",
-        "default_value": "1:1"
+        "default_value": "1:1",
+        "required": true
       },
       "michelin_star": {
         "type": "boolean",
@@ -1428,45 +1430,11 @@
     "metadata": {}
   },
   {
-    "name": "slide_images",
-    "display_name": "Slide Image(s)",
-    "description": "",
-    "created_at": "2026-08-25T15:22:32.615Z",
-    "updated_at": "2026-08-25T15:23:16.845Z",
-    "id": 212917258718568,
-    "schema": {
-      "images": {
-        "type": "multiasset",
-        "pos": 0,
-        "filetypes": [
-          "images"
-        ],
-        "id": "exDflADhR3iwNY4Q_wywVg",
-        "display_name": "Images (max 3 recommended)"
-      }
-    },
-    "image": null,
-    "preview_field": null,
-    "is_root": false,
-    "preview_tmpl": null,
-    "is_nestable": true,
-    "all_presets": [],
-    "preset_id": null,
-    "real_name": "Slide Image(s)",
-    "component_group_uuid": "672f761d-0561-4a30-add5-a1f182cb3581",
-    "color": "#f4cc48",
-    "icon": "block-image",
-    "internal_tags_list": [],
-    "internal_tag_ids": [],
-    "content_type_asset_preview": null,
-    "metadata": {}
-  },
-  {
     "name": "split_carousel",
     "display_name": null,
     "description": "",
     "created_at": "2026-08-18T14:24:33.705Z",
-    "updated_at": "2026-08-25T15:25:24.486Z",
+    "updated_at": "2026-08-25T16:55:42.504Z",
     "id": 210425748303333,
     "schema": {
       "autoplay": {
@@ -1475,17 +1443,6 @@
         "inline_label": true,
         "id": "78QQ82zhRkmzQlFojCeN8A"
       },
-      "autoplay_duration": {
-        "type": "number",
-        "pos": 1,
-        "min_value": 1000,
-        "max_value": 10000,
-        "decimals": 0,
-        "steps": 250,
-        "id": "yVLcLiMyR6uEqfEka3d1TQ",
-        "default_value": "2000",
-        "description": "Milliseconds"
-      },
       "slides": {
         "type": "bloks",
         "pos": 2,
@@ -1493,7 +1450,7 @@
         "restrict_type": "",
         "restrict_components": true,
         "component_whitelist": [
-          "slide_images"
+          "image"
         ],
         "id": "CMFl3-oiR1Ku-6C1vVQcTQ",
         "component_denylist": []

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type { BlockCarousel } from '#storyblok-components'
 import type { Carousel } from '@/components/ui/Carousel.vue'
-import IconChevronLeft from '@/assets/icons/chevron-left.svg'
-import IconChevronRight from '@/assets/icons/chevron-right.svg'
+import IconArrowLeft from '@/assets/icons/arrow-large-left.svg'
+import IconArrowRight from '@/assets/icons/arrow-large-right.svg'
 
 interface Props {
   block: BlockCarousel
@@ -44,9 +44,8 @@ const next = () => carouselRef.value?.next()
           />
 
           <MediaSource
-            v-if="item.image_mobile?.filename || item.image_desktop?.filename"
-            :width="ratioMobile.width"
-            :height="ratioMobile.height"
+            :width="ratioMobile.width || ratioDesktop.width"
+            :height="ratioMobile.height || ratioDesktop.height"
             :src="item.image_mobile?.filename || item.image_desktop.filename"
             sizes="2xs:100vw xs:100vw sm:100vw"
           />
@@ -103,7 +102,7 @@ const next = () => carouselRef.value?.next()
       class="absolute top-1/2 left-0 -translate-y-1/2 z-1 p-(--app-outer-gutter) filter-shadow-light group"
       @click="previous"
     >
-      <IconChevronLeft class="w-3.5 h-6 text-current opacity-80 transition-[opacity,translate] duration-200 ease-out group-hover:-translate-x-1 group-hover:opacity-100" />
+      <IconArrowLeft class="w-4.5 h-4 text-current opacity-80 transition-[opacity,translate] duration-200 ease-out group-hover:-translate-x-1 group-hover:opacity-100" />
 
       <span class="sr-only">Previous</span>
     </button>
@@ -113,7 +112,7 @@ const next = () => carouselRef.value?.next()
       class="absolute top-1/2 right-0 -translate-y-1/2 z-1 p-(--app-outer-gutter) filter-shadow-light group"
       @click="next"
     >
-      <IconChevronRight class="w-3.5 h-6 text-current opacity-80 transition-[opacity,translate] duration-200 ease-out group-hover:translate-x-1 group-hover:opacity-100" />
+      <IconArrowRight class="w-4.5 h-4 text-current opacity-80 transition-[opacity,translate] duration-200 ease-out group-hover:translate-x-1 group-hover:opacity-100" />
 
       <span class="sr-only">Next</span>
     </button>

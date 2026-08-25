@@ -56,9 +56,8 @@ const sizesDesktop = computed(() => {
             />
 
             <MediaSource
-              v-if="item.image_mobile?.filename || item.image_desktop?.filename"
-              :width="ratioMobile.width"
-              :height="ratioMobile.height"
+              :width="ratioMobile.width || ratioDesktop.width"
+              :height="ratioMobile.height || ratioDesktop.height"
               :src="item.image_mobile?.filename || item.image_desktop.filename"
               sizes="2xs:100vw xs:100vw sm:100vw"
             />
