@@ -23,7 +23,10 @@ logs
 .env
 .env.*
 !.env.example
+.env.sentry-build-plugin
 *.pem
 
 # Local Netlify folder
 .netlify
+
+
