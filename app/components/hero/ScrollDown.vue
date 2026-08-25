@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import IconArrowLarge from '@/assets/icons/arrow-large.svg'
+import IconArrowDown from '@/assets/icons/arrow-large-down.svg'
 
 const ready = ref(false)
 
@@ -50,7 +50,7 @@ onMounted(async () => {
         "
         @click="scrollToWithEasing('#ui-scroll-down-anchor', 1000)"
       >
-        <IconArrowLarge class="w-4 h-4.5 mx-auto animate-bounce" />
+        <IconArrowDown class="w-4 h-4.5 mx-auto animate-bounce" />
 
         <span class="sr-only">
           Scroll
