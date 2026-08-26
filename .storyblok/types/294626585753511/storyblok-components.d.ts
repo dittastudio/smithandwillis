@@ -50,7 +50,7 @@ export interface BlockSplit {
   header_color?: number | string;
   background_color?: number | string;
   text_color?: number | string;
-  content?: (SplitCarousel | Video | Image)[];
+  content?: (Video | Image | Carousel)[];
   ratio_mobile: number | string;
   ratio_desktop: number | string;
   michelin_star?: boolean;
@@ -99,6 +99,14 @@ export interface CareerItem {
   pdf: StoryblokAsset;
   email: string;
   component: "career_item";
+  _uid: string;
+  _editable?: string | undefined;
+}
+
+export interface Carousel {
+  autoplay?: boolean;
+  slides?: Image[];
+  component: "carousel";
   _uid: string;
   _editable?: string | undefined;
 }
@@ -182,21 +190,6 @@ export interface Settings {
   contact_title?: string;
   contact?: StoryblokRichTextDoc;
   component: "settings";
-  _uid: string;
-  _editable?: string | undefined;
-}
-
-export interface SplitCarousel {
-  autoplay?: boolean;
-  slides?: Image[];
-  component: "split_carousel";
-  _uid: string;
-  _editable?: string | undefined;
-}
-
-export interface SplitMedia {
-  media?: StoryblokAsset;
-  component: "split_media";
   _uid: string;
   _editable?: string | undefined;
 }

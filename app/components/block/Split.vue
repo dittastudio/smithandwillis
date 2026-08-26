@@ -64,7 +64,7 @@ const next = () => carouselRef.value?.next()
           />
         </picture>
 
-        <div v-else-if="block.content[0].component === 'split_carousel'" class="relative overflow-hidden">
+        <div v-else-if="block.content[0].component === 'carousel'" class="relative overflow-hidden">
           <UiCarousel
             ref="carouselRef"
             :items="block.content[0].slides"
@@ -79,7 +79,7 @@ const next = () => carouselRef.value?.next()
                   :width="ratioDesktop.width"
                   :height="ratioDesktop.height"
                   :src="item.image_desktop.filename"
-                  sizes="sm:100vw md:100vw lg:100vw"
+                  sizes="sm:50vw md:50vw lg:50vw"
                 />
 
                 <MediaSource

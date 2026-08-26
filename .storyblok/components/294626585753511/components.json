@@ -360,7 +360,7 @@
     "display_name": "Split",
     "description": "A block with split content left and right",
     "created_at": "2026-08-18T14:24:33.484Z",
-    "updated_at": "2026-08-25T16:45:09.054Z",
+    "updated_at": "2026-08-26T09:36:50.328Z",
     "id": 210425747398109,
     "schema": {
       "header_color": {
@@ -397,11 +397,12 @@
         "restrict_components": true,
         "id": "x7qW3gKHTcmU-08wzTm3dA",
         "component_whitelist": [
-          "split_carousel",
           "video",
-          "image"
+          "image",
+          "carousel"
         ],
-        "component_denylist": []
+        "component_denylist": [],
+        "maximum": 1
       },
       "ratio_mobile": {
         "type": "option",
@@ -907,6 +908,49 @@
     "component_group_uuid": "672f761d-0561-4a30-add5-a1f182cb3581",
     "color": "#1a1f36",
     "icon": "block-suitcase",
+    "internal_tags_list": [],
+    "internal_tag_ids": [],
+    "content_type_asset_preview": null,
+    "metadata": {}
+  },
+  {
+    "name": "carousel",
+    "display_name": "Carousel",
+    "description": "",
+    "created_at": "2026-08-18T14:24:33.705Z",
+    "updated_at": "2026-08-26T09:36:58.278Z",
+    "id": 210425748303333,
+    "schema": {
+      "autoplay": {
+        "type": "boolean",
+        "pos": 0,
+        "inline_label": true,
+        "id": "78QQ82zhRkmzQlFojCeN8A"
+      },
+      "slides": {
+        "type": "bloks",
+        "pos": 2,
+        "minimum": 2,
+        "restrict_type": "",
+        "restrict_components": true,
+        "component_whitelist": [
+          "image"
+        ],
+        "id": "CMFl3-oiR1Ku-6C1vVQcTQ",
+        "component_denylist": []
+      }
+    },
+    "image": null,
+    "preview_field": "slides",
+    "is_root": false,
+    "preview_tmpl": "<ul class=\"flex sb-group-button--has-spaces\">\n  {{@each(it.slides) =&gt; item, index}}\n    <li>\n      {{@if(item.component == \"image\")}}\n        {{@if(item.image_desktop)}}\n          {{@if(item.image_desktop.filename)}}\n            {{@image(item.image_desktop.filename)/}}\n          {{/if}}\n        {{/if}}\n      {{/if}}\n    </li>\n  {{/each}}\n</ul>",
+    "is_nestable": true,
+    "all_presets": [],
+    "preset_id": null,
+    "real_name": "Carousel",
+    "component_group_uuid": "672f761d-0561-4a30-add5-a1f182cb3581",
+    "color": "#f5a928",
+    "icon": "block-center-m",
     "internal_tags_list": [],
     "internal_tag_ids": [],
     "content_type_asset_preview": null,
@@ -1424,82 +1468,6 @@
     "component_group_uuid": "b99262bc-cc03-495a-8503-406c9049bc40",
     "color": "var(--sb-color-accent-background-lavender)",
     "icon": "keyboard",
-    "internal_tags_list": [],
-    "internal_tag_ids": [],
-    "content_type_asset_preview": null,
-    "metadata": {}
-  },
-  {
-    "name": "split_carousel",
-    "display_name": null,
-    "description": "",
-    "created_at": "2026-08-18T14:24:33.705Z",
-    "updated_at": "2026-08-25T16:55:42.504Z",
-    "id": 210425748303333,
-    "schema": {
-      "autoplay": {
-        "type": "boolean",
-        "pos": 0,
-        "inline_label": true,
-        "id": "78QQ82zhRkmzQlFojCeN8A"
-      },
-      "slides": {
-        "type": "bloks",
-        "pos": 2,
-        "minimum": 2,
-        "restrict_type": "",
-        "restrict_components": true,
-        "component_whitelist": [
-          "image"
-        ],
-        "id": "CMFl3-oiR1Ku-6C1vVQcTQ",
-        "component_denylist": []
-      }
-    },
-    "image": null,
-    "preview_field": "slides",
-    "is_root": false,
-    "preview_tmpl": null,
-    "is_nestable": true,
-    "all_presets": [],
-    "preset_id": null,
-    "real_name": "split_carousel",
-    "component_group_uuid": "1b922efa-d33c-4ad2-b1fe-54d3837a7f3f",
-    "color": "#f5a928",
-    "icon": "block-center-m",
-    "internal_tags_list": [],
-    "internal_tag_ids": [],
-    "content_type_asset_preview": null,
-    "metadata": {}
-  },
-  {
-    "name": "split_media",
-    "display_name": null,
-    "description": "",
-    "created_at": "2026-08-18T14:24:33.719Z",
-    "updated_at": "2026-08-18T14:24:33.719Z",
-    "id": 210425748360678,
-    "schema": {
-      "media": {
-        "type": "asset",
-        "pos": 0,
-        "id": "weQRJN0ySh2cz_PmEm7cww",
-        "filetypes": [
-          "images"
-        ]
-      }
-    },
-    "image": null,
-    "preview_field": null,
-    "is_root": false,
-    "preview_tmpl": null,
-    "is_nestable": true,
-    "all_presets": [],
-    "preset_id": null,
-    "real_name": "split_media",
-    "component_group_uuid": "1b922efa-d33c-4ad2-b1fe-54d3837a7f3f",
-    "color": "#ef6252",
-    "icon": "block-image",
     "internal_tags_list": [],
     "internal_tag_ids": [],
     "content_type_asset_preview": null,

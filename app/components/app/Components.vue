@@ -117,7 +117,8 @@ const isSingleItemMediaGrid = (block: Blocks) => block.component === 'block_medi
 }
 
 .content-blocks__item--block_media_grid + .content-blocks__item--block_media_grid,
-.content-blocks__item--block_media_grid + .content-blocks__item--block_carousel {
+.content-blocks__item--block_media_grid + .content-blocks__item--block_carousel,
+.content-blocks__item--block_carousel + .content-blocks__item--block_media_grid {
   padding-block-start: --spacing(1);
 }
 
