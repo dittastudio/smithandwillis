@@ -7,21 +7,11 @@ interface Props {
 
 const { block } = defineProps<Props>()
 
-const placementClasses: Record<BlockStatement['text_placement'], string> = {
-  left: 'items-start',
-  center: 'items-center',
-  right: 'md:items-end',
-}
-
 const alignmentClasses: Record<BlockStatement['text_alignment'], string> = {
   left: 'text-left',
   center: 'text-center',
   right: 'text-right',
 }
-
-const isPlaceRightAndAlignLeft = computed(() => {
-  return block.text_placement === 'right' && block.text_alignment === 'left'
-})
 
 type StatementFontSize = keyof typeof statementFontSizes
 
@@ -43,16 +33,16 @@ const statementFontSize = computed(() => {
 <template>
   <div
     v-editable="block"
-    class="wrapper flex flex-col"
-    :class="[
-      placementClasses[block.text_placement],
-      alignmentClasses[block.text_alignment],
-    ]"
+    class="wrapper grid grid-cols-12 gap-x-(--app-inner-gutter)"
+    :class="alignmentClasses[block.text_alignment]"
   >
     <div
-      class="flex flex-col gap-y-8 md:gap-y-10"
+      class="flex flex-col gap-y-8 md:gap-y-10 col-span-full"
       :class="{
-        'md:w-1/2 md:pl-[calc(var(--app-inner-gutter)*0.5)]': isPlaceRightAndAlignLeft,
+        'md:col-span-6': block.text_placement !== 'center' || block.text_alignment !== 'center',
+        'md:col-start-4': block.text_placement === 'center' && block.text_alignment !== 'center',
+        'md:col-start-7': block.text_placement === 'right',
+        'place-self-center': block.text_placement === 'center' && block.text_alignment === 'center',
       }"
     >
       <div
