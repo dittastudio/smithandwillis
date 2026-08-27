@@ -34,12 +34,11 @@ const emit = defineEmits<{
         bg-white/20
         backdrop-blur-lg
         transition-opacity
-        duration-600
         ease-out
       "
       :class="{
-        'opacity-0': !isOpen,
-        'opacity-100': isOpen,
+        'opacity-0 duration-1000': !isOpen,
+        'opacity-100 duration-500': isOpen,
       }"
       @click="emit('close')"
     />
@@ -60,14 +59,14 @@ const emit = defineEmits<{
         md:border-r
         md:border-offblack/10
         transition-transform
-        duration-300
-        ease-outQuart
+        duration-700
+        ease-outExpo
         overflow-y-auto
         overscroll-contain
       "
       :class="{
-        'translate-x-[-120%]': !isOpen,
-        'translate-x-0': isOpen,
+        'translate-x-[-101%] duration-500 delay-100': !isOpen,
+        'translate-x-0 duration-700': isOpen,
       }"
     >
       <button
@@ -81,6 +80,11 @@ const emit = defineEmits<{
           md:-mx-4
           lg:px-6
           lg:-mx-6
+          transition-[opacity,translate]
+          duration-300
+          ease-out
+          hover:opacity-70
+          hover:-translate-x-1
         "
         @click="emit('close')"
       >
@@ -90,13 +94,14 @@ const emit = defineEmits<{
       <ul
         class="transition-opacity ease-out"
         :class="{
-          'opacity-0 duration-50': !isOpen,
-          'opacity-100 duration-1000 delay-150': isOpen,
+          'opacity-0 duration-150': !isOpen,
+          'opacity-100 duration-1000 delay-200': isOpen,
         }"
       >
         <li
-          v-for="link in item.links"
+          v-for="(link, index) in item.links"
           :key="link._uid"
+          :style="`--item-index: ${index}`"
         >
           <StoryblokLink
             v-if="link.link?.cached_url"
@@ -111,16 +116,12 @@ const emit = defineEmits<{
               duration-300
               ease-out
               hover:opacity-60
-              [&.router-link-active]:text-orange-soft
-              [&.router-link-exact-active]:text-orange-soft
             "
             @click="scrollToWithEasing(link.link?.url, 1000, true)"
           >
-            <UiTextLink :is-external="link.link.linktype === 'url'">
-              <h4 class="type-serif-medium-caps flex items-center gap-2">
-                {{ link.title }}
-              </h4>
-            </UiTextLink>
+            <h4 class="type-serif-medium-caps flex items-center gap-2">
+              {{ link.title }}
+            </h4>
 
             <p
               v-if="link.subtitle"
