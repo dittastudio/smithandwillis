@@ -74,7 +74,8 @@ const emit = defineEmits<{
         class="
           block
           pt-4
-          pb-15
+          pb-18
+          md:p-16
           md:pt-3
           md:px-4
           md:-mx-4
@@ -108,10 +109,8 @@ const emit = defineEmits<{
             :item="link.link"
             class="
               block
-              p-5
-              -m-5
-              md:p-6
-              md:-m-6
+              p-6
+              -m-6
               transition-[opacity,color]
               duration-300
               ease-out
