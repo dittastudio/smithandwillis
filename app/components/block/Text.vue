@@ -49,9 +49,12 @@ const isPlaceRightAndAlignLeft = computed(() => {
           prose-headings:text-balance
           prose-headings:mb-8
           prose-headings:md:mb-10
+          prose-headings:has-[+h1]:mb-0
+          prose-headings:has-[+h2]:mb-0
+          prose-headings:has-[+h3]:mb-0
           prose-headings-before:mt-[4lh]
-          prose-h1:type-serif-large-caps
-          prose-h2:type-serif-large-caps
+          prose-h1:type-serif-large
+          prose-h2:type-serif-large
           prose-h3:type-serif-large-caps
           prose-h4:type-sans-medium-caps
           prose-h5:type-sans-medium-caps
