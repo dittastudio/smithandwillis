@@ -712,7 +712,7 @@
     "display_name": "Text",
     "description": "Text block with general typography content",
     "created_at": "2026-08-18T14:24:33.454Z",
-    "updated_at": "2026-08-24T13:19:08.852Z",
+    "updated_at": "2026-09-08T14:36:45.929Z",
     "id": 210425747275227,
     "schema": {
       "text": {
@@ -727,9 +727,6 @@
           "unset",
           "list",
           "h3",
-          "h4",
-          "h5",
-          "h6",
           "olist",
           "paragraph",
           "h1",
